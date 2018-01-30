@@ -5,8 +5,14 @@
  */
 package fmlMetro;
 
+import com.sun.glass.events.KeyEvent;
 import java.awt.Dimension;
 import java.awt.Toolkit;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import javax.swing.Timer;
 
 /**
  *
@@ -100,7 +106,7 @@ int xy;
         txtIEdescription = new javax.swing.JTextField();
         jLabel14 = new javax.swing.JLabel();
         cmbIEcategory = new javax.swing.JComboBox<>();
-        rodIEincome = new javax.swing.JRadioButton();
+        rdoIEincome = new javax.swing.JRadioButton();
         rdoIEexpense = new javax.swing.JRadioButton();
         btnIEadd = new javax.swing.JButton();
         jLabel22 = new javax.swing.JLabel();
@@ -496,7 +502,7 @@ int xy;
         lblReadMe.setVerticalAlignment(javax.swing.SwingConstants.TOP);
         lblReadMe.setVerticalTextPosition(javax.swing.SwingConstants.TOP);
 
-        txtIEdate.setText("12/31/2018");
+        txtIEdate.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.DateFormatter(new java.text.SimpleDateFormat("MM/dd/yy"))));
 
         jLabel2.setFont(new java.awt.Font("Lucida Grande", 0, 16)); // NOI18N
         jLabel2.setText(" . date");
@@ -507,12 +513,25 @@ int xy;
         jLabel6.setText(" . frequency");
 
         txtIEgoal.setText("123456");
+        txtIEgoal.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtIEgoalKeyTyped(evt);
+            }
+        });
 
         jLabel11.setFont(new java.awt.Font("Lucida Grande", 0, 16)); // NOI18N
         jLabel11.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         jLabel11.setText(" . goal");
 
         txtIEamount.setText("123456");
+        txtIEamount.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtIEamountKeyTyped(evt);
+            }
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                txtIEamountKeyPressed(evt);
+            }
+        });
 
         jLabel12.setFont(new java.awt.Font("Lucida Grande", 0, 16)); // NOI18N
         jLabel12.setText(" . amount");
@@ -533,11 +552,16 @@ int xy;
 
         cmbIEcategory.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "income", "expense" }));
 
-        rodIEincome.setText(". income");
+        rdoIEincome.setText(". income");
 
         rdoIEexpense.setText(". expense");
 
         btnIEadd.setText("add");
+        btnIEadd.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnIEaddActionPerformed(evt);
+            }
+        });
 
         jLabel22.setFont(new java.awt.Font("Lucida Grande", 0, 16)); // NOI18N
         jLabel22.setText(" . type");
@@ -561,7 +585,7 @@ int xy;
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel13Layout.createSequentialGroup()
                                 .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(txtIEdate, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(txtIEdate, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(jLabel15, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                             .addGroup(jPanel13Layout.createSequentialGroup()
@@ -580,7 +604,7 @@ int xy;
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(rdoIEexpense, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(rodIEincome, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(rdoIEincome, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(jPanel13Layout.createSequentialGroup()
                                 .addComponent(jLabel14, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -598,18 +622,21 @@ int xy;
                                         .addComponent(jLabel11, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addGap(2, 2, 2)))
                                 .addGroup(jPanel13Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(jPanel13Layout.createSequentialGroup()
-                                        .addComponent(txtIEgoal, javax.swing.GroupLayout.PREFERRED_SIZE, 62, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(jLabel19, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel13Layout.createSequentialGroup()
                                         .addComponent(cmbIEfreq, javax.swing.GroupLayout.PREFERRED_SIZE, 161, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                         .addComponent(jLabel16, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel13Layout.createSequentialGroup()
-                                        .addComponent(txtIEamount, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(jLabel18, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))))))
+                                    .addGroup(jPanel13Layout.createSequentialGroup()
+                                        .addGroup(jPanel13Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                            .addComponent(txtIEamount)
+                                            .addComponent(txtIEgoal, javax.swing.GroupLayout.DEFAULT_SIZE, 62, Short.MAX_VALUE))
+                                        .addGroup(jPanel13Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addGroup(jPanel13Layout.createSequentialGroup()
+                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                                .addComponent(jLabel19, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                            .addGroup(jPanel13Layout.createSequentialGroup()
+                                                .addGap(2, 2, 2)
+                                                .addComponent(jLabel18, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))))))))
                 .addContainerGap())
         );
         jPanel13Layout.setVerticalGroup(
@@ -647,7 +674,7 @@ int xy;
                     .addComponent(btnIEaddCategory))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel13Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(rodIEincome)
+                    .addComponent(rdoIEincome)
                     .addComponent(rdoIEexpense)
                     .addComponent(jLabel22))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -785,6 +812,7 @@ int xy;
         pnlCarder.add(pnlIncomeExp);
         pnlCarder.repaint();
         pnlCarder.validate();
+        ClearIEdataEntry();
         //jLabel16.setVisible(false);
         String html = "<html>Income and Expenses are tracked monthly. This is the " + 
                       "<br>first step to coming to terms with your finances. Start by " +
@@ -823,6 +851,44 @@ int xy;
         System.exit(0);
     }//GEN-LAST:event_btnExitActionPerformed
 
+    private void btnIEaddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnIEaddActionPerformed
+        // adds expense and income to expense/income table and ledger. aslo 
+        // add categories
+        
+        String ieDate = FormatIEdataEntryDate(txtIEdate.getText());
+        if(!ieDate.equals("FAIL")){
+            // date is good to use
+        }
+        String ieDEvalidate = ValidateIEdataEntry();
+        if(!ieDEvalidate.equals("FAIL")){
+            // data entry is good to use
+        }
+    }//GEN-LAST:event_btnIEaddActionPerformed
+
+    private void txtIEamountKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtIEamountKeyPressed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtIEamountKeyPressed
+
+    private void txtIEamountKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtIEamountKeyTyped
+        // Code to only allow integers in amount fields
+        char vchar = evt.getKeyChar();
+        if(!Character.isDigit(vchar)
+            || (vchar == KeyEvent.VK_BACKSPACE)
+            || (vchar == KeyEvent.VK_DELETE)){
+            evt.consume();
+        }
+    }//GEN-LAST:event_txtIEamountKeyTyped
+
+    private void txtIEgoalKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtIEgoalKeyTyped
+        // Code to only allow integers in amount fields
+        char vchar = evt.getKeyChar();
+        if(!Character.isDigit(vchar)
+            || (vchar == KeyEvent.VK_BACKSPACE)
+            || (vchar == KeyEvent.VK_DELETE)){
+            evt.consume();
+        }
+    }//GEN-LAST:event_txtIEgoalKeyTyped
+
     /**
      * @param args the command line arguments
      */
@@ -860,6 +926,83 @@ int xy;
     
     // Income and Expense panel
     
+    // Clears the data entry area of Income and Expense panel
+    private void ClearIEdataEntry(){
+        txtIEdate.setText("");
+        cmbIEfreq.setSelectedIndex(-1);
+        txtIEamount.setText("");
+        txtIEgoal.setText("");
+        txtIEdescription.setText("");
+        cmbIEcategory.setSelectedIndex(-1);
+        rdoIEincome.setSelected(false);
+        rdoIEexpense.setSelected(false);
+    }
+    
+    // Displays data entry error messages on Income and Expense panel
+    private void DisplayIEmessage(String message){
+        lblIEmessage.setText(message);
+        
+        Timer t = new Timer(2000, new ActionListener() {
+
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                lblIEmessage.setText(null);
+            }
+        });
+        t.setRepeats(false);
+        t.start();
+    }
+    
+    // validates the DE part of the form and returns PASS or FAIL to caller
+    private String ValidateIEdataEntry(){
+        if(txtIEamount.getText().equals("")){
+            return "FAIL";}
+        else if(txtIEdescription.getText().equals("")){
+            return "FAIL";}
+        else if(cmbIEcategory.getSelectedIndex() == -1){
+            return "FAIL";
+        } else if(!(rdoIEincome.isSelected() || rdoIEexpense.isSelected())){
+            return "FAIL";
+        } else if (cmbIEfreq.getSelectedIndex() == -1){
+            return "FAIL";
+        }else{
+            return "PASS";}
+        
+    }
+    
+    // takes the date from database and reformats it to something
+    // easier to data entry
+    private String FormatIEdataEntryDate(String de_mdydate){
+        java.util.Date date;
+        String valid_mdydate = "";
+        
+        SimpleDateFormat mdyFormattedDate = new SimpleDateFormat("MM/dd/yy");
+        //SimpleDateFormat ymdFormattedDate = new SimpleDateFormat("yyyy-MM-dd");
+       
+        try
+        {
+          date = mdyFormattedDate.parse(de_mdydate);
+          valid_mdydate = mdyFormattedDate.format(date);          
+        }
+          catch(ParseException e) {
+          DisplayIEmessage("Enter date like 04/15/18 " +
+                        "and not some other bogus format");
+          ClearIEdataEntry();
+          return "FAIL";
+        }
+
+        return valid_mdydate;
+    }
+    
+    private void txtAmountKeyTyped(java.awt.event.KeyEvent evt) {                                   
+        // Code to only allow integers in amount fields
+        char vchar = evt.getKeyChar();
+        if(!Character.isDigit(vchar)
+            || (vchar == KeyEvent.VK_BACKSPACE)
+            || (vchar == KeyEvent.VK_DELETE)){
+            evt.consume();
+        }
+    }  
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton bntRegister;
@@ -917,7 +1060,7 @@ int xy;
     private javax.swing.JPanel pnlLedger;
     private javax.swing.JPanel pnlReporter;
     private javax.swing.JRadioButton rdoIEexpense;
-    private javax.swing.JRadioButton rodIEincome;
+    private javax.swing.JRadioButton rdoIEincome;
     private javax.swing.JTextField txtIEamount;
     private javax.swing.JFormattedTextField txtIEdate;
     private javax.swing.JTextField txtIEdescription;
