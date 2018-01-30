@@ -22,6 +22,9 @@ public class fmlUserInterface extends javax.swing.JFrame {
 int xx;
 int xy;
 
+    SQLite sqlite = new SQLite();
+            // created a new object to do db interaction
+
     /**
      * Creates new form fmlUserInterface
      */
@@ -37,6 +40,13 @@ int xy;
         pnlCarder.repaint();
         pnlCarder.validate();
         
+        // see of the db is already set up.  0 means there is no table
+        int isReady = sqlite.IsAcctSetup();
+        if(isReady == 0){
+            sqlite.CreateDataBase();
+            sqlite.CreateFMLtbl();
+            //displayMessage("Enter 1st transaction to set up Acct. balance");
+        }  
         // Center on the screen
         //Toolkit tool = Toolkit.getDefaultToolkit();
         //Dimension dim = new Dimension(tool.getScreenSize());
@@ -88,6 +98,8 @@ int xy;
         jPanel11 = new javax.swing.JPanel();
         jLabel17 = new javax.swing.JLabel();
         jPanel12 = new javax.swing.JPanel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        jTable1 = new javax.swing.JTable();
         jPanel13 = new javax.swing.JPanel();
         lblReadMe = new javax.swing.JLabel();
         txtIEdate = new javax.swing.JFormattedTextField();
@@ -484,15 +496,62 @@ int xy;
         jPanel12.setBackground(new java.awt.Color(102, 102, 102));
         jPanel12.setPreferredSize(new java.awt.Dimension(344, 400));
 
+        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null}
+            },
+            new String [] {
+                "id", "date", "name", "catgory", "amt", "bal"
+            }
+        ) {
+            Class[] types = new Class [] {
+                java.lang.Integer.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.Integer.class, java.lang.String.class
+            };
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false, false, false
+            };
+
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        jTable1.getTableHeader().setReorderingAllowed(false);
+        jScrollPane1.setViewportView(jTable1);
+        if (jTable1.getColumnModel().getColumnCount() > 0) {
+            jTable1.getColumnModel().getColumn(0).setResizable(false);
+            jTable1.getColumnModel().getColumn(0).setPreferredWidth(10);
+            jTable1.getColumnModel().getColumn(1).setResizable(false);
+            jTable1.getColumnModel().getColumn(1).setPreferredWidth(40);
+            jTable1.getColumnModel().getColumn(2).setResizable(false);
+            jTable1.getColumnModel().getColumn(2).setPreferredWidth(65);
+            jTable1.getColumnModel().getColumn(3).setResizable(false);
+            jTable1.getColumnModel().getColumn(3).setPreferredWidth(60);
+            jTable1.getColumnModel().getColumn(4).setResizable(false);
+            jTable1.getColumnModel().getColumn(4).setPreferredWidth(40);
+            jTable1.getColumnModel().getColumn(5).setResizable(false);
+            jTable1.getColumnModel().getColumn(5).setPreferredWidth(40);
+        }
+
         javax.swing.GroupLayout jPanel12Layout = new javax.swing.GroupLayout(jPanel12);
         jPanel12.setLayout(jPanel12Layout);
         jPanel12Layout.setHorizontalGroup(
             jPanel12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 344, Short.MAX_VALUE)
+            .addGroup(jPanel12Layout.createSequentialGroup()
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 338, Short.MAX_VALUE)
+                .addContainerGap())
         );
         jPanel12Layout.setVerticalGroup(
             jPanel12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 396, Short.MAX_VALUE)
+            .addGroup(jPanel12Layout.createSequentialGroup()
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 390, Short.MAX_VALUE)
+                .addContainerGap())
         );
 
         jPanel13.setBackground(new java.awt.Color(102, 102, 102));
@@ -550,6 +609,7 @@ int xy;
         jLabel14.setFont(new java.awt.Font("Lucida Grande", 0, 16)); // NOI18N
         jLabel14.setText(" . category");
 
+        cmbIEcategory.setEditable(true);
         cmbIEcategory.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "income", "expense" }));
 
         rdoIEincome.setText(". income");
@@ -969,6 +1029,12 @@ int xy;
             return "PASS";}
         
     }
+    // date8 takes a string MM/dd/yy and turns into an 8 byte integer: 20181231
+    // it also returns day, mon, yr, week for sql grouping in the database
+    private void Date8(String mdy){
+    
+        
+    }
     
     // takes the date from database and reformats it to something
     // easier to data entry
@@ -994,15 +1060,6 @@ int xy;
         return valid_mdydate;
     }
     
-    private void txtAmountKeyTyped(java.awt.event.KeyEvent evt) {                                   
-        // Code to only allow integers in amount fields
-        char vchar = evt.getKeyChar();
-        if(!Character.isDigit(vchar)
-            || (vchar == KeyEvent.VK_BACKSPACE)
-            || (vchar == KeyEvent.VK_DELETE)){
-            evt.consume();
-        }
-    }  
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton bntRegister;
@@ -1047,8 +1104,10 @@ int xy;
     private javax.swing.JPanel jPanel7;
     private javax.swing.JPanel jPanel8;
     private javax.swing.JPanel jPanel9;
+    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JSeparator jSeparator2;
     private javax.swing.JSeparator jSeparator3;
+    private javax.swing.JTable jTable1;
     private javax.swing.JLabel lblFML;
     private javax.swing.JLabel lblIEmessage;
     private javax.swing.JLabel lblReadMe;
