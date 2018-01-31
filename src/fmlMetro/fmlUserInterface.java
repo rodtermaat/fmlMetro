@@ -12,6 +12,8 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
 import javax.swing.Timer;
 
 /**
@@ -613,8 +615,18 @@ int xy;
         cmbIEcategory.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "income", "expense" }));
 
         rdoIEincome.setText(". income");
+        rdoIEincome.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                rdoIEincomeActionPerformed(evt);
+            }
+        });
 
         rdoIEexpense.setText(". expense");
+        rdoIEexpense.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                rdoIEexpenseActionPerformed(evt);
+            }
+        });
 
         btnIEadd.setText("add");
         btnIEadd.addActionListener(new java.awt.event.ActionListener() {
@@ -653,19 +665,6 @@ int xy;
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(txtIEdescription))
                             .addGroup(jPanel13Layout.createSequentialGroup()
-                                .addGap(6, 6, 6)
-                                .addComponent(btnIEdel)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(btnIEupd)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(btnIEadd))
-                            .addGroup(jPanel13Layout.createSequentialGroup()
-                                .addComponent(jLabel22, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(rdoIEexpense, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(rdoIEincome, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(jPanel13Layout.createSequentialGroup()
                                 .addComponent(jLabel14, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(cmbIEcategory, javax.swing.GroupLayout.PREFERRED_SIZE, 163, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -696,7 +695,23 @@ int xy;
                                                 .addComponent(jLabel19, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                                             .addGroup(jPanel13Layout.createSequentialGroup()
                                                 .addGap(2, 2, 2)
-                                                .addComponent(jLabel18, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))))))))
+                                                .addComponent(jLabel18, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))))
+                            .addGroup(jPanel13Layout.createSequentialGroup()
+                                .addGroup(jPanel13Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(jPanel13Layout.createSequentialGroup()
+                                        .addGap(6, 6, 6)
+                                        .addComponent(btnIEdel)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(btnIEupd)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(btnIEadd))
+                                    .addGroup(jPanel13Layout.createSequentialGroup()
+                                        .addComponent(jLabel22, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(rdoIEexpense, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(rdoIEincome, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addGap(0, 0, Short.MAX_VALUE)))))
                 .addContainerGap())
         );
         jPanel13Layout.setVerticalGroup(
@@ -737,12 +752,12 @@ int xy;
                     .addComponent(rdoIEincome)
                     .addComponent(rdoIEexpense)
                     .addComponent(jLabel22))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel13Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnIEadd)
                     .addComponent(btnIEupd)
                     .addComponent(btnIEdel))
-                .addContainerGap())
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         jPanel14.setBackground(new java.awt.Color(102, 102, 102));
@@ -911,18 +926,68 @@ int xy;
         System.exit(0);
     }//GEN-LAST:event_btnExitActionPerformed
 
+    // adds income and expenses
     private void btnIEaddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnIEaddActionPerformed
-        // adds expense and income to expense/income table and ledger. aslo 
-        // add categories
         
-        String ieDate = FormatIEdataEntryDate(txtIEdate.getText());
-        if(!ieDate.equals("FAIL")){
+        Date jDate = null;
+        String sDate8, day, mon, yr, wk, type, cat, name;
+        String frq = "";
+        String ieDate = txtIEdate.getText();
+        int iDate8 = 0; int amt = 0; int budg = 0;
+        
+        //System.out.println("from text box: " + ieDate);
+
             // date is good to use
+        SimpleDateFormat sdf = new SimpleDateFormat("MM/dd/yy");
+        try
+        {
+            jDate = sdf.parse(ieDate);
         }
+        catch(ParseException e) {
+            DisplayIEmessage("Enter date like 04/15/18 and not some " +
+                                                    "other bogus format");
+            return;
+        }
+            
+        day = new SimpleDateFormat("dd").format(jDate);
+        mon = new SimpleDateFormat("MM").format(jDate);
+        yr = new SimpleDateFormat("yyyy").format(jDate);
+        wk = new SimpleDateFormat("w").format(jDate);
+        sDate8 = yr + mon + day;
+        iDate8 = Integer.parseInt(sDate8);
+            //System.out.println("day " + day);
+            //System.out.println("mon " + mon);
+            //System.out.println("year " + yr);
+            //System.out.println("sDate8 " + sDate8);
+            //System.out.println("week " + wk);
+
+        
         String ieDEvalidate = ValidateIEdataEntry();
         if(!ieDEvalidate.equals("FAIL")){
             // data entry is good to use
+            type = cmbIEfreq.getSelectedItem().toString();
+            cat = cmbIEcategory.getSelectedItem().toString();
+            name = txtIEdescription.getText().toString();
+            amt = Integer.valueOf(txtIEamount.getText());
+            budg = Integer.valueOf(txtIEgoal.getText());
+            
+            if(rdoIEincome.isSelected()){
+                frq = "income";
+            }
+            if(rdoIEexpense.isSelected()){
+                frq = "expense";
+                amt = amt*-1;
+                budg = budg*-1;
+            }
+            
+            // everything checks out, so add the transaction already
+            int xID = sqlite.AddTransaction(iDate8, day, mon, yr, wk, type, frq, cat, name, amt, budg);
         }
+        else {
+            DisplayIEmessage("Check your data entry cause something ain't right");
+            return;
+        }
+        
     }//GEN-LAST:event_btnIEaddActionPerformed
 
     private void txtIEamountKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtIEamountKeyPressed
@@ -948,6 +1013,14 @@ int xy;
             evt.consume();
         }
     }//GEN-LAST:event_txtIEgoalKeyTyped
+
+    private void rdoIEexpenseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rdoIEexpenseActionPerformed
+        rdoIEincome.setSelected(false);
+    }//GEN-LAST:event_rdoIEexpenseActionPerformed
+
+    private void rdoIEincomeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rdoIEincomeActionPerformed
+        rdoIEexpense.setSelected(false);
+    }//GEN-LAST:event_rdoIEincomeActionPerformed
 
     /**
      * @param args the command line arguments
@@ -1015,50 +1088,24 @@ int xy;
     
     // validates the DE part of the form and returns PASS or FAIL to caller
     private String ValidateIEdataEntry(){
+        //final String catTest = cmbIEcategory.getSelectedItem().toString().trim();
+        //final String freqTest = cmbIEfreq.getSelectedItem().toString().trim();
         if(txtIEamount.getText().equals("")){
             return "FAIL";}
         else if(txtIEdescription.getText().equals("")){
             return "FAIL";}
-        else if(cmbIEcategory.getSelectedIndex() == -1){
+        else if(cmbIEcategory.getSelectedItem() == null
+                || cmbIEcategory.getSelectedItem().toString().isEmpty()){
             return "FAIL";
         } else if(!(rdoIEincome.isSelected() || rdoIEexpense.isSelected())){
             return "FAIL";
-        } else if (cmbIEfreq.getSelectedIndex() == -1){
+        } else if (cmbIEfreq.getSelectedItem() == null 
+                || cmbIEfreq.getSelectedItem().toString().isEmpty()){
             return "FAIL";
         }else{
             return "PASS";}
-        
     }
-    // date8 takes a string MM/dd/yy and turns into an 8 byte integer: 20181231
-    // it also returns day, mon, yr, week for sql grouping in the database
-    private void Date8(String mdy){
-    
-        
-    }
-    
-    // takes the date from database and reformats it to something
-    // easier to data entry
-    private String FormatIEdataEntryDate(String de_mdydate){
-        java.util.Date date;
-        String valid_mdydate = "";
-        
-        SimpleDateFormat mdyFormattedDate = new SimpleDateFormat("MM/dd/yy");
-        //SimpleDateFormat ymdFormattedDate = new SimpleDateFormat("yyyy-MM-dd");
-       
-        try
-        {
-          date = mdyFormattedDate.parse(de_mdydate);
-          valid_mdydate = mdyFormattedDate.format(date);          
-        }
-          catch(ParseException e) {
-          DisplayIEmessage("Enter date like 04/15/18 " +
-                        "and not some other bogus format");
-          ClearIEdataEntry();
-          return "FAIL";
-        }
 
-        return valid_mdydate;
-    }
     
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
