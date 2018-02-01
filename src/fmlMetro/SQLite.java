@@ -181,6 +181,75 @@ public class SQLite
         
     }
     
+    //  This gets all the transactions that are income and expense to display
+    //  puts them in an ArrayList object and creates a running total as balance
+    //  Used in the Income and Expense pane
+//    public ArrayList<Transaction> getAllObjects(){
+//        
+//       String sql = "select id, date, time, category, name, amount,\n" +
+//                    " (select sum(t2.amount) from ledger t2 where\n" +
+//                    " ((t2.date <= t1.date and t2.time <= t1.time) or\n" +
+//                    " (t2.date < t1.date))\n" +
+//                    " order by date ) as accumulated\n" +
+//                    " from ledger t1 order by date, time;";
+//       
+//       //String url = "jdbc:sqlite:/Users/termaat/sqlite/db/Ledger.db";
+//       //ArrayList<Object> objectList = new ArrayList<Object>();
+//       ArrayList<Transaction> rows2 = new ArrayList<>();
+//                    // create an ArrayList of the Transaction object and creates
+//                    // the ledger/checkbook of the application
+//       Transaction row2;
+//                    // not sure what this actually does, but is needed based
+//                    // on similar sample code I have studied
+//        try {
+//           Class.forName("org.sqlite.JDBC");
+//           Connection conn = DriverManager.getConnection(url);
+//           conn.setAutoCommit(false);
+//           //System.out.println("Opened database successfully");
+//           
+//           Statement stmt = conn.createStatement();
+//           ResultSet rs = stmt.executeQuery(sql);
+//           
+//           while ( rs.next() ) {
+//              int id = rs.getInt("id");
+//              Date date = rs.getDate("date");
+//              String  category = rs.getString("category");
+//              String  name = rs.getString("name");
+//              int amount  = rs.getInt("amount");
+//              int balance  = rs.getInt("accumulated");
+//              
+//              /**
+//              System.out.println( "ID = " + id );
+//              System.out.println( "DATE = " + date);
+//              System.out.println( "CATEGORY = " + category );
+//              System.out.println( "NAME = " + name );
+//              System.out.println( "AMOUNT = " + amount);
+//              System.out.println( "BALANCE = " + balance );
+//              System.out.println();
+//              */
+//             
+//              //objectList.add(object);
+//              row2 = new Transaction(id, date, category, name, amount, balance);
+//              rows2.add(row2);
+//           }
+//           
+//            if(rs != null) {
+//                rs.close();
+//            }
+//            if(stmt != null){
+//                stmt.close();
+//            }
+//            if(conn != null) {
+//                conn.close();
+//            } 
+//        }
+//        catch ( Exception e ) {
+//            //System.out.println("Get ArrayList Error: " + e.getMessage());           
+//            //System.err.println( e.getClass().getName() + ": " + e.getMessage() );
+//        }
+//        
+//        return rows2;
+//    }
     
     
 }

@@ -14,7 +14,9 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.Locale;
 import javax.swing.Timer;
+import java.lang.String;
 
 /**
  *
@@ -127,6 +129,7 @@ int xy;
         btnIEupd = new javax.swing.JButton();
         btnIEdel = new javax.swing.JButton();
         btnIEaddCategory = new javax.swing.JButton();
+        chkIErepeat = new javax.swing.JCheckBox();
         jPanel14 = new javax.swing.JPanel();
         lblIEmessage = new javax.swing.JLabel();
         jSeparator3 = new javax.swing.JSeparator();
@@ -644,6 +647,13 @@ int xy;
 
         btnIEaddCategory.setText("+");
 
+        chkIErepeat.setText(". repeat");
+        chkIErepeat.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                chkIErepeatActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel13Layout = new javax.swing.GroupLayout(jPanel13);
         jPanel13.setLayout(jPanel13Layout);
         jPanel13Layout.setHorizontalGroup(
@@ -697,21 +707,21 @@ int xy;
                                                 .addGap(2, 2, 2)
                                                 .addComponent(jLabel18, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))))
                             .addGroup(jPanel13Layout.createSequentialGroup()
-                                .addGroup(jPanel13Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(jPanel13Layout.createSequentialGroup()
-                                        .addGap(6, 6, 6)
-                                        .addComponent(btnIEdel)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(btnIEupd)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(btnIEadd))
-                                    .addGroup(jPanel13Layout.createSequentialGroup()
-                                        .addComponent(jLabel22, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(rdoIEexpense, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(rdoIEincome, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                                .addGap(0, 0, Short.MAX_VALUE)))))
+                                .addComponent(jLabel22, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(rdoIEexpense, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(rdoIEincome, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(0, 0, Short.MAX_VALUE))
+                            .addGroup(jPanel13Layout.createSequentialGroup()
+                                .addGap(6, 6, 6)
+                                .addComponent(btnIEdel)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(btnIEupd)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(btnIEadd)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(chkIErepeat)))))
                 .addContainerGap())
         );
         jPanel13Layout.setVerticalGroup(
@@ -756,7 +766,8 @@ int xy;
                 .addGroup(jPanel13Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnIEadd)
                     .addComponent(btnIEupd)
-                    .addComponent(btnIEdel))
+                    .addComponent(btnIEdel)
+                    .addComponent(chkIErepeat))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -930,10 +941,13 @@ int xy;
     private void btnIEaddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnIEaddActionPerformed
         
         Date jDate = null;
-        String sDate8, day, mon, yr, wk, type, cat, name;
-        String frq = "";
+        String sDate8, day, mon, yr, wk, frq, cat, name;
+        String type = "";
         String ieDate = txtIEdate.getText();
         int iDate8 = 0; int amt = 0; int budg = 0;
+        int modifier = 0;
+        String[] strDays = new String[] { "Sun", "Mon", "Tue", "Wed", "Thu",
+                                            "Fri", "Sat" };
         
         //System.out.println("from text box: " + ieDate);
 
@@ -965,23 +979,68 @@ int xy;
         String ieDEvalidate = ValidateIEdataEntry();
         if(!ieDEvalidate.equals("FAIL")){
             // data entry is good to use
-            type = cmbIEfreq.getSelectedItem().toString();
+            frq = cmbIEfreq.getSelectedItem().toString();
             cat = cmbIEcategory.getSelectedItem().toString();
             name = txtIEdescription.getText().toString();
             amt = Integer.valueOf(txtIEamount.getText());
             budg = Integer.valueOf(txtIEgoal.getText());
             
             if(rdoIEincome.isSelected()){
-                frq = "income";
+                type = "income";
             }
             if(rdoIEexpense.isSelected()){
-                frq = "expense";
+                type = "expense";
                 amt = amt*-1;
                 budg = budg*-1;
             }
             
-            // everything checks out, so add the transaction already
             int xID = sqlite.AddTransaction(iDate8, day, mon, yr, wk, type, frq, cat, name, amt, budg);
+            
+            if (!chkIErepeat.isSelected()){
+                ClearIEdataEntry();
+            }
+            else{
+                txtIEdate.setText("");
+            }
+            
+            // everything checks out, so add the transaction already
+            // by default we will add out transactions for the entire year
+            
+            // get a calendar object using jDate (date entered)
+            //Calendar cal = Calendar.getInstance(new Locale("en","UK"));
+//            Calendar cal = Calendar.getInstance();
+//            cal.setTime(jDate);
+//            System.out.println("input date is " + jDate);
+//            System.out.println("caldendar date is " + cal.getTime().toString());
+//            for (int i=0; i<12; i++){
+//                cal.add((Calendar.MONTH), modifier);
+//                
+//                //String.format("%02d",1)
+//                mon = leftPad((cal.get(Calendar.MONTH)+1),2);
+//                day = leftPad(cal.get(Calendar.DAY_OF_MONTH),2);
+//                yr = String.valueOf(cal.get(Calendar.YEAR));
+//                sDate8 = yr + mon + day;
+//                iDate8 = Integer.parseInt(sDate8);
+//        
+//                //System.out.println("cal mon is " + (cal.get(Calendar.MONTH)+1) +
+//                //        " cal day " + cal.get(Calendar.DAY_OF_MONTH) +
+//                //        " cal day " + strDays[cal.get(Calendar.DAY_OF_WEEK)-1] +
+//                //        " cal year " + cal.get(Calendar.YEAR) + 
+//                //        " cal week " + cal.get(Calendar.WEEK_OF_YEAR));
+//                
+//                if(cal.get(Calendar.DAY_OF_WEEK) == Calendar.SUNDAY) {
+//                    // if sunday subtract 1 week from week of the year. its 
+//                    // important that the week always start on Monday
+//                    wk = String.valueOf(cal.get(Calendar.WEEK_OF_YEAR) - 1);
+//                    //System.out.println("our week " + ourWK);
+//                }
+//                else {
+//                    wk = String.valueOf(cal.get(Calendar.WEEK_OF_YEAR));  
+//                }
+//                
+//                modifier=1;
+//                int xID = sqlite.AddTransaction(iDate8, day, mon, yr, wk, type, frq, cat, name, amt, budg);
+//            }
         }
         else {
             DisplayIEmessage("Check your data entry cause something ain't right");
@@ -990,6 +1049,10 @@ int xy;
         
     }//GEN-LAST:event_btnIEaddActionPerformed
 
+    public static String leftPad(int n, int padding) {
+        return String.format("%0" + padding + "d", n);
+    }
+    
     private void txtIEamountKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtIEamountKeyPressed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtIEamountKeyPressed
@@ -1021,6 +1084,12 @@ int xy;
     private void rdoIEincomeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rdoIEincomeActionPerformed
         rdoIEexpense.setSelected(false);
     }//GEN-LAST:event_rdoIEincomeActionPerformed
+
+    private void chkIErepeatActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_chkIErepeatActionPerformed
+        if(!chkIErepeat.isSelected()){
+            ClearIEdataEntry();
+        }
+    }//GEN-LAST:event_chkIErepeatActionPerformed
 
     /**
      * @param args the command line arguments
@@ -1118,6 +1187,7 @@ int xy;
     private javax.swing.JButton btnIEdel;
     private javax.swing.JButton btnIEupd;
     private javax.swing.JButton btnIncomeExp;
+    private javax.swing.JCheckBox chkIErepeat;
     private javax.swing.JComboBox<String> cmbIEcategory;
     private javax.swing.JComboBox<String> cmbIEfreq;
     private javax.swing.JFormattedTextField jFormattedTextField1;
