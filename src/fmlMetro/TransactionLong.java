@@ -12,7 +12,7 @@ package fmlMetro;
  */
 import java.util.Date;
 
-public class Transaction
+public class TransactionLong
 {
     private final int id;
     private final int date8;
@@ -28,7 +28,7 @@ public class Transaction
     private final int budget;
     private final int balance;
 
-    public Transaction(int id, int date8, String day, String mon, String yr,
+    public TransactionLong(int id, int date8, String day, String mon, String yr,
             String wk, String type, String frq, String category, String name, 
             int amount, int budget, int balance)
     {
@@ -47,5 +47,35 @@ public class Transaction
         this.balance = balance;
     }
 
+    
+    public int getDate(){
+        return date8;}
 
+    public String getCategory(){
+        return category;}
+    
+    public String getName(){
+        return name;}
+
+    public int getAmount(){
+        return amount;}
+    
+    public int getBudget(){
+        return budget;}
+    
+    public String getDay(){
+        return day;
+    }
+    public String getMon(){
+        return mon;
+    }
+    public String getYr(){
+        return yr;
+    }
+    
+    public int gettBalance(){
+        return balance;}
+    
+    public int getID(){
+        return id;}
 }

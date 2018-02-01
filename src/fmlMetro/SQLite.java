@@ -184,72 +184,185 @@ public class SQLite
     //  This gets all the transactions that are income and expense to display
     //  puts them in an ArrayList object and creates a running total as balance
     //  Used in the Income and Expense pane
-//    public ArrayList<Transaction> getAllObjects(){
-//        
-//       String sql = "select id, date, time, category, name, amount,\n" +
-//                    " (select sum(t2.amount) from ledger t2 where\n" +
-//                    " ((t2.date <= t1.date and t2.time <= t1.time) or\n" +
-//                    " (t2.date < t1.date))\n" +
-//                    " order by date ) as accumulated\n" +
-//                    " from ledger t1 order by date, time;";
-//       
-//       //String url = "jdbc:sqlite:/Users/termaat/sqlite/db/Ledger.db";
-//       //ArrayList<Object> objectList = new ArrayList<Object>();
-//       ArrayList<Transaction> rows2 = new ArrayList<>();
-//                    // create an ArrayList of the Transaction object and creates
-//                    // the ledger/checkbook of the application
-//       Transaction row2;
-//                    // not sure what this actually does, but is needed based
-//                    // on similar sample code I have studied
-//        try {
-//           Class.forName("org.sqlite.JDBC");
-//           Connection conn = DriverManager.getConnection(url);
-//           conn.setAutoCommit(false);
-//           //System.out.println("Opened database successfully");
-//           
-//           Statement stmt = conn.createStatement();
-//           ResultSet rs = stmt.executeQuery(sql);
-//           
-//           while ( rs.next() ) {
-//              int id = rs.getInt("id");
-//              Date date = rs.getDate("date");
-//              String  category = rs.getString("category");
-//              String  name = rs.getString("name");
-//              int amount  = rs.getInt("amount");
-//              int balance  = rs.getInt("accumulated");
-//              
-//              /**
-//              System.out.println( "ID = " + id );
-//              System.out.println( "DATE = " + date);
-//              System.out.println( "CATEGORY = " + category );
-//              System.out.println( "NAME = " + name );
-//              System.out.println( "AMOUNT = " + amount);
-//              System.out.println( "BALANCE = " + balance );
-//              System.out.println();
-//              */
-//             
-//              //objectList.add(object);
-//              row2 = new Transaction(id, date, category, name, amount, balance);
-//              rows2.add(row2);
-//           }
-//           
-//            if(rs != null) {
-//                rs.close();
-//            }
-//            if(stmt != null){
-//                stmt.close();
-//            }
-//            if(conn != null) {
-//                conn.close();
-//            } 
-//        }
-//        catch ( Exception e ) {
-//            //System.out.println("Get ArrayList Error: " + e.getMessage());           
-//            //System.err.println( e.getClass().getName() + ": " + e.getMessage() );
-//        }
-//        
-//        return rows2;
-//    }
+    public ArrayList<TransactionShort> getAllObjects(){
+        
+       String sql = "select id, date8, time, category, name, amount,\n" +
+                    " (select sum(t2.amount) from ledger t2 where\n" +
+                    " ((t2.date8 <= t1.date8 and t2.time <= t1.time) or\n" +
+                    " (t2.date8 < t1.date8))\n" +
+                    " order by date8 ) as accumulated\n" +
+                    " from ledger t1 order by date8, time;";
+       
+       ArrayList<TransactionShort> rows2 = new ArrayList<>();
+                    // create an ArrayList of the Transaction object and creates
+                    // the ledger/checkbook of the application
+       TransactionShort row2;
+                    // not sure what this actually does, but is needed based
+                    // on similar sample code I have studied
+        try {
+           Class.forName("org.sqlite.JDBC");
+           Connection conn = DriverManager.getConnection(url);
+           conn.setAutoCommit(false);
+           //System.out.println("Opened database successfully");
+           
+           Statement stmt = conn.createStatement();
+           ResultSet rs = stmt.executeQuery(sql);
+           
+           while ( rs.next() ) {
+              int id = rs.getInt("id");
+              int date8 = rs.getInt("date8");
+              String  category = rs.getString("category");
+              String  name = rs.getString("name");
+              int amount  = rs.getInt("amount");
+              int balance  = rs.getInt("accumulated");
+              
+              /**
+              System.out.println( "ID = " + id );
+              System.out.println( "DATE = " + date);
+              System.out.println( "CATEGORY = " + category );
+              System.out.println( "NAME = " + name );
+              System.out.println( "AMOUNT = " + amount);
+              System.out.println( "BALANCE = " + balance );
+              System.out.println();
+              */
+             
+              //objectList.add(object);
+              row2 = new TransactionShort(id, date8, category, name, amount, balance);
+              rows2.add(row2);
+           }
+           
+            if(rs != null) {
+                rs.close();
+            }
+            if(stmt != null){
+                stmt.close();
+            }
+            if(conn != null) {
+                conn.close();
+            } 
+        }
+        catch ( Exception e ) {
+            //System.out.println("Get ArrayList Error: " + e.getMessage());           
+            //System.err.println( e.getClass().getName() + ": " + e.getMessage() );
+        }
+        
+        return rows2;
+    }
     
+    // get tranaction to populate DE.  need when we started messing with 
+    // the data display in the table
+    public TransactionLong GetTransaction(int id){
+        int idx = 0;
+        int date8 = 0;
+        String day = "";
+        String mon = "";
+        String yr = "";
+        String wk = "";
+        String type = "";
+        String frq = "";
+        String category = "";
+        String name = "";
+        int amount = 0;
+        int budget = 0;
+        
+        TransactionLong lTran = null;
+        
+        String sql = "SELECT * from ledger WHERE id = ?";
+        try {
+           Class.forName("org.sqlite.JDBC");
+           Connection conn = DriverManager.getConnection(url);
+           conn.setAutoCommit(false);
+           //System.out.println("Opened database successfully");
+           
+           //Statement stmt = conn.createStatement();
+           PreparedStatement pstmt  = conn.prepareStatement(sql);
+           pstmt.setInt(1,id);
+           ResultSet rs = pstmt.executeQuery();
+           
+           while ( rs.next() ) {
+              idx = rs.getInt("id");
+              date8 = rs.getInt("date8");
+              day = rs.getString("day");
+              mon = rs.getString("mon");
+              yr = rs.getString("yr");
+              wk = rs.getString("wk");
+              type = rs.getString("type");
+              frq = rs.getString("frequency");
+              category = rs.getString("category");
+              name = rs.getString("name");
+              amount = rs.getInt("amount");
+              budget = rs.getInt("budget");
+              
+              lTran = new TransactionLong(idx, date8, day, mon, yr, wk, type, 
+                      frq, category, name, amount, budget, 0);
+           }
+           
+           //System.out.println("Check Balance successful");
+            if(rs != null) {
+                rs.close();
+            }
+            if(pstmt != null){
+                pstmt.close();
+            }
+            if(conn != null) {
+                conn.close();
+            } 
+        }
+        catch ( Exception e ) {
+           System.out.println("Get Transaction Error: " + e.getMessage());
+           System.out.println( e.getClass().getName() + ": " + e.getMessage() );
+        }
+      
+        return lTran;
+    }
+    
+    public void UpdateTran(int id, Date date, String category, String name, int amount){
+        String sql = "UPDATE ledger SET date = ? , "
+                + "category = ? , "
+                + "name = ? , "
+                + "amount = ? "
+                + "WHERE id = ?";
+ 
+        try (Connection conn = DriverManager.getConnection(url);
+          PreparedStatement pstmt = conn.prepareStatement(sql)) {
+ 
+            // set the corresponding param
+            pstmt.setDate(1, date);
+            pstmt.setString(2, category);
+            pstmt.setString(3, name);
+            pstmt.setInt(4, amount);
+            pstmt.setInt(5, id);
+            // update 
+            pstmt.executeUpdate();
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }    
+    }
+    
+    public void deleteTran(int id) {
+        
+        String sql = "DELETE FROM ledger WHERE id = ?";
+        //String sql = "DELETE FROM ledger WHERE id = (SELECT MAX(id) FROM ledger)";
+
+        //try (Connection conn = this.connect();
+        try (Connection conn = DriverManager.getConnection(url);
+          PreparedStatement pstmt = conn.prepareStatement(sql)) {
+ 
+           // set the corresponding param
+           pstmt.setInt(1, id);
+           // execute the delete statement
+           pstmt.executeUpdate();
+           //System.out.println("Delete Transaction Successful");
+            if(pstmt != null){
+                pstmt.close();
+            }
+            if(conn != null) {
+                conn.close();
+            } 
+
+        } catch (SQLException e) {
+            //System.out.println("Delete Transaction Error: " + e.getMessage());
+        }
+    }
     
 }

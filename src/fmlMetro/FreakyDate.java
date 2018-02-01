@@ -31,6 +31,16 @@ public class FreakyDate {
 		//initializeCalendarData(this.today);
 	}
         
+        public boolean IsSunday(java.util.Date isSunDate){
+            
+            Calendar sun_cal = Calendar.getInstance();
+            sun_cal.setTime(isSunDate);
+             if(sun_cal.get(Calendar.DAY_OF_WEEK) == Calendar.SUNDAY) {
+                 return true;   
+                }           
+             return false;
+        }
+        
         public String getMonthDesc(int modifier){
             Calendar m_desc = Calendar.getInstance();
             m_desc.add(Calendar.MONTH, + modifier);

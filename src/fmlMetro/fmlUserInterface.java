@@ -17,6 +17,8 @@ import java.util.Date;
 import java.util.Locale;
 import javax.swing.Timer;
 import java.lang.String;
+import java.util.ArrayList;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -25,10 +27,18 @@ import java.lang.String;
 public class fmlUserInterface extends javax.swing.JFrame {
 int xx;
 int xy;
+int row_num = 0;
 
     SQLite sqlite = new SQLite();
             // created a new object to do db interaction
-
+    
+    ArrayList<TransactionShort> ledgerList = new ArrayList<TransactionShort>();
+            // ArrayList of the Transaction object
+            // the ledger/checkbook of the application
+    DefaultTableModel model;
+    
+    FreakyDate dx = new FreakyDate();
+    
     /**
      * Creates new form fmlUserInterface
      */
@@ -50,7 +60,11 @@ int xy;
             sqlite.CreateDataBase();
             sqlite.CreateFMLtbl();
             //displayMessage("Enter 1st transaction to set up Acct. balance");
-        }  
+        } 
+        
+        //set up model for tblLedger
+        model = (DefaultTableModel) tblLedger.getModel();
+        
         // Center on the screen
         //Toolkit tool = Toolkit.getDefaultToolkit();
         //Dimension dim = new Dimension(tool.getScreenSize());
@@ -103,7 +117,7 @@ int xy;
         jLabel17 = new javax.swing.JLabel();
         jPanel12 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        tblLedger = new javax.swing.JTable();
         jPanel13 = new javax.swing.JPanel();
         lblReadMe = new javax.swing.JLabel();
         txtIEdate = new javax.swing.JFormattedTextField();
@@ -127,6 +141,7 @@ int xy;
         btnIEdel = new javax.swing.JButton();
         btnIEaddCategory = new javax.swing.JButton();
         chkIErepeat = new javax.swing.JCheckBox();
+        lblID = new javax.swing.JLabel();
         jPanel14 = new javax.swing.JPanel();
         lblIEmessage = new javax.swing.JLabel();
         jSeparator3 = new javax.swing.JSeparator();
@@ -498,7 +513,7 @@ int xy;
         jPanel12.setBackground(new java.awt.Color(102, 102, 102));
         jPanel12.setPreferredSize(new java.awt.Dimension(344, 400));
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        tblLedger.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null, null, null},
                 {null, null, null, null, null, null},
@@ -510,7 +525,7 @@ int xy;
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.Integer.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.Integer.class, java.lang.String.class
+                java.lang.Integer.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.Integer.class, java.lang.Integer.class
             };
             boolean[] canEdit = new boolean [] {
                 false, false, false, false, false, false
@@ -524,21 +539,26 @@ int xy;
                 return canEdit [columnIndex];
             }
         });
-        jTable1.getTableHeader().setReorderingAllowed(false);
-        jScrollPane1.setViewportView(jTable1);
-        if (jTable1.getColumnModel().getColumnCount() > 0) {
-            jTable1.getColumnModel().getColumn(0).setResizable(false);
-            jTable1.getColumnModel().getColumn(0).setPreferredWidth(10);
-            jTable1.getColumnModel().getColumn(1).setResizable(false);
-            jTable1.getColumnModel().getColumn(1).setPreferredWidth(40);
-            jTable1.getColumnModel().getColumn(2).setResizable(false);
-            jTable1.getColumnModel().getColumn(2).setPreferredWidth(65);
-            jTable1.getColumnModel().getColumn(3).setResizable(false);
-            jTable1.getColumnModel().getColumn(3).setPreferredWidth(60);
-            jTable1.getColumnModel().getColumn(4).setResizable(false);
-            jTable1.getColumnModel().getColumn(4).setPreferredWidth(40);
-            jTable1.getColumnModel().getColumn(5).setResizable(false);
-            jTable1.getColumnModel().getColumn(5).setPreferredWidth(40);
+        tblLedger.getTableHeader().setReorderingAllowed(false);
+        tblLedger.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tblLedgerMouseClicked(evt);
+            }
+        });
+        jScrollPane1.setViewportView(tblLedger);
+        if (tblLedger.getColumnModel().getColumnCount() > 0) {
+            tblLedger.getColumnModel().getColumn(0).setResizable(false);
+            tblLedger.getColumnModel().getColumn(0).setPreferredWidth(10);
+            tblLedger.getColumnModel().getColumn(1).setResizable(false);
+            tblLedger.getColumnModel().getColumn(1).setPreferredWidth(40);
+            tblLedger.getColumnModel().getColumn(2).setResizable(false);
+            tblLedger.getColumnModel().getColumn(2).setPreferredWidth(65);
+            tblLedger.getColumnModel().getColumn(3).setResizable(false);
+            tblLedger.getColumnModel().getColumn(3).setPreferredWidth(60);
+            tblLedger.getColumnModel().getColumn(4).setResizable(false);
+            tblLedger.getColumnModel().getColumn(4).setPreferredWidth(40);
+            tblLedger.getColumnModel().getColumn(5).setResizable(false);
+            tblLedger.getColumnModel().getColumn(5).setPreferredWidth(40);
         }
 
         javax.swing.GroupLayout jPanel12Layout = new javax.swing.GroupLayout(jPanel12);
@@ -634,6 +654,11 @@ int xy;
         btnIEupd.setText("upd");
 
         btnIEdel.setText("del");
+        btnIEdel.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnIEdelActionPerformed(evt);
+            }
+        });
 
         btnIEaddCategory.setText("+");
 
@@ -643,6 +668,8 @@ int xy;
                 chkIErepeatActionPerformed(evt);
             }
         });
+
+        lblID.setText("aaa");
 
         javax.swing.GroupLayout jPanel13Layout = new javax.swing.GroupLayout(jPanel13);
         jPanel13.setLayout(jPanel13Layout);
@@ -654,12 +681,6 @@ int xy;
                     .addGroup(jPanel13Layout.createSequentialGroup()
                         .addContainerGap()
                         .addGroup(jPanel13Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel13Layout.createSequentialGroup()
-                                .addComponent(jLabel11, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(txtIEgoal, javax.swing.GroupLayout.PREFERRED_SIZE, 62, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jLabel19, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                             .addGroup(jPanel13Layout.createSequentialGroup()
                                 .addGroup(jPanel13Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                                     .addComponent(jLabel12, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -679,29 +700,38 @@ int xy;
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addComponent(cmbIEcategory, javax.swing.GroupLayout.PREFERRED_SIZE, 169, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(btnIEaddCategory, javax.swing.GroupLayout.PREFERRED_SIZE, 1, Short.MAX_VALUE))
+                                .addComponent(btnIEaddCategory, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                             .addGroup(jPanel13Layout.createSequentialGroup()
-                                .addGroup(jPanel13Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel13Layout.createSequentialGroup()
-                                        .addComponent(jLabel22, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGroup(jPanel13Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(jPanel13Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel13Layout.createSequentialGroup()
+                                            .addComponent(jLabel22, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                            .addComponent(rdoIEexpense, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                            .addComponent(rdoIEincome, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                        .addGroup(jPanel13Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addGroup(jPanel13Layout.createSequentialGroup()
+                                                .addGap(6, 6, 6)
+                                                .addComponent(btnIEdel)
+                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                                .addComponent(btnIEupd)
+                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                                .addComponent(btnIEadd)
+                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                                .addComponent(chkIErepeat))
+                                            .addGroup(jPanel13Layout.createSequentialGroup()
+                                                .addComponent(jLabel13)
+                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                                .addComponent(txtIEdescription, javax.swing.GroupLayout.PREFERRED_SIZE, 213, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                    .addGroup(jPanel13Layout.createSequentialGroup()
+                                        .addComponent(jLabel11, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(rdoIEexpense, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(txtIEgoal, javax.swing.GroupLayout.PREFERRED_SIZE, 62, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(rdoIEincome, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                                    .addGroup(jPanel13Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addGroup(jPanel13Layout.createSequentialGroup()
-                                            .addGap(6, 6, 6)
-                                            .addComponent(btnIEdel)
-                                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                            .addComponent(btnIEupd)
-                                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                            .addComponent(btnIEadd)
-                                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                            .addComponent(chkIErepeat))
-                                        .addGroup(jPanel13Layout.createSequentialGroup()
-                                            .addComponent(jLabel13)
-                                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                            .addComponent(txtIEdescription, javax.swing.GroupLayout.PREFERRED_SIZE, 213, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                        .addComponent(jLabel19, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(lblID, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE)))
                                 .addGap(0, 0, Short.MAX_VALUE)))))
                 .addContainerGap())
         );
@@ -723,7 +753,8 @@ int xy;
                 .addGroup(jPanel13Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel19)
                     .addComponent(txtIEgoal, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel11))
+                    .addComponent(jLabel11)
+                    .addComponent(lblID, javax.swing.GroupLayout.PREFERRED_SIZE, 11, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel13Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel13)
@@ -744,7 +775,7 @@ int xy;
                     .addComponent(btnIEupd)
                     .addComponent(btnIEdel)
                     .addComponent(chkIErepeat))
-                .addContainerGap(14, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         jPanel14.setBackground(new java.awt.Color(102, 102, 102));
@@ -795,7 +826,7 @@ int xy;
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(pnlIncomeExpLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jPanel12, 396, 396, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jPanel13, javax.swing.GroupLayout.DEFAULT_SIZE, 397, Short.MAX_VALUE))
+                    .addComponent(jPanel13, javax.swing.GroupLayout.DEFAULT_SIZE, 396, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanel14, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
@@ -882,6 +913,7 @@ int xy;
                       "<br>add 1 time expenses yet. Our goal here is to examine " +
                       "<br>the core income and expenses needed monthly.";
         lblReadMe.setText(html);
+        ListTransactions();
     }//GEN-LAST:event_btnIncomeExpActionPerformed
 
     private void btnBudgetActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBudgetActionPerformed
@@ -952,6 +984,19 @@ int xy;
             //System.out.println("sDate8 " + sDate8);
             //System.out.println("week " + wk);
 
+        // is today sunday?  if it is we need to subtract a week since our
+        // program wants to start on Monday as the first day of the week
+        int intwk = Integer.valueOf(wk);
+        if(dx.IsSunday(jDate)){
+            if(intwk==1){
+                intwk=52;
+                wk = String.valueOf(intwk);
+            }
+            else{
+                intwk--;
+                wk = String.valueOf(intwk);
+            }
+        }
         
         String ieDEvalidate = ValidateIEdataEntry();
         if(!ieDEvalidate.equals("FAIL")){
@@ -1025,7 +1070,32 @@ int xy;
         }
         
     }//GEN-LAST:event_btnIEaddActionPerformed
-
+    
+    private void ListTransactions(){
+      //lblCurrentBal.setText("$ " + String.valueOf(sqlite.GetBalance(sqlToday)));
+      
+      //remove all the rows currently in the table
+      model.setRowCount(0);
+      
+      ArrayList<TransactionShort> ledgerList = sqlite.getAllObjects();
+      Object rowData[] = new Object[6];
+      for(int i = 0; i < ledgerList.size(); i++)
+      {
+        rowData[0] = ledgerList.get(i).getID();
+        rowData[1] = ledgerList.get(i).getDate();
+        rowData[2] = ledgerList.get(i).getName();
+        rowData[3] = ledgerList.get(i).getCategory();
+        rowData[4] = ledgerList.get(i).getAmount();
+        rowData[5] = ledgerList.get(i).gettBalance();
+        
+        model.addRow(rowData); 
+      }
+      tblLedger.getColumnModel().getColumn(0).setWidth(0);
+      tblLedger.getColumnModel().getColumn(0).setMinWidth(0);
+      tblLedger.getColumnModel().getColumn(0).setMaxWidth(0); 
+      //DisplayCatSummary();
+    }
+    
     public static String leftPad(int n, int padding) {
         return String.format("%0" + padding + "d", n);
     }
@@ -1067,6 +1137,63 @@ int xy;
             ClearIEdataEntry();
         }
     }//GEN-LAST:event_chkIErepeatActionPerformed
+
+    private void tblLedgerMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblLedgerMouseClicked
+        // TODO add your handling code here:
+        
+        int i = tblLedger.getSelectedRow();
+        row_num = tblLedger.getSelectedRow();
+        
+        String ids = String.valueOf(model.getValueAt(i, 0));
+        int id = Integer.valueOf(ids);
+        //rec_id = Integer.valueOf(ids);
+        
+        TransactionLong xTran = sqlite.GetTransaction(id);
+        
+        lblID.setText(String.valueOf(xTran.getID()));
+        
+        String s_amt = String.valueOf(xTran.getAmount());
+        int amt = Integer.valueOf(s_amt);
+        if(amt < 0){
+            amt = amt * -1;
+            rdoIEexpense.setSelected(true);
+        }
+        else{
+            rdoIEincome.setSelected(true);
+        }
+        txtIEamount.setText(String.valueOf(amt));
+        
+        String b_amt = String.valueOf(xTran.getBudget());
+        int budget_amt = Integer.valueOf(b_amt);
+        if(budget_amt < 0){
+            budget_amt = budget_amt * -1;
+        }
+        txtIEgoal.setText(String.valueOf(budget_amt));
+
+        txtIEdescription.setText(xTran.getName());
+        cmbIEcategory.setSelectedItem(xTran.getCategory());
+        
+        int yr_i = Integer.valueOf(xTran.getYr()) - 2000;
+        String yr_s = String.valueOf(yr_i);
+        String mdyDate = xTran.getMon()+ "/" + xTran.getDay() + "/" + yr_s;
+        txtIEdate.setText(mdyDate);
+               
+    }//GEN-LAST:event_tblLedgerMouseClicked
+
+    private void btnIEdelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnIEdelActionPerformed
+        //make sure they have the DE screen filled befor deleting
+        if(!lblID.getText().equals("aaa")){
+            int delID = Integer.valueOf(lblID.getText());
+            sqlite.deleteTran(delID);
+            lblID.setText("");
+            this.ClearIEdataEntry();
+            ListTransactions();
+        }
+        else{
+            DisplayIEmessage("Select something to delete instead of trying to break the program");
+        }
+     
+    }//GEN-LAST:event_btnIEdelActionPerformed
 
     /**
      * @param args the command line arguments
@@ -1151,6 +1278,29 @@ int xy;
         }else{
             return "PASS";}
     }
+    
+    //  RODT - format date to DE format
+    // takes the integer date YYYYMMDD and returns MM/DD/YY for the DE screen
+    private String FormatDate(String ymddate){
+        java.util.Date date;
+        String mdydate = "";
+        
+        SimpleDateFormat mdyFormattedDate = new SimpleDateFormat("MM/dd/yy");
+        SimpleDateFormat ymdFormattedDate = new SimpleDateFormat("yyyyMMdd");
+       
+        try
+        {
+          date = ymdFormattedDate.parse(ymddate);
+          mdydate = mdyFormattedDate.format(date);          
+        }
+          catch(ParseException e) {
+          DisplayIEmessage("Enter date like 04/15/18 " +
+                        " and not some other bogus format");
+          ClearIEdataEntry();
+        }
+
+        return mdydate;
+    }
 
     
 
@@ -1198,8 +1348,8 @@ int xy;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JSeparator jSeparator2;
     private javax.swing.JSeparator jSeparator3;
-    private javax.swing.JTable jTable1;
     private javax.swing.JLabel lblFML;
+    private javax.swing.JLabel lblID;
     private javax.swing.JLabel lblIEmessage;
     private javax.swing.JLabel lblReadMe;
     private javax.swing.JLabel lblReadMe1;
@@ -1211,6 +1361,7 @@ int xy;
     private javax.swing.JPanel pnlReporter;
     private javax.swing.JRadioButton rdoIEexpense;
     private javax.swing.JRadioButton rdoIEincome;
+    private javax.swing.JTable tblLedger;
     private javax.swing.JTextField txtIEamount;
     private javax.swing.JFormattedTextField txtIEdate;
     private javax.swing.JTextField txtIEdescription;
