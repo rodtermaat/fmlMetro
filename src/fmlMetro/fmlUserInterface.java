@@ -6,6 +6,8 @@
 package fmlMetro;
 
 import com.sun.glass.events.KeyEvent;
+import java.awt.Color;
+import java.awt.Component;
 import java.awt.Dimension;
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
@@ -19,6 +21,7 @@ import javax.swing.Timer;
 import java.lang.String;
 import java.util.ArrayList;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableCellRenderer;
 
 /**
  *
@@ -117,7 +120,18 @@ int row_num = 0;
         jLabel17 = new javax.swing.JLabel();
         jPanel12 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        tblLedger = new javax.swing.JTable();
+        tblLedger = new javax.swing.JTable(){
+
+            public Component prepareRenderer(TableCellRenderer r, int rw, int col)
+            {
+                Component c = super.prepareRenderer(r,rw,col);
+                c.setBackground(Color.WHITE);
+                if(col==1){
+                    c.setBackground(Color.PINK);
+                }
+                return c;
+            }
+        };
         jPanel13 = new javax.swing.JPanel();
         lblReadMe = new javax.swing.JLabel();
         txtIEdate = new javax.swing.JFormattedTextField();
@@ -652,6 +666,11 @@ int row_num = 0;
         jLabel22.setText(" . type");
 
         btnIEupd.setText("upd");
+        btnIEupd.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnIEupdActionPerformed(evt);
+            }
+        });
 
         btnIEdel.setText("del");
         btnIEdel.addActionListener(new java.awt.event.ActionListener() {
@@ -944,10 +963,9 @@ int row_num = 0;
         // Close the Application
         System.exit(0);
     }//GEN-LAST:event_btnExitActionPerformed
-
-    // adds income and expenses
-    private void btnIEaddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnIEaddActionPerformed
-        
+    
+    // since the add and update do the same thing it make sense to use 1 code base
+    private void AddUpdateTransaction(String action, int id){
         Date jDate = null;
         String sDate8, day, mon, yr, wk, cat, name;
         String type = "";
@@ -955,12 +973,8 @@ int row_num = 0;
         String ieDate = txtIEdate.getText();
         int iDate8 = 0; int amt = 0; int budg = 0;
         int modifier = 0;
-        String[] strDays = new String[] { "Sun", "Mon", "Tue", "Wed", "Thu",
-                                            "Fri", "Sat" };
         
-        //System.out.println("from text box: " + ieDate);
-
-            // date is good to use
+        // date is good to use
         SimpleDateFormat sdf = new SimpleDateFormat("MM/dd/yy");
         try
         {
@@ -1003,7 +1017,7 @@ int row_num = 0;
             // data entry is good to use
             //frq = cmbIEfreq.getSelectedItem().toString();
             cat = cmbIEcategory.getSelectedItem().toString();
-            name = txtIEdescription.getText().toString();
+            name = txtIEdescription.getText();
             amt = Integer.valueOf(txtIEamount.getText());
             budg = Integer.valueOf(txtIEgoal.getText());
             
@@ -1016,59 +1030,35 @@ int row_num = 0;
                 budg = budg*-1;
             }
             
-            int xID = sqlite.AddTransaction(iDate8, day, mon, yr, wk, type, frq, cat, name, amt, budg);
-            
-            if (!chkIErepeat.isSelected()){
-                ClearIEdataEntry();
+            if(action.equals("ADD")){
+                int xID = sqlite.AddTransaction(iDate8, day, mon, yr, wk, 
+                                            type, frq, cat, name, amt, budg);
             }
-            else{
-                txtIEdate.setText("");
+            else {
+                sqlite.UpdateTran(id, iDate8, cat, name, type, amt, budg);
             }
-            
-            // everything checks out, so add the transaction already
-            // by default we will add out transactions for the entire year
-            
-            // get a calendar object using jDate (date entered)
-            //Calendar cal = Calendar.getInstance(new Locale("en","UK"));
-//            Calendar cal = Calendar.getInstance();
-//            cal.setTime(jDate);
-//            System.out.println("input date is " + jDate);
-//            System.out.println("caldendar date is " + cal.getTime().toString());
-//            for (int i=0; i<12; i++){
-//                cal.add((Calendar.MONTH), modifier);
-//                
-//                //String.format("%02d",1)
-//                mon = leftPad((cal.get(Calendar.MONTH)+1),2);
-//                day = leftPad(cal.get(Calendar.DAY_OF_MONTH),2);
-//                yr = String.valueOf(cal.get(Calendar.YEAR));
-//                sDate8 = yr + mon + day;
-//                iDate8 = Integer.parseInt(sDate8);
-//        
-//                //System.out.println("cal mon is " + (cal.get(Calendar.MONTH)+1) +
-//                //        " cal day " + cal.get(Calendar.DAY_OF_MONTH) +
-//                //        " cal day " + strDays[cal.get(Calendar.DAY_OF_WEEK)-1] +
-//                //        " cal year " + cal.get(Calendar.YEAR) + 
-//                //        " cal week " + cal.get(Calendar.WEEK_OF_YEAR));
-//                
-//                if(cal.get(Calendar.DAY_OF_WEEK) == Calendar.SUNDAY) {
-//                    // if sunday subtract 1 week from week of the year. its 
-//                    // important that the week always start on Monday
-//                    wk = String.valueOf(cal.get(Calendar.WEEK_OF_YEAR) - 1);
-//                    //System.out.println("our week " + ourWK);
-//                }
-//                else {
-//                    wk = String.valueOf(cal.get(Calendar.WEEK_OF_YEAR));  
-//                }
-//                
-//                modifier=1;
-//                int xID = sqlite.AddTransaction(iDate8, day, mon, yr, wk, type, frq, cat, name, amt, budg);
-//            }
+                
         }
         else {
             DisplayIEmessage("Check your data entry cause something ain't right");
             return;
         }
         
+        
+        
+    }
+    // adds income and expenses
+    private void btnIEaddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnIEaddActionPerformed
+        AddUpdateTransaction("ADD", 0);
+        
+        if (!chkIErepeat.isSelected()){
+            ClearIEdataEntry();
+        }
+        else{
+            txtIEdate.setText("");
+        }
+            
+        ListTransactions();
     }//GEN-LAST:event_btnIEaddActionPerformed
     
     private void ListTransactions(){
@@ -1082,7 +1072,14 @@ int row_num = 0;
       for(int i = 0; i < ledgerList.size(); i++)
       {
         rowData[0] = ledgerList.get(i).getID();
-        rowData[1] = ledgerList.get(i).getDate();
+        
+        String sdate8 = String.valueOf(ledgerList.get(i).getDate());
+        String smon = sdate8.substring(4, 6);
+        String sday = sdate8.substring(6);
+        String shortDate = smon + "/" + sday;
+        
+        rowData[1] = shortDate;
+        //rowData[1] = ledgerList.get(i).getDate();
         rowData[2] = ledgerList.get(i).getName();
         rowData[3] = ledgerList.get(i).getCategory();
         rowData[4] = ledgerList.get(i).getAmount();
@@ -1180,6 +1177,7 @@ int row_num = 0;
                
     }//GEN-LAST:event_tblLedgerMouseClicked
 
+    //RODT - need to get ID to update transaction
     private void btnIEdelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnIEdelActionPerformed
         //make sure they have the DE screen filled befor deleting
         if(!lblID.getText().equals("aaa")){
@@ -1194,6 +1192,20 @@ int row_num = 0;
         }
      
     }//GEN-LAST:event_btnIEdelActionPerformed
+
+    private void btnIEupdActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnIEupdActionPerformed
+        if(!lblID.getText().equals("aaa")){
+            int updID = Integer.valueOf(lblID.getText());
+            AddUpdateTransaction("UPD", updID);
+            lblID.setText("");
+            this.ClearIEdataEntry();
+            ListTransactions();
+        }
+        else{
+            DisplayIEmessage("Somehow you botched the update data, please correct");
+        }
+        
+    }//GEN-LAST:event_btnIEupdActionPerformed
 
     /**
      * @param args the command line arguments

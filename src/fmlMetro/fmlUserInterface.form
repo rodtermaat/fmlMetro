@@ -786,6 +786,9 @@
                           <Events>
                             <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="tblLedgerMouseClicked"/>
                           </Events>
+                          <AuxValues>
+                            <AuxValue name="JavaCodeGenerator_CreateCodeCustom" type="java.lang.String" value="new javax.swing.JTable(){&#xa;&#xa;    public Component prepareRenderer(TableCellRenderer r, int rw, int col)&#xa;    {&#xa;        Component c = super.prepareRenderer(r,rw,col);&#xa;        c.setBackground(Color.WHITE);&#xa;        if(col==1){&#xa;            c.setBackground(Color.PINK);&#xa;        }&#xa;        return c;&#xa;    }&#xa;}"/>
+                          </AuxValues>
                         </Component>
                       </SubComponents>
                     </Container>
@@ -1075,6 +1078,9 @@
                       <Properties>
                         <Property name="text" type="java.lang.String" value="upd"/>
                       </Properties>
+                      <Events>
+                        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnIEupdActionPerformed"/>
+                      </Events>
                     </Component>
                     <Component class="javax.swing.JButton" name="btnIEdel">
                       <Properties>

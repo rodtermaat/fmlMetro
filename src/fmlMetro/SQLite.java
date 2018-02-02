@@ -316,22 +316,28 @@ public class SQLite
         return lTran;
     }
     
-    public void UpdateTran(int id, Date date, String category, String name, int amount){
-        String sql = "UPDATE ledger SET date = ? , "
+    // update transaction from income and expense lanel
+    public void UpdateTran(int id, int date8, String category, String name, 
+                            String type, int amount, int budget){
+        String sql = "UPDATE ledger SET date8 = ? , "
                 + "category = ? , "
                 + "name = ? , "
-                + "amount = ? "
+                + "type = ? , "
+                + "amount = ? , "
+                + "budget = ? "
                 + "WHERE id = ?";
  
         try (Connection conn = DriverManager.getConnection(url);
           PreparedStatement pstmt = conn.prepareStatement(sql)) {
  
             // set the corresponding param
-            pstmt.setDate(1, date);
+            pstmt.setInt(1, date8);
             pstmt.setString(2, category);
             pstmt.setString(3, name);
-            pstmt.setInt(4, amount);
-            pstmt.setInt(5, id);
+            pstmt.setString(4, type);
+            pstmt.setInt(5, amount);
+            pstmt.setInt(6, budget);
+            pstmt.setInt(7, id);
             // update 
             pstmt.executeUpdate();
         } catch (SQLException e) {
@@ -339,6 +345,7 @@ public class SQLite
         }    
     }
     
+    // delete transaction from income and expense panel
     public void deleteTran(int id) {
         
         String sql = "DELETE FROM ledger WHERE id = ?";
