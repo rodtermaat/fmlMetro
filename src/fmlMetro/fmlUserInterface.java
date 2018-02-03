@@ -42,6 +42,18 @@ int row_num = 0;
     
     FreakyDate dx = new FreakyDate();
     
+    SimpleDateFormat mdy = new SimpleDateFormat("MM/dd/YYYY");
+    
+    // date used globally to test against current date
+    static java.util.Date today = new java.util.Date();
+    String sToday = mdy.format(today.getTime());
+    String sDay = new SimpleDateFormat("dd").format(today);
+    String sMon = new SimpleDateFormat("MM").format(today);
+    String sYr = new SimpleDateFormat("yyyy").format(today);
+    String sWk = new SimpleDateFormat("w").format(today);
+    String sToday8 = sYr + sMon + sDay;
+    int iToday8 = Integer.parseInt(sToday8);
+    
     /**
      * Creates new form fmlUserInterface
      */
@@ -76,6 +88,7 @@ int row_num = 0;
         //setSize(width,height);
         //setLocation(width / 2 - getWidth() / 2, height / 2 - getHeight() / 2);
         
+        System.out.println("integer Today: " + iToday8);
     }
 
     /**
@@ -159,18 +172,17 @@ int row_num = 0;
         lblIEmessage = new javax.swing.JLabel();
         jSeparator3 = new javax.swing.JSeparator();
         jPanel3 = new javax.swing.JPanel();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
-        jRadioButton1 = new javax.swing.JRadioButton();
-        jRadioButton2 = new javax.swing.JRadioButton();
-        jRadioButton3 = new javax.swing.JRadioButton();
+        btnIEbackwards = new javax.swing.JButton();
+        btnIEforward = new javax.swing.JButton();
+        rdoIEall = new javax.swing.JRadioButton();
+        rdoIEmonth = new javax.swing.JRadioButton();
+        rdoIEweek = new javax.swing.JRadioButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(51, 51, 51));
         setMaximumSize(new java.awt.Dimension(700, 615));
         setMinimumSize(new java.awt.Dimension(700, 615));
         setUndecorated(true);
-        setPreferredSize(new java.awt.Dimension(700, 615));
         setResizable(false);
         getContentPane().setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.CENTER, 0, 0));
 
@@ -831,16 +843,41 @@ int row_num = 0;
 
         jPanel3.setBackground(new java.awt.Color(102, 102, 102));
 
-        jButton1.setText("<");
+        btnIEbackwards.setText("<");
+        btnIEbackwards.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnIEbackwardsActionPerformed(evt);
+            }
+        });
 
-        jButton2.setText(">");
+        btnIEforward.setText(">");
+        btnIEforward.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnIEforwardActionPerformed(evt);
+            }
+        });
 
-        jRadioButton1.setText("all");
+        rdoIEall.setText("all");
+        rdoIEall.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                rdoIEallActionPerformed(evt);
+            }
+        });
 
-        jRadioButton2.setText("month");
-        jRadioButton2.setToolTipText("");
+        rdoIEmonth.setText("month");
+        rdoIEmonth.setToolTipText("");
+        rdoIEmonth.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                rdoIEmonthActionPerformed(evt);
+            }
+        });
 
-        jRadioButton3.setText("week");
+        rdoIEweek.setText("week");
+        rdoIEweek.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                rdoIEweekActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
@@ -848,26 +885,26 @@ int row_num = 0;
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
                 .addGap(12, 12, 12)
-                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(btnIEbackwards, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jRadioButton1)
+                .addComponent(rdoIEall)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jRadioButton2)
+                .addComponent(rdoIEmonth)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jRadioButton3)
+                .addComponent(rdoIEweek)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(btnIEforward, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(108, 108, 108))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton1)
-                    .addComponent(jButton2)
-                    .addComponent(jRadioButton1)
-                    .addComponent(jRadioButton2)
-                    .addComponent(jRadioButton3))
+                    .addComponent(btnIEbackwards)
+                    .addComponent(btnIEforward)
+                    .addComponent(rdoIEall)
+                    .addComponent(rdoIEmonth)
+                    .addComponent(rdoIEweek))
                 .addGap(0, 8, Short.MAX_VALUE))
         );
 
@@ -880,7 +917,7 @@ int row_num = 0;
                 .addContainerGap()
                 .addGroup(pnlIncomeExpLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jPanel12, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
+                    .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, 344, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(pnlIncomeExpLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jPanel14, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -1262,6 +1299,29 @@ int row_num = 0;
         
     }//GEN-LAST:event_btnIEupdActionPerformed
 
+    private void btnIEforwardActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnIEforwardActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnIEforwardActionPerformed
+
+    private void btnIEbackwardsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnIEbackwardsActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnIEbackwardsActionPerformed
+
+    private void rdoIEmonthActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rdoIEmonthActionPerformed
+        rdoIEweek.setSelected(false);
+        rdoIEall.setSelected(false);
+    }//GEN-LAST:event_rdoIEmonthActionPerformed
+
+    private void rdoIEweekActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rdoIEweekActionPerformed
+        rdoIEmonth.setSelected(false);
+        rdoIEall.setSelected(false);
+    }//GEN-LAST:event_rdoIEweekActionPerformed
+
+    private void rdoIEallActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rdoIEallActionPerformed
+        rdoIEweek.setSelected(false);
+        rdoIEmonth.setSelected(false);
+    }//GEN-LAST:event_rdoIEallActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -1377,13 +1437,13 @@ int row_num = 0;
     private javax.swing.JButton btnBudget;
     private javax.swing.JButton btnExit;
     private javax.swing.JButton btnIEadd;
+    private javax.swing.JButton btnIEbackwards;
     private javax.swing.JButton btnIEdel;
+    private javax.swing.JButton btnIEforward;
     private javax.swing.JButton btnIEupd;
     private javax.swing.JButton btnIncomeExp;
     private javax.swing.JCheckBox chkIErepeat;
     private javax.swing.JComboBox<String> cmbIEcategory;
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
     private javax.swing.JFormattedTextField jFormattedTextField1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
@@ -1414,9 +1474,6 @@ int row_num = 0;
     private javax.swing.JPanel jPanel7;
     private javax.swing.JPanel jPanel8;
     private javax.swing.JPanel jPanel9;
-    private javax.swing.JRadioButton jRadioButton1;
-    private javax.swing.JRadioButton jRadioButton2;
-    private javax.swing.JRadioButton jRadioButton3;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JSeparator jSeparator2;
     private javax.swing.JSeparator jSeparator3;
@@ -1431,8 +1488,11 @@ int row_num = 0;
     private javax.swing.JPanel pnlIncomeExp;
     private javax.swing.JPanel pnlLedger;
     private javax.swing.JPanel pnlReporter;
+    private javax.swing.JRadioButton rdoIEall;
     private javax.swing.JRadioButton rdoIEexpense;
     private javax.swing.JRadioButton rdoIEincome;
+    private javax.swing.JRadioButton rdoIEmonth;
+    private javax.swing.JRadioButton rdoIEweek;
     private javax.swing.JTable tblLedger;
     private javax.swing.JTextField txtIEamount;
     private javax.swing.JFormattedTextField txtIEdate;
