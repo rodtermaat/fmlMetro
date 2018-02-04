@@ -31,6 +31,7 @@ public class fmlUserInterface extends javax.swing.JFrame {
 int xx;
 int xy;
 int row_num = 0;
+int IEmonTracker = 0;     // used to track month backwards and forwards
 
     SQLite sqlite = new SQLite();
             // created a new object to do db interaction
@@ -40,7 +41,7 @@ int row_num = 0;
             // the ledger/checkbook of the application
     DefaultTableModel model;
     
-    FreakyDate dx = new FreakyDate();
+    FreakyDate dtx = new FreakyDate();
     
     SimpleDateFormat mdy = new SimpleDateFormat("MM/dd/YYYY");
     
@@ -1093,7 +1094,7 @@ int row_num = 0;
         // is today sunday?  if it is we need to subtract a week since our
         // program wants to start on Monday as the first day of the week
         int intwk = Integer.valueOf(wk);
-        if(dx.IsSunday(jDate)){
+        if(dtx.IsSunday(jDate)){
             if(intwk==1){
                 intwk=52;
                 wk = String.valueOf(intwk);
@@ -1153,8 +1154,36 @@ int row_num = 0;
         ListTransactions();
     }//GEN-LAST:event_btnIEaddActionPerformed
     
+    private void ListTransactionsByDate(int dateStart, int dateEnd){
+      
+      //remove all the rows currently in the table
+      model.setRowCount(0);
+      
+      ArrayList<TransactionShort> ledgerList = sqlite.getTransactionsByDate(dateStart, dateEnd);
+      Object rowData[] = new Object[6];
+      for(int i = 0; i < ledgerList.size(); i++)
+      {
+        rowData[0] = ledgerList.get(i).getID();
+        
+        String sdate8 = String.valueOf(ledgerList.get(i).getDate());
+        String smon = sdate8.substring(4, 6);
+        String sday = sdate8.substring(6);
+        String shortDate = smon + "/" + sday;
+        
+        rowData[1] = shortDate;
+        rowData[2] = ledgerList.get(i).getName();
+        rowData[3] = ledgerList.get(i).getCategory();
+        rowData[4] = ledgerList.get(i).getAmount();
+        rowData[5] = ledgerList.get(i).gettBalance();
+        
+        model.addRow(rowData); 
+      }
+      tblLedger.getColumnModel().getColumn(0).setWidth(0);
+      tblLedger.getColumnModel().getColumn(0).setMinWidth(0);
+      tblLedger.getColumnModel().getColumn(0).setMaxWidth(0); 
+    }
+    
     private void ListTransactions(){
-      //lblCurrentBal.setText("$ " + String.valueOf(sqlite.GetBalance(sqlToday)));
       
       //remove all the rows currently in the table
       model.setRowCount(0);
@@ -1300,16 +1329,39 @@ int row_num = 0;
     }//GEN-LAST:event_btnIEupdActionPerformed
 
     private void btnIEforwardActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnIEforwardActionPerformed
-        // TODO add your handling code here:
+        if(rdoIEmonth.isSelected()){
+            IEmonTracker++;
+            int ieFOM = dtx.getIntFOM(IEmonTracker);
+            int ieEOM = dtx.getIntEOM(IEmonTracker);
+            System.out.println("mon forward get fom " + ieFOM);
+            System.out.println("mon forward get fom " + ieEOM);
+            ListTransactionsByDate(ieFOM, ieEOM);
+            
+        }
     }//GEN-LAST:event_btnIEforwardActionPerformed
 
     private void btnIEbackwardsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnIEbackwardsActionPerformed
-        // TODO add your handling code here:
+        if(rdoIEmonth.isSelected()){
+            IEmonTracker--;
+            int ieFOM = dtx.getIntFOM(IEmonTracker);
+            int ieEOM = dtx.getIntEOM(IEmonTracker);
+            System.out.println("mon back get fom " + ieFOM);
+            System.out.println("mon back get fom " + ieEOM);
+            ListTransactionsByDate(ieFOM, ieEOM);
+            
+        }
     }//GEN-LAST:event_btnIEbackwardsActionPerformed
 
     private void rdoIEmonthActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rdoIEmonthActionPerformed
         rdoIEweek.setSelected(false);
         rdoIEall.setSelected(false);
+        
+        int ieFOM = dtx.getIntFOM(0);
+        int ieEOM = dtx.getIntEOM(0);
+        System.out.println("month get fom " + ieFOM);
+        System.out.println("month get fom " + ieEOM);
+        
+        ListTransactionsByDate(ieFOM, ieEOM);
     }//GEN-LAST:event_rdoIEmonthActionPerformed
 
     private void rdoIEweekActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rdoIEweekActionPerformed

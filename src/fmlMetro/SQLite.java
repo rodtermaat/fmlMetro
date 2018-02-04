@@ -182,7 +182,7 @@ public class SQLite
     }
     
     
-    public ArrayList<TransactionShort> getTransactionsByDate(int date1, int date30){
+    public ArrayList<TransactionShort> getTransactionsByDate(int dateStart, int dateEnd){
        
 //String sql = "SELECT SUM(amount) AS balance FROM ledger WHERE date <= ?";
     ArrayList<TransactionShort> rows2 = new ArrayList<>();
@@ -192,14 +192,14 @@ public class SQLite
                     // not sure what this actually does, but is needed based
                     // on similar sample code I have studied
     
-    String sql = "select id, date, time, category, name, amount,\n" +
+    String sql = "select id, date8, time, category, name, amount,\n" +
                     " (select sum(t2.amount) from ledger t2 where\n" +
-                    " ((t2.date <= t1.date and t2.time <= t1.time) or\n" +
-                    " (t2.date < t1.date))\n" +
-                    " order by date ) as accumulated\n" +
+                    " ((t2.date8 <= t1.date8 and t2.time <= t1.time) or\n" +
+                    " (t2.date8 < t1.date8))\n" +
+                    " order by date8 ) as accumulated\n" +
                     " from ledger t1\n" +
-                    " where date <= ?\n" +
-                    " order by date, time;";
+                    " where date8 <= ?\n" +
+                    " order by date8, time;";
 
         try {
            Class.forName("org.sqlite.JDBC");
@@ -209,28 +209,23 @@ public class SQLite
            
            //Statement stmt = conn.createStatement();
            PreparedStatement pstmt  = conn.prepareStatement(sql);
-           pstmt.setInt(1,date30);
+           pstmt.setInt(1,dateEnd);
            //pstmt.setDate(2,date1);
            ResultSet rs = pstmt.executeQuery();
            
            while ( rs.next() ) {
               int id = rs.getInt("id");
-              Date date = rs.getDate("date");
+              int date8 = rs.getInt("date8");
               String  category = rs.getString("category");
               String  name = rs.getString("name");
               int amount  = rs.getInt("amount");
               int balance  = rs.getInt("accumulated");
-              
-              // when you do .compareTo if the number your comparing to 
-              // is greater you will get a negative integer returned otherwise
-              // it will be positive if your object is larger. 
-              // It will be zero if they are equal.
-              // date < date1 = negative 
-              
-              //if(date.after(date1) && (date.before(date30))){
-              //  row2 = new TransactionShort(id, date8, category, name, amount, balance);
-              //  rows2.add(row2);
-              //}
+                            
+              if((date8>=dateStart) && (date8 <= dateEnd)) {
+              //if(date8.after(dateStart) && (date8.before(dateEnd))){
+                row2 = new TransactionShort(id, date8, category, name, amount, balance);
+                rows2.add(row2);
+              }
            }
            
             if(rs != null) {

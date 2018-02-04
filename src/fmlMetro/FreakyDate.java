@@ -69,6 +69,32 @@ public class FreakyDate {
             return sqlDate30;
         }
         
+        public int getIntEOM(int modifier){
+            Calendar eom = Calendar.getInstance();
+            eom.add(Calendar.MONTH, + modifier);
+            eom.set(Calendar.DATE, eom.getActualMaximum(Calendar.DATE));
+            String t_mon = leftPad((eom.get(Calendar.MONTH) + 1),2);
+            String t_day = leftPad(eom.get(Calendar.DAY_OF_MONTH),2);
+            String t_yr = String.valueOf(eom.get(Calendar.YEAR));
+            String t_Date8 = t_yr + t_mon + t_day;
+            int i_Date8 = Integer.parseInt(t_Date8);
+            
+            return i_Date8;
+        }
+        //returns fom date in integer format 20180301
+        public int getIntFOM(int modifier){
+            Calendar fom = Calendar.getInstance();
+            fom.add(Calendar.MONTH, + modifier);
+            fom.set(Calendar.DATE, fom.getActualMinimum(Calendar.DATE));
+            String t_mon = leftPad((fom.get(Calendar.MONTH) + 1),2);
+            String t_day = leftPad(fom.get(Calendar.DAY_OF_MONTH),2);
+            String t_yr = String.valueOf(fom.get(Calendar.YEAR));
+            String t_Date8 = t_yr + t_mon + t_day;
+            int i_Date8 = Integer.parseInt(t_Date8);
+            
+            return i_Date8;
+        }
+        
         public Date getFOM(int modifier){
             Calendar fom = Calendar.getInstance();
             fom.set(Calendar.DATE, fom.getActualMaximum(Calendar.DATE));
@@ -140,6 +166,10 @@ public class FreakyDate {
             java.sql.Date sqlDate1 = new java.sql.Date(firstDateOfWeek.getTime());
             //System.out.println("fow actual  - returning " + sqlDate1);
             return sqlDate1;
+        }
+        
+        public static String leftPad(int n, int padding) {
+            return String.format("%0" + padding + "d", n);
         }
         
         public void moveMonth(int mon) {
