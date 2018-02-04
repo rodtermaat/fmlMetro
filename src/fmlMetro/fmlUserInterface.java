@@ -32,6 +32,8 @@ int xx;
 int xy;
 int row_num = 0;
 int IEmonTracker = 0;     // used to track month backwards and forwards
+int inTheBeginning = 20000101;
+int inTheYear2525 = 25250101;
 
     SQLite sqlite = new SQLite();
             // created a new object to do db interaction
@@ -1355,7 +1357,7 @@ int IEmonTracker = 0;     // used to track month backwards and forwards
     private void rdoIEmonthActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rdoIEmonthActionPerformed
         rdoIEweek.setSelected(false);
         rdoIEall.setSelected(false);
-        
+        IEmonTracker = 0;
         int ieFOM = dtx.getIntFOM(0);
         int ieEOM = dtx.getIntEOM(0);
         System.out.println("month get fom " + ieFOM);
@@ -1372,6 +1374,8 @@ int IEmonTracker = 0;     // used to track month backwards and forwards
     private void rdoIEallActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rdoIEallActionPerformed
         rdoIEweek.setSelected(false);
         rdoIEmonth.setSelected(false);
+        IEmonTracker = 0;
+        ListTransactionsByDate(inTheBeginning, inTheYear2525);
     }//GEN-LAST:event_rdoIEallActionPerformed
 
     /**
