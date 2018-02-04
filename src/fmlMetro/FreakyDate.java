@@ -48,6 +48,7 @@ public class FreakyDate {
             return m_text;
         }
 
+        //old depricated date routine
         public Date getActualFOM(int modifier){
             Calendar fom = Calendar.getInstance();
             fom.set(Calendar.DATE, fom.getActualMinimum(Calendar.DATE));
@@ -57,6 +58,7 @@ public class FreakyDate {
             
             return sqlDate1;
         }
+        
         // returns the end of the month date given a date. also adds or 
         // subtracts based on modifier.  0 retunrs eom current month
         public Date getEOM(int modifier){
@@ -106,6 +108,21 @@ public class FreakyDate {
             
         }
         
+        public int getIntEOW (int modifier) {
+            int dayofweek = 0;
+            Calendar eow = Calendar.getInstance();
+            dayofweek = eow.get(Calendar.DAY_OF_WEEK);
+            int lastdaymodifier = modifier - dayofweek;
+            eow.add(Calendar.DAY_OF_WEEK,  + lastdaymodifier +1); //+1 for Sun
+            String t_mon = leftPad((eow.get(Calendar.MONTH) + 1),2);
+            String t_day = leftPad(eow.get(Calendar.DAY_OF_MONTH),2);
+            String t_yr = String.valueOf(eow.get(Calendar.YEAR));
+            String t_Date8 = t_yr + t_mon + t_day;
+            int i_Date8 = Integer.parseInt(t_Date8);
+            
+            return i_Date8;
+        }
+        
         // 8 needs to be the modifier and 8, 16, 24, 32...
         public Date getEOW(int modifier) {
             int dayofweek = 0;
@@ -126,6 +143,23 @@ public class FreakyDate {
             //System.out.println("eow - returning " + sqlDate7);
             return sqlDate7;
         
+        }
+        
+        // get fow integer date
+        public int getIntFOW(int modifier){
+            int dayofweek = 0;
+            Calendar fow = Calendar.getInstance();
+            dayofweek = fow.get(Calendar.DAY_OF_WEEK);
+            int lastdaymodifier = modifier - dayofweek;
+            fow.add(Calendar.DAY_OF_WEEK,  + lastdaymodifier +1);
+            fow.add(Calendar.DAY_OF_WEEK,  - 6);
+            String t_mon = leftPad((fow.get(Calendar.MONTH) + 1),2);
+            String t_day = leftPad(fow.get(Calendar.DAY_OF_MONTH),2);
+            String t_yr = String.valueOf(fow.get(Calendar.YEAR));
+            String t_Date8 = t_yr + t_mon + t_day;
+            int i_Date8 = Integer.parseInt(t_Date8);
+            
+            return i_Date8;
         }
         
         public Date getFOW(int modifier){

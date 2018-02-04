@@ -32,6 +32,7 @@ int xx;
 int xy;
 int row_num = 0;
 int IEmonTracker = 0;     // used to track month backwards and forwards
+int IEweekTracker = 7;      // used to track week back and forth
 int inTheBeginning = 20000101;
 int inTheYear2525 = 25250101;
 
@@ -532,8 +533,8 @@ int inTheYear2525 = 25250101;
         jLabel17.setBackground(new java.awt.Color(102, 102, 102));
         jLabel17.setFont(new java.awt.Font("Lucida Grande", 1, 18)); // NOI18N
         jLabel17.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel17.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel17.setText("A place to add income and expense items that make up your life");
+        jLabel17.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        jLabel17.setText("     ...A place to add income and expense items that make up your life");
 
         javax.swing.GroupLayout jPanel11Layout = new javax.swing.GroupLayout(jPanel11);
         jPanel11.setLayout(jPanel11Layout);
@@ -1028,6 +1029,7 @@ int inTheYear2525 = 25250101;
                       "<br>the core income and expenses needed monthly.";
         lblReadMe.setText(html);
         ListTransactions();
+        rdoIEall.setSelected(true);
     }//GEN-LAST:event_btnIncomeExpActionPerformed
 
     private void btnBudgetActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBudgetActionPerformed
@@ -1335,10 +1337,17 @@ int inTheYear2525 = 25250101;
             IEmonTracker++;
             int ieFOM = dtx.getIntFOM(IEmonTracker);
             int ieEOM = dtx.getIntEOM(IEmonTracker);
-            System.out.println("mon forward get fom " + ieFOM);
-            System.out.println("mon forward get fom " + ieEOM);
-            ListTransactionsByDate(ieFOM, ieEOM);
-            
+            System.out.println("mon forward beg " + ieFOM);
+            System.out.println("mon forward end " + ieEOM);
+            ListTransactionsByDate(ieFOM, ieEOM);  
+        }
+        if(rdoIEweek.isSelected()){
+            IEweekTracker = IEweekTracker+7;
+            int ieFOW = dtx.getIntFOW(IEweekTracker);
+            int ieEOW = dtx.getIntEOW(IEweekTracker);
+            System.out.println("week forward beg " + ieFOW);
+            System.out.println("week forward end " + ieEOW);
+            ListTransactionsByDate(ieFOW, ieEOW);
         }
     }//GEN-LAST:event_btnIEforwardActionPerformed
 
@@ -1347,10 +1356,17 @@ int inTheYear2525 = 25250101;
             IEmonTracker--;
             int ieFOM = dtx.getIntFOM(IEmonTracker);
             int ieEOM = dtx.getIntEOM(IEmonTracker);
-            System.out.println("mon back get fom " + ieFOM);
-            System.out.println("mon back get fom " + ieEOM);
-            ListTransactionsByDate(ieFOM, ieEOM);
-            
+            System.out.println("mon backward beg " + ieFOM);
+            System.out.println("mon backward end " + ieEOM);
+            ListTransactionsByDate(ieFOM, ieEOM);   
+        }
+        if (rdoIEweek.isSelected()){
+            IEweekTracker = IEweekTracker-7;
+            int ieFOW = dtx.getIntFOW(IEweekTracker);
+            int ieEOW = dtx.getIntEOW(IEweekTracker);
+            System.out.println("week backward beg " + ieFOW);
+            System.out.println("week backward end " + ieEOW);
+            ListTransactionsByDate(ieFOW, ieEOW);
         }
     }//GEN-LAST:event_btnIEbackwardsActionPerformed
 
@@ -1360,21 +1376,29 @@ int inTheYear2525 = 25250101;
         IEmonTracker = 0;
         int ieFOM = dtx.getIntFOM(0);
         int ieEOM = dtx.getIntEOM(0);
-        System.out.println("month get fom " + ieFOM);
-        System.out.println("month get fom " + ieEOM);
+        System.out.println("month button beg " + ieFOM);
+        System.out.println("month button end " + ieEOM);
         
         ListTransactionsByDate(ieFOM, ieEOM);
     }//GEN-LAST:event_rdoIEmonthActionPerformed
 
     private void rdoIEweekActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rdoIEweekActionPerformed
+        IEweekTracker = 7;
         rdoIEmonth.setSelected(false);
         rdoIEall.setSelected(false);
+        int ieFOW = dtx.getIntFOW(IEweekTracker);
+        int ieEOW = dtx.getIntEOW(IEweekTracker);
+        System.out.println("month button beg " + ieFOW);
+        System.out.println("month button end " + ieEOW);
+        
+        ListTransactionsByDate(ieFOW, ieEOW);
     }//GEN-LAST:event_rdoIEweekActionPerformed
 
     private void rdoIEallActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rdoIEallActionPerformed
         rdoIEweek.setSelected(false);
         rdoIEmonth.setSelected(false);
         IEmonTracker = 0;
+        IEweekTracker = 7;
         ListTransactionsByDate(inTheBeginning, inTheYear2525);
     }//GEN-LAST:event_rdoIEallActionPerformed
 
