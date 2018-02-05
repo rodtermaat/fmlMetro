@@ -1457,6 +1457,9 @@ int inTheYear2525 = 25250101;
         }
         
         lblIEmonth.setText(dtx.getMonthDesc(IEmonTracker));
+
+        int income = sqlite.getTypeSum(dateStart, dateEnd, "income");
+        lblIEmaxIn.setText("$" + String.valueOf(income));
         
     }
     private void ListTransactions(){

@@ -437,4 +437,46 @@ public class SQLite
         }
     }
     
+    public int getTypeSum(int dateStart, int dateEnd, String type){
+        int amtSum = 0;
+        
+        String sql = "SELECT SUM(amount) as sumAmt FROM ledger WHERE\n" +
+                 " type = ? and date8 >= ? and date8 <= ?";
+        
+        try {
+           Class.forName("org.sqlite.JDBC");
+           Connection conn = DriverManager.getConnection(url);
+           conn.setAutoCommit(false);
+           //System.out.println("Opened database successfully");
+           
+           //Statement stmt = conn.createStatement();
+           PreparedStatement pstmt  = conn.prepareStatement(sql);
+           pstmt.setString(1,type);
+           pstmt.setInt(2, dateStart);
+           pstmt.setInt(3, dateEnd);
+           ResultSet rs = pstmt.executeQuery();
+           
+           while ( rs.next() ) {
+              amtSum = rs.getInt("sumAmt");
+           }
+           
+           //System.out.println("Check Balance successful");
+            if(rs != null) {
+                rs.close();
+            }
+            if(pstmt != null){
+                pstmt.close();
+            }
+            if(conn != null) {
+                conn.close();
+            } 
+        }
+        catch ( Exception e ) {
+           System.out.println("Check Balance Error: " + e.getMessage());
+           System.out.println( e.getClass().getName() + ": " + e.getMessage() );
+        }
+                
+        return amtSum;
+    }
+    
 }
