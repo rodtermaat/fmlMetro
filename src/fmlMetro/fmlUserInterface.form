@@ -806,7 +806,7 @@
                                           <EmptySpace max="-2" attributes="0"/>
                                           <Component id="lblIEtoSpend" max="32767" attributes="0"/>
                                       </Group>
-                                      <Component id="jLabel28" alignment="1" max="32767" attributes="0"/>
+                                      <Component id="lblIEmaxBill" alignment="1" max="32767" attributes="0"/>
                                       <Group type="102" alignment="0" attributes="0">
                                           <EmptySpace max="-2" attributes="0"/>
                                           <Component id="jLabel31" max="32767" attributes="0"/>
@@ -873,7 +873,7 @@
                                   <EmptySpace max="-2" attributes="0"/>
                                   <Component id="jLabel27" min="-2" max="-2" attributes="0"/>
                                   <EmptySpace max="-2" attributes="0"/>
-                                  <Component id="jLabel28" min="-2" max="-2" attributes="0"/>
+                                  <Component id="lblIEmaxBill" min="-2" max="-2" attributes="0"/>
                                   <EmptySpace max="-2" attributes="0"/>
                                   <Component id="jLabel29" min="-2" max="-2" attributes="0"/>
                                   <EmptySpace max="-2" attributes="0"/>
@@ -975,7 +975,7 @@
                             <Property name="text" type="java.lang.String" value=" . total bills this month"/>
                           </Properties>
                         </Component>
-                        <Component class="javax.swing.JLabel" name="jLabel28">
+                        <Component class="javax.swing.JLabel" name="lblIEmaxBill">
                           <Properties>
                             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                               <Font name="Lucida Grande" size="14" style="0"/>

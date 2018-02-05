@@ -19,6 +19,8 @@ import java.util.Date;
 import java.util.Locale;
 import javax.swing.Timer;
 import java.lang.String;
+import java.math.RoundingMode;
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableCellRenderer;
@@ -146,7 +148,7 @@ int inTheYear2525 = 25250101;
         jLabel25 = new javax.swing.JLabel();
         lblIEmaxIn = new javax.swing.JLabel();
         jLabel27 = new javax.swing.JLabel();
-        jLabel28 = new javax.swing.JLabel();
+        lblIEmaxBill = new javax.swing.JLabel();
         jLabel29 = new javax.swing.JLabel();
         lblIEtoSpend = new javax.swing.JLabel();
         jLabel31 = new javax.swing.JLabel();
@@ -615,9 +617,9 @@ int inTheYear2525 = 25250101;
 
         jLabel27.setText(" . total bills this month");
 
-        jLabel28.setFont(new java.awt.Font("Lucida Grande", 0, 14)); // NOI18N
-        jLabel28.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        jLabel28.setText("$2650");
+        lblIEmaxBill.setFont(new java.awt.Font("Lucida Grande", 0, 14)); // NOI18N
+        lblIEmaxBill.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        lblIEmaxBill.setText("$2650");
 
         jLabel29.setText(" . money to spend and save");
 
@@ -690,7 +692,7 @@ int inTheYear2525 = 25250101;
                     .addGroup(lblIEmaxBillsLayout.createSequentialGroup()
                         .addContainerGap()
                         .addComponent(lblIEtoSpend, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addComponent(jLabel28, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(lblIEmaxBill, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(lblIEmaxBillsLayout.createSequentialGroup()
                         .addContainerGap()
                         .addComponent(jLabel31, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
@@ -744,7 +746,7 @@ int inTheYear2525 = 25250101;
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel27)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel28)
+                .addComponent(lblIEmaxBill)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel29)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -1414,8 +1416,15 @@ int inTheYear2525 = 25250101;
         else{
             txtIEdate.setText("");
         }
-            
-        ListTransactions();
+        
+        IEmonTracker = 0;
+        int ieFOM = dtx.getIntFOM(0);
+        int ieEOM = dtx.getIntEOM(0);
+        
+        ListTransactionsByDate(ieFOM, ieEOM);
+        rdoIEmonth.setSelected(true);
+        RefreshAnalytics(ieFOM, ieEOM);
+        //ListTransactions();
     }//GEN-LAST:event_btnIEaddActionPerformed
     
     private void ListTransactionsByDate(int dateStart, int dateEnd){
@@ -1460,6 +1469,18 @@ int inTheYear2525 = 25250101;
 
         int income = sqlite.getTypeSum(dateStart, dateEnd, "income");
         lblIEmaxIn.setText("$" + String.valueOf(income));
+        
+        int bill = sqlite.getTypeSum(dateStart, dateEnd, "bill")*-1;
+        lblIEmaxBill.setText("$" + String.valueOf(bill));
+        
+        int budget = income - bill;
+        lblIEtoSpend.setText("$" + String.valueOf(budget));
+        
+        DecimalFormat df = new DecimalFormat("#.#");
+        df.setRoundingMode(RoundingMode.CEILING);
+        double billPercent = ((double)bill/income)*100.0;
+        String x = df.format(billPercent);
+        lblIEpercent.setText(String.valueOf(x) + "%");
         
     }
     private void ListTransactions(){
@@ -1587,7 +1608,14 @@ int inTheYear2525 = 25250101;
             sqlite.deleteTran(delID);
             lblID.setText("");
             this.ClearIEdataEntry();
-            ListTransactions();
+            
+            IEmonTracker = 0;
+            int ieFOM = dtx.getIntFOM(0);
+            int ieEOM = dtx.getIntEOM(0);
+            ListTransactionsByDate(ieFOM, ieEOM);
+            rdoIEmonth.setSelected(true);
+            RefreshAnalytics(ieFOM, ieEOM);
+            //ListTransactions();
         }
         else{
             DisplayIEmessage("Select something to delete instead of trying to break the program");
@@ -1601,7 +1629,15 @@ int inTheYear2525 = 25250101;
             AddUpdateTransaction("UPD", updID);
             lblID.setText("");
             this.ClearIEdataEntry();
-            ListTransactions();
+            IEmonTracker = 0;
+            
+            int ieFOM = dtx.getIntFOM(0);
+            int ieEOM = dtx.getIntEOM(0);
+            ListTransactionsByDate(ieFOM, ieEOM);
+            rdoIEmonth.setSelected(true);
+            RefreshAnalytics(ieFOM, ieEOM);
+            
+            //ListTransactions();
         }
         else{
             DisplayIEmessage("Somehow you botched the update data, please correct");
@@ -1832,7 +1868,6 @@ int inTheYear2525 = 25250101;
     private javax.swing.JLabel jLabel23;
     private javax.swing.JLabel jLabel25;
     private javax.swing.JLabel jLabel27;
-    private javax.swing.JLabel jLabel28;
     private javax.swing.JLabel jLabel29;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel31;
@@ -1869,6 +1904,7 @@ int inTheYear2525 = 25250101;
     private javax.swing.JLabel lblFML;
     private javax.swing.JLabel lblID;
     private javax.swing.JLabel lblIEendingBal;
+    private javax.swing.JLabel lblIEmaxBill;
     private javax.swing.JPanel lblIEmaxBills;
     private javax.swing.JLabel lblIEmaxIn;
     private javax.swing.JLabel lblIEmessage;
