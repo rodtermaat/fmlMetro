@@ -1,8 +1,11 @@
 package fmlMetro;
 
+import java.util.List;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
 import java.sql.Date;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Locale;
 
 /**
@@ -46,6 +49,68 @@ public class FreakyDate {
             m_desc.add(Calendar.MONTH, + modifier);
             String m_text = m_desc.getDisplayName(Calendar.MONTH, Calendar.LONG, Locale.ENGLISH);
             return m_text;
+        }
+
+        public Integer[] getWeeksInMonth(int month, int year) {
+            List<Integer> list = new ArrayList<Integer>();
+            SimpleDateFormat format = new SimpleDateFormat("w");
+
+            Calendar startDate = Calendar.getInstance();
+            Calendar endDate = Calendar.getInstance();
+
+            startDate.set(year, month - 1, 1);
+            startDate.setMinimalDaysInFirstWeek(4);
+
+            endDate.set(year, month, 0);
+
+            // Iterate between the start and stop days
+            while (startDate.getTimeInMillis() <= endDate.getTimeInMillis()) {
+
+            Calendar cal = Calendar.getInstance();
+            cal.setTime(startDate.getTime());
+            cal.set(Calendar.DAY_OF_WEEK, Calendar.MONDAY);
+            // System.out.println("Here here " +
+            // cal.get(Calendar.DAY_OF_MONTH));
+
+            // Start of the week is Monday - check if dates 1, 2, 3 fall after
+            // Wednesday (specified 4 day rule)
+            if ((startDate.get(Calendar.DAY_OF_WEEK) > Calendar.THURSDAY)
+                && (startDate.get(Calendar.DAY_OF_MONTH) < 4)) {
+
+                // If they do, move the dates to next immediate start of the
+                // week - making it to 4th
+                startDate.add(Calendar.DAY_OF_MONTH,
+                    (4 - startDate.get(Calendar.DAY_OF_MONTH)));
+
+                // Similarly - check if last dates of the month make less than 4
+                // for that month
+            } else if ((startDate.get(Calendar.DAY_OF_MONTH) > 25)
+                && ((startDate.getActualMaximum(Calendar.DAY_OF_MONTH) - (cal
+                        .get(Calendar.DAY_OF_MONTH))) + 1) < 4) {
+                // If they do, move the dates to next immediate start of the
+                // week - making it to next month
+
+                startDate
+                    .add(Calendar.DAY_OF_MONTH,
+                            (startDate
+                            .getActualMaximum(Calendar.DAY_OF_MONTH) - startDate
+                            .get(Calendar.DAY_OF_MONTH)) + 1);
+
+            } else {
+                // Get the number of the week
+                // System.out.println(startDate.getTime());
+                int week = Integer.parseInt(format.format(startDate.getTime()));
+
+                // If December, check if the next year's 1st week falls under
+                // the 4 day rule, if it does then ignore
+                if (!(startDate.get(Calendar.MONTH) == Calendar.DECEMBER && week == 1))
+                    list.add(week);
+
+                    startDate.add(Calendar.WEEK_OF_MONTH, 1);
+            }
+        }
+
+            return list.toArray(new Integer[list.size()]);
         }
 
         //old depricated date routine
