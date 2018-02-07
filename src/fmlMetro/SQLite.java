@@ -103,6 +103,35 @@ public class SQLite
  
     }
        
+    public void CreateBudgetTable(){
+       String sql = "CREATE TABLE IF NOT EXISTS budget (\n" +
+                     " id INTEGER PRIMARY KEY,\n" +
+                     " byyyymm INTEGER,\n" +
+                     " bSave INTEGER,\n" +
+                     " bCash INTEGER,\n" +
+                     " bTransport INTEGER,\n" +
+                     " bGroceries INTEGER,\n" +
+                     " bDining INTEGER,\n" +
+                     " bUnplanned INTEGER);";
+   
+        try (Connection conn = DriverManager.getConnection(url);
+                Statement stmt = conn.createStatement()) {
+            // create a new table
+            stmt.execute(sql);
+            if(stmt != null){
+                stmt.close();
+            }
+            if(conn != null) {
+                conn.close();
+            }
+            //System.out.println("Ledger table has been created.");            
+        } catch (SQLException e) {
+            //System.out.println("Create TranTbl Error: " + e.getMessage());
+            //System.err.println( e.getClass().getName() + ": " + e.getMessage() );
+            return;
+        } 
+    }
+    
     // check to see if database and tables exist oe do we need to create it
     public int IsAcctSetup(){
         String sql="SELECT count(*) from ledger";
@@ -194,7 +223,8 @@ public class SQLite
                      " FROM ledger where\n" +
                      " date8 >= ? and date8 <= ?\n" +
                      " and type = \"bill\" order by amount";
-                    
+        System.out.println(sql);
+        
         try {
            Class.forName("org.sqlite.JDBC");
            Connection conn = DriverManager.getConnection(url);
@@ -213,11 +243,9 @@ public class SQLite
               int annAmt = rs.getInt("annAmt");
               int save10 = rs.getInt("monSave10");
               int annSave10 = rs.getInt("annSave10");
-                            
+            System.out.println("adding new row for Exp Summary");
             anExpRow = new ExpSummary(name, monAmt, annAmt, save10, annSave10);
             expRows.add(anExpRow);
-            
-;
            }
            
             if(rs != null) {

@@ -1041,6 +1041,9 @@
                               <TableHeader reorderingAllowed="false" resizingAllowed="true"/>
                             </Property>
                           </Properties>
+                          <AuxValues>
+                            <AuxValue name="JavaCodeGenerator_SerializeTo" type="java.lang.String" value="fmlUserInterface_tblExpSummary"/>
+                          </AuxValues>
                         </Component>
                       </SubComponents>
                     </Container>

@@ -87,6 +87,9 @@ int inTheYear2525 = 25250101;
         //set up model for tblLedger
         model = (DefaultTableModel) tblLedger.getModel();
         
+        //set up model for tblBudgetSummary
+        expModel = (DefaultTableModel) tblExpSummary.getModel();
+        
         // Center on the screen
         //Toolkit tool = Toolkit.getDefaultToolkit();
         //Dimension dim = new Dimension(tool.getScreenSize());
@@ -1547,6 +1550,7 @@ int inTheYear2525 = 25250101;
         
         int ieFOM = dtx.getIntFOM(0);
         int ieEOM = dtx.getIntEOM(0);
+        System.out.println("in Refresh budget");
         RefreshBudget(ieFOM, ieEOM);
         
         
@@ -1681,10 +1685,11 @@ int inTheYear2525 = 25250101;
     //RJT
     private void ExpenseSummaryByDate(int dateStart, int dateEnd){
         expModel.setRowCount(0);
-        
+        System.out.println("ready to call SQL");
         ArrayList<ExpSummary> expList = sqlite.getExpSummaryByDate(dateStart, dateEnd);
+        System.out.println("made it thru SQL");
         Object rowData[] = new Object[5];
-        
+        System.out.println("ready to add rows to ExpList " + expList.size());
         for(int i = 0; i < expList.size(); i++)
       {
         rowData[0] = expList.get(i).GetExpName();
@@ -1775,6 +1780,7 @@ int inTheYear2525 = 25250101;
 //        
         
         // load Expense summary
+        System.out.println("ready to call Expense Summary");
         ExpenseSummaryByDate(dateStart, dateEnd);
         
          
