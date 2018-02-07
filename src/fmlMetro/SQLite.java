@@ -182,6 +182,62 @@ public class SQLite
         
     }
     
+    public ArrayList<ExpSummary> getExpSummaryByDate(int dateStart, int dateEnd){
+    
+        ArrayList<ExpSummary> expRows = new ArrayList<>();
+        ExpSummary anExpRow = null;
+            
+        String sql = "SELECT name, abs(amount) as monAmt,\n" +
+                     " (abs(amount)*12) as annAmt,\n" +
+                     " round((abs(amount)*0.1),0) as monSave10,\n" +
+                     " round((abs(amount)*0.1)*12, 0) as annSave10\n" +
+                     " FROM ledger where\n" +
+                     " date8 >= ? and date8 <= ?\n" +
+                     " and type = \"bill\" order by amount";
+                    
+        try {
+           Class.forName("org.sqlite.JDBC");
+           Connection conn = DriverManager.getConnection(url);
+           conn.setAutoCommit(false);
+           //System.out.println("Opened database successfully");
+           
+           //Statement stmt = conn.createStatement();
+           PreparedStatement pstmt  = conn.prepareStatement(sql);
+           pstmt.setInt(1,dateStart);
+           pstmt.setInt(2,dateEnd);
+           ResultSet rs = pstmt.executeQuery();
+           
+           while ( rs.next() ) {
+              String name = rs.getString("name");
+              int monAmt = rs.getInt("monAmt");
+              int annAmt = rs.getInt("annAmt");
+              int save10 = rs.getInt("monSave10");
+              int annSave10 = rs.getInt("annSave10");
+                            
+            anExpRow = new ExpSummary(name, monAmt, annAmt, save10, annSave10);
+            expRows.add(anExpRow);
+            
+;
+           }
+           
+            if(rs != null) {
+                rs.close();
+            }
+            if(pstmt != null){
+                pstmt.close();
+            }
+            if(conn != null) {
+                conn.close();
+            } 
+        }
+        catch ( Exception e ) {
+           System.out.println("Expense Summary: " + e.getMessage());
+           System.out.println( e.getClass().getName() + ": " + e.getMessage() );
+        }
+      
+        return expRows;            
+    }
+    
     
     public ArrayList<TransactionShort> getTransactionsByDate(int dateStart, int dateEnd){
        
@@ -240,7 +296,7 @@ public class SQLite
             } 
         }
         catch ( Exception e ) {
-           System.out.println("Check Balance Error: " + e.getMessage());
+           System.out.println("Transaction by date: " + e.getMessage());
            System.out.println( e.getClass().getName() + ": " + e.getMessage() );
         }
       

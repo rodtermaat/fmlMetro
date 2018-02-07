@@ -3,9 +3,7 @@ package fmlMetro;
 
 /**
  * This class is transaction.  It is composed of various finance related fields
- * And all encapsulated in a object.  This object is then put into a ListArray in the 
- * Menu class which makes up the ledger.  It would be better to have the Transaction class
- * inherit from a new Ledger class, but I am not that smart yet.
+ * And all encapsulated in a object.  
  *
  * @author (rod termaat)
  * @version (0.0)
