@@ -163,6 +163,112 @@ public class SQLite
         return count;
     }
     
+    // add update buget values
+    public int IsBudgetSetup() {
+        
+        //first determine if there are any records. 0 add, 1 is update mode
+        String sql = "SELECT count(*) FROM budget";
+        int count=0;
+        try {
+           Class.forName("org.sqlite.JDBC");
+           Connection conn = DriverManager.getConnection(url);
+           conn.setAutoCommit(false);
+           //System.out.println("Opened database successfully")
+           Statement stmt = conn.createStatement();
+           ResultSet rs = stmt.executeQuery(sql);
+           
+            while(rs.next()){
+                count=rs.getInt(1);
+            }
+            
+             if(rs != null) {
+                rs.close();
+            }
+            if(stmt != null){
+                stmt.close();
+            }
+            if(conn != null) {
+                conn.close();
+            } 
+            
+        } catch (Exception e) {
+            }
+        return count;
+    }
+    
+    //fuck
+    // get the budget object
+    //public Budget GetBudget(){
+    //        
+    //}
+    
+    
+    // add budget record
+    public void AddBudget(int yyyymm, int save, int cash, int transport, 
+                int groceries, int dining, int unplan){
+        String sql = "INSERT INTO budget(byyyymm, bsave, bcash, btransport,\n" +
+                    " bgroceries, bdining, bunplanned)\n" +
+                    " VALUES(?,?,?,?,?,?,?)";
+        try (Connection conn = this.connect();
+            PreparedStatement pstmt = conn.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS)) {
+            pstmt.setInt(1, yyyymm);
+            pstmt.setInt(2, save);
+            pstmt.setInt(3, cash);
+            pstmt.setInt(4, transport);
+            pstmt.setInt(5, groceries);
+            pstmt.setInt(6, dining);
+            pstmt.setInt(7, unplan);
+            pstmt.executeUpdate();
+            
+            //ResultSet rs = pstmt.getGeneratedKeys();
+            
+            //if(rs != null) {
+            //    rs.close();
+            //}
+            
+            if(pstmt != null){
+                pstmt.close();
+            }
+            if(conn != null) {
+                conn.close();
+            } 
+
+        } catch (SQLException e) {
+            //System.out.println("Insert Transaction Error: " + e.getMessage());
+            //System.err.println( e.getClass().getName() + ": " + e.getMessage() );
+        }
+        
+    }
+    
+    // update transaction from income and expense lanel
+    public void UpdBudget(int yyyymm, int save, int cash, int transport, 
+                int groceries, int dining, int unplan){
+        String sql = "UPDATE budget SET byyyymm = ? , "
+                + "bsave = ? , "
+                + "bcash = ? , "
+                + "btransport = ? , "
+                + "bgroceries = ? , "
+                + "bdining = ? , "
+                + "bunplanned = ? "
+                + "WHERE id = 1";
+ 
+        try (Connection conn = DriverManager.getConnection(url);
+          PreparedStatement pstmt = conn.prepareStatement(sql)) {
+ 
+            // set the corresponding param
+            pstmt.setInt(1, yyyymm);
+            pstmt.setInt(2, save);
+            pstmt.setInt(3, cash);
+            pstmt.setInt(4, transport);
+            pstmt.setInt(5, groceries);
+            pstmt.setInt(6, dining);
+            pstmt.setInt(7, unplan);
+            pstmt.executeUpdate();
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }    
+    }
+    
     // add a record to the ledger table
     public int AddTransaction(int date8, String day, String mon, String yr,
             String wk, String type, String frq, String category, String name, 

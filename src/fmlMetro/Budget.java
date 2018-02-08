@@ -11,18 +11,44 @@ package fmlMetro;
  */
 public class Budget {
     
-    private final int id;
-    private final String BudgetItem;
-    private final int BudgetAmt;
-    private final int BudgetActual;
-    private final int BudgetPercent;
+    private int id;
+    private int yyyymm;
+    private int budgetSave;
+    private int budgetCash;
+    private int budgetTransp;
+    private int budgetGroc;
+    private int budgetDine;
+    private int budgetUnplan;
     
-    public Budget(int id, String BudgetItem, int BudgetAmt, int BudgetActual, int BudgetPercent){
+    public Budget(int id, int yyyymm, int budgetSave, int budgetCash, 
+            int budgetTransp, int budgetGroc, int budgetDine, 
+            int budgetUnplan){
         
         this.id = id;
-        this.BudgetItem = BudgetItem;
-        this.BudgetAmt = BudgetAmt;
-        this.BudgetActual = BudgetActual;
-        this.BudgetPercent = BudgetPercent;
+        this.budgetSave = budgetSave;
+        this.budgetCash = budgetCash;
+        this.budgetTransp = budgetTransp;
+        this.budgetGroc = budgetGroc;
+        this.budgetDine = budgetDine;
+        this.budgetUnplan = budgetUnplan;
+    }
+    
+    public int GetBudgetSave(){
+        return budgetSave;
+    }
+    public int GetBudgetCash(){
+        return budgetCash;
+    }
+    public int GetBudgetTransp(){
+        return budgetTransp;
+    }
+    public int GetBudgetGroc(){
+        return budgetGroc;
+    }
+    public int GetBudgetDine(){
+        return budgetDine;
+    }
+    public int GetBudgetUnplan(){
+        return budgetUnplan;
     }
 }
