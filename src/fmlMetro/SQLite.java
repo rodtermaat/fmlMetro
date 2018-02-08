@@ -522,6 +522,44 @@ public class SQLite
         }
     }
     
+    public ArrayList getCategoryList (){
+        ArrayList<String> cats = new ArrayList<String>();
+        String sql = "SELECT DISTINCT Category FROM ledger\n" +
+                    " WHERE type = \"bill\" OR type = \"income\"";
+        
+        try {
+           Class.forName("org.sqlite.JDBC");
+           Connection conn = DriverManager.getConnection(url);
+           conn.setAutoCommit(false);
+           //System.out.println("Opened database successfully");
+           
+           //Statement stmt = conn.createStatement();
+           PreparedStatement pstmt  = conn.prepareStatement(sql);
+           ResultSet rs = pstmt.executeQuery();
+      
+           while ( rs.next() ) {
+              cats.add(rs.getString("category"));
+           }
+           
+           //System.out.println("Check Balance successful");
+            if(rs != null) {
+                rs.close();
+            }
+            if(pstmt != null){
+                pstmt.close();
+            }
+            if(conn != null) {
+                conn.close();
+            } 
+        }
+        catch ( Exception e ) {
+           System.out.println("Check Balance Error: " + e.getMessage());
+           System.out.println( e.getClass().getName() + ": " + e.getMessage() );
+        }
+                
+        return cats;
+    }
+    
     public int getTypeSum(int dateStart, int dateEnd, String type){
         int amtSum = 0;
         
