@@ -57,7 +57,10 @@ int inTheYear2525 = 25250101;
     String sDay = new SimpleDateFormat("dd").format(today);
     String sMon = new SimpleDateFormat("MM").format(today);
     String sYr = new SimpleDateFormat("yyyy").format(today);
+    String sYrYY = new SimpleDateFormat("yy").format(today);
     String sWk = new SimpleDateFormat("w").format(today);
+    
+    String inputToday = sMon + "/" + sDay + "/" + sYrYY;
     String sToday8 = sYr + sMon + sDay;
     int iToday8 = Integer.parseInt(sToday8);
     
@@ -108,6 +111,7 @@ int inTheYear2525 = 25250101;
                         "<br>spending.";
         
         lblAIqAdd.setText(htmlai);
+        txtAIbudgDate.setText(inputToday);
     }
 
     /**
@@ -135,6 +139,7 @@ int inTheYear2525 = 25250101;
         jLabel21 = new javax.swing.JLabel();
         jPanel6 = new javax.swing.JPanel();
         jLabel10 = new javax.swing.JLabel();
+        lblAIMessage = new javax.swing.JLabel();
         jPanel10 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         cmbAIbudgItem = new javax.swing.JComboBox<>();
@@ -142,7 +147,7 @@ int inTheYear2525 = 25250101;
         jLabel26 = new javax.swing.JLabel();
         txtAIbudgName = new javax.swing.JTextField();
         jLabel30 = new javax.swing.JLabel();
-        txtbudgAmt = new javax.swing.JTextField();
+        txtAIbudgAmt = new javax.swing.JTextField();
         jLabel31 = new javax.swing.JLabel();
         btnAIbudgAdd = new javax.swing.JButton();
         lblAIqAdd = new javax.swing.JLabel();
@@ -469,13 +474,18 @@ int inTheYear2525 = 25250101;
         jLabel10.setFont(new java.awt.Font("Lucida Grande", 1, 18)); // NOI18N
         jLabel10.setText(". pretty chart to tell you nothing");
 
+        lblAIMessage.setText("jLabel33");
+
         javax.swing.GroupLayout jPanel6Layout = new javax.swing.GroupLayout(jPanel6);
         jPanel6.setLayout(jPanel6Layout);
         jPanel6Layout.setHorizontalGroup(
             jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel6Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jLabel10, javax.swing.GroupLayout.DEFAULT_SIZE, 407, Short.MAX_VALUE)
+                .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel6Layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jLabel10, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(lblAIMessage, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
         jPanel6Layout.setVerticalGroup(
@@ -483,7 +493,8 @@ int inTheYear2525 = 25250101;
             .addGroup(jPanel6Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLabel10)
-                .addContainerGap(292, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(lblAIMessage, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
         jPanel10.setBackground(new java.awt.Color(255, 204, 204));
@@ -505,12 +516,17 @@ int inTheYear2525 = 25250101;
         jLabel30.setFont(new java.awt.Font("Lucida Grande", 0, 16)); // NOI18N
         jLabel30.setText("amount");
 
-        txtbudgAmt.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
-        txtbudgAmt.setText("185");
+        txtAIbudgAmt.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
+        txtAIbudgAmt.setText("185");
 
         jLabel31.setText("date");
 
         btnAIbudgAdd.setText("add");
+        btnAIbudgAdd.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAIbudgAddActionPerformed(evt);
+            }
+        });
 
         lblAIqAdd.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         lblAIqAdd.setText("lblAIqAdd");
@@ -541,7 +557,7 @@ int inTheYear2525 = 25250101;
                                 .addComponent(cmbAIbudgItem, 0, 173, Short.MAX_VALUE)
                                 .addComponent(txtAIbudgName))
                             .addGroup(jPanel10Layout.createSequentialGroup()
-                                .addComponent(txtbudgAmt, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(txtAIbudgAmt, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(btnAIbudgAdd)))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -568,7 +584,7 @@ int inTheYear2525 = 25250101;
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel30)
-                            .addComponent(txtbudgAmt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txtAIbudgAmt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(btnAIbudgAdd)))
                     .addGroup(jPanel10Layout.createSequentialGroup()
                         .addGap(4, 4, 4)
@@ -585,10 +601,10 @@ int inTheYear2525 = 25250101;
                     .addComponent(jPanel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(pnlAnalyticsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jPanel6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jPanel10, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGroup(pnlAnalyticsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jPanel10, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jPanel6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(291, Short.MAX_VALUE))
         );
         pnlAnalyticsLayout.setVerticalGroup(
             pnlAnalyticsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -599,10 +615,10 @@ int inTheYear2525 = 25250101;
                         .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addContainerGap(9, Short.MAX_VALUE))
                     .addGroup(pnlAnalyticsLayout.createSequentialGroup()
-                        .addComponent(jPanel6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jPanel6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jPanel10, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
         );
 
@@ -1888,6 +1904,8 @@ int inTheYear2525 = 25250101;
         pnlCarder.repaint();
         pnlCarder.validate();
         
+        txtAIbudgDate.setText(inputToday);
+        
     }//GEN-LAST:event_btnAnalyticsActionPerformed
 
     private void btnIncomeExpActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnIncomeExpActionPerformed
@@ -1909,6 +1927,7 @@ int inTheYear2525 = 25250101;
                       "<br>forget - lowering your expenses is like giving yourself a" +
                       "<br>RAISE and doesn't cost another little piece of your soul.";
         lblIEreadMe.setText(html);
+        txtIEdate.setText(inputToday);      // put todays date in IE date
         
         // update Category combobox with values
         UpdateIECategories();
@@ -2535,7 +2554,6 @@ int inTheYear2525 = 25250101;
         RefreshBudget(ieFOM, ieEOM);
     }//GEN-LAST:event_btnBudgetAddActionPerformed
 
-    //fuck
     private void ValidateBudget(){
         if(txtBudgetSave.getText().equals("")){
             txtBudgetSave.setText("0");}    
@@ -2610,6 +2628,67 @@ int inTheYear2525 = 25250101;
         }
     }//GEN-LAST:event_txtBudgetUnplanKeyTyped
 
+    // AI quick add
+    private void btnAIbudgAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAIbudgAddActionPerformed
+        
+        // values not passed in budget add, but needed in ledger
+        String type = "budget";
+        String frq = "not used";
+        int oldBudg = 0;
+        Date jDate = null;
+        String sDate8, day, mon, yr, wk, cat, name;
+        String ieDate = txtAIbudgDate.getText();
+        int iDate8 = 0; int amt = 0;
+        
+        // date is good to use
+        SimpleDateFormat sdf = new SimpleDateFormat("MM/dd/yy");
+        try
+        {
+            jDate = sdf.parse(ieDate);
+        }
+        catch(ParseException e) {
+            DisplayAImessage("Enter date like 04/15/18");
+            return;
+        }
+            
+        day = new SimpleDateFormat("dd").format(jDate);
+        mon = new SimpleDateFormat("MM").format(jDate);
+        yr = new SimpleDateFormat("yyyy").format(jDate);
+        wk = new SimpleDateFormat("w").format(jDate);
+        sDate8 = yr + mon + day;
+        iDate8 = Integer.parseInt(sDate8);
+
+        // is today sunday?  if it is we need to subtract a week since our
+        // program wants to start on Monday as the first day of the week
+        int intwk = Integer.valueOf(wk);
+        if(dtx.IsSunday(jDate)){
+            if(intwk==1){
+                intwk=52;
+                wk = String.valueOf(intwk);
+            }
+            else{
+                intwk--;
+                wk = String.valueOf(intwk);
+            }
+        }
+        
+        if(txtAIbudgAmt.getText().equals("")){
+            DisplayAImessage("Enter an amount at least");
+            return;}
+        if(cmbAIbudgItem.getSelectedItem() == null
+                || cmbAIbudgItem.getSelectedItem().toString().isEmpty()){
+            DisplayAImessage("Enter an category sucker");
+            return;
+        }
+        amt = Integer.valueOf(txtAIbudgAmt.getText())*-1;
+        cat = cmbAIbudgItem.getSelectedItem().toString();
+        name = txtAIbudgName.getText();
+        
+        int y = sqlite.AddTransaction(iDate8, day, mon, yr,wk, type, frq, cat, 
+                            name, amt, 0);
+              
+    }//GEN-LAST:event_btnAIbudgAddActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -2674,7 +2753,20 @@ int inTheYear2525 = 25250101;
         t.setRepeats(false);
         t.start();
     }
-    
+    // Displays data entry error messages on Budget panel
+    private void DisplayAImessage(String message){
+        lblAIMessage.setText(message);
+        
+        Timer t = new Timer(2000, new ActionListener() {
+
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                lblAIMessage.setText(null);
+            }
+        });
+        t.setRepeats(false);
+        t.start();
+    }
     // validates the DE part of the form and returns PASS or FAIL to caller
     private String ValidateIEdataEntry(){
         //final String catTest = cmbIEcategory.getSelectedItem().toString().trim();
@@ -2823,6 +2915,7 @@ int inTheYear2525 = 25250101;
     private javax.swing.JSeparator jSeparator2;
     private javax.swing.JSeparator jSeparator3;
     private javax.swing.JTable jTable1;
+    private javax.swing.JLabel lblAIMessage;
     private javax.swing.JLabel lblAIqAdd;
     private javax.swing.JLabel lblBudgReadMe;
     private javax.swing.JLabel lblBudgetAvail;
@@ -2860,6 +2953,7 @@ int inTheYear2525 = 25250101;
     private javax.swing.JRadioButton rdoIEweek;
     private javax.swing.JTable tblExpSummary;
     private javax.swing.JTable tblLedger;
+    private javax.swing.JTextField txtAIbudgAmt;
     private javax.swing.JFormattedTextField txtAIbudgDate;
     private javax.swing.JTextField txtAIbudgName;
     private javax.swing.JTextField txtBudgetCash;
@@ -2872,6 +2966,5 @@ int inTheYear2525 = 25250101;
     private javax.swing.JFormattedTextField txtIEdate;
     private javax.swing.JTextField txtIEdescription;
     private javax.swing.JTextField txtIEgoal;
-    private javax.swing.JTextField txtbudgAmt;
     // End of variables declaration//GEN-END:variables
 }
