@@ -39,8 +39,8 @@ public class SQLite
         try {
             conn = DriverManager.getConnection(url);
         } catch (SQLException e) {
-            System.out.println("Create Connection Error: " + e.getMessage());
-            System.err.println( e.getClass().getName() + ": " + e.getMessage() );
+            //System.out.println("Create Connection Error: " + e.getMessage());
+            //System.err.println( e.getClass().getName() + ": " + e.getMessage() );
         }
         return conn;
     } 
@@ -197,10 +197,45 @@ public class SQLite
     }
     
     //fuck
-    // get the budget object
-    //public Budget GetBudget(){
-    //        
-    //}
+    //get the budget object
+    public Budget GetBudget(){
+        Budget bud = new Budget();
+        String sql = "SELECT bsave, bcash, btransport, bgroceries,\n" +
+                " bdining, bunplanned  FROM budget";
+ 
+        try {
+           Class.forName("org.sqlite.JDBC");
+           Connection conn = DriverManager.getConnection(url);
+           conn.setAutoCommit(false);
+           //System.out.println("Opened database successfully")
+           Statement stmt = conn.createStatement();
+           ResultSet rs = stmt.executeQuery(sql);
+           
+            while(rs.next()){
+                bud.SetBudgetSave(rs.getInt("bsave"));
+                bud.SetBudgetCash(rs.getInt("bcash"));
+                bud.SetBudgetTransp(rs.getInt("btransport"));
+                bud.SetBudgetGroc(rs.getInt("bgroceries"));
+                bud.SetBudgetDine(rs.getInt("bdining"));
+                bud.SetBudgetUnplan(rs.getInt("bunplanned"));
+            }
+            
+             if(rs != null) {
+                rs.close();
+            }
+            if(stmt != null){
+                stmt.close();
+            }
+            if(conn != null) {
+                conn.close();
+            } 
+            
+        } catch (Exception e) {
+        }
+        return bud;
+        
+    
+    }
     
     
     // add budget record
@@ -265,7 +300,7 @@ public class SQLite
             pstmt.setInt(7, unplan);
             pstmt.executeUpdate();
         } catch (SQLException e) {
-            System.out.println(e.getMessage());
+            //System.out.println(e.getMessage());
         }    
     }
     
@@ -329,7 +364,7 @@ public class SQLite
                      " FROM ledger where\n" +
                      " date8 >= ? and date8 <= ?\n" +
                      " and type = \"bill\" order by amount";
-        System.out.println(sql);
+        //System.out.println(sql);
         
         try {
            Class.forName("org.sqlite.JDBC");
@@ -349,7 +384,7 @@ public class SQLite
               int annAmt = rs.getInt("annAmt");
               int save10 = rs.getInt("monSave10");
               int annSave10 = rs.getInt("annSave10");
-            System.out.println("adding new row for Exp Summary");
+            //System.out.println("adding new row for Exp Summary");
             anExpRow = new ExpSummary(name, monAmt, annAmt, save10, annSave10);
             expRows.add(anExpRow);
            }
@@ -365,8 +400,8 @@ public class SQLite
             } 
         }
         catch ( Exception e ) {
-           System.out.println("Expense Summary: " + e.getMessage());
-           System.out.println( e.getClass().getName() + ": " + e.getMessage() );
+           //System.out.println("Expense Summary: " + e.getMessage());
+           //System.out.println( e.getClass().getName() + ": " + e.getMessage() );
         }
       
         return expRows;            
@@ -430,8 +465,8 @@ public class SQLite
             } 
         }
         catch ( Exception e ) {
-           System.out.println("Transaction by date: " + e.getMessage());
-           System.out.println( e.getClass().getName() + ": " + e.getMessage() );
+           //System.out.println("Transaction by date: " + e.getMessage());
+           //System.out.println( e.getClass().getName() + ": " + e.getMessage() );
         }
       
         return rows2;
@@ -565,8 +600,8 @@ public class SQLite
             } 
         }
         catch ( Exception e ) {
-           System.out.println("Get Transaction Error: " + e.getMessage());
-           System.out.println( e.getClass().getName() + ": " + e.getMessage() );
+           //System.out.println("Get Transaction Error: " + e.getMessage());
+           //System.out.println( e.getClass().getName() + ": " + e.getMessage() );
         }
       
         return lTran;
@@ -597,7 +632,7 @@ public class SQLite
             // update 
             pstmt.executeUpdate();
         } catch (SQLException e) {
-            System.out.println(e.getMessage());
+            //System.out.println(e.getMessage());
         }    
     }
     
@@ -659,8 +694,8 @@ public class SQLite
             } 
         }
         catch ( Exception e ) {
-           System.out.println("Check Balance Error: " + e.getMessage());
-           System.out.println( e.getClass().getName() + ": " + e.getMessage() );
+           //System.out.println("Check Balance Error: " + e.getMessage());
+           //System.out.println( e.getClass().getName() + ": " + e.getMessage() );
         }
                 
         return cats;
@@ -701,8 +736,8 @@ public class SQLite
             } 
         }
         catch ( Exception e ) {
-           System.out.println("Check Balance Error: " + e.getMessage());
-           System.out.println( e.getClass().getName() + ": " + e.getMessage() );
+           //System.out.println("Check Balance Error: " + e.getMessage());
+           //System.out.println( e.getClass().getName() + ": " + e.getMessage() );
         }
                 
         return amtSum;

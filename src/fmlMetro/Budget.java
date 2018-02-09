@@ -20,6 +20,10 @@ public class Budget {
     private int budgetDine;
     private int budgetUnplan;
     
+    public Budget(){
+        
+    }
+    
     public Budget(int id, int yyyymm, int budgetSave, int budgetCash, 
             int budgetTransp, int budgetGroc, int budgetDine, 
             int budgetUnplan){
@@ -50,5 +54,23 @@ public class Budget {
     }
     public int GetBudgetUnplan(){
         return budgetUnplan;
+    }
+    public void SetBudgetSave(int save){
+        this.budgetSave = save;
+    }
+    public void SetBudgetCash(int cash){
+        this.budgetCash = cash;
+    }
+    public void SetBudgetTransp(int transp){
+        this.budgetTransp = transp;
+    }
+    public void SetBudgetGroc(int groc){
+        this.budgetGroc = groc;
+    }
+    public void SetBudgetDine(int dine){
+        this.budgetDine = dine;
+    }
+    public void SetBudgetUnplan(int unplan){
+        this.budgetUnplan = unplan;
     }
 }

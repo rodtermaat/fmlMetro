@@ -137,16 +137,16 @@ int inTheYear2525 = 25250101;
         jLabel10 = new javax.swing.JLabel();
         jPanel10 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
-        jComboBox1 = new javax.swing.JComboBox<>();
+        cmbAIbudgItem = new javax.swing.JComboBox<>();
         jLabel4 = new javax.swing.JLabel();
         jLabel26 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
+        txtAIbudgName = new javax.swing.JTextField();
         jLabel30 = new javax.swing.JLabel();
-        jTextField2 = new javax.swing.JTextField();
+        txtbudgAmt = new javax.swing.JTextField();
         jLabel31 = new javax.swing.JLabel();
-        jTextField9 = new javax.swing.JTextField();
-        jButton3 = new javax.swing.JButton();
+        btnAIbudgAdd = new javax.swing.JButton();
         lblAIqAdd = new javax.swing.JLabel();
+        txtAIbudgDate = new javax.swing.JFormattedTextField();
         pnlLedger = new javax.swing.JPanel();
         jPanel15 = new javax.swing.JPanel();
         jPanel16 = new javax.swing.JPanel();
@@ -492,7 +492,7 @@ int inTheYear2525 = 25250101;
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         jLabel1.setText(". quick add");
 
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "savings", "cash", "transportation", "groceries", "dining", "unplanned" }));
+        cmbAIbudgItem.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "savings", "cash", "transportation", "groceries", "dining", "unplanned" }));
 
         jLabel4.setFont(new java.awt.Font("Lucida Grande", 0, 14)); // NOI18N
         jLabel4.setText("budget item");
@@ -500,23 +500,23 @@ int inTheYear2525 = 25250101;
         jLabel26.setFont(new java.awt.Font("Lucida Grande", 0, 14)); // NOI18N
         jLabel26.setText("description");
 
-        jTextField1.setText("optional description");
+        txtAIbudgName.setText("optional description");
 
         jLabel30.setFont(new java.awt.Font("Lucida Grande", 0, 16)); // NOI18N
         jLabel30.setText("amount");
 
-        jTextField2.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
-        jTextField2.setText("185");
+        txtbudgAmt.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
+        txtbudgAmt.setText("185");
 
         jLabel31.setText("date");
 
-        jTextField9.setText("10/31/18");
-
-        jButton3.setText("add");
+        btnAIbudgAdd.setText("add");
 
         lblAIqAdd.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         lblAIqAdd.setText("lblAIqAdd");
         lblAIqAdd.setVerticalAlignment(javax.swing.SwingConstants.TOP);
+
+        txtAIbudgDate.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.DateFormatter(new java.text.SimpleDateFormat("MM/dd/yy"))));
 
         javax.swing.GroupLayout jPanel10Layout = new javax.swing.GroupLayout(jPanel10);
         jPanel10.setLayout(jPanel10Layout);
@@ -530,24 +530,23 @@ int inTheYear2525 = 25250101;
                     .addComponent(jLabel4, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 96, Short.MAX_VALUE)
                     .addComponent(jLabel30))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(jPanel10Layout.createSequentialGroup()
-                        .addComponent(jTextField9, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(txtAIbudgDate, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(jPanel10Layout.createSequentialGroup()
                         .addGroup(jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                .addComponent(jComboBox1, 0, 173, Short.MAX_VALUE)
-                                .addComponent(jTextField1))
+                                .addComponent(cmbAIbudgItem, 0, 173, Short.MAX_VALUE)
+                                .addComponent(txtAIbudgName))
                             .addGroup(jPanel10Layout.createSequentialGroup()
-                                .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(txtbudgAmt, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jButton3)))
+                                .addComponent(btnAIbudgAdd)))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(lblAIqAdd, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, Short.MAX_VALUE)))
-                .addContainerGap())
+                        .addComponent(lblAIqAdd, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel10Layout.setVerticalGroup(
             jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -556,21 +555,21 @@ int inTheYear2525 = 25250101;
                 .addGroup(jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1)
                     .addComponent(jLabel31)
-                    .addComponent(jTextField9, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtAIbudgDate, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGroup(jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(jPanel10Layout.createSequentialGroup()
                         .addGroup(jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(cmbAIbudgItem, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel4))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel26)
-                            .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(txtAIbudgName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel30)
-                            .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jButton3)))
+                            .addComponent(txtbudgAmt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(btnAIbudgAdd)))
                     .addGroup(jPanel10Layout.createSequentialGroup()
                         .addGap(4, 4, 4)
                         .addComponent(lblAIqAdd, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
@@ -841,7 +840,7 @@ int inTheYear2525 = 25250101;
         jLabel32.setFont(new java.awt.Font("Lucida Grande", 0, 14)); // NOI18N
         jLabel32.setText(" . that means every week you have approximately");
 
-        lblBudgetToSpend.setFont(new java.awt.Font("Lucida Grande", 0, 16)); // NOI18N
+        lblBudgetToSpend.setFont(new java.awt.Font("Lucida Grande", 1, 16)); // NOI18N
         lblBudgetToSpend.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         lblBudgetToSpend.setText("$362");
 
@@ -1158,7 +1157,7 @@ int inTheYear2525 = 25250101;
 
             },
             new String [] {
-                "expense", "mon Amt", "ann Amt", "save 10%", "Total Saved"
+                "expense", "mon Amt", "ann Amt", "cut 10%", "you'd save"
             }
         ) {
             Class[] types = new Class [] {
@@ -1958,7 +1957,6 @@ int inTheYear2525 = 25250101;
         
         int ieFOM = dtx.getIntFOM(0);
         int ieEOM = dtx.getIntEOM(0);
-        System.out.println("in Refresh budget");
         RefreshBudget(ieFOM, ieEOM);
         
         
@@ -2108,11 +2106,11 @@ int inTheYear2525 = 25250101;
     //RJT
     private void ExpenseSummaryByDate(int dateStart, int dateEnd){
         expModel.setRowCount(0);
-        System.out.println("ready to call SQL");
+        //System.out.println("ready to call SQL");
         ArrayList<ExpSummary> expList = sqlite.getExpSummaryByDate(dateStart, dateEnd);
-        System.out.println("made it thru SQL");
+        //System.out.println("made it thru SQL");
         Object rowData[] = new Object[5];
-        System.out.println("ready to add rows to ExpList " + expList.size());
+        //System.out.println("ready to add rows to ExpList " + expList.size());
         for(int i = 0; i < expList.size(); i++)
       {
         rowData[0] = expList.get(i).GetExpName();
@@ -2169,16 +2167,16 @@ int inTheYear2525 = 25250101;
         
         // how many weeks are in the month
         // week logic
+        int toSpend = 0;
         if(budget > 0){
             String sdate8 = String.valueOf(dateStart);
             String syr =  sdate8.substring(0,4);
             String smon = sdate8.substring(4,6);
-            //System.out.println("mon " + smon + "year " + syr);
             int iyr = Integer.valueOf(syr);
             int imon = Integer.valueOf(smon);
             Integer[] array = dtx.getWeeksInMonth(imon, iyr);
             int aSize = array.length;
-            int toSpend = budget/aSize;
+            toSpend = budget/aSize;
             lblBudgetToSpend.setText("$" + String.valueOf(toSpend));
             lblBudgetWeekNum.setText(" ... " + lblBudgetMonth.getText() + 
                                 " has " + String.valueOf(aSize) + " weeks" +
@@ -2203,10 +2201,20 @@ int inTheYear2525 = 25250101;
 //        
         
         // load Expense summary
-        System.out.println("ready to call Expense Summary");
         ExpenseSummaryByDate(dateStart, dateEnd);
         
-         
+        Budget budg = sqlite.GetBudget();
+        txtBudgetSave.setText(String.valueOf(budg.GetBudgetSave()));
+        txtBudgetCash.setText(String.valueOf(budg.GetBudgetCash()));
+        txtBudgetTranp.setText(String.valueOf(budg.GetBudgetTransp()));
+        txtBudgetGroc.setText(String.valueOf(budg.GetBudgetGroc()));
+        txtBudgetDine.setText(String.valueOf(budg.GetBudgetDine()));
+        txtBudgetUnplan.setText(String.valueOf(budg.GetBudgetUnplan()));
+        
+        int amtRemain = toSpend - budg.GetBudgetSave() - budg.GetBudgetCash()
+                - budg.GetBudgetTransp() - budg.GetBudgetGroc()
+                - budg.GetBudgetDine() - budg.GetBudgetUnplan();
+        lblBudgetRemain.setText("$" + String.valueOf(amtRemain));
     }
     
     private void RefreshAnalytics(int dateStart, int dateEnd){
@@ -2421,8 +2429,8 @@ int inTheYear2525 = 25250101;
             IEmonTracker++;
             int ieFOM = dtx.getIntFOM(IEmonTracker);
             int ieEOM = dtx.getIntEOM(IEmonTracker);
-            System.out.println("mon forward beg " + ieFOM);
-            System.out.println("mon forward end " + ieEOM);
+            //System.out.println("mon forward beg " + ieFOM);
+            //System.out.println("mon forward end " + ieEOM);
             ListTransactionsByDate(ieFOM, ieEOM);
             RefreshAnalytics(ieFOM, ieEOM);
         }
@@ -2430,8 +2438,8 @@ int inTheYear2525 = 25250101;
             IEweekTracker = IEweekTracker+7;
             int ieFOW = dtx.getIntFOW(IEweekTracker);
             int ieEOW = dtx.getIntEOW(IEweekTracker);
-            System.out.println("week forward beg " + ieFOW);
-            System.out.println("week forward end " + ieEOW);
+            //System.out.println("week forward beg " + ieFOW);
+            //System.out.println("week forward end " + ieEOW);
             ListTransactionsByDate(ieFOW, ieEOW);
             RefreshAnalytics(ieFOW, ieEOW);
         }
@@ -2442,8 +2450,8 @@ int inTheYear2525 = 25250101;
             IEmonTracker--;
             int ieFOM = dtx.getIntFOM(IEmonTracker);
             int ieEOM = dtx.getIntEOM(IEmonTracker);
-            System.out.println("mon backward beg " + ieFOM);
-            System.out.println("mon backward end " + ieEOM);
+            //System.out.println("mon backward beg " + ieFOM);
+            //System.out.println("mon backward end " + ieEOM);
             ListTransactionsByDate(ieFOM, ieEOM); 
             RefreshAnalytics(ieFOM, ieEOM);
         }
@@ -2451,8 +2459,8 @@ int inTheYear2525 = 25250101;
             IEweekTracker = IEweekTracker-7;
             int ieFOW = dtx.getIntFOW(IEweekTracker);
             int ieEOW = dtx.getIntEOW(IEweekTracker);
-            System.out.println("week backward beg " + ieFOW);
-            System.out.println("week backward end " + ieEOW);
+            //System.out.println("week backward beg " + ieFOW);
+            //System.out.println("week backward end " + ieEOW);
             ListTransactionsByDate(ieFOW, ieEOW);
             RefreshAnalytics(ieFOW, ieEOW);
         }
@@ -2464,8 +2472,8 @@ int inTheYear2525 = 25250101;
         IEmonTracker = 0;
         int ieFOM = dtx.getIntFOM(0);
         int ieEOM = dtx.getIntEOM(0);
-        System.out.println("month button beg " + ieFOM);
-        System.out.println("month button end " + ieEOM);
+        //System.out.println("month button beg " + ieFOM);
+        //System.out.println("month button end " + ieEOM);
         
         ListTransactionsByDate(ieFOM, ieEOM);
         RefreshAnalytics(ieFOM, ieEOM);
@@ -2477,8 +2485,8 @@ int inTheYear2525 = 25250101;
         rdoIEall.setSelected(false);
         int ieFOW = dtx.getIntFOW(IEweekTracker);
         int ieEOW = dtx.getIntEOW(IEweekTracker);
-        System.out.println("month button beg " + ieFOW);
-        System.out.println("month button end " + ieEOW);
+        //System.out.println("month button beg " + ieFOW);
+        //System.out.println("month button end " + ieEOW);
         
         ListTransactionsByDate(ieFOW, ieEOW);
         RefreshAnalytics(ieFOW, ieEOW);
@@ -2522,6 +2530,9 @@ int inTheYear2525 = 25250101;
                     Integer.valueOf(txtBudgetUnplan.getText()));      
         }
         
+        int ieFOM = dtx.getIntFOM(0);
+        int ieEOM = dtx.getIntEOM(0);
+        RefreshBudget(ieFOM, ieEOM);
     }//GEN-LAST:event_btnBudgetAddActionPerformed
 
     //fuck
@@ -2712,6 +2723,7 @@ int inTheYear2525 = 25250101;
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton bntRegister;
+    private javax.swing.JButton btnAIbudgAdd;
     private javax.swing.JButton btnAnalytics;
     private javax.swing.JButton btnBudget;
     private javax.swing.JButton btnBudgetAdd;
@@ -2723,11 +2735,10 @@ int inTheYear2525 = 25250101;
     private javax.swing.JButton btnIEupd;
     private javax.swing.JButton btnIncomeExp;
     private javax.swing.JCheckBox chkIErepeat;
+    private javax.swing.JComboBox<String> cmbAIbudgItem;
     private javax.swing.JComboBox<String> cmbIEcategory;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
-    private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
@@ -2812,9 +2823,6 @@ int inTheYear2525 = 25250101;
     private javax.swing.JSeparator jSeparator2;
     private javax.swing.JSeparator jSeparator3;
     private javax.swing.JTable jTable1;
-    private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField2;
-    private javax.swing.JTextField jTextField9;
     private javax.swing.JLabel lblAIqAdd;
     private javax.swing.JLabel lblBudgReadMe;
     private javax.swing.JLabel lblBudgetAvail;
@@ -2852,6 +2860,8 @@ int inTheYear2525 = 25250101;
     private javax.swing.JRadioButton rdoIEweek;
     private javax.swing.JTable tblExpSummary;
     private javax.swing.JTable tblLedger;
+    private javax.swing.JFormattedTextField txtAIbudgDate;
+    private javax.swing.JTextField txtAIbudgName;
     private javax.swing.JTextField txtBudgetCash;
     private javax.swing.JTextField txtBudgetDine;
     private javax.swing.JTextField txtBudgetGroc;
@@ -2862,5 +2872,6 @@ int inTheYear2525 = 25250101;
     private javax.swing.JFormattedTextField txtIEdate;
     private javax.swing.JTextField txtIEdescription;
     private javax.swing.JTextField txtIEgoal;
+    private javax.swing.JTextField txtbudgAmt;
     // End of variables declaration//GEN-END:variables
 }
