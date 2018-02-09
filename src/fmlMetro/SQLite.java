@@ -77,11 +77,10 @@ public class SQLite
                      " yr TEXT,\n" +
                      " wk TEXT,\n" +
                      " type TEXT,\n" +
-                     " frequency TEXT,\n" + 
                      " category TEXT,\n" +
                      " name TEXT,\n" +
                      " amount INTEGER,\n" +
-                     " budget INTEGER,\n" +
+                     " cleared BOOLEAN,\n" +
                      " time DATETIME DEFAULT CURRENT_TIMESTAMP);";
    
         try (Connection conn = DriverManager.getConnection(url);
@@ -307,12 +306,12 @@ public class SQLite
     
     // add a record to the ledger table
     public int AddTransaction(int date8, String day, String mon, String yr,
-            String wk, String type, String frq, String category, String name, 
-            int amount, int budget)
+            String wk, String type, String category, String name, 
+            int amount, boolean cleared)
     {
         String sql = "INSERT INTO ledger(date8, day, mon, yr, wk, type,\n" +
-                     " frequency, category, name, amount, budget)\n" +
-                     " VALUES(?,?,?,?,?,?,?,?,?,?,?)";
+                     " category, name, amount, cleared)\n" +
+                     " VALUES(?,?,?,?,?,?,?,?,?,?)";
         int last_inserted_id = 0;
         
         try (Connection conn = this.connect();
@@ -323,11 +322,10 @@ public class SQLite
             pstmt.setString(4, yr);
             pstmt.setString(5, wk);
             pstmt.setString(6, type);
-            pstmt.setString(7, frq);
-            pstmt.setString(8, category);
-            pstmt.setString(9, name);
-            pstmt.setInt(10, amount);
-            pstmt.setInt(11, budget);
+            pstmt.setString(7, category);
+            pstmt.setString(8, name);
+            pstmt.setInt(9, amount);
+            pstmt.setBoolean(10, cleared);
             pstmt.executeUpdate();
             
             ResultSet rs = pstmt.getGeneratedKeys();
@@ -551,11 +549,10 @@ public class SQLite
         String yr = "";
         String wk = "";
         String type = "";
-        String frq = "";
         String category = "";
         String name = "";
         int amount = 0;
-        int budget = 0;
+        boolean cleared = false;
         
         TransactionLong lTran = null;
         
@@ -579,14 +576,13 @@ public class SQLite
               yr = rs.getString("yr");
               wk = rs.getString("wk");
               type = rs.getString("type");
-              frq = rs.getString("frequency");
               category = rs.getString("category");
               name = rs.getString("name");
               amount = rs.getInt("amount");
-              budget = rs.getInt("budget");
+              cleared = rs.getBoolean("cleared");
               
               lTran = new TransactionLong(idx, date8, day, mon, yr, wk, type, 
-                      frq, category, name, amount, budget, 0);
+                      category, name, amount, cleared, 0);
            }
            
            //System.out.println("Check Balance successful");
@@ -610,13 +606,12 @@ public class SQLite
     
     // update transaction from income and expense lanel
     public void UpdateTran(int id, int date8, String category, String name, 
-                            String type, int amount, int budget){
+                            String type, int amount){
         String sql = "UPDATE ledger SET date8 = ? , "
                 + "category = ? , "
                 + "name = ? , "
                 + "type = ? , "
                 + "amount = ? , "
-                + "budget = ? "
                 + "WHERE id = ?";
  
         try (Connection conn = DriverManager.getConnection(url);
@@ -628,8 +623,7 @@ public class SQLite
             pstmt.setString(3, name);
             pstmt.setString(4, type);
             pstmt.setInt(5, amount);
-            pstmt.setInt(6, budget);
-            pstmt.setInt(7, id);
+            pstmt.setInt(6, id);
             // update 
             pstmt.executeUpdate();
         } catch (SQLException e) {

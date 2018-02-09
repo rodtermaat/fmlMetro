@@ -84,6 +84,7 @@ int inTheYear2525 = 25250101;
         if(isReady == 0){
             sqlite.CreateDataBase();
             sqlite.CreateFMLtbl();
+            sqlite.CreateBudgetTable();
             //displayMessage("Enter 1st transaction to set up Acct. balance");
         } 
         
@@ -257,13 +258,10 @@ int inTheYear2525 = 25250101;
         lblIEreadMe = new javax.swing.JLabel();
         txtIEdate = new javax.swing.JFormattedTextField();
         jLabel2 = new javax.swing.JLabel();
-        txtIEgoal = new javax.swing.JTextField();
-        jLabel11 = new javax.swing.JLabel();
         txtIEamount = new javax.swing.JTextField();
         jLabel12 = new javax.swing.JLabel();
         jLabel15 = new javax.swing.JLabel();
         jLabel18 = new javax.swing.JLabel();
-        jLabel19 = new javax.swing.JLabel();
         jLabel13 = new javax.swing.JLabel();
         txtIEdescription = new javax.swing.JTextField();
         jLabel14 = new javax.swing.JLabel();
@@ -660,11 +658,11 @@ int inTheYear2525 = 25250101;
                 {null, null, null, null, null, null}
             },
             new String [] {
-                "date", "description", "category", "cleared", "amount", "balance"
+                "cleared", "date", "description", "category", "amount", "balance"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.Boolean.class, java.lang.Integer.class, java.lang.Integer.class
+                java.lang.Boolean.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.Integer.class, java.lang.Integer.class
             };
             boolean[] canEdit = new boolean [] {
                 false, false, false, false, false, false
@@ -1520,17 +1518,6 @@ int inTheYear2525 = 25250101;
         jLabel2.setFont(new java.awt.Font("Lucida Grande", 0, 16)); // NOI18N
         jLabel2.setText(" . date");
 
-        txtIEgoal.setText("123456");
-        txtIEgoal.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyTyped(java.awt.event.KeyEvent evt) {
-                txtIEgoalKeyTyped(evt);
-            }
-        });
-
-        jLabel11.setFont(new java.awt.Font("Lucida Grande", 0, 16)); // NOI18N
-        jLabel11.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        jLabel11.setText(" . goal");
-
         txtIEamount.setText("123456");
         txtIEamount.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
@@ -1547,8 +1534,6 @@ int inTheYear2525 = 25250101;
         jLabel15.setText(". first occurance");
 
         jLabel18.setText(" . the usual amount");
-
-        jLabel19.setText(". have a goal?");
 
         jLabel13.setFont(new java.awt.Font("Lucida Grande", 0, 16)); // NOI18N
         jLabel13.setText(" . description");
@@ -1624,105 +1609,91 @@ int inTheYear2525 = 25250101;
                         .addContainerGap()
                         .addGroup(jPanel13Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel13Layout.createSequentialGroup()
-                                .addGroup(jPanel13Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                    .addComponent(jLabel12, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, 101, Short.MAX_VALUE))
+                                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addGroup(jPanel13Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(jPanel13Layout.createSequentialGroup()
-                                        .addComponent(txtIEdate, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(jLabel15, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                                    .addGroup(jPanel13Layout.createSequentialGroup()
-                                        .addComponent(txtIEamount, javax.swing.GroupLayout.PREFERRED_SIZE, 66, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(jLabel18, javax.swing.GroupLayout.PREFERRED_SIZE, 159, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                .addComponent(txtIEdate, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jLabel15, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                             .addGroup(jPanel13Layout.createSequentialGroup()
-                                .addGroup(jPanel13Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(jPanel13Layout.createSequentialGroup()
-                                        .addComponent(jLabel14, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                        .addComponent(cmbIEcategory, javax.swing.GroupLayout.PREFERRED_SIZE, 169, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addGroup(jPanel13Layout.createSequentialGroup()
-                                        .addGap(6, 6, 6)
-                                        .addComponent(btnIEdel)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(btnIEupd)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(btnIEadd)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(chkIErepeat))
-                                    .addGroup(jPanel13Layout.createSequentialGroup()
-                                        .addComponent(jLabel13)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(txtIEdescription, javax.swing.GroupLayout.PREFERRED_SIZE, 213, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addGroup(jPanel13Layout.createSequentialGroup()
-                                        .addComponent(jLabel11, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(txtIEgoal, javax.swing.GroupLayout.PREFERRED_SIZE, 62, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(jLabel19, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(lblID, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addGroup(jPanel13Layout.createSequentialGroup()
-                                        .addComponent(jLabel22, javax.swing.GroupLayout.PREFERRED_SIZE, 63, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(rdoIEexpense, javax.swing.GroupLayout.PREFERRED_SIZE, 63, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(rdoIEincome)
-                                        .addGap(8, 8, 8)
-                                        .addComponent(rdoIEunplanned)))
-                                .addGap(0, 0, Short.MAX_VALUE)))))
+                                .addComponent(jLabel14, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(cmbIEcategory, javax.swing.GroupLayout.PREFERRED_SIZE, 169, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(jPanel13Layout.createSequentialGroup()
+                                .addComponent(jLabel13)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(txtIEdescription, javax.swing.GroupLayout.PREFERRED_SIZE, 213, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(jPanel13Layout.createSequentialGroup()
+                                .addComponent(jLabel22, javax.swing.GroupLayout.PREFERRED_SIZE, 63, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(rdoIEexpense, javax.swing.GroupLayout.PREFERRED_SIZE, 63, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(rdoIEincome)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(rdoIEunplanned))
+                            .addGroup(jPanel13Layout.createSequentialGroup()
+                                .addComponent(jLabel12, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(txtIEamount, javax.swing.GroupLayout.PREFERRED_SIZE, 66, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jLabel18, javax.swing.GroupLayout.PREFERRED_SIZE, 159, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(jPanel13Layout.createSequentialGroup()
+                                .addGap(6, 6, 6)
+                                .addComponent(btnIEdel)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(btnIEupd)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(btnIEadd)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(chkIErepeat)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(lblID, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE)))))
                 .addContainerGap())
         );
         jPanel13Layout.setVerticalGroup(
             jPanel13Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel13Layout.createSequentialGroup()
-                .addComponent(lblIEreadMe, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(lblIEreadMe, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel13Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(txtIEdate, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel2)
+                    .addComponent(txtIEdate, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel15))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(jPanel13Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel12)
-                    .addComponent(txtIEamount, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel18))
-                .addGap(10, 10, 10)
-                .addGroup(jPanel13Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel19)
-                    .addComponent(txtIEgoal, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel11)
-                    .addComponent(lblID, javax.swing.GroupLayout.PREFERRED_SIZE, 11, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(jPanel13Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel13Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(txtIEamount, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jLabel18))
+                    .addComponent(jLabel12, javax.swing.GroupLayout.Alignment.TRAILING))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(jPanel13Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel13)
-                    .addComponent(txtIEdescription, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(12, 12, 12)
+                .addGroup(jPanel13Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel13, javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(txtIEdescription, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel13Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel14)
                     .addComponent(cmbIEcategory, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(jPanel13Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel22)
-                    .addComponent(rdoIEexpense)
-                    .addComponent(rdoIEincome)
-                    .addComponent(rdoIEunplanned))
+                .addGap(18, 18, 18)
+                .addGroup(jPanel13Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(jPanel13Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(rdoIEexpense)
+                        .addComponent(rdoIEincome)
+                        .addComponent(rdoIEunplanned))
+                    .addComponent(jLabel22))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel13Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnIEdel)
                     .addComponent(btnIEupd)
                     .addComponent(btnIEadd)
-                    .addComponent(chkIErepeat))
-                .addContainerGap(37, Short.MAX_VALUE))
+                    .addComponent(chkIErepeat)
+                    .addComponent(lblID))
+                .addGap(34, 34, 34))
         );
 
         jPanel14.setBackground(new java.awt.Color(102, 102, 102));
 
         lblIEmessage.setBackground(new java.awt.Color(102, 102, 102));
         lblIEmessage.setForeground(new java.awt.Color(255, 255, 255));
-        lblIEmessage.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lblIEmessage.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         lblIEmessage.setText("...Welcome to fml Finance message center");
         lblIEmessage.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
 
@@ -1785,7 +1756,7 @@ int inTheYear2525 = 25250101;
         jPanel3Layout.setHorizontalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
-                .addContainerGap(245, Short.MAX_VALUE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(btnIEbackwards, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(rdoIEall)
@@ -1816,15 +1787,16 @@ int inTheYear2525 = 25250101;
             .addComponent(jPanel11, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(pnlIncomeExpLayout.createSequentialGroup()
                 .addContainerGap()
+                .addGroup(pnlIncomeExpLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jPanel12, javax.swing.GroupLayout.DEFAULT_SIZE, 554, Short.MAX_VALUE))
                 .addGroup(pnlIncomeExpLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(pnlIncomeExpLayout.createSequentialGroup()
-                        .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jPanel14, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(pnlIncomeExpLayout.createSequentialGroup()
-                        .addComponent(jPanel12, javax.swing.GroupLayout.PREFERRED_SIZE, 554, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jPanel13, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(jPanel13, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlIncomeExpLayout.createSequentialGroup()
+                        .addGap(24, 24, 24)
+                        .addComponent(jPanel14, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addComponent(jSeparator3)
         );
@@ -1837,8 +1809,8 @@ int inTheYear2525 = 25250101;
                 .addComponent(jSeparator3, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(pnlIncomeExpLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jPanel12, 396, 396, Short.MAX_VALUE)
-                    .addComponent(jPanel13, javax.swing.GroupLayout.DEFAULT_SIZE, 396, Short.MAX_VALUE))
+                    .addComponent(jPanel12, 401, 401, Short.MAX_VALUE)
+                    .addComponent(jPanel13, javax.swing.GroupLayout.DEFAULT_SIZE, 401, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(pnlIncomeExpLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -2064,11 +2036,9 @@ int inTheYear2525 = 25250101;
         String ieDEvalidate = ValidateIEdataEntry();
         if(!ieDEvalidate.equals("FAIL")){
             // data entry is good to use
-            //frq = cmbIEfreq.getSelectedItem().toString();
             cat = cmbIEcategory.getSelectedItem().toString();
             name = txtIEdescription.getText();
             amt = Integer.valueOf(txtIEamount.getText());
-            budg = Integer.valueOf(txtIEgoal.getText());
             
             if(rdoIEincome.isSelected()){
                 type = "income";
@@ -2086,10 +2056,10 @@ int inTheYear2525 = 25250101;
             
             if(action.equals("ADD")){
                 int xID = sqlite.AddTransaction(iDate8, day, mon, yr, wk, 
-                                            type, frq, cat, name, amt, budg);
+                                            type, cat, name, amt, false);
             }
             else {
-                sqlite.UpdateTran(id, iDate8, cat, name, type, amt, budg);
+                sqlite.UpdateTran(id, iDate8, cat, name, type, amt);
             }
                 
         }
@@ -2330,16 +2300,6 @@ int inTheYear2525 = 25250101;
         }
     }//GEN-LAST:event_txtIEamountKeyTyped
 
-    private void txtIEgoalKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtIEgoalKeyTyped
-        // Code to only allow integers in amount fields
-        char vchar = evt.getKeyChar();
-        if(!Character.isDigit(vchar)
-            || (vchar == KeyEvent.VK_BACKSPACE)
-            || (vchar == KeyEvent.VK_DELETE)){
-            evt.consume();
-        }
-    }//GEN-LAST:event_txtIEgoalKeyTyped
-
     private void rdoIEexpenseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rdoIEexpenseActionPerformed
         rdoIEincome.setSelected(false);
         rdoIEunplanned.setSelected(false);
@@ -2380,13 +2340,6 @@ int inTheYear2525 = 25250101;
             rdoIEincome.setSelected(true);
         }
         txtIEamount.setText(String.valueOf(amt));
-        
-        String b_amt = String.valueOf(xTran.getBudget());
-        int budget_amt = Integer.valueOf(b_amt);
-        if(budget_amt < 0){
-            budget_amt = budget_amt * -1;
-        }
-        txtIEgoal.setText(String.valueOf(budget_amt));
 
         txtIEdescription.setText(xTran.getName());
         cmbIEcategory.setSelectedItem(xTran.getCategory());
@@ -2637,14 +2590,14 @@ int inTheYear2525 = 25250101;
         int oldBudg = 0;
         Date jDate = null;
         String sDate8, day, mon, yr, wk, cat, name;
-        String ieDate = txtAIbudgDate.getText();
+        String aiDate = txtAIbudgDate.getText();
         int iDate8 = 0; int amt = 0;
         
         // date is good to use
         SimpleDateFormat sdf = new SimpleDateFormat("MM/dd/yy");
         try
         {
-            jDate = sdf.parse(ieDate);
+            jDate = sdf.parse(aiDate);
         }
         catch(ParseException e) {
             DisplayAImessage("Enter date like 04/15/18");
@@ -2684,9 +2637,22 @@ int inTheYear2525 = 25250101;
         cat = cmbAIbudgItem.getSelectedItem().toString();
         name = txtAIbudgName.getText();
         
-        int y = sqlite.AddTransaction(iDate8, day, mon, yr,wk, type, frq, cat, 
-                            name, amt, 0);
-              
+        int y = sqlite.AddTransaction(iDate8, day, mon, yr,wk, type, cat, 
+                            name, amt, false);
+        
+        if(y==0){
+            // add failed
+            DisplayAImessage("Error adding budget item, contact support");
+        }
+        else{
+            // clear data entry
+            txtAIbudgDate.setText(aiDate);
+            cmbAIbudgItem.setSelectedIndex(-1);
+            txtAIbudgName.setText("");
+            txtAIbudgAmt.setText("");
+            
+        }
+            
     }//GEN-LAST:event_btnAIbudgAddActionPerformed
 
     /**
@@ -2729,9 +2695,7 @@ int inTheYear2525 = 25250101;
     // Clears the data entry area of Income and Expense panel
     private void ClearIEdataEntry(){
         txtIEdate.setText("");
-        //cmbIEfreq.setSelectedIndex(-1);
         txtIEamount.setText("");
-        txtIEgoal.setText("");
         txtIEdescription.setText("");
         cmbIEcategory.setSelectedIndex(-1);
         rdoIEincome.setSelected(false);
@@ -2833,7 +2797,6 @@ int inTheYear2525 = 25250101;
     private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
-    private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel14;
@@ -2841,7 +2804,6 @@ int inTheYear2525 = 25250101;
     private javax.swing.JLabel jLabel16;
     private javax.swing.JLabel jLabel17;
     private javax.swing.JLabel jLabel18;
-    private javax.swing.JLabel jLabel19;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel20;
     private javax.swing.JLabel jLabel21;
@@ -2965,6 +2927,5 @@ int inTheYear2525 = 25250101;
     private javax.swing.JTextField txtIEamount;
     private javax.swing.JFormattedTextField txtIEdate;
     private javax.swing.JTextField txtIEdescription;
-    private javax.swing.JTextField txtIEgoal;
     // End of variables declaration//GEN-END:variables
 }

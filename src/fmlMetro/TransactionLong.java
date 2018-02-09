@@ -19,16 +19,15 @@ public class TransactionLong
     private final String yr;
     private final String wk;
     private final String type;
-    private final String frq;
     private final String category;
     private final String name;
     private final int amount;
-    private final int budget;
+    private final boolean cleared;
     private final int balance;
 
     public TransactionLong(int id, int date8, String day, String mon, String yr,
-            String wk, String type, String frq, String category, String name, 
-            int amount, int budget, int balance)
+            String wk, String type, String category, String name, 
+            int amount, boolean cleared, int balance)
     {
         this.id = id;
         this.date8 = date8;
@@ -37,11 +36,10 @@ public class TransactionLong
         this.yr = yr;
         this.wk = wk;
         this.type = type;
-        this.frq = frq;
         this.category = category;
         this.name = name;
         this.amount = amount;
-        this.budget = budget;
+        this.cleared = cleared;
         this.balance = balance;
     }
 
@@ -58,8 +56,8 @@ public class TransactionLong
     public int getAmount(){
         return amount;}
     
-    public int getBudget(){
-        return budget;}
+    public boolean getCleared(){
+        return cleared;}
     
     public String getDay(){
         return day;
