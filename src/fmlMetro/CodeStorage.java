@@ -49,8 +49,77 @@ public class CodeStorage {
 //                modifier=1;
 //                int xID = sqlite.AddTransaction(iDate8, day, mon, yr, wk, type, frq, cat, name, amt, budg);
 //            }    
-    
-    
-    
+ 
+    // display all transactions
+//    rdoIEweek.setSelected(false);
+//        rdoIEmonth.setSelected(false);
+//        IEmonTracker = 0;
+//        IEweekTracker = 7;
+//        ListTransactionsByDate(inTheBeginning, inTheYear2525);
+//        RefreshAnalytics(inTheBeginning, inTheYear2525);
+
+//    display mpnnth
+//        rdoIEweek.setSelected(false);
+//        rdoIEall.setSelected(false);
+//        IEmonTracker = 0;
+//        int ieFOM = dtx.getIntFOM(0);
+//        int ieEOM = dtx.getIntEOM(0);
+//        //System.out.println("month button beg " + ieFOM);
+//        //System.out.println("month button end " + ieEOM);
+//        
+//        ListTransactionsByDate(ieFOM, ieEOM);
+//        RefreshAnalytics(ieFOM, ieEOM);    
+
+//     display week
+//        IEweekTracker = 7;
+//        rdoIEmonth.setSelected(false);
+//        rdoIEall.setSelected(false);
+//        int ieFOW = dtx.getIntFOW(IEweekTracker);
+//        int ieEOW = dtx.getIntEOW(IEweekTracker);
+//        //System.out.println("month button beg " + ieFOW);
+//        //System.out.println("month button end " + ieEOW);
+//        
+//        ListTransactionsByDate(ieFOW, ieEOW);
+//        RefreshAnalytics(ieFOW, ieEOW);
+
+//      moving forward in time
+//        if(rdoIEmonth.isSelected()){
+//            IEmonTracker++;
+//            int ieFOM = dtx.getIntFOM(IEmonTracker);
+//            int ieEOM = dtx.getIntEOM(IEmonTracker);
+//            //System.out.println("mon forward beg " + ieFOM);
+//            //System.out.println("mon forward end " + ieEOM);
+//            ListTransactionsByDate(ieFOM, ieEOM);
+//            RefreshAnalytics(ieFOM, ieEOM);
+//        }
+//        if(rdoIEweek.isSelected()){
+//            IEweekTracker = IEweekTracker+7;
+//            int ieFOW = dtx.getIntFOW(IEweekTracker);
+//            int ieEOW = dtx.getIntEOW(IEweekTracker);
+//            //System.out.println("week forward beg " + ieFOW);
+//            //System.out.println("week forward end " + ieEOW);
+//            ListTransactionsByDate(ieFOW, ieEOW);
+//            RefreshAnalytics(ieFOW, ieEOW);
+//        }
+
+//        moving backwards
+//        if(rdoIEmonth.isSelected()){
+//            IEmonTracker--;
+//            int ieFOM = dtx.getIntFOM(IEmonTracker);
+//            int ieEOM = dtx.getIntEOM(IEmonTracker);
+//            //System.out.println("mon backward beg " + ieFOM);
+//            //System.out.println("mon backward end " + ieEOM);
+//            ListTransactionsByDate(ieFOM, ieEOM); 
+//            RefreshAnalytics(ieFOM, ieEOM);
+//        }
+//        if (rdoIEweek.isSelected()){
+//            IEweekTracker = IEweekTracker-7;
+//            int ieFOW = dtx.getIntFOW(IEweekTracker);
+//            int ieEOW = dtx.getIntEOW(IEweekTracker);
+//            //System.out.println("week backward beg " + ieFOW);
+//            //System.out.println("week backward end " + ieEOW);
+//            ListTransactionsByDate(ieFOW, ieEOW);
+//            RefreshAnalytics(ieFOW, ieEOW);
+
     
 }

@@ -2455,13 +2455,7 @@
                           <Group type="102" alignment="0" attributes="0">
                               <EmptySpace max="32767" attributes="0"/>
                               <Component id="btnIEbackwards" min="-2" pref="55" max="-2" attributes="0"/>
-                              <EmptySpace max="-2" attributes="0"/>
-                              <Component id="rdoIEall" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace max="-2" attributes="0"/>
-                              <Component id="rdoIEmonth" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace max="-2" attributes="0"/>
-                              <Component id="rdoIEweek" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace max="-2" attributes="0"/>
+                              <EmptySpace min="-2" pref="208" max="-2" attributes="0"/>
                               <Component id="btnIEforward" min="-2" pref="58" max="-2" attributes="0"/>
                               <EmptySpace max="-2" attributes="0"/>
                           </Group>
@@ -2473,9 +2467,6 @@
                               <Group type="103" groupAlignment="3" attributes="0">
                                   <Component id="btnIEbackwards" alignment="3" min="-2" max="-2" attributes="0"/>
                                   <Component id="btnIEforward" alignment="3" min="-2" max="-2" attributes="0"/>
-                                  <Component id="rdoIEall" alignment="3" min="-2" max="-2" attributes="0"/>
-                                  <Component id="rdoIEmonth" alignment="3" min="-2" max="-2" attributes="0"/>
-                                  <Component id="rdoIEweek" alignment="3" min="-2" max="-2" attributes="0"/>
                               </Group>
                               <EmptySpace min="0" pref="8" max="32767" attributes="0"/>
                           </Group>
@@ -2497,31 +2488,6 @@
                       </Properties>
                       <Events>
                         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnIEforwardActionPerformed"/>
-                      </Events>
-                    </Component>
-                    <Component class="javax.swing.JRadioButton" name="rdoIEall">
-                      <Properties>
-                        <Property name="text" type="java.lang.String" value="all"/>
-                      </Properties>
-                      <Events>
-                        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="rdoIEallActionPerformed"/>
-                      </Events>
-                    </Component>
-                    <Component class="javax.swing.JRadioButton" name="rdoIEmonth">
-                      <Properties>
-                        <Property name="text" type="java.lang.String" value="month"/>
-                        <Property name="toolTipText" type="java.lang.String" value=""/>
-                      </Properties>
-                      <Events>
-                        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="rdoIEmonthActionPerformed"/>
-                      </Events>
-                    </Component>
-                    <Component class="javax.swing.JRadioButton" name="rdoIEweek">
-                      <Properties>
-                        <Property name="text" type="java.lang.String" value="week"/>
-                      </Properties>
-                      <Events>
-                        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="rdoIEweekActionPerformed"/>
                       </Events>
                     </Component>
                   </SubComponents>
