@@ -46,6 +46,7 @@ int inTheYear2525 = 25250101;
             // the ledger/checkbook of the application
     DefaultTableModel model;
     DefaultTableModel expModel;
+    DefaultTableModel ledgerModel;
     
     FreakyDate dtx = new FreakyDate();
     
@@ -93,6 +94,9 @@ int inTheYear2525 = 25250101;
         
         //set up model for tblBudgetSummary
         expModel = (DefaultTableModel) tblExpSummary.getModel();
+        
+        //set up the model for the checkbook register
+        ledgerModel = (DefaultTableModel) tblCheckbook.getModel();
         
         // Center on the screen
         //Toolkit tool = Toolkit.getDefaultToolkit();
@@ -159,13 +163,13 @@ int inTheYear2525 = 25250101;
         jLabel24 = new javax.swing.JLabel();
         jPanel17 = new javax.swing.JPanel();
         jScrollPane3 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
-        jButton1 = new javax.swing.JButton();
-        jRadioButton1 = new javax.swing.JRadioButton();
-        jRadioButton2 = new javax.swing.JRadioButton();
-        jRadioButton3 = new javax.swing.JRadioButton();
-        jRadioButton4 = new javax.swing.JRadioButton();
-        jButton2 = new javax.swing.JButton();
+        tblCheckbook = new javax.swing.JTable();
+        btnLedgerBack = new javax.swing.JButton();
+        rdoLedgerAll = new javax.swing.JRadioButton();
+        rdoLedgerMonth = new javax.swing.JRadioButton();
+        rdoLedgerWeek = new javax.swing.JRadioButton();
+        rdoLedgerActive = new javax.swing.JRadioButton();
+        btnLedgerForward = new javax.swing.JButton();
         jPanel18 = new javax.swing.JPanel();
         pnlReporter = new javax.swing.JPanel();
         jLabel5 = new javax.swing.JLabel();
@@ -647,22 +651,22 @@ int inTheYear2525 = 25250101;
 
         jPanel17.setBackground(new java.awt.Color(102, 102, 102));
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        tblCheckbook.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null}
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null}
             },
             new String [] {
-                "cleared", "date", "description", "category", "amount", "balance"
+                "id", "cleared", "date", "description", "category", "amount", "balance"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.Boolean.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.Integer.class, java.lang.Integer.class
+                java.lang.Integer.class, java.lang.Boolean.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.Integer.class, java.lang.Integer.class
             };
             boolean[] canEdit = new boolean [] {
-                false, false, false, false, false, false
+                false, false, false, false, false, false, false
             };
 
             public Class getColumnClass(int columnIndex) {
@@ -673,27 +677,35 @@ int inTheYear2525 = 25250101;
                 return canEdit [columnIndex];
             }
         });
-        jScrollPane3.setViewportView(jTable1);
-        if (jTable1.getColumnModel().getColumnCount() > 0) {
-            jTable1.getColumnModel().getColumn(0).setResizable(false);
-            jTable1.getColumnModel().getColumn(1).setResizable(false);
-            jTable1.getColumnModel().getColumn(2).setResizable(false);
-            jTable1.getColumnModel().getColumn(3).setResizable(false);
-            jTable1.getColumnModel().getColumn(4).setResizable(false);
-            jTable1.getColumnModel().getColumn(5).setResizable(false);
+        jScrollPane3.setViewportView(tblCheckbook);
+        if (tblCheckbook.getColumnModel().getColumnCount() > 0) {
+            tblCheckbook.getColumnModel().getColumn(0).setResizable(false);
+            tblCheckbook.getColumnModel().getColumn(0).setPreferredWidth(15);
+            tblCheckbook.getColumnModel().getColumn(1).setResizable(false);
+            tblCheckbook.getColumnModel().getColumn(1).setPreferredWidth(25);
+            tblCheckbook.getColumnModel().getColumn(2).setResizable(false);
+            tblCheckbook.getColumnModel().getColumn(2).setPreferredWidth(25);
+            tblCheckbook.getColumnModel().getColumn(3).setResizable(false);
+            tblCheckbook.getColumnModel().getColumn(3).setPreferredWidth(80);
+            tblCheckbook.getColumnModel().getColumn(4).setResizable(false);
+            tblCheckbook.getColumnModel().getColumn(4).setPreferredWidth(60);
+            tblCheckbook.getColumnModel().getColumn(5).setResizable(false);
+            tblCheckbook.getColumnModel().getColumn(5).setPreferredWidth(40);
+            tblCheckbook.getColumnModel().getColumn(6).setResizable(false);
+            tblCheckbook.getColumnModel().getColumn(6).setPreferredWidth(40);
         }
 
-        jButton1.setText("<");
+        btnLedgerBack.setText("<");
 
-        jRadioButton1.setText("all");
+        rdoLedgerAll.setText("all");
 
-        jRadioButton2.setText("month");
+        rdoLedgerMonth.setText("month");
 
-        jRadioButton3.setText("week");
+        rdoLedgerWeek.setText("week");
 
-        jRadioButton4.setText("summary");
+        rdoLedgerActive.setText("active");
 
-        jButton2.setText(">");
+        btnLedgerForward.setText(">");
 
         javax.swing.GroupLayout jPanel17Layout = new javax.swing.GroupLayout(jPanel17);
         jPanel17.setLayout(jPanel17Layout);
@@ -701,21 +713,19 @@ int inTheYear2525 = 25250101;
             jPanel17Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel17Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 66, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(btnLedgerBack, javax.swing.GroupLayout.PREFERRED_SIZE, 66, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(jRadioButton1)
+                .addComponent(rdoLedgerAll)
                 .addGap(18, 18, 18)
-                .addComponent(jRadioButton2)
+                .addComponent(rdoLedgerMonth)
                 .addGap(18, 18, 18)
-                .addComponent(jRadioButton3)
+                .addComponent(rdoLedgerWeek)
                 .addGap(12, 12, 12)
-                .addComponent(jRadioButton4)
+                .addComponent(rdoLedgerActive)
                 .addGap(18, 18, 18)
-                .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 66, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(jPanel17Layout.createSequentialGroup()
-                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 505, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
+                .addComponent(btnLedgerForward, javax.swing.GroupLayout.PREFERRED_SIZE, 66, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(9, Short.MAX_VALUE))
+            .addComponent(jScrollPane3)
         );
         jPanel17Layout.setVerticalGroup(
             jPanel17Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -723,12 +733,12 @@ int inTheYear2525 = 25250101;
                 .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 403, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel17Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton1)
-                    .addComponent(jRadioButton1)
-                    .addComponent(jRadioButton2)
-                    .addComponent(jRadioButton3)
-                    .addComponent(jRadioButton4)
-                    .addComponent(jButton2))
+                    .addComponent(btnLedgerBack)
+                    .addComponent(rdoLedgerAll)
+                    .addComponent(rdoLedgerMonth)
+                    .addComponent(rdoLedgerWeek)
+                    .addComponent(rdoLedgerActive)
+                    .addComponent(btnLedgerForward))
                 .addGap(0, 10, Short.MAX_VALUE))
         );
 
@@ -749,7 +759,7 @@ int inTheYear2525 = 25250101;
         jPanel15.setLayout(jPanel15Layout);
         jPanel15Layout.setHorizontalGroup(
             jPanel15Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel16, javax.swing.GroupLayout.DEFAULT_SIZE, 872, Short.MAX_VALUE)
+            .addComponent(jPanel16, javax.swing.GroupLayout.DEFAULT_SIZE, 851, Short.MAX_VALUE)
             .addGroup(jPanel15Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jPanel17, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -773,7 +783,7 @@ int inTheYear2525 = 25250101;
             pnlLedgerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pnlLedgerLayout.createSequentialGroup()
                 .addComponent(jPanel15, javax.swing.GroupLayout.PREFERRED_SIZE, 826, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(43, Short.MAX_VALUE))
+                .addContainerGap(369, Short.MAX_VALUE))
         );
         pnlLedgerLayout.setVerticalGroup(
             pnlLedgerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -1931,6 +1941,11 @@ int inTheYear2525 = 25250101;
         pnlCarder.add(pnlLedger);
         pnlCarder.repaint();
         pnlCarder.validate();
+        
+        //get and load up the transaction into the ledger
+        //int ieFOM = dtx.getIntFOM(0);
+        //int ieEOM = dtx.getIntEOM(0);
+        GetLedgerTransByDate(inTheBeginning, inTheYear2525);
     }//GEN-LAST:event_bntRegisterActionPerformed
 
     private void btnExitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExitActionPerformed
@@ -2077,6 +2092,36 @@ int inTheYear2525 = 25250101;
         
         expModel.addRow(rowData); 
       }
+        
+    }
+    
+    private void GetLedgerTransByDate(int dateStart, int dateEnd){
+       //remove all the rows currently in the table
+      ledgerModel.setRowCount(0);
+      
+      ArrayList<TransactionLong> theLedger = sqlite.GetLedgerByDate(dateStart, dateEnd);
+      Object rowData[] = new Object[7];
+      for(int i = 0; i < theLedger.size(); i++)
+      {
+        rowData[0] = theLedger.get(i).getID();
+        rowData[1] = theLedger.get(i).getCleared();
+        
+        String sdate8 = String.valueOf(theLedger.get(i).getDate());
+        String smon = sdate8.substring(4, 6);
+        String sday = sdate8.substring(6);
+        String shortDate = smon + "/" + sday;
+        rowData[2] = shortDate;
+        
+        rowData[3] = theLedger.get(i).getName();
+        rowData[4] = theLedger.get(i).getCategory();
+        rowData[5] = theLedger.get(i).getAmount();
+        rowData[6] = theLedger.get(i).gettBalance();
+        
+        ledgerModel.addRow(rowData); 
+      }
+      tblCheckbook.getColumnModel().getColumn(0).setWidth(0);
+      tblCheckbook.getColumnModel().getColumn(0).setMinWidth(0);
+      tblCheckbook.getColumnModel().getColumn(0).setMaxWidth(0); 
         
     }
     
@@ -2710,11 +2755,11 @@ int inTheYear2525 = 25250101;
     private javax.swing.JButton btnIEforward;
     private javax.swing.JButton btnIEupd;
     private javax.swing.JButton btnIncomeExp;
+    private javax.swing.JButton btnLedgerBack;
+    private javax.swing.JButton btnLedgerForward;
     private javax.swing.JCheckBox chkIErepeat;
     private javax.swing.JComboBox<String> cmbAIbudgItem;
     private javax.swing.JComboBox<String> cmbIEcategory;
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel12;
@@ -2787,16 +2832,11 @@ int inTheYear2525 = 25250101;
     private javax.swing.JPanel jPanel7;
     private javax.swing.JPanel jPanel8;
     private javax.swing.JPanel jPanel9;
-    private javax.swing.JRadioButton jRadioButton1;
-    private javax.swing.JRadioButton jRadioButton2;
-    private javax.swing.JRadioButton jRadioButton3;
-    private javax.swing.JRadioButton jRadioButton4;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JSeparator jSeparator2;
     private javax.swing.JSeparator jSeparator3;
-    private javax.swing.JTable jTable1;
     private javax.swing.JLabel lblAIMessage;
     private javax.swing.JLabel lblAIqAdd;
     private javax.swing.JLabel lblBudgReadMe;
@@ -2830,6 +2870,11 @@ int inTheYear2525 = 25250101;
     private javax.swing.JRadioButton rdoIEexpense;
     private javax.swing.JRadioButton rdoIEincome;
     private javax.swing.JRadioButton rdoIEunplanned;
+    private javax.swing.JRadioButton rdoLedgerActive;
+    private javax.swing.JRadioButton rdoLedgerAll;
+    private javax.swing.JRadioButton rdoLedgerMonth;
+    private javax.swing.JRadioButton rdoLedgerWeek;
+    private javax.swing.JTable tblCheckbook;
     private javax.swing.JTable tblExpSummary;
     private javax.swing.JTable tblLedger;
     private javax.swing.JTextField txtAIbudgAmt;

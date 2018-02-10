@@ -406,18 +406,85 @@ public class SQLite
         return expRows;            
     }
     
-    
-    public ArrayList<TransactionShort> getTransactionsByDate(int dateStart, int dateEnd){
-       
-//String sql = "SELECT SUM(amount) AS balance FROM ledger WHERE date <= ?";
-    ArrayList<TransactionShort> rows2 = new ArrayList<>();
+    public ArrayList<TransactionLong> GetLedgerByDate(int dateStart, int dateEnd){
+        
+        ArrayList<TransactionLong> allRows = new ArrayList<>();
                     // create an ArrayList of the Transaction object and creates
                     // the ledger/checkbook of the application
-    TransactionShort row2;
+        TransactionLong aRow;
                     // not sure what this actually does, but is needed based
                     // on similar sample code I have studied
     
-    String sql = "select id, date8, time, category, name, amount,\n" +
+        String sql = "select id, date8, day, mon, yr, wk, type, time,\n" +
+                    " cleared, category, name, amount,\n" +
+                    " (select sum(t2.amount) from ledger t2 where\n" +
+                    " ((t2.date8 <= t1.date8 and t2.time <= t1.time) or\n" +
+                    " (t2.date8 < t1.date8))\n" +
+                    " order by date8 ) as accumulated\n" +
+                    " from ledger t1\n" +
+                    " where date8 <= ?\n" +
+                    " order by date8, time;";
+
+        try {
+           Class.forName("org.sqlite.JDBC");
+           Connection conn = DriverManager.getConnection(url);
+           conn.setAutoCommit(false);
+           //System.out.println("Opened database successfully");
+           
+           //Statement stmt = conn.createStatement();
+           PreparedStatement pstmt  = conn.prepareStatement(sql);
+           pstmt.setInt(1,dateEnd);
+           //pstmt.setDate(2,date1);
+           ResultSet rs = pstmt.executeQuery();
+           
+           while ( rs.next() ) {
+              int id = rs.getInt("id");
+              int date8 = rs.getInt("date8");
+              String day = rs.getString("day");
+              String mon = rs.getString("mon");
+              String yr = rs.getString("yr");
+              String wk = rs.getString("wk");
+              String type = rs.getString("type");
+              String category = rs.getString("category");
+              String name = rs.getString("name");
+              int amount = rs.getInt("amount");
+              boolean cleared = rs.getBoolean("cleared");
+              int balance = rs.getInt("accumulated");
+                            
+              if((date8>=dateStart) && (date8 <= dateEnd)) {
+                aRow = new TransactionLong(id, date8, day, mon, yr, wk, type, 
+                        category, name, amount, cleared, balance);
+                allRows.add(aRow);
+              }
+           }
+           
+            if(rs != null) {
+                rs.close();
+            }
+            if(pstmt != null){
+                pstmt.close();
+            }
+            if(conn != null) {
+                conn.close();
+            } 
+        }
+        catch ( Exception e ) {
+           //System.out.println("Transaction by date: " + e.getMessage());
+           //System.out.println( e.getClass().getName() + ": " + e.getMessage() );
+        }
+        return allRows;
+    }
+    
+    public ArrayList<TransactionShort> getTransactionsByDate(int dateStart, int dateEnd){
+        
+        ArrayList<TransactionShort> rows2 = new ArrayList<>();
+                    // create an ArrayList of the Transaction object and creates
+                    // the ledger/checkbook of the application
+        TransactionShort row2;
+                    // not sure what this actually does, but is needed based
+                    // on similar sample code I have studied
+    
+        String sql = "select id, date8, time, category, name, amount,\n" +
                     " (select sum(t2.amount) from ledger t2 where\n" +
                     " ((t2.date8 <= t1.date8 and t2.time <= t1.time) or\n" +
                     " (t2.date8 < t1.date8))\n" +
