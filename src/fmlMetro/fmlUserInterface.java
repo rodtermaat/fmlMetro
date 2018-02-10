@@ -1300,13 +1300,13 @@ int inTheYear2525 = 25250101;
         jLabel20.setText(" . starting balance");
         jLabel20.setToolTipText("");
 
-        lblIEstartingBal.setFont(new java.awt.Font("Lucida Grande", 0, 14)); // NOI18N
+        lblIEstartingBal.setFont(new java.awt.Font("Lucida Grande", 1, 14)); // NOI18N
         lblIEstartingBal.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         lblIEstartingBal.setText("$1250");
 
         jLabel23.setText(" . ending balance");
 
-        lblIEendingBal.setFont(new java.awt.Font("Lucida Grande", 0, 14)); // NOI18N
+        lblIEendingBal.setFont(new java.awt.Font("Lucida Grande", 1, 14)); // NOI18N
         lblIEendingBal.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         lblIEendingBal.setText("$950");
 
@@ -1325,7 +1325,7 @@ int inTheYear2525 = 25250101;
 
         jLabel29.setText(" . % of income used for bills");
 
-        lblIEtoSpend.setFont(new java.awt.Font("Lucida Grande", 0, 14)); // NOI18N
+        lblIEtoSpend.setFont(new java.awt.Font("Lucida Grande", 1, 14)); // NOI18N
         lblIEtoSpend.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         lblIEtoSpend.setText("$850");
 
@@ -1509,6 +1509,7 @@ int inTheYear2525 = 25250101;
         jPanel13.setBackground(new java.awt.Color(102, 102, 102));
         jPanel13.setPreferredSize(new java.awt.Dimension(344, 400));
 
+        lblIEreadMe.setFont(new java.awt.Font("Lucida Grande", 1, 14)); // NOI18N
         lblIEreadMe.setText("For Income and Expenes we will look at life ");
         lblIEreadMe.setVerticalAlignment(javax.swing.SwingConstants.TOP);
         lblIEreadMe.setVerticalTextPosition(javax.swing.SwingConstants.TOP);
@@ -1892,12 +1893,14 @@ int inTheYear2525 = 25250101;
         pnlCarder.validate();
         ClearIEdataEntry();
         //jLabel16.setVisible(false);
-        String html = "<html>Income and Expenses are tracked monthly. This is the" + 
-                      "<br>first step to coming to terms with your finances. Start by" +
-                      "<br>adding all of the bills you have as well as income. What's" +
-                      "<br>left is what we will work with on the budget section. Don't" +
-                      "<br>forget - lowering your expenses is like giving yourself a" +
-                      "<br>RAISE and doesn't cost another little piece of your soul.";
+        String html = "<html>Income and Expenses are tracked monthly." +
+                       "<br>This is the first step in coming to terms" +
+                       "<br>with your finances. Start by adding all" +
+                       "<br>of the bills you have as well as income." +
+                       "<br>What's left is what we will work with on" +
+                       "<br>the budget section. Lowering your bills is" +
+                       "<br>like giving yourself a RAISE - that's right!";
+        
         lblIEreadMe.setText(html);
         txtIEdate.setText(inputToday);      // put todays date in IE date
         
@@ -2207,12 +2210,21 @@ int inTheYear2525 = 25250101;
     }
     
     private void RefreshAnalytics(int dateStart, int dateEnd){
-        
+        String sAmt = ""; String sBal = ""; 
+        int bal = 0; int tot = 0; int amt = 0;
         int row = (tblLedger.getRowCount() -1);
         if(row>-1){
            //Analytics balances
-           lblIEendingBal.setText("$" + String.valueOf(model.getValueAt(row,5)));
-           lblIEstartingBal.setText("$" + String.valueOf(model.getValueAt(0,5)));
+           sAmt = String.valueOf(model.getValueAt(0, 4));
+           amt = Integer.valueOf(sAmt);
+           if(amt<0){
+               amt = amt*-1;
+               sBal = String.valueOf(model.getValueAt(0, 5));
+               bal = Integer.valueOf(sBal);
+               tot = bal + amt;
+           }
+           lblIEendingBal.setText("$" + String.valueOf(model.getValueAt(row, 5)));
+           lblIEstartingBal.setText("$" + String.valueOf(tot));
         }
         else{
             lblIEendingBal.setText("0");
@@ -2233,15 +2245,18 @@ int inTheYear2525 = 25250101;
         int budget = income - bill - unplanned;
         lblIEtoSpend.setText("$" + String.valueOf(budget));
         
-        if((bill + unplanned)>0){
+        if((bill + unplanned)>0 && (income>0)){
         DecimalFormat df = new DecimalFormat("#.#");
         df.setRoundingMode(RoundingMode.CEILING);
         double billPercent = (((double)bill + (double)unplanned)/income)*100.0;
         String x = df.format(billPercent);
         lblIEpercent.setText(String.valueOf(x) + "%");
         }
+        else if(income==0){
+            lblIEpercent.setText("100%");
+        }
         else{
-            lblIEpercent.setText("0");
+            lblIEpercent.setText("0%");
         }
         
         String html = "<html>Remember these are bills and" +
