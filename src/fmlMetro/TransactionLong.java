@@ -68,7 +68,9 @@ public class TransactionLong
     public String getYr(){
         return yr;
     }
-    
+    public String getType(){
+        return type;
+    }
     public int gettBalance(){
         return balance;}
     

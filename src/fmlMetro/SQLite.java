@@ -678,7 +678,7 @@ public class SQLite
                 + "category = ? , "
                 + "name = ? , "
                 + "type = ? , "
-                + "amount = ? , "
+                + "amount = ? "
                 + "WHERE id = ?";
  
         try (Connection conn = DriverManager.getConnection(url);
@@ -694,7 +694,7 @@ public class SQLite
             // update 
             pstmt.executeUpdate();
         } catch (SQLException e) {
-            //System.out.println(e.getMessage());
+            System.out.println(e.getMessage());
         }    
     }
     

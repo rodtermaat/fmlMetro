@@ -30,20 +30,17 @@ import javax.swing.table.TableCellRenderer;
  * @author termaat
  */
 public class fmlUserInterface extends javax.swing.JFrame {
-int xx;
-int xy;
-int row_num = 0;
-int IEmonTracker = 0;     // used to track month backwards and forwards
-int IEweekTracker = 7;      // used to track week back and forth
-int inTheBeginning = 20000101;
-int inTheYear2525 = 25250101;
+    int xx;                         // move screen
+    int xy;                         // move screen
+    int IEmonTracker = 0;           // used to track month back and forward
+    int IEweekTracker = 7;          // used to track week back and forth
+    int inTheBeginning = 20000101;  // used to get all transactions
+    int inTheYear2525 = 25250101;   // used to get all tranactions
 
-    SQLite sqlite = new SQLite();
-            // created a new object to do db interaction
+    SQLite sqlite = new SQLite();   // database object
     
     ArrayList<TransactionShort> ledgerList = new ArrayList<TransactionShort>();
-            // ArrayList of the Transaction object
-            // the ledger/checkbook of the application
+ 
     DefaultTableModel model;
     DefaultTableModel expModel;
     DefaultTableModel ledgerModel;
@@ -1817,6 +1814,7 @@ int inTheYear2525 = 25250101;
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    //code to move program around
     private void jPanel2MouseDragged(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel2MouseDragged
         // TODO add your handling code here:
         int x = evt.getXOnScreen();
@@ -1825,6 +1823,7 @@ int inTheYear2525 = 25250101;
         
     }//GEN-LAST:event_jPanel2MouseDragged
 
+    // code to move program around
     private void jPanel2MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel2MousePressed
         // TODO add your handling code here:
         setOpacity((float)0.7);
@@ -1832,6 +1831,7 @@ int inTheYear2525 = 25250101;
         xy = evt.getY();
     }//GEN-LAST:event_jPanel2MousePressed
 
+    // code to move program around
     private void jPanel2MouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel2MouseReleased
         // TODO add your handling code here:
         setOpacity((float)1.0);
@@ -1880,8 +1880,7 @@ int inTheYear2525 = 25250101;
         lblIEreadMe.setText(html);
         txtIEdate.setText(inputToday);      // put todays date in IE date
         
-        // update Category combobox with values
-        UpdateIECategories();
+        UpdateIECategories();       //fill with values from database
         
         IEmonTracker = 0;
         int ieFOM = dtx.getIntFOM(0);
@@ -1973,7 +1972,6 @@ int inTheYear2525 = 25250101;
         Date jDate = null;
         String sDate8, day, mon, yr, wk, cat, name;
         String type = "";
-        String frq = "notused";
         String ieDate = txtIEdate.getText();
         int iDate8 = 0; int amt = 0; int budg = 0;
         int modifier = 0;
@@ -2134,6 +2132,9 @@ int inTheYear2525 = 25250101;
       Object rowData[] = new Object[6];
       for(int i = 0; i < ledgerList.size(); i++)
       {
+        //fuck
+        //here we need to move over to Transaction long to get type so that
+        //we can exclude budget items from this listing
         rowData[0] = ledgerList.get(i).getID();
         
         String sdate8 = String.valueOf(ledgerList.get(i).getDate());
@@ -2149,9 +2150,14 @@ int inTheYear2525 = 25250101;
         
         model.addRow(rowData); 
       }
+      // do not need to see the ID in the table
       tblLedger.getColumnModel().getColumn(0).setWidth(0);
       tblLedger.getColumnModel().getColumn(0).setMinWidth(0);
-      tblLedger.getColumnModel().getColumn(0).setMaxWidth(0); 
+      tblLedger.getColumnModel().getColumn(0).setMaxWidth(0);
+      // do not need to see the balance in the table, but need for summary
+      tblLedger.getColumnModel().getColumn(5).setWidth(0);
+      tblLedger.getColumnModel().getColumn(5).setMinWidth(0);
+      tblLedger.getColumnModel().getColumn(5).setMaxWidth(0);
     }
     
     private void RefreshBudget(int dateStart, int dateEnd){
@@ -2344,7 +2350,7 @@ int inTheYear2525 = 25250101;
         // TODO add your handling code here:
         
         int i = tblLedger.getSelectedRow();
-        row_num = tblLedger.getSelectedRow();
+        //row_num = tblLedger.getSelectedRow();
         
         String ids = String.valueOf(model.getValueAt(i, 0));
         int id = Integer.valueOf(ids);
@@ -2354,15 +2360,34 @@ int inTheYear2525 = 25250101;
         
         lblID.setText(String.valueOf(xTran.getID()));
         
-        String s_amt = String.valueOf(xTran.getAmount());
-        int amt = Integer.valueOf(s_amt);
-        if(amt < 0){
-            amt = amt * -1;
+        String s_type = xTran.getType();
+        if (s_type.equals("bill")){
             rdoIEexpense.setSelected(true);
+            rdoIEincome.setSelected(false);
+            rdoIEunplanned.setSelected(false);
+        }
+        else if(s_type.equals("income")){
+            rdoIEincome.setSelected(true);
+            rdoIEexpense.setSelected(false);
+            rdoIEunplanned.setSelected(false);
+        }
+        else if(s_type.equals("unplanned")){
+            rdoIEunplanned.setSelected(true);
+            rdoIEincome.setSelected(false);
+            rdoIEexpense.setSelected(false);
         }
         else{
-            rdoIEincome.setSelected(true);
+            rdoIEincome.setSelected(false);
+            rdoIEexpense.setSelected(false);
+            rdoIEunplanned.setSelected(false);
         }
+        
+        String s_amt = String.valueOf(xTran.getAmount());
+        int amt = Integer.valueOf(s_amt);    
+        if(amt < 0){
+            amt = amt * -1;
+        }
+        
         txtIEamount.setText(String.valueOf(amt));
 
         txtIEdescription.setText(xTran.getName());
