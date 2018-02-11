@@ -121,5 +121,72 @@ public class CodeStorage {
 //            ListTransactionsByDate(ieFOW, ieEOW);
 //            RefreshAnalytics(ieFOW, ieEOW);
 
+//            code to add customization to table
+//tblLedger = new javax.swing.JTable(){
+//
+//    public Component prepareRenderer(TableCellRenderer r, int rw, int col)
+//    {
+//        Component c = super.prepareRenderer(r,rw,col);
+//        c.setBackground(Color.WHITE);
+//        if(col==5){
+//            c.setBackground(Color.PINK);
+//        }
+//        return c;
+//    }
+//};
     
+//    private void ListTransactions(){
+//      
+//      //remove all the rows currently in the table
+//      model.setRowCount(0);
+//      
+//      ArrayList<TransactionShort> ledgerList = sqlite.getAllObjects();
+//      Object rowData[] = new Object[6];
+//      for(int i = 0; i < ledgerList.size(); i++)
+//      {
+//        rowData[0] = ledgerList.get(i).getID();
+//        
+//        String sdate8 = String.valueOf(ledgerList.get(i).getDate());
+//        String smon = sdate8.substring(4, 6);
+//        String sday = sdate8.substring(6);
+//        String shortDate = smon + "/" + sday;
+//        
+//        rowData[1] = shortDate;
+//        //rowData[1] = ledgerList.get(i).getDate();
+//        rowData[2] = ledgerList.get(i).getName();
+//        rowData[3] = ledgerList.get(i).getCategory();
+//        rowData[4] = ledgerList.get(i).getAmount();
+//        rowData[5] = ledgerList.get(i).getBalance();
+//        
+//        model.addRow(rowData); 
+//      }
+//      tblLedger.getColumnModel().getColumn(0).setWidth(0);
+//      tblLedger.getColumnModel().getColumn(0).setMinWidth(0);
+//      tblLedger.getColumnModel().getColumn(0).setMaxWidth(0); 
+//      //DisplayCatSummary();
+//    }
+
+//    //  RODT - format date to DE format
+//    // takes the integer date YYYYMMDD and returns MM/DD/YY for the DE screen
+//    private String FormatDate(String ymddate){
+//        java.util.Date date;
+//        String mdydate = "";
+//        
+//        SimpleDateFormat mdyFormattedDate = new SimpleDateFormat("MM/dd/yy");
+//        SimpleDateFormat ymdFormattedDate = new SimpleDateFormat("yyyyMMdd");
+//       
+//        try
+//        {
+//          date = ymdFormattedDate.parse(ymddate);
+//          mdydate = mdyFormattedDate.format(date);          
+//        }
+//          catch(ParseException e) {
+//          DisplayIEmessage("Enter date like 04/15/18 " +
+//                        " and not some other bogus format");
+//          ClearIEdataEntry();
+//        }
+//
+//        return mdydate;
+//    }
+
 }

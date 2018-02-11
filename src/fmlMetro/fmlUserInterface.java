@@ -1,7 +1,7 @@
 /*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+ * This is fml finance.  My first java application.  So bare will me as I 
+ * learn Java and slowly increase my coding skills from spaghetti code to
+ * something that resembles a real Java progam
  */
 package fmlMetro;
 
@@ -243,18 +243,7 @@ public class fmlUserInterface extends javax.swing.JFrame {
         lblIEunplanned = new javax.swing.JLabel();
         lblIEsumMessage = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        tblLedger = new javax.swing.JTable(){
-
-            public Component prepareRenderer(TableCellRenderer r, int rw, int col)
-            {
-                Component c = super.prepareRenderer(r,rw,col);
-                c.setBackground(Color.WHITE);
-                if(col==5){
-                    c.setBackground(Color.PINK);
-                }
-                return c;
-            }
-        };
+        tblLedger = new javax.swing.JTable();
         jPanel13 = new javax.swing.JPanel();
         lblIEreadMe = new javax.swing.JLabel();
         txtIEdate = new javax.swing.JFormattedTextField();
@@ -1441,7 +1430,6 @@ public class fmlUserInterface extends javax.swing.JFrame {
 
         jScrollPane1.setBackground(new java.awt.Color(153, 153, 153));
 
-        tblLedger.setBackground(new java.awt.Color(204, 204, 204));
         tblLedger.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null, null, null},
@@ -1468,7 +1456,6 @@ public class fmlUserInterface extends javax.swing.JFrame {
                 return canEdit [columnIndex];
             }
         });
-        tblLedger.setGridColor(new java.awt.Color(153, 153, 153));
         tblLedger.getTableHeader().setReorderingAllowed(false);
         tblLedger.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -1814,6 +1801,7 @@ public class fmlUserInterface extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    // MAIN UI
     //code to move program around
     private void jPanel2MouseDragged(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel2MouseDragged
         // TODO add your handling code here:
@@ -1823,6 +1811,7 @@ public class fmlUserInterface extends javax.swing.JFrame {
         
     }//GEN-LAST:event_jPanel2MouseDragged
 
+    // MAIN UI
     // code to move program around
     private void jPanel2MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel2MousePressed
         // TODO add your handling code here:
@@ -1831,6 +1820,7 @@ public class fmlUserInterface extends javax.swing.JFrame {
         xy = evt.getY();
     }//GEN-LAST:event_jPanel2MousePressed
 
+    // MAIN UI
     // code to move program around
     private void jPanel2MouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel2MouseReleased
         // TODO add your handling code here:
@@ -1842,6 +1832,8 @@ public class fmlUserInterface extends javax.swing.JFrame {
         
     }//GEN-LAST:event_pnlCarderMouseDragged
 
+    // MAIN UI
+    // First screen to load showing summary analytics of your finances
     private void btnAnalyticsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAnalyticsActionPerformed
         // Remove existing panel(s)
         pnlCarder.removeAll();;
@@ -1857,6 +1849,9 @@ public class fmlUserInterface extends javax.swing.JFrame {
         
     }//GEN-LAST:event_btnAnalyticsActionPerformed
 
+    // MAIN UI
+    // INC and EXP where we add reoccurring bills and income as well as 
+    //                                  one time events not planned for
     private void btnIncomeExpActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnIncomeExpActionPerformed
         // Remove existing panel(s)
         pnlCarder.removeAll();;
@@ -1888,14 +1883,12 @@ public class fmlUserInterface extends javax.swing.JFrame {
         //System.out.println("month button beg " + ieFOM);
         //System.out.println("month button end " + ieEOM);
         
-        ListTransactionsByDate(ieFOM, ieEOM);
+        ListIncExpByDate(ieFOM, ieEOM);
         RefreshAnalytics(ieFOM, ieEOM);
-
-        
-        //ListTransactions();
-        //rdoIEall.setSelected(true);
     }//GEN-LAST:event_btnIncomeExpActionPerformed
 
+    // MAIN UI
+    // BUDGET screen where we set up our weekly budget do some analysis
     private void btnBudgetActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBudgetActionPerformed
         // Remove existing panel(s)
         pnlCarder.removeAll();;
@@ -1930,6 +1923,8 @@ public class fmlUserInterface extends javax.swing.JFrame {
         
     }//GEN-LAST:event_btnBudgetActionPerformed
 
+    // MAIN UI
+    // LEDGER. this is the checkbook screen were we can balance to the bank
     private void bntRegisterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bntRegisterActionPerformed
         // Remove existing panel(s)
         pnlCarder.removeAll();;
@@ -1947,15 +1942,17 @@ public class fmlUserInterface extends javax.swing.JFrame {
         GetLedgerTransByDate(inTheBeginning, inTheYear2525);
     }//GEN-LAST:event_bntRegisterActionPerformed
 
+    // MAIN UI
+    // Just like it says - EXIT
     private void btnExitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExitActionPerformed
         // Close the Application
         System.exit(0);
     }//GEN-LAST:event_btnExitActionPerformed
     
-    // loads the Income and Expense categories
-    // only update if there are more than 2 which is the default on start up
+    // INCOME EXPENSE
+    // loads category dropdown
     private void UpdateIECategories(){
-        if (cmbIEcategory.getMaximumRowCount()>1){
+        if (cmbIEcategory.getMaximumRowCount()>2){
             
             cmbIEcategory.removeAllItems();
             ArrayList<String> catList = sqlite.getCategoryList();
@@ -1966,15 +1963,15 @@ public class fmlUserInterface extends javax.swing.JFrame {
             cmbIEcategory.setSelectedIndex(-1);
         }
     }
-    
-    // since the add and update do the same thing it make sense to use 1 code base
+   
+    // INCOME EXPENSE
+    // Add or Update a new bill, income, unplanned expense
     private void AddUpdateTransaction(String action, int id){
         Date jDate = null;
         String sDate8, day, mon, yr, wk, cat, name;
         String type = "";
         String ieDate = txtIEdate.getText();
         int iDate8 = 0; int amt = 0; int budg = 0;
-        int modifier = 0;
         
         // date is good to use
         SimpleDateFormat sdf = new SimpleDateFormat("MM/dd/yy");
@@ -1983,8 +1980,7 @@ public class fmlUserInterface extends javax.swing.JFrame {
             jDate = sdf.parse(ieDate);
         }
         catch(ParseException e) {
-            DisplayIEmessage("Enter date like 04/15/18 and not some " +
-                                                    "other bogus format");
+            DisplayIEmessage("Enter date like 04/15/18");
             return;
         }
             
@@ -1994,11 +1990,6 @@ public class fmlUserInterface extends javax.swing.JFrame {
         wk = new SimpleDateFormat("w").format(jDate);
         sDate8 = yr + mon + day;
         iDate8 = Integer.parseInt(sDate8);
-            //System.out.println("day " + day);
-            //System.out.println("mon " + mon);
-            //System.out.println("year " + yr);
-            //System.out.println("sDate8 " + sDate8);
-            //System.out.println("week " + wk);
 
         // is today sunday?  if it is we need to subtract a week since our
         // program wants to start on Monday as the first day of the week
@@ -2041,17 +2032,15 @@ public class fmlUserInterface extends javax.swing.JFrame {
             }
             else {
                 sqlite.UpdateTran(id, iDate8, cat, name, type, amt);
-            }
-                
+            }             
         }
         else {
             DisplayIEmessage("Check your data entry cause something ain't right");
             return;
-        }
-        
-        
-        
+        }   
     }
+    
+    // INCOME EXPENSE
     // adds income and expenses
     private void btnIEaddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnIEaddActionPerformed
         AddUpdateTransaction("ADD", 0);
@@ -2067,34 +2056,31 @@ public class fmlUserInterface extends javax.swing.JFrame {
         int ieFOM = dtx.getIntFOM(0);
         int ieEOM = dtx.getIntEOM(0);
         
-        ListTransactionsByDate(ieFOM, ieEOM);
+        ListIncExpByDate(ieFOM, ieEOM);
         RefreshAnalytics(ieFOM, ieEOM);
-        //ListTransactions();
     }//GEN-LAST:event_btnIEaddActionPerformed
     
-    //RJT
+    // BUDGET
+    // returns expenses to analyze
     private void ExpenseSummaryByDate(int dateStart, int dateEnd){
         expModel.setRowCount(0);
-        //System.out.println("ready to call SQL");
         ArrayList<ExpSummary> expList = sqlite.getExpSummaryByDate(dateStart, dateEnd);
-        //System.out.println("made it thru SQL");
         Object rowData[] = new Object[5];
-        //System.out.println("ready to add rows to ExpList " + expList.size());
         for(int i = 0; i < expList.size(); i++)
-      {
-        rowData[0] = expList.get(i).GetExpName();
-        rowData[1] = expList.get(i).GetExpAmt();
-        rowData[2] = expList.get(i).GetAnnAmt();
-        rowData[3] = expList.get(i).GetSaveTen();
-        rowData[4] = expList.get(i).GetSaveTenTot();
-        
-        expModel.addRow(rowData); 
-      }
-        
+        {
+            rowData[0] = expList.get(i).GetExpName();
+            rowData[1] = expList.get(i).GetExpAmt();
+            rowData[2] = expList.get(i).GetAnnAmt();
+            rowData[3] = expList.get(i).GetSaveTen();
+            rowData[4] = expList.get(i).GetSaveTenTot();
+            expModel.addRow(rowData); 
+        }
     }
     
+    // Ledger
+    // loads checkbook transactions
     private void GetLedgerTransByDate(int dateStart, int dateEnd){
-       //remove all the rows currently in the table
+
       ledgerModel.setRowCount(0);
       
       ArrayList<TransactionLong> theLedger = sqlite.GetLedgerByDate(dateStart, dateEnd);
@@ -2113,7 +2099,7 @@ public class fmlUserInterface extends javax.swing.JFrame {
         rowData[3] = theLedger.get(i).getName();
         rowData[4] = theLedger.get(i).getCategory();
         rowData[5] = theLedger.get(i).getAmount();
-        rowData[6] = theLedger.get(i).gettBalance();
+        rowData[6] = theLedger.get(i).getBalance();
         
         ledgerModel.addRow(rowData); 
       }
@@ -2123,32 +2109,34 @@ public class fmlUserInterface extends javax.swing.JFrame {
         
     }
     
-    private void ListTransactionsByDate(int dateStart, int dateEnd){
+    // INCOME EXPENSE
+    // lists income, bills, unplanned expenses in table
+    private void ListIncExpByDate(int dateStart, int dateEnd){
       
-      //remove all the rows currently in the table
       model.setRowCount(0);
       
-      ArrayList<TransactionShort> ledgerList = sqlite.getTransactionsByDate(dateStart, dateEnd);
+      //ArrayList<TransactionShort> ledgerList = sqlite.getTransactionsByDate(dateStart, dateEnd);
+      ArrayList<TransactionLong> ledgerList = sqlite.GetLedgerByDate(dateStart, dateEnd);
       Object rowData[] = new Object[6];
       for(int i = 0; i < ledgerList.size(); i++)
       {
-        //fuck
-        //here we need to move over to Transaction long to get type so that
-        //we can exclude budget items from this listing
-        rowData[0] = ledgerList.get(i).getID();
+        String type = ledgerList.get(i).getType();
+        if(!type.equals("budget")){
+            rowData[0] = ledgerList.get(i).getID();
         
-        String sdate8 = String.valueOf(ledgerList.get(i).getDate());
-        String smon = sdate8.substring(4, 6);
-        String sday = sdate8.substring(6);
-        String shortDate = smon + "/" + sday;
+            String sdate8 = String.valueOf(ledgerList.get(i).getDate());
+            String smon = sdate8.substring(4, 6);
+            String sday = sdate8.substring(6);
+            String shortDate = smon + "/" + sday;
         
-        rowData[1] = shortDate;
-        rowData[2] = ledgerList.get(i).getName();
-        rowData[3] = ledgerList.get(i).getCategory();
-        rowData[4] = ledgerList.get(i).getAmount();
-        rowData[5] = ledgerList.get(i).gettBalance();
+            rowData[1] = shortDate;
+            rowData[2] = ledgerList.get(i).getName();
+            rowData[3] = ledgerList.get(i).getCategory();
+            rowData[4] = ledgerList.get(i).getAmount();
+            rowData[5] = ledgerList.get(i).getBalance();
         
-        model.addRow(rowData); 
+            model.addRow(rowData); 
+        }
       }
       // do not need to see the ID in the table
       tblLedger.getColumnModel().getColumn(0).setWidth(0);
@@ -2160,6 +2148,8 @@ public class fmlUserInterface extends javax.swing.JFrame {
       tblLedger.getColumnModel().getColumn(5).setMaxWidth(0);
     }
     
+    // BUDGET
+    // updates budget summary data
     private void RefreshBudget(int dateStart, int dateEnd){
         
         // budget month displayed
@@ -2224,6 +2214,8 @@ public class fmlUserInterface extends javax.swing.JFrame {
         lblBudgetRemain.setText("$" + String.valueOf(amtRemain));
     }
     
+    // INCOME EXPENSES
+    // updates the last panel of summary data specific to 
     private void RefreshAnalytics(int dateStart, int dateEnd){
         String sAmt = ""; String sBal = ""; 
         int bal = 0; int tot = 0; int amt = 0;
@@ -2280,37 +2272,9 @@ public class fmlUserInterface extends javax.swing.JFrame {
         lblIEsumMessage.setText(html);
         
     }
-    private void ListTransactions(){
-      
-      //remove all the rows currently in the table
-      model.setRowCount(0);
-      
-      ArrayList<TransactionShort> ledgerList = sqlite.getAllObjects();
-      Object rowData[] = new Object[6];
-      for(int i = 0; i < ledgerList.size(); i++)
-      {
-        rowData[0] = ledgerList.get(i).getID();
-        
-        String sdate8 = String.valueOf(ledgerList.get(i).getDate());
-        String smon = sdate8.substring(4, 6);
-        String sday = sdate8.substring(6);
-        String shortDate = smon + "/" + sday;
-        
-        rowData[1] = shortDate;
-        //rowData[1] = ledgerList.get(i).getDate();
-        rowData[2] = ledgerList.get(i).getName();
-        rowData[3] = ledgerList.get(i).getCategory();
-        rowData[4] = ledgerList.get(i).getAmount();
-        rowData[5] = ledgerList.get(i).gettBalance();
-        
-        model.addRow(rowData); 
-      }
-      tblLedger.getColumnModel().getColumn(0).setWidth(0);
-      tblLedger.getColumnModel().getColumn(0).setMinWidth(0);
-      tblLedger.getColumnModel().getColumn(0).setMaxWidth(0); 
-      //DisplayCatSummary();
-    }
     
+    // GENERAL
+    // adds a 0 to make a String 01 versus 1
     public static String leftPad(int n, int padding) {
         return String.format("%0" + padding + "d", n);
     }
@@ -2319,6 +2283,7 @@ public class fmlUserInterface extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_txtIEamountKeyPressed
 
+    // INCOME EXPENSE
     // only allow interges in these fields
     private void txtIEamountKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtIEamountKeyTyped
         // Code to only allow integers in amount fields
@@ -2330,31 +2295,34 @@ public class fmlUserInterface extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_txtIEamountKeyTyped
 
+    // INCOME EXPENSE
     private void rdoIEexpenseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rdoIEexpenseActionPerformed
         rdoIEincome.setSelected(false);
         rdoIEunplanned.setSelected(false);
     }//GEN-LAST:event_rdoIEexpenseActionPerformed
-
+    
+    // INCOME EXPENSE
     private void rdoIEincomeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rdoIEincomeActionPerformed
         rdoIEexpense.setSelected(false);
         rdoIEunplanned.setSelected(false);
     }//GEN-LAST:event_rdoIEincomeActionPerformed
 
+    // INCOME EXPENSE
     private void chkIErepeatActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_chkIErepeatActionPerformed
         if(!chkIErepeat.isSelected()){
             ClearIEdataEntry();
         }
     }//GEN-LAST:event_chkIErepeatActionPerformed
 
+    // INCOME EXPENSE
+    // handles interaction with the bills and income table
+    // loads data entry when you click it
     private void tblLedgerMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblLedgerMouseClicked
-        // TODO add your handling code here:
         
         int i = tblLedger.getSelectedRow();
-        //row_num = tblLedger.getSelectedRow();
         
         String ids = String.valueOf(model.getValueAt(i, 0));
         int id = Integer.valueOf(ids);
-        //rec_id = Integer.valueOf(ids);
         
         TransactionLong xTran = sqlite.GetTransaction(id);
         
@@ -2400,7 +2368,8 @@ public class fmlUserInterface extends javax.swing.JFrame {
                
     }//GEN-LAST:event_tblLedgerMouseClicked
 
-    //RODT - need to get ID to update transaction
+    // INCOME EXPENSE
+    // delete a transaction
     private void btnIEdelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnIEdelActionPerformed
         //make sure they have the DE screen filled befor deleting
         if(!lblID.getText().equals("aaa")){
@@ -2412,9 +2381,8 @@ public class fmlUserInterface extends javax.swing.JFrame {
             IEmonTracker = 0;
             int ieFOM = dtx.getIntFOM(0);
             int ieEOM = dtx.getIntEOM(0);
-            ListTransactionsByDate(ieFOM, ieEOM);
+            ListIncExpByDate(ieFOM, ieEOM);
             RefreshAnalytics(ieFOM, ieEOM);
-            //ListTransactions();
         }
         else{
             DisplayIEmessage("Select something to delete instead of trying to break the program");
@@ -2422,6 +2390,8 @@ public class fmlUserInterface extends javax.swing.JFrame {
      
     }//GEN-LAST:event_btnIEdelActionPerformed
 
+    // INCOME EXPENSE
+    // update a transaction
     private void btnIEupdActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnIEupdActionPerformed
         if(!lblID.getText().equals("aaa")){
             int updID = Integer.valueOf(lblID.getText());
@@ -2432,10 +2402,8 @@ public class fmlUserInterface extends javax.swing.JFrame {
             
             int ieFOM = dtx.getIntFOM(0);
             int ieEOM = dtx.getIntEOM(0);
-            ListTransactionsByDate(ieFOM, ieEOM);
+            ListIncExpByDate(ieFOM, ieEOM);
             RefreshAnalytics(ieFOM, ieEOM);
-            
-            //ListTransactions();
         }
         else{
             DisplayIEmessage("Somehow you botched the update data, please correct");
@@ -2443,31 +2411,34 @@ public class fmlUserInterface extends javax.swing.JFrame {
         
     }//GEN-LAST:event_btnIEupdActionPerformed
 
+    // INCOME EXPENSE
+    // move forward a month
     private void btnIEforwardActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnIEforwardActionPerformed
         IEmonTracker++;
         int ieFOM = dtx.getIntFOM(IEmonTracker);
         int ieEOM = dtx.getIntEOM(IEmonTracker);
-        //System.out.println("mon forward beg " + ieFOM);
-        //System.out.println("mon forward end " + ieEOM);
-        ListTransactionsByDate(ieFOM, ieEOM);
+        ListIncExpByDate(ieFOM, ieEOM);
         RefreshAnalytics(ieFOM, ieEOM);
     }//GEN-LAST:event_btnIEforwardActionPerformed
 
+    // INCOME EXPENSE
+    // move back a moth
     private void btnIEbackwardsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnIEbackwardsActionPerformed
         IEmonTracker--;
         int ieFOM = dtx.getIntFOM(IEmonTracker);
         int ieEOM = dtx.getIntEOM(IEmonTracker);
-        //System.out.println("mon backward beg " + ieFOM);
-        //System.out.println("mon backward end " + ieEOM);
-        ListTransactionsByDate(ieFOM, ieEOM); 
+        ListIncExpByDate(ieFOM, ieEOM); 
         RefreshAnalytics(ieFOM, ieEOM);
     }//GEN-LAST:event_btnIEbackwardsActionPerformed
 
+    // INCOME EXPENSE
+    // general UI management
     private void rdoIEunplannedActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rdoIEunplannedActionPerformed
         rdoIEexpense.setSelected(false);
         rdoIEincome.setSelected(false);
     }//GEN-LAST:event_rdoIEunplannedActionPerformed
 
+    // BUDGET
     // update the budget tracking panel and refresh results for the period  
     private void btnBudgetAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBudgetAddActionPerformed
         int addupd = sqlite.IsBudgetSetup();
@@ -2497,6 +2468,8 @@ public class fmlUserInterface extends javax.swing.JFrame {
         RefreshBudget(ieFOM, ieEOM);
     }//GEN-LAST:event_btnBudgetAddActionPerformed
 
+    // BUDGET
+    // validate data entry of budget items
     private void ValidateBudget(){
         if(txtBudgetSave.getText().equals("")){
             txtBudgetSave.setText("0");}    
@@ -2516,6 +2489,7 @@ public class fmlUserInterface extends javax.swing.JFrame {
 
     }//GEN-LAST:event_txtBudgetSaveKeyPressed
     
+    // BUDGET
     // Code to only allow integers in amount fields
     private void txtBudgetSaveKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtBudgetSaveKeyTyped
         char vchar = evt.getKeyChar();
@@ -2525,7 +2499,9 @@ public class fmlUserInterface extends javax.swing.JFrame {
             evt.consume(); 
         }
     }//GEN-LAST:event_txtBudgetSaveKeyTyped
-
+    
+    // BUDGET
+    // Code to only allow integers in amount fields
     private void txtBudgetCashKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtBudgetCashKeyTyped
         char vchar = evt.getKeyChar();
         if(!Character.isDigit(vchar)
@@ -2534,7 +2510,9 @@ public class fmlUserInterface extends javax.swing.JFrame {
             evt.consume(); 
         }
     }//GEN-LAST:event_txtBudgetCashKeyTyped
-
+    
+    // BUDGET
+    // Code to only allow integers in amount fields
     private void txtBudgetTranpKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtBudgetTranpKeyTyped
         char vchar = evt.getKeyChar();
         if(!Character.isDigit(vchar)
@@ -2543,7 +2521,9 @@ public class fmlUserInterface extends javax.swing.JFrame {
             evt.consume(); 
         }
     }//GEN-LAST:event_txtBudgetTranpKeyTyped
-
+    
+    // BUDGET
+    // Code to only allow integers in amount fields
     private void txtBudgetGrocKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtBudgetGrocKeyTyped
         char vchar = evt.getKeyChar();
         if(!Character.isDigit(vchar)
@@ -2552,7 +2532,9 @@ public class fmlUserInterface extends javax.swing.JFrame {
             evt.consume(); 
         }
     }//GEN-LAST:event_txtBudgetGrocKeyTyped
-
+    
+    // BUDGET
+    // Code to only allow integers in amount fields
     private void txtBudgetDineKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtBudgetDineKeyTyped
         char vchar = evt.getKeyChar();
         if(!Character.isDigit(vchar)
@@ -2561,7 +2543,9 @@ public class fmlUserInterface extends javax.swing.JFrame {
             evt.consume(); 
         }
     }//GEN-LAST:event_txtBudgetDineKeyTyped
-
+    
+    // BUDGET
+    // Code to only allow integers in amount fields
     private void txtBudgetUnplanKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtBudgetUnplanKeyTyped
         char vchar = evt.getKeyChar();
         if(!Character.isDigit(vchar)
@@ -2571,7 +2555,8 @@ public class fmlUserInterface extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_txtBudgetUnplanKeyTyped
 
-    // AI quick add
+    // AI 
+    // budget item quick add
     private void btnAIbudgAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAIbudgAddActionPerformed
         
         // values not passed in budget add, but needed in ledger
@@ -2639,8 +2624,7 @@ public class fmlUserInterface extends javax.swing.JFrame {
             txtAIbudgDate.setText(aiDate);
             cmbAIbudgItem.setSelectedIndex(-1);
             txtAIbudgName.setText("");
-            txtAIbudgAmt.setText("");
-            
+            txtAIbudgAmt.setText("");         
         }
             
     }//GEN-LAST:event_btnAIbudgAddActionPerformed
@@ -2680,8 +2664,8 @@ public class fmlUserInterface extends javax.swing.JFrame {
         });
     }
     
-    // Income and Expense panel
     
+    // INCOME EXPENSE
     // Clears the data entry area of Income and Expense panel
     private void ClearIEdataEntry(){
         txtIEdate.setText("");
@@ -2693,6 +2677,7 @@ public class fmlUserInterface extends javax.swing.JFrame {
         rdoIEunplanned.setSelected(false);
     }
     
+    // INCOME EXPENSE
     // Displays data entry error messages on Income and Expense panel
     private void DisplayIEmessage(String message){
         lblIEmessage.setText(message);
@@ -2707,6 +2692,8 @@ public class fmlUserInterface extends javax.swing.JFrame {
         t.setRepeats(false);
         t.start();
     }
+    
+    // AI
     // Displays data entry error messages on Budget panel
     private void DisplayAImessage(String message){
         lblAIMessage.setText(message);
@@ -2721,6 +2708,8 @@ public class fmlUserInterface extends javax.swing.JFrame {
         t.setRepeats(false);
         t.start();
     }
+    
+    // INCOME EXPENSE
     // validates the DE part of the form and returns PASS or FAIL to caller
     private String ValidateIEdataEntry(){
         //final String catTest = cmbIEcategory.getSelectedItem().toString().trim();
@@ -2742,28 +2731,6 @@ public class fmlUserInterface extends javax.swing.JFrame {
             return "PASS";}
     }
     
-    //  RODT - format date to DE format
-    // takes the integer date YYYYMMDD and returns MM/DD/YY for the DE screen
-    private String FormatDate(String ymddate){
-        java.util.Date date;
-        String mdydate = "";
-        
-        SimpleDateFormat mdyFormattedDate = new SimpleDateFormat("MM/dd/yy");
-        SimpleDateFormat ymdFormattedDate = new SimpleDateFormat("yyyyMMdd");
-       
-        try
-        {
-          date = ymdFormattedDate.parse(ymddate);
-          mdydate = mdyFormattedDate.format(date);          
-        }
-          catch(ParseException e) {
-          DisplayIEmessage("Enter date like 04/15/18 " +
-                        " and not some other bogus format");
-          ClearIEdataEntry();
-        }
-
-        return mdydate;
-    }
 
     
 

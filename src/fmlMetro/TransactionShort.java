@@ -62,7 +62,7 @@ public class TransactionShort
     public int getAmount(){
         return amount;}
         
-    public int gettBalance(){
+    public int getBalance(){
         return balance;}
     
     public int getID(){

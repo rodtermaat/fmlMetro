@@ -71,7 +71,7 @@ public class TransactionLong
     public String getType(){
         return type;
     }
-    public int gettBalance(){
+    public int getBalance(){
         return balance;}
     
     public int getID(){

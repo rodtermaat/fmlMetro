@@ -195,7 +195,6 @@ public class SQLite
         return count;
     }
     
-    //fuck
     //get the budget object
     public Budget GetBudget(){
         Budget bud = new Budget();
