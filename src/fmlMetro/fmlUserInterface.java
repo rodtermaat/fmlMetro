@@ -1548,7 +1548,7 @@ public class fmlUserInterface extends javax.swing.JFrame {
                 .addComponent(lblIEtoSpend)
                 .addGap(18, 18, 18)
                 .addComponent(lblIEsumMessage, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
+                .addContainerGap(16, Short.MAX_VALUE))
         );
 
         tblLedger.setModel(new javax.swing.table.DefaultTableModel(
@@ -1588,15 +1588,15 @@ public class fmlUserInterface extends javax.swing.JFrame {
             tblLedger.getColumnModel().getColumn(0).setResizable(false);
             tblLedger.getColumnModel().getColumn(0).setPreferredWidth(10);
             tblLedger.getColumnModel().getColumn(1).setResizable(false);
-            tblLedger.getColumnModel().getColumn(1).setPreferredWidth(40);
+            tblLedger.getColumnModel().getColumn(1).setPreferredWidth(25);
             tblLedger.getColumnModel().getColumn(2).setResizable(false);
-            tblLedger.getColumnModel().getColumn(2).setPreferredWidth(65);
+            tblLedger.getColumnModel().getColumn(2).setPreferredWidth(70);
             tblLedger.getColumnModel().getColumn(3).setResizable(false);
-            tblLedger.getColumnModel().getColumn(3).setPreferredWidth(60);
+            tblLedger.getColumnModel().getColumn(3).setPreferredWidth(55);
             tblLedger.getColumnModel().getColumn(4).setResizable(false);
-            tblLedger.getColumnModel().getColumn(4).setPreferredWidth(40);
+            tblLedger.getColumnModel().getColumn(4).setPreferredWidth(35);
             tblLedger.getColumnModel().getColumn(5).setResizable(false);
-            tblLedger.getColumnModel().getColumn(5).setPreferredWidth(40);
+            tblLedger.getColumnModel().getColumn(5).setPreferredWidth(35);
         }
 
         javax.swing.GroupLayout jPanel12Layout = new javax.swing.GroupLayout(jPanel12);
@@ -1611,10 +1611,12 @@ public class fmlUserInterface extends javax.swing.JFrame {
         );
         jPanel12Layout.setVerticalGroup(
             jPanel12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel12Layout.createSequentialGroup()
-                .addGroup(jPanel12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+            .addGroup(jPanel12Layout.createSequentialGroup()
+                .addGroup(jPanel12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
-                    .addComponent(lblIEmaxBills, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(jPanel12Layout.createSequentialGroup()
+                        .addComponent(lblIEmaxBills, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
 
@@ -1847,9 +1849,9 @@ public class fmlUserInterface extends javax.swing.JFrame {
         jPanel3Layout.setHorizontalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap(223, Short.MAX_VALUE)
                 .addComponent(btnIEbackwards, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(208, 208, 208)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(btnIEforward, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
@@ -1869,9 +1871,9 @@ public class fmlUserInterface extends javax.swing.JFrame {
             .addComponent(jPanel11, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(pnlIncomeExpLayout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(pnlIncomeExpLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jPanel12, javax.swing.GroupLayout.DEFAULT_SIZE, 554, Short.MAX_VALUE))
+                .addGroup(pnlIncomeExpLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jPanel12, javax.swing.GroupLayout.PREFERRED_SIZE, 554, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGroup(pnlIncomeExpLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(pnlIncomeExpLayout.createSequentialGroup()
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -1999,9 +2001,11 @@ public class fmlUserInterface extends javax.swing.JFrame {
         UpdateIECategories();       //fill with values from database
         new AutoCompleteJComboBoxer(cmbIEcategory);
         
-        IEmonTracker = 0;
-        int ieFOM = dtx.getIntFOM(0);
-        int ieEOM = dtx.getIntEOM(0);
+        //IEmonTracker = 0;
+        int ieFOM = dtx.getIntFOM(IEmonTracker);
+        int ieEOM = dtx.getIntEOM(IEmonTracker);
+        //int ieFOM = dtx.getIntFOM(0);
+        //int ieEOM = dtx.getIntEOM(0);
         //System.out.println("month button beg " + ieFOM);
         //System.out.println("month button end " + ieEOM);
         
@@ -2038,8 +2042,10 @@ public class fmlUserInterface extends javax.swing.JFrame {
                        "<br> of brown off your nose...";
         lblBudgetExpSum.setText(html2);
         
-        int ieFOM = dtx.getIntFOM(0);
-        int ieEOM = dtx.getIntEOM(0);
+        int ieFOM = dtx.getIntFOM(IEmonTracker);
+        int ieEOM = dtx.getIntEOM(IEmonTracker);
+        //int ieFOM = dtx.getIntFOM(0);
+        //int ieEOM = dtx.getIntEOM(0);
         RefreshBudget(ieFOM, ieEOM);
         
         
