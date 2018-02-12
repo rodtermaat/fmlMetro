@@ -118,7 +118,7 @@ public class AutoCompleteJComboBoxer extends PlainDocument {
                 }
             }
         }
-        // no item starts with the pattern =&gt; return null
+        // no item starts with the pattern =>; return null
         return null;
     }
  
