@@ -237,7 +237,7 @@ public class fmlUserInterface extends javax.swing.JFrame {
         lblDinePerc = new javax.swing.JLabel();
         lblUnplanPerc = new javax.swing.JLabel();
         lblBudgetAct = new javax.swing.JLabel();
-        jLabel47 = new javax.swing.JLabel();
+        lblTotPerc = new javax.swing.JLabel();
         jPanel9 = new javax.swing.JPanel();
         lblBudgReadMe = new javax.swing.JLabel();
         lblBudgetExpSum = new javax.swing.JLabel();
@@ -1176,7 +1176,9 @@ public class fmlUserInterface extends javax.swing.JFrame {
         lblBudgetAct.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         lblBudgetAct.setText("$325");
 
-        jLabel47.setText("jLabel47");
+        lblTotPerc.setFont(new java.awt.Font("Lucida Grande", 1, 14)); // NOI18N
+        lblTotPerc.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        lblTotPerc.setText("112%");
 
         javax.swing.GroupLayout jPanel8Layout = new javax.swing.GroupLayout(jPanel8);
         jPanel8.setLayout(jPanel8Layout);
@@ -1245,7 +1247,7 @@ public class fmlUserInterface extends javax.swing.JFrame {
                                                 .addGap(21, 21, 21)
                                                 .addComponent(lblBudgetAct, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)))))))
                         .addGap(18, 18, 18)
-                        .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addGroup(jPanel8Layout.createSequentialGroup()
                                 .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                     .addComponent(lblCashThisMon, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -1272,7 +1274,7 @@ public class fmlUserInterface extends javax.swing.JFrame {
                             .addGroup(jPanel8Layout.createSequentialGroup()
                                 .addComponent(lblBudgetMon, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(jLabel47)))
+                                .addComponent(lblTotPerc, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                         .addGap(32, 32, 32))
                     .addGroup(jPanel8Layout.createSequentialGroup()
                         .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -1368,7 +1370,7 @@ public class fmlUserInterface extends javax.swing.JFrame {
                     .addComponent(lblBudgetTot)
                     .addComponent(lblBudgetMon)
                     .addComponent(lblBudgetAct)
-                    .addComponent(jLabel47))
+                    .addComponent(lblTotPerc))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 22, Short.MAX_VALUE)
                 .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnBudgetAdd)
@@ -2481,19 +2483,44 @@ public class fmlUserInterface extends javax.swing.JFrame {
         // monthly budget totals
         lblBudgetMon.setText("0");
         Budget budgMon = sqlite.GetBudgetTotals(dateStart, dateEnd);
-        lblSaveThisMon.setText("$" + String.valueOf(budgMon.GetBudgetSave()));
-        lblCashThisMon.setText("$" + String.valueOf(budgMon.GetBudgetCash()));
-        lblTravThisMon.setText("$" + String.valueOf(budgMon.GetBudgetTransp()));
-        lblGrocThisMon.setText("$" + String.valueOf(budgMon.GetBudgetGroc()));
-        lblDineThisMon.setText("$" + String.valueOf(budgMon.GetBudgetDine()));
-        lblUnplanThisMon.setText("$" + String.valueOf(budgMon.GetBudgetUnplan()));
+        int save = budgMon.GetBudgetSave();
+        int cash = budgMon.GetBudgetCash();
+        int trav = budgMon.GetBudgetTransp();
+        int groc = budgMon.GetBudgetGroc();
+        int dine = budgMon.GetBudgetDine();
+        int unplan = budgMon.GetBudgetUnplan();
+        
+        lblSaveThisMon.setText("$" + String.valueOf(save));
+        lblCashThisMon.setText("$" + String.valueOf(cash));
+        lblTravThisMon.setText("$" + String.valueOf(trav));
+        lblGrocThisMon.setText("$" + String.valueOf(groc));
+        lblDineThisMon.setText("$" + String.valueOf(dine));
+        lblUnplanThisMon.setText("$" + String.valueOf(unplan));
         
         int budgMonTot = budgMon.GetBudgetCash() + budgMon.GetBudgetDine() +
                 budgMon.GetBudgetGroc() + budgMon.GetBudgetSave() + 
                 budgMon.GetBudgetTransp() + budgMon.GetBudgetUnplan();
         lblBudgetMon.setText("$" + String.valueOf(budgMonTot));
         
-        jLabel47.setVisible(false);
+        DecimalFormat df = new DecimalFormat("#.#");
+        df.setRoundingMode(RoundingMode.CEILING);       
+        double savePerc = ((double)save/(double)budget)*100;
+        double cashPerc = ((double)cash/(double)budget)*100;
+        double travPerc = ((double)trav/(double)budget)*100;
+        double grocPerc = ((double)groc/(double)budget)*100;
+        double dinePerc = ((double)dine/(double)budget)*100;
+        double unplanPerc = ((double)unplan/(double)budget)*100;
+        lblSavePerc.setText(df.format(savePerc) + "%");
+        lblCashPerc.setText(df.format(cashPerc) + "%");
+        lblTravPerc.setText(df.format(travPerc) + "%");
+        lblGrocPerc.setText(df.format(grocPerc) + "%");
+        lblDinePerc.setText(df.format(dinePerc) + "%");
+        lblUnplanPerc.setText(df.format(unplanPerc) + "%");
+        
+        double TotPerc = savePerc + cashPerc + travPerc + grocPerc + dinePerc +
+                unplanPerc;
+        lblTotPerc.setText(df.format(TotPerc) + "%");
+        
     }
     
     // INCOME EXPENSES
@@ -3073,7 +3100,6 @@ public class fmlUserInterface extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel43;
     private javax.swing.JLabel jLabel44;
     private javax.swing.JLabel jLabel45;
-    private javax.swing.JLabel jLabel47;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel52;
     private javax.swing.JLabel jLabel59;
@@ -3154,6 +3180,7 @@ public class fmlUserInterface extends javax.swing.JFrame {
     private javax.swing.JLabel lblSavePerc;
     private javax.swing.JLabel lblSaveThisMon;
     private javax.swing.JLabel lblSaveThisWk;
+    private javax.swing.JLabel lblTotPerc;
     private javax.swing.JLabel lblTravPerc;
     private javax.swing.JLabel lblTravThisMon;
     private javax.swing.JLabel lblTravThisWk;
