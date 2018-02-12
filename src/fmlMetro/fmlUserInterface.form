@@ -1174,7 +1174,7 @@
                         <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                           <Color blue="ff" green="ff" red="ff" type="rgb"/>
                         </Property>
-                        <Property name="text" type="java.lang.String" value="   ... budgeting your spending weekly is a key tenant to improving your life"/>
+                        <Property name="text" type="java.lang.String" value="   ... flexible budgeting your spending is a key to improving your life"/>
                       </Properties>
                     </Component>
                   </SubComponents>
@@ -1201,57 +1201,114 @@
                                       <EmptySpace min="-2" pref="4" max="-2" attributes="0"/>
                                       <Group type="103" groupAlignment="1" attributes="0">
                                           <Group type="102" attributes="0">
-                                              <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                                                  <Component id="jLabel8" alignment="0" max="32767" attributes="0"/>
-                                                  <Component id="jLabel36" alignment="0" max="32767" attributes="0"/>
-                                                  <Component id="jLabel37" alignment="0" max="32767" attributes="0"/>
-                                                  <Component id="jLabel38" alignment="0" pref="151" max="32767" attributes="0"/>
-                                                  <Component id="jLabel39" alignment="0" max="32767" attributes="0"/>
-                                                  <Component id="jLabel42" alignment="0" min="-2" max="-2" attributes="0"/>
-                                                  <Component id="jLabel44" alignment="0" max="32767" attributes="0"/>
-                                              </Group>
-                                              <EmptySpace max="-2" attributes="0"/>
-                                              <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                                                  <Component id="txtBudgetDine" max="32767" attributes="0"/>
-                                                  <Component id="txtBudgetGroc" max="32767" attributes="0"/>
-                                                  <Component id="txtBudgetUnplan" alignment="0" max="32767" attributes="0"/>
-                                                  <Component id="jLabel43" alignment="0" pref="60" max="32767" attributes="0"/>
-                                                  <Component id="txtBudgetSave" max="32767" attributes="0"/>
-                                                  <Component id="txtBudgetCash" alignment="0" max="32767" attributes="0"/>
-                                                  <Component id="txtBudgetTranp" alignment="0" max="32767" attributes="0"/>
-                                              </Group>
+                                              <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                                              <Component id="jLabel67" min="-2" max="-2" attributes="0"/>
+                                              <EmptySpace min="-2" pref="6" max="-2" attributes="0"/>
                                           </Group>
-                                          <Component id="lblBudgetRemain" min="-2" max="-2" attributes="0"/>
-                                      </Group>
-                                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                                      <Group type="103" groupAlignment="0" attributes="0">
                                           <Group type="102" attributes="0">
-                                              <Group type="103" groupAlignment="0" attributes="0">
-                                                  <Component id="jLabel46" min="-2" pref="62" max="-2" attributes="0"/>
-                                                  <Component id="jLabel45" min="-2" pref="62" max="-2" attributes="0"/>
-                                                  <Component id="jLabel47" min="-2" pref="62" max="-2" attributes="0"/>
-                                                  <Component id="jLabel49" min="-2" pref="62" max="-2" attributes="0"/>
-                                                  <Component id="jLabel48" min="-2" pref="62" max="-2" attributes="0"/>
-                                                  <Component id="jLabel50" min="-2" pref="62" max="-2" attributes="0"/>
-                                                  <Component id="jLabel51" min="-2" pref="62" max="-2" attributes="0"/>
+                                              <Group type="103" groupAlignment="1" attributes="0">
+                                                  <Group type="102" alignment="1" attributes="0">
+                                                      <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                                                      <Component id="jLabel44" min="-2" pref="104" max="-2" attributes="0"/>
+                                                  </Group>
+                                                  <Component id="jLabel42" alignment="1" max="32767" attributes="0"/>
+                                                  <Component id="jLabel39" alignment="0" max="32767" attributes="0"/>
+                                                  <Component id="jLabel36" alignment="0" max="32767" attributes="0"/>
+                                                  <Component id="jLabel38" alignment="0" max="32767" attributes="0"/>
+                                                  <Component id="jLabel37" alignment="1" max="32767" attributes="0"/>
+                                                  <Group type="102" alignment="0" attributes="0">
+                                                      <Component id="jLabel8" min="-2" pref="120" max="-2" attributes="0"/>
+                                                      <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                                                  </Group>
                                               </Group>
                                               <EmptySpace max="32767" attributes="0"/>
                                               <Group type="103" groupAlignment="0" attributes="0">
-                                                  <Component id="jLabel54" min="-2" pref="69" max="-2" attributes="0"/>
-                                                  <Component id="jLabel53" min="-2" pref="69" max="-2" attributes="0"/>
-                                                  <Component id="jLabel55" alignment="0" min="-2" pref="69" max="-2" attributes="0"/>
-                                                  <Component id="jLabel56" alignment="0" min="-2" pref="69" max="-2" attributes="0"/>
-                                                  <Component id="jLabel57" alignment="0" min="-2" pref="69" max="-2" attributes="0"/>
-                                                  <Component id="jLabel58" alignment="0" min="-2" pref="69" max="-2" attributes="0"/>
-                                                  <Component id="jLabel52" alignment="0" min="-2" max="-2" attributes="0"/>
+                                                  <Group type="102" attributes="0">
+                                                      <Component id="txtBudgetSave" min="-2" pref="60" max="-2" attributes="0"/>
+                                                      <EmptySpace max="-2" attributes="0"/>
+                                                      <Component id="lblSaveThisWk" min="-2" pref="62" max="-2" attributes="0"/>
+                                                  </Group>
+                                                  <Group type="102" attributes="0">
+                                                      <Component id="txtBudgetTranp" min="-2" pref="60" max="-2" attributes="0"/>
+                                                      <EmptySpace max="-2" attributes="0"/>
+                                                      <Component id="lblTravThisWk" min="-2" pref="62" max="-2" attributes="0"/>
+                                                  </Group>
+                                                  <Group type="102" attributes="0">
+                                                      <Component id="txtBudgetGroc" min="-2" pref="60" max="-2" attributes="0"/>
+                                                      <EmptySpace max="-2" attributes="0"/>
+                                                      <Component id="lblGrocThisWk" min="-2" pref="62" max="-2" attributes="0"/>
+                                                  </Group>
+                                                  <Group type="102" attributes="0">
+                                                      <Component id="txtBudgetDine" min="-2" pref="60" max="-2" attributes="0"/>
+                                                      <EmptySpace max="-2" attributes="0"/>
+                                                      <Component id="lblDineThisWk" min="-2" pref="62" max="-2" attributes="0"/>
+                                                  </Group>
+                                                  <Group type="102" attributes="0">
+                                                      <Component id="txtBudgetCash" min="-2" pref="60" max="-2" attributes="0"/>
+                                                      <EmptySpace max="-2" attributes="0"/>
+                                                      <Component id="lblCashThisWk" min="-2" pref="62" max="-2" attributes="0"/>
+                                                  </Group>
+                                                  <Group type="102" alignment="0" attributes="0">
+                                                      <Component id="jLabel43" min="-2" pref="60" max="-2" attributes="0"/>
+                                                      <EmptySpace max="-2" attributes="0"/>
+                                                      <Component id="jLabel45" min="-2" pref="62" max="-2" attributes="0"/>
+                                                  </Group>
+                                                  <Group type="102" alignment="0" attributes="0">
+                                                      <Group type="103" groupAlignment="1" attributes="0">
+                                                          <Component id="lblBudgetTot" min="-2" max="-2" attributes="0"/>
+                                                          <Component id="txtBudgetUnplan" min="-2" pref="60" max="-2" attributes="0"/>
+                                                      </Group>
+                                                      <Group type="103" groupAlignment="0" attributes="0">
+                                                          <Group type="102" attributes="0">
+                                                              <EmptySpace max="-2" attributes="0"/>
+                                                              <Component id="lblUnplanThisWk" min="-2" pref="62" max="-2" attributes="0"/>
+                                                          </Group>
+                                                          <Group type="102" alignment="1" attributes="0">
+                                                              <EmptySpace min="-2" pref="21" max="-2" attributes="0"/>
+                                                              <Component id="lblBudgetAct" min="-2" pref="47" max="-2" attributes="0"/>
+                                                          </Group>
+                                                      </Group>
+                                                  </Group>
                                               </Group>
-                                              <EmptySpace min="-2" pref="74" max="-2" attributes="0"/>
-                                          </Group>
-                                          <Group type="102" attributes="0">
-                                              <Component id="jLabel34" min="-2" pref="149" max="-2" attributes="0"/>
-                                              <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                                           </Group>
                                       </Group>
+                                      <EmptySpace min="-2" pref="18" max="-2" attributes="0"/>
+                                      <Group type="103" groupAlignment="0" attributes="0">
+                                          <Group type="102" alignment="0" attributes="0">
+                                              <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                                                  <Component id="lblCashThisMon" alignment="0" min="-2" pref="52" max="-2" attributes="0"/>
+                                                  <Component id="lblTravThisMon" min="-2" pref="52" max="-2" attributes="0"/>
+                                                  <Component id="lblGrocThisMon" min="-2" pref="52" max="-2" attributes="0"/>
+                                                  <Component id="lblDineThisMon" min="-2" pref="52" max="-2" attributes="0"/>
+                                                  <Component id="lblUnplanThisMon" alignment="0" min="-2" pref="52" max="-2" attributes="0"/>
+                                                  <Group type="102" attributes="0">
+                                                      <EmptySpace min="6" pref="6" max="-2" attributes="0"/>
+                                                      <Component id="jLabel52" min="-2" pref="52" max="-2" attributes="0"/>
+                                                  </Group>
+                                                  <Component id="jLabel68" alignment="0" max="32767" attributes="0"/>
+                                              </Group>
+                                              <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                                              <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                                                  <Component id="lblTravPerc" alignment="0" max="32767" attributes="0"/>
+                                                  <Component id="lblGrocPerc" alignment="0" max="32767" attributes="0"/>
+                                                  <Component id="lblCashPerc" pref="47" max="32767" attributes="0"/>
+                                                  <Component id="lblDinePerc" alignment="0" max="32767" attributes="0"/>
+                                                  <Component id="lblUnplanPerc" alignment="0" max="32767" attributes="0"/>
+                                                  <Component id="jLabel69" alignment="0" max="32767" attributes="0"/>
+                                              </Group>
+                                          </Group>
+                                          <Group type="102" alignment="0" attributes="0">
+                                              <Component id="lblSaveThisMon" min="-2" pref="52" max="-2" attributes="0"/>
+                                              <EmptySpace type="separate" max="-2" attributes="0"/>
+                                              <Component id="lblSavePerc" min="-2" pref="47" max="-2" attributes="0"/>
+                                          </Group>
+                                          <Group type="102" alignment="0" attributes="0">
+                                              <Component id="lblBudgetMon" min="-2" pref="52" max="-2" attributes="0"/>
+                                              <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                                              <Component id="jLabel47" min="-2" max="-2" attributes="0"/>
+                                          </Group>
+                                      </Group>
+                                      <EmptySpace min="-2" pref="32" max="-2" attributes="0"/>
                                   </Group>
                                   <Group type="102" attributes="0">
                                       <Group type="103" groupAlignment="0" attributes="0">
@@ -1298,63 +1355,77 @@
                               </Group>
                               <EmptySpace max="-2" attributes="0"/>
                               <Component id="lblBudgetWeekNum" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace min="-2" pref="24" max="-2" attributes="0"/>
+                              <EmptySpace type="unrelated" max="-2" attributes="0"/>
                               <Component id="jLabel41" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace min="-2" pref="17" max="-2" attributes="0"/>
+                              <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="3" attributes="0">
+                                  <Component id="jLabel67" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="jLabel68" alignment="3" min="-2" max="-2" attributes="0"/>
+                              </Group>
+                              <EmptySpace min="-2" pref="1" max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="3" attributes="0">
                                   <Component id="jLabel44" alignment="3" min="-2" max="-2" attributes="0"/>
                                   <Component id="jLabel43" alignment="3" min="-2" max="-2" attributes="0"/>
                                   <Component id="jLabel45" alignment="3" min="-2" max="-2" attributes="0"/>
                                   <Component id="jLabel52" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="jLabel69" alignment="3" min="-2" max="-2" attributes="0"/>
                               </Group>
                               <EmptySpace max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="3" attributes="0">
                                   <Component id="jLabel8" alignment="3" min="-2" max="-2" attributes="0"/>
                                   <Component id="txtBudgetSave" alignment="3" min="-2" max="-2" attributes="0"/>
-                                  <Component id="jLabel46" alignment="3" min="-2" max="-2" attributes="0"/>
-                                  <Component id="jLabel53" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="lblSaveThisWk" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="lblSaveThisMon" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="lblSavePerc" alignment="3" min="-2" max="-2" attributes="0"/>
                               </Group>
                               <EmptySpace max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="3" attributes="0">
-                                  <Component id="jLabel54" alignment="3" min="-2" max="-2" attributes="0"/>
-                                  <Component id="jLabel47" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="lblCashThisMon" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="lblCashThisWk" alignment="3" min="-2" max="-2" attributes="0"/>
                                   <Component id="txtBudgetCash" alignment="3" min="-2" max="-2" attributes="0"/>
                                   <Component id="jLabel37" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="lblCashPerc" alignment="3" min="-2" max="-2" attributes="0"/>
                               </Group>
                               <EmptySpace max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="3" attributes="0">
                                   <Component id="txtBudgetTranp" alignment="3" min="-2" max="-2" attributes="0"/>
                                   <Component id="jLabel38" alignment="3" min="-2" max="-2" attributes="0"/>
-                                  <Component id="jLabel49" alignment="3" min="-2" max="-2" attributes="0"/>
-                                  <Component id="jLabel55" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="lblTravThisWk" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="lblTravThisMon" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="lblTravPerc" alignment="3" min="-2" max="-2" attributes="0"/>
                               </Group>
                               <EmptySpace max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="3" attributes="0">
                                   <Component id="txtBudgetGroc" alignment="3" min="-2" max="-2" attributes="0"/>
                                   <Component id="jLabel36" alignment="3" min="-2" max="-2" attributes="0"/>
-                                  <Component id="jLabel48" alignment="3" min="-2" max="-2" attributes="0"/>
-                                  <Component id="jLabel56" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="lblGrocThisWk" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="lblGrocThisMon" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="lblGrocPerc" alignment="3" min="-2" max="-2" attributes="0"/>
                               </Group>
                               <EmptySpace max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="3" attributes="0">
                                   <Component id="txtBudgetDine" alignment="3" min="-2" max="-2" attributes="0"/>
                                   <Component id="jLabel39" alignment="3" min="-2" max="-2" attributes="0"/>
-                                  <Component id="jLabel50" alignment="3" min="-2" max="-2" attributes="0"/>
-                                  <Component id="jLabel57" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="lblDineThisWk" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="lblDineThisMon" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="lblDinePerc" alignment="3" min="-2" max="-2" attributes="0"/>
                               </Group>
                               <EmptySpace max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="3" attributes="0">
                                   <Component id="txtBudgetUnplan" alignment="3" min="-2" max="-2" attributes="0"/>
                                   <Component id="jLabel42" alignment="3" min="-2" max="-2" attributes="0"/>
-                                  <Component id="jLabel51" alignment="3" min="-2" max="-2" attributes="0"/>
-                                  <Component id="jLabel58" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="lblUnplanThisWk" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="lblUnplanThisMon" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="lblUnplanPerc" alignment="3" min="-2" max="-2" attributes="0"/>
                               </Group>
                               <EmptySpace max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="3" attributes="0">
-                                  <Component id="lblBudgetRemain" alignment="3" min="-2" max="-2" attributes="0"/>
-                                  <Component id="jLabel34" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="lblBudgetTot" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="lblBudgetMon" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="lblBudgetAct" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="jLabel47" alignment="3" min="-2" max="-2" attributes="0"/>
                               </Group>
-                              <EmptySpace pref="17" max="32767" attributes="0"/>
+                              <EmptySpace pref="22" max="32767" attributes="0"/>
                               <Group type="103" groupAlignment="3" attributes="0">
                                   <Component id="btnBudgetAdd" alignment="3" min="-2" max="-2" attributes="0"/>
                                   <Component id="lblBudgetMessages" alignment="3" min="-2" max="-2" attributes="0"/>
@@ -1445,7 +1516,7 @@
                         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                           <Font name="Lucida Grande" size="18" style="0"/>
                         </Property>
-                        <Property name="text" type="java.lang.String" value=". transportation"/>
+                        <Property name="text" type="java.lang.String" value=". travel"/>
                       </Properties>
                     </Component>
                     <Component class="javax.swing.JLabel" name="jLabel39">
@@ -1560,10 +1631,10 @@
                     <Component class="javax.swing.JLabel" name="jLabel45">
                       <Properties>
                         <Property name="horizontalAlignment" type="int" value="4"/>
-                        <Property name="text" type="java.lang.String" value="actual"/>
+                        <Property name="text" type="java.lang.String" value="week"/>
                       </Properties>
                     </Component>
-                    <Component class="javax.swing.JLabel" name="jLabel46">
+                    <Component class="javax.swing.JLabel" name="lblSaveThisWk">
                       <Properties>
                         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                           <Font name="Lucida Grande" size="14" style="0"/>
@@ -1572,7 +1643,7 @@
                         <Property name="text" type="java.lang.String" value="50"/>
                       </Properties>
                     </Component>
-                    <Component class="javax.swing.JLabel" name="jLabel47">
+                    <Component class="javax.swing.JLabel" name="lblCashThisWk">
                       <Properties>
                         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                           <Font name="Lucida Grande" size="14" style="0"/>
@@ -1581,7 +1652,7 @@
                         <Property name="text" type="java.lang.String" value="60"/>
                       </Properties>
                     </Component>
-                    <Component class="javax.swing.JLabel" name="jLabel48">
+                    <Component class="javax.swing.JLabel" name="lblGrocThisWk">
                       <Properties>
                         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                           <Font name="Lucida Grande" size="14" style="0"/>
@@ -1590,7 +1661,7 @@
                         <Property name="text" type="java.lang.String" value="180"/>
                       </Properties>
                     </Component>
-                    <Component class="javax.swing.JLabel" name="jLabel49">
+                    <Component class="javax.swing.JLabel" name="lblTravThisWk">
                       <Properties>
                         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                           <Font name="Lucida Grande" size="14" style="0"/>
@@ -1599,7 +1670,7 @@
                         <Property name="text" type="java.lang.String" value="42"/>
                       </Properties>
                     </Component>
-                    <Component class="javax.swing.JLabel" name="jLabel50">
+                    <Component class="javax.swing.JLabel" name="lblDineThisWk">
                       <Properties>
                         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                           <Font name="Lucida Grande" size="14" style="0"/>
@@ -1608,7 +1679,7 @@
                         <Property name="text" type="java.lang.String" value="22"/>
                       </Properties>
                     </Component>
-                    <Component class="javax.swing.JLabel" name="jLabel51">
+                    <Component class="javax.swing.JLabel" name="lblUnplanThisWk">
                       <Properties>
                         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                           <Font name="Lucida Grande" size="14" style="0"/>
@@ -1619,46 +1690,62 @@
                     </Component>
                     <Component class="javax.swing.JLabel" name="jLabel52">
                       <Properties>
-                        <Property name="text" type="java.lang.String" value="percentage"/>
+                        <Property name="horizontalAlignment" type="int" value="4"/>
+                        <Property name="text" type="java.lang.String" value="month"/>
                       </Properties>
                     </Component>
-                    <Component class="javax.swing.JLabel" name="jLabel53">
+                    <Component class="javax.swing.JLabel" name="lblSaveThisMon">
                       <Properties>
                         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                           <Font name="Lucida Grande" size="14" style="0"/>
                         </Property>
                         <Property name="horizontalAlignment" type="int" value="4"/>
-                        <Property name="text" type="java.lang.String" value="12%"/>
+                        <Property name="text" type="java.lang.String" value="$1600"/>
                       </Properties>
                     </Component>
-                    <Component class="javax.swing.JLabel" name="jLabel54">
+                    <Component class="javax.swing.JLabel" name="lblCashThisMon">
                       <Properties>
+                        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                          <Font name="Lucida Grande" size="14" style="0"/>
+                        </Property>
                         <Property name="horizontalAlignment" type="int" value="4"/>
-                        <Property name="text" type="java.lang.String" value="11%"/>
+                        <Property name="text" type="java.lang.String" value="$220"/>
                       </Properties>
                     </Component>
-                    <Component class="javax.swing.JLabel" name="jLabel55">
+                    <Component class="javax.swing.JLabel" name="lblTravThisMon">
                       <Properties>
+                        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                          <Font name="Lucida Grande" size="14" style="0"/>
+                        </Property>
                         <Property name="horizontalAlignment" type="int" value="4"/>
-                        <Property name="text" type="java.lang.String" value="9%"/>
+                        <Property name="text" type="java.lang.String" value="$87"/>
                       </Properties>
                     </Component>
-                    <Component class="javax.swing.JLabel" name="jLabel56">
+                    <Component class="javax.swing.JLabel" name="lblGrocThisMon">
                       <Properties>
+                        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                          <Font name="Lucida Grande" size="14" style="0"/>
+                        </Property>
                         <Property name="horizontalAlignment" type="int" value="4"/>
-                        <Property name="text" type="java.lang.String" value="32%"/>
+                        <Property name="text" type="java.lang.String" value="$748"/>
                       </Properties>
                     </Component>
-                    <Component class="javax.swing.JLabel" name="jLabel57">
+                    <Component class="javax.swing.JLabel" name="lblDineThisMon">
                       <Properties>
+                        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                          <Font name="Lucida Grande" size="14" style="0"/>
+                        </Property>
                         <Property name="horizontalAlignment" type="int" value="4"/>
-                        <Property name="text" type="java.lang.String" value="7%"/>
+                        <Property name="text" type="java.lang.String" value="$129"/>
                       </Properties>
                     </Component>
-                    <Component class="javax.swing.JLabel" name="jLabel58">
+                    <Component class="javax.swing.JLabel" name="lblUnplanThisMon">
                       <Properties>
+                        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                          <Font name="Lucida Grande" size="14" style="0"/>
+                        </Property>
                         <Property name="horizontalAlignment" type="int" value="4"/>
-                        <Property name="text" type="java.lang.String" value="48%"/>
+                        <Property name="text" type="java.lang.String" value="$388"/>
                       </Properties>
                     </Component>
                     <Component class="javax.swing.JButton" name="btnBudgetAdd">
@@ -1676,21 +1763,107 @@
                         <Property name="text" type="java.lang.String" value=" . fml budget messages   "/>
                       </Properties>
                     </Component>
-                    <Component class="javax.swing.JLabel" name="lblBudgetRemain">
+                    <Component class="javax.swing.JLabel" name="lblBudgetTot">
                       <Properties>
                         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-                          <Font name="Lucida Grande" size="18" style="1"/>
+                          <Font name="Lucida Grande" size="14" style="0"/>
                         </Property>
                         <Property name="horizontalAlignment" type="int" value="4"/>
                         <Property name="text" type="java.lang.String" value="$423"/>
                       </Properties>
                     </Component>
-                    <Component class="javax.swing.JLabel" name="jLabel34">
+                    <Component class="javax.swing.JLabel" name="lblBudgetMon">
                       <Properties>
                         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                           <Font name="Lucida Grande" size="14" style="1"/>
                         </Property>
-                        <Property name="text" type="java.lang.String" value=". amount remaining"/>
+                        <Property name="horizontalAlignment" type="int" value="4"/>
+                        <Property name="text" type="java.lang.String" value="$872"/>
+                      </Properties>
+                    </Component>
+                    <Component class="javax.swing.JLabel" name="jLabel67">
+                      <Properties>
+                        <Property name="text" type="java.lang.String" value="this"/>
+                      </Properties>
+                    </Component>
+                    <Component class="javax.swing.JLabel" name="jLabel68">
+                      <Properties>
+                        <Property name="horizontalAlignment" type="int" value="4"/>
+                        <Property name="text" type="java.lang.String" value="this"/>
+                      </Properties>
+                    </Component>
+                    <Component class="javax.swing.JLabel" name="jLabel69">
+                      <Properties>
+                        <Property name="horizontalAlignment" type="int" value="4"/>
+                        <Property name="text" type="java.lang.String" value="%"/>
+                      </Properties>
+                    </Component>
+                    <Component class="javax.swing.JLabel" name="lblSavePerc">
+                      <Properties>
+                        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                          <Font name="Lucida Grande" size="14" style="0"/>
+                        </Property>
+                        <Property name="horizontalAlignment" type="int" value="4"/>
+                        <Property name="text" type="java.lang.String" value="20%"/>
+                      </Properties>
+                    </Component>
+                    <Component class="javax.swing.JLabel" name="lblCashPerc">
+                      <Properties>
+                        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                          <Font name="Lucida Grande" size="14" style="0"/>
+                        </Property>
+                        <Property name="horizontalAlignment" type="int" value="4"/>
+                        <Property name="text" type="java.lang.String" value="25%"/>
+                      </Properties>
+                    </Component>
+                    <Component class="javax.swing.JLabel" name="lblTravPerc">
+                      <Properties>
+                        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                          <Font name="Lucida Grande" size="14" style="0"/>
+                        </Property>
+                        <Property name="horizontalAlignment" type="int" value="4"/>
+                        <Property name="text" type="java.lang.String" value="30%"/>
+                      </Properties>
+                    </Component>
+                    <Component class="javax.swing.JLabel" name="lblGrocPerc">
+                      <Properties>
+                        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                          <Font name="Lucida Grande" size="14" style="0"/>
+                        </Property>
+                        <Property name="horizontalAlignment" type="int" value="4"/>
+                        <Property name="text" type="java.lang.String" value="12%"/>
+                      </Properties>
+                    </Component>
+                    <Component class="javax.swing.JLabel" name="lblDinePerc">
+                      <Properties>
+                        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                          <Font name="Lucida Grande" size="14" style="0"/>
+                        </Property>
+                        <Property name="horizontalAlignment" type="int" value="4"/>
+                        <Property name="text" type="java.lang.String" value="15%"/>
+                      </Properties>
+                    </Component>
+                    <Component class="javax.swing.JLabel" name="lblUnplanPerc">
+                      <Properties>
+                        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                          <Font name="Lucida Grande" size="14" style="0"/>
+                        </Property>
+                        <Property name="horizontalAlignment" type="int" value="4"/>
+                        <Property name="text" type="java.lang.String" value="33%"/>
+                      </Properties>
+                    </Component>
+                    <Component class="javax.swing.JLabel" name="lblBudgetAct">
+                      <Properties>
+                        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                          <Font name="Lucida Grande" size="14" style="1"/>
+                        </Property>
+                        <Property name="horizontalAlignment" type="int" value="4"/>
+                        <Property name="text" type="java.lang.String" value="$325"/>
+                      </Properties>
+                    </Component>
+                    <Component class="javax.swing.JLabel" name="jLabel47">
+                      <Properties>
+                        <Property name="text" type="java.lang.String" value="jLabel47"/>
                       </Properties>
                     </Component>
                   </SubComponents>

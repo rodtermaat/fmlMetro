@@ -210,23 +210,34 @@ public class fmlUserInterface extends javax.swing.JFrame {
         jLabel43 = new javax.swing.JLabel();
         jLabel44 = new javax.swing.JLabel();
         jLabel45 = new javax.swing.JLabel();
-        jLabel46 = new javax.swing.JLabel();
-        jLabel47 = new javax.swing.JLabel();
-        jLabel48 = new javax.swing.JLabel();
-        jLabel49 = new javax.swing.JLabel();
-        jLabel50 = new javax.swing.JLabel();
-        jLabel51 = new javax.swing.JLabel();
+        lblSaveThisWk = new javax.swing.JLabel();
+        lblCashThisWk = new javax.swing.JLabel();
+        lblGrocThisWk = new javax.swing.JLabel();
+        lblTravThisWk = new javax.swing.JLabel();
+        lblDineThisWk = new javax.swing.JLabel();
+        lblUnplanThisWk = new javax.swing.JLabel();
         jLabel52 = new javax.swing.JLabel();
-        jLabel53 = new javax.swing.JLabel();
-        jLabel54 = new javax.swing.JLabel();
-        jLabel55 = new javax.swing.JLabel();
-        jLabel56 = new javax.swing.JLabel();
-        jLabel57 = new javax.swing.JLabel();
-        jLabel58 = new javax.swing.JLabel();
+        lblSaveThisMon = new javax.swing.JLabel();
+        lblCashThisMon = new javax.swing.JLabel();
+        lblTravThisMon = new javax.swing.JLabel();
+        lblGrocThisMon = new javax.swing.JLabel();
+        lblDineThisMon = new javax.swing.JLabel();
+        lblUnplanThisMon = new javax.swing.JLabel();
         btnBudgetAdd = new javax.swing.JButton();
         lblBudgetMessages = new javax.swing.JLabel();
-        lblBudgetRemain = new javax.swing.JLabel();
-        jLabel34 = new javax.swing.JLabel();
+        lblBudgetTot = new javax.swing.JLabel();
+        lblBudgetMon = new javax.swing.JLabel();
+        jLabel67 = new javax.swing.JLabel();
+        jLabel68 = new javax.swing.JLabel();
+        jLabel69 = new javax.swing.JLabel();
+        lblSavePerc = new javax.swing.JLabel();
+        lblCashPerc = new javax.swing.JLabel();
+        lblTravPerc = new javax.swing.JLabel();
+        lblGrocPerc = new javax.swing.JLabel();
+        lblDinePerc = new javax.swing.JLabel();
+        lblUnplanPerc = new javax.swing.JLabel();
+        lblBudgetAct = new javax.swing.JLabel();
+        jLabel47 = new javax.swing.JLabel();
         jPanel9 = new javax.swing.JPanel();
         lblBudgReadMe = new javax.swing.JLabel();
         lblBudgetExpSum = new javax.swing.JLabel();
@@ -929,7 +940,7 @@ public class fmlUserInterface extends javax.swing.JFrame {
         jLabel7.setBackground(new java.awt.Color(102, 102, 102));
         jLabel7.setFont(new java.awt.Font("Lucida Grande", 1, 18)); // NOI18N
         jLabel7.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel7.setText("   ... budgeting your spending weekly is a key tenant to improving your life");
+        jLabel7.setText("   ... flexible budgeting your spending is a key to improving your life");
 
         javax.swing.GroupLayout jPanel7Layout = new javax.swing.GroupLayout(jPanel7);
         jPanel7.setLayout(jPanel7Layout);
@@ -982,7 +993,7 @@ public class fmlUserInterface extends javax.swing.JFrame {
         jLabel37.setText(". cash");
 
         jLabel38.setFont(new java.awt.Font("Lucida Grande", 0, 18)); // NOI18N
-        jLabel38.setText(". transportation");
+        jLabel38.setText(". travel");
 
         jLabel39.setFont(new java.awt.Font("Lucida Grande", 0, 18)); // NOI18N
         jLabel39.setText(". eating out");
@@ -1057,52 +1068,58 @@ public class fmlUserInterface extends javax.swing.JFrame {
         jLabel44.setText("jLabel44");
 
         jLabel45.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        jLabel45.setText("actual");
+        jLabel45.setText("week");
 
-        jLabel46.setFont(new java.awt.Font("Lucida Grande", 0, 14)); // NOI18N
-        jLabel46.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        jLabel46.setText("50");
+        lblSaveThisWk.setFont(new java.awt.Font("Lucida Grande", 0, 14)); // NOI18N
+        lblSaveThisWk.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        lblSaveThisWk.setText("50");
 
-        jLabel47.setFont(new java.awt.Font("Lucida Grande", 0, 14)); // NOI18N
-        jLabel47.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        jLabel47.setText("60");
+        lblCashThisWk.setFont(new java.awt.Font("Lucida Grande", 0, 14)); // NOI18N
+        lblCashThisWk.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        lblCashThisWk.setText("60");
 
-        jLabel48.setFont(new java.awt.Font("Lucida Grande", 0, 14)); // NOI18N
-        jLabel48.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        jLabel48.setText("180");
+        lblGrocThisWk.setFont(new java.awt.Font("Lucida Grande", 0, 14)); // NOI18N
+        lblGrocThisWk.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        lblGrocThisWk.setText("180");
 
-        jLabel49.setFont(new java.awt.Font("Lucida Grande", 0, 14)); // NOI18N
-        jLabel49.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        jLabel49.setText("42");
+        lblTravThisWk.setFont(new java.awt.Font("Lucida Grande", 0, 14)); // NOI18N
+        lblTravThisWk.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        lblTravThisWk.setText("42");
 
-        jLabel50.setFont(new java.awt.Font("Lucida Grande", 0, 14)); // NOI18N
-        jLabel50.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        jLabel50.setText("22");
+        lblDineThisWk.setFont(new java.awt.Font("Lucida Grande", 0, 14)); // NOI18N
+        lblDineThisWk.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        lblDineThisWk.setText("22");
 
-        jLabel51.setFont(new java.awt.Font("Lucida Grande", 0, 14)); // NOI18N
-        jLabel51.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        jLabel51.setText("98");
+        lblUnplanThisWk.setFont(new java.awt.Font("Lucida Grande", 0, 14)); // NOI18N
+        lblUnplanThisWk.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        lblUnplanThisWk.setText("98");
 
-        jLabel52.setText("percentage");
+        jLabel52.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        jLabel52.setText("month");
 
-        jLabel53.setFont(new java.awt.Font("Lucida Grande", 0, 14)); // NOI18N
-        jLabel53.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        jLabel53.setText("12%");
+        lblSaveThisMon.setFont(new java.awt.Font("Lucida Grande", 0, 14)); // NOI18N
+        lblSaveThisMon.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        lblSaveThisMon.setText("$1600");
 
-        jLabel54.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        jLabel54.setText("11%");
+        lblCashThisMon.setFont(new java.awt.Font("Lucida Grande", 0, 14)); // NOI18N
+        lblCashThisMon.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        lblCashThisMon.setText("$220");
 
-        jLabel55.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        jLabel55.setText("9%");
+        lblTravThisMon.setFont(new java.awt.Font("Lucida Grande", 0, 14)); // NOI18N
+        lblTravThisMon.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        lblTravThisMon.setText("$87");
 
-        jLabel56.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        jLabel56.setText("32%");
+        lblGrocThisMon.setFont(new java.awt.Font("Lucida Grande", 0, 14)); // NOI18N
+        lblGrocThisMon.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        lblGrocThisMon.setText("$748");
 
-        jLabel57.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        jLabel57.setText("7%");
+        lblDineThisMon.setFont(new java.awt.Font("Lucida Grande", 0, 14)); // NOI18N
+        lblDineThisMon.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        lblDineThisMon.setText("$129");
 
-        jLabel58.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        jLabel58.setText("48%");
+        lblUnplanThisMon.setFont(new java.awt.Font("Lucida Grande", 0, 14)); // NOI18N
+        lblUnplanThisMon.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        lblUnplanThisMon.setText("$388");
 
         btnBudgetAdd.setText(". update");
         btnBudgetAdd.setActionCommand("update");
@@ -1115,12 +1132,51 @@ public class fmlUserInterface extends javax.swing.JFrame {
         lblBudgetMessages.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         lblBudgetMessages.setText(" . fml budget messages   ");
 
-        lblBudgetRemain.setFont(new java.awt.Font("Lucida Grande", 1, 18)); // NOI18N
-        lblBudgetRemain.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        lblBudgetRemain.setText("$423");
+        lblBudgetTot.setFont(new java.awt.Font("Lucida Grande", 0, 14)); // NOI18N
+        lblBudgetTot.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        lblBudgetTot.setText("$423");
 
-        jLabel34.setFont(new java.awt.Font("Lucida Grande", 1, 14)); // NOI18N
-        jLabel34.setText(". amount remaining");
+        lblBudgetMon.setFont(new java.awt.Font("Lucida Grande", 1, 14)); // NOI18N
+        lblBudgetMon.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        lblBudgetMon.setText("$872");
+
+        jLabel67.setText("this");
+
+        jLabel68.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        jLabel68.setText("this");
+
+        jLabel69.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        jLabel69.setText("%");
+
+        lblSavePerc.setFont(new java.awt.Font("Lucida Grande", 0, 14)); // NOI18N
+        lblSavePerc.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        lblSavePerc.setText("20%");
+
+        lblCashPerc.setFont(new java.awt.Font("Lucida Grande", 0, 14)); // NOI18N
+        lblCashPerc.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        lblCashPerc.setText("25%");
+
+        lblTravPerc.setFont(new java.awt.Font("Lucida Grande", 0, 14)); // NOI18N
+        lblTravPerc.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        lblTravPerc.setText("30%");
+
+        lblGrocPerc.setFont(new java.awt.Font("Lucida Grande", 0, 14)); // NOI18N
+        lblGrocPerc.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        lblGrocPerc.setText("12%");
+
+        lblDinePerc.setFont(new java.awt.Font("Lucida Grande", 0, 14)); // NOI18N
+        lblDinePerc.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        lblDinePerc.setText("15%");
+
+        lblUnplanPerc.setFont(new java.awt.Font("Lucida Grande", 0, 14)); // NOI18N
+        lblUnplanPerc.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        lblUnplanPerc.setText("33%");
+
+        lblBudgetAct.setFont(new java.awt.Font("Lucida Grande", 1, 14)); // NOI18N
+        lblBudgetAct.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        lblBudgetAct.setText("$325");
+
+        jLabel47.setText("jLabel47");
 
         javax.swing.GroupLayout jPanel8Layout = new javax.swing.GroupLayout(jPanel8);
         jPanel8.setLayout(jPanel8Layout);
@@ -1135,48 +1191,89 @@ public class fmlUserInterface extends javax.swing.JFrame {
                         .addGap(4, 4, 4)
                         .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addGroup(jPanel8Layout.createSequentialGroup()
-                                .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(jLabel8, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(jLabel36, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(jLabel37, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(jLabel38, javax.swing.GroupLayout.DEFAULT_SIZE, 151, Short.MAX_VALUE)
-                                    .addComponent(jLabel39, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(jLabel42)
-                                    .addComponent(jLabel44, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(txtBudgetDine)
-                                    .addComponent(txtBudgetGroc)
-                                    .addComponent(txtBudgetUnplan)
-                                    .addComponent(jLabel43, javax.swing.GroupLayout.DEFAULT_SIZE, 60, Short.MAX_VALUE)
-                                    .addComponent(txtBudgetSave)
-                                    .addComponent(txtBudgetCash)
-                                    .addComponent(txtBudgetTranp)))
-                            .addComponent(lblBudgetRemain))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addGap(0, 0, Short.MAX_VALUE)
+                                .addComponent(jLabel67)
+                                .addGap(6, 6, 6))
                             .addGroup(jPanel8Layout.createSequentialGroup()
-                                .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel46, javax.swing.GroupLayout.PREFERRED_SIZE, 62, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jLabel45, javax.swing.GroupLayout.PREFERRED_SIZE, 62, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jLabel47, javax.swing.GroupLayout.PREFERRED_SIZE, 62, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jLabel49, javax.swing.GroupLayout.PREFERRED_SIZE, 62, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jLabel48, javax.swing.GroupLayout.PREFERRED_SIZE, 62, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jLabel50, javax.swing.GroupLayout.PREFERRED_SIZE, 62, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jLabel51, javax.swing.GroupLayout.PREFERRED_SIZE, 62, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addGroup(jPanel8Layout.createSequentialGroup()
+                                        .addGap(0, 0, Short.MAX_VALUE)
+                                        .addComponent(jLabel44, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addComponent(jLabel42, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(jLabel39, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(jLabel36, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(jLabel38, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(jLabel37, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel8Layout.createSequentialGroup()
+                                        .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(0, 0, Short.MAX_VALUE)))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel54, javax.swing.GroupLayout.PREFERRED_SIZE, 69, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jLabel53, javax.swing.GroupLayout.PREFERRED_SIZE, 69, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jLabel55, javax.swing.GroupLayout.PREFERRED_SIZE, 69, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jLabel56, javax.swing.GroupLayout.PREFERRED_SIZE, 69, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jLabel57, javax.swing.GroupLayout.PREFERRED_SIZE, 69, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jLabel58, javax.swing.GroupLayout.PREFERRED_SIZE, 69, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jLabel52))
-                                .addGap(74, 74, 74))
+                                    .addGroup(jPanel8Layout.createSequentialGroup()
+                                        .addComponent(txtBudgetSave, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(lblSaveThisWk, javax.swing.GroupLayout.PREFERRED_SIZE, 62, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addGroup(jPanel8Layout.createSequentialGroup()
+                                        .addComponent(txtBudgetTranp, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(lblTravThisWk, javax.swing.GroupLayout.PREFERRED_SIZE, 62, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addGroup(jPanel8Layout.createSequentialGroup()
+                                        .addComponent(txtBudgetGroc, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(lblGrocThisWk, javax.swing.GroupLayout.PREFERRED_SIZE, 62, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addGroup(jPanel8Layout.createSequentialGroup()
+                                        .addComponent(txtBudgetDine, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(lblDineThisWk, javax.swing.GroupLayout.PREFERRED_SIZE, 62, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addGroup(jPanel8Layout.createSequentialGroup()
+                                        .addComponent(txtBudgetCash, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(lblCashThisWk, javax.swing.GroupLayout.PREFERRED_SIZE, 62, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addGroup(jPanel8Layout.createSequentialGroup()
+                                        .addComponent(jLabel43, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(jLabel45, javax.swing.GroupLayout.PREFERRED_SIZE, 62, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addGroup(jPanel8Layout.createSequentialGroup()
+                                        .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                            .addComponent(lblBudgetTot)
+                                            .addComponent(txtBudgetUnplan, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                        .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addGroup(jPanel8Layout.createSequentialGroup()
+                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                                .addComponent(lblUnplanThisWk, javax.swing.GroupLayout.PREFERRED_SIZE, 62, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel8Layout.createSequentialGroup()
+                                                .addGap(21, 21, 21)
+                                                .addComponent(lblBudgetAct, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)))))))
+                        .addGap(18, 18, 18)
+                        .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel8Layout.createSequentialGroup()
-                                .addComponent(jLabel34, javax.swing.GroupLayout.PREFERRED_SIZE, 149, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(0, 0, Short.MAX_VALUE))))
+                                .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(lblCashThisMon, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(lblTravThisMon, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(lblGrocThisMon, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(lblDineThisMon, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(lblUnplanThisMon, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGroup(jPanel8Layout.createSequentialGroup()
+                                        .addGap(6, 6, 6)
+                                        .addComponent(jLabel52, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addComponent(jLabel68, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(lblTravPerc, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(lblGrocPerc, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(lblCashPerc, javax.swing.GroupLayout.DEFAULT_SIZE, 47, Short.MAX_VALUE)
+                                    .addComponent(lblDinePerc, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(lblUnplanPerc, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(jLabel69, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                            .addGroup(jPanel8Layout.createSequentialGroup()
+                                .addComponent(lblSaveThisMon, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(lblSavePerc, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(jPanel8Layout.createSequentialGroup()
+                                .addComponent(lblBudgetMon, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(jLabel47)))
+                        .addGap(32, 32, 32))
                     .addGroup(jPanel8Layout.createSequentialGroup()
                         .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel8Layout.createSequentialGroup()
@@ -1211,55 +1308,68 @@ public class fmlUserInterface extends javax.swing.JFrame {
                     .addComponent(jLabel32))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(lblBudgetWeekNum)
-                .addGap(24, 24, 24)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jLabel41)
-                .addGap(17, 17, 17)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel67)
+                    .addComponent(jLabel68))
+                .addGap(1, 1, 1)
                 .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel44)
                     .addComponent(jLabel43)
                     .addComponent(jLabel45)
-                    .addComponent(jLabel52))
+                    .addComponent(jLabel52)
+                    .addComponent(jLabel69))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel8)
                     .addComponent(txtBudgetSave, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel46)
-                    .addComponent(jLabel53))
+                    .addComponent(lblSaveThisWk)
+                    .addComponent(lblSaveThisMon)
+                    .addComponent(lblSavePerc))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel54)
-                    .addComponent(jLabel47)
+                    .addComponent(lblCashThisMon)
+                    .addComponent(lblCashThisWk)
                     .addComponent(txtBudgetCash, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel37))
+                    .addComponent(jLabel37)
+                    .addComponent(lblCashPerc))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(txtBudgetTranp, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel38)
-                    .addComponent(jLabel49)
-                    .addComponent(jLabel55))
+                    .addComponent(lblTravThisWk)
+                    .addComponent(lblTravThisMon)
+                    .addComponent(lblTravPerc))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(txtBudgetGroc, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel36)
-                    .addComponent(jLabel48)
-                    .addComponent(jLabel56))
+                    .addComponent(lblGrocThisWk)
+                    .addComponent(lblGrocThisMon)
+                    .addComponent(lblGrocPerc))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(txtBudgetDine, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel39)
-                    .addComponent(jLabel50)
-                    .addComponent(jLabel57))
+                    .addComponent(lblDineThisWk)
+                    .addComponent(lblDineThisMon)
+                    .addComponent(lblDinePerc))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(txtBudgetUnplan, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel42)
-                    .addComponent(jLabel51)
-                    .addComponent(jLabel58))
+                    .addComponent(lblUnplanThisWk)
+                    .addComponent(lblUnplanThisMon)
+                    .addComponent(lblUnplanPerc))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(lblBudgetRemain)
-                    .addComponent(jLabel34))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 17, Short.MAX_VALUE)
+                    .addComponent(lblBudgetTot)
+                    .addComponent(lblBudgetMon)
+                    .addComponent(lblBudgetAct)
+                    .addComponent(jLabel47))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 22, Short.MAX_VALUE)
                 .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnBudgetAdd)
                     .addComponent(lblBudgetMessages))
@@ -1969,6 +2079,7 @@ public class fmlUserInterface extends javax.swing.JFrame {
         pnlCarder.validate();
         
         txtAIbudgDate.setText(inputToday);
+        //new AutoCompleteJComboBoxer(cmbAIbudgItem);
         
     }//GEN-LAST:event_btnAnalyticsActionPerformed
 
@@ -2339,11 +2450,50 @@ public class fmlUserInterface extends javax.swing.JFrame {
         int amtRemain = toSpend - budg.GetBudgetSave() - budg.GetBudgetCash()
                 - budg.GetBudgetTransp() - budg.GetBudgetGroc()
                 - budg.GetBudgetDine() - budg.GetBudgetUnplan();
-        lblBudgetRemain.setText("$" + String.valueOf(amtRemain));
+        int amtBudgeted = budg.GetBudgetSave() + budg.GetBudgetCash()
+                + budg.GetBudgetTransp() + budg.GetBudgetGroc()
+                + budg.GetBudgetDine() + budg.GetBudgetUnplan();
+        lblBudgetTot.setText("$" + String.valueOf(amtBudgeted));
         }
         else{
-        lblBudgetRemain.setText("None");
+        lblBudgetTot.setText("None");
         }
+        
+        // weekly budget totals
+        //Budget budgWk = sqlite.GetBudgetTotals(dateStart, dateEnd);
+        lblBudgetAct.setText("$0");
+        int intFOW = dtx.getIntFOW(7);
+        int intEOW = dtx.getIntEOW(7);
+        Budget budgWeek = sqlite.GetBudgetTotals(intFOW, intEOW);
+        lblSaveThisWk.setText("$" + String.valueOf(budgWeek.GetBudgetSave()));
+        lblCashThisWk.setText("$" + String.valueOf(budgWeek.GetBudgetCash()));
+        lblTravThisWk.setText("$" + String.valueOf(budgWeek.GetBudgetTransp()));
+        lblGrocThisWk.setText("$" + String.valueOf(budgWeek.GetBudgetGroc()));
+        lblDineThisWk.setText("$" + String.valueOf(budgWeek.GetBudgetDine()));
+        lblUnplanThisWk.setText("$" + String.valueOf(budgWeek.GetBudgetUnplan()));
+        
+        int budgWeekTot = budgWeek.GetBudgetCash() + budgWeek.GetBudgetDine() +
+                budgWeek.GetBudgetGroc() + budgWeek.GetBudgetSave() + 
+                budgWeek.GetBudgetTransp() + budgWeek.GetBudgetUnplan();
+        lblBudgetAct.setText("$" + String.valueOf(budgWeekTot));
+        
+        
+        // monthly budget totals
+        lblBudgetMon.setText("0");
+        Budget budgMon = sqlite.GetBudgetTotals(dateStart, dateEnd);
+        lblSaveThisMon.setText("$" + String.valueOf(budgMon.GetBudgetSave()));
+        lblCashThisMon.setText("$" + String.valueOf(budgMon.GetBudgetCash()));
+        lblTravThisMon.setText("$" + String.valueOf(budgMon.GetBudgetTransp()));
+        lblGrocThisMon.setText("$" + String.valueOf(budgMon.GetBudgetGroc()));
+        lblDineThisMon.setText("$" + String.valueOf(budgMon.GetBudgetDine()));
+        lblUnplanThisMon.setText("$" + String.valueOf(budgMon.GetBudgetUnplan()));
+        
+        int budgMonTot = budgMon.GetBudgetCash() + budgMon.GetBudgetDine() +
+                budgMon.GetBudgetGroc() + budgMon.GetBudgetSave() + 
+                budgMon.GetBudgetTransp() + budgMon.GetBudgetUnplan();
+        lblBudgetMon.setText("$" + String.valueOf(budgMonTot));
+        
+        jLabel47.setVisible(false);
     }
     
     // INCOME EXPENSES
@@ -2911,7 +3061,6 @@ public class fmlUserInterface extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel31;
     private javax.swing.JLabel jLabel32;
     private javax.swing.JLabel jLabel33;
-    private javax.swing.JLabel jLabel34;
     private javax.swing.JLabel jLabel35;
     private javax.swing.JLabel jLabel36;
     private javax.swing.JLabel jLabel37;
@@ -2924,20 +3073,9 @@ public class fmlUserInterface extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel43;
     private javax.swing.JLabel jLabel44;
     private javax.swing.JLabel jLabel45;
-    private javax.swing.JLabel jLabel46;
     private javax.swing.JLabel jLabel47;
-    private javax.swing.JLabel jLabel48;
-    private javax.swing.JLabel jLabel49;
     private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel50;
-    private javax.swing.JLabel jLabel51;
     private javax.swing.JLabel jLabel52;
-    private javax.swing.JLabel jLabel53;
-    private javax.swing.JLabel jLabel54;
-    private javax.swing.JLabel jLabel55;
-    private javax.swing.JLabel jLabel56;
-    private javax.swing.JLabel jLabel57;
-    private javax.swing.JLabel jLabel58;
     private javax.swing.JLabel jLabel59;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel60;
@@ -2947,6 +3085,9 @@ public class fmlUserInterface extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel64;
     private javax.swing.JLabel jLabel65;
     private javax.swing.JLabel jLabel66;
+    private javax.swing.JLabel jLabel67;
+    private javax.swing.JLabel jLabel68;
+    private javax.swing.JLabel jLabel69;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
@@ -2978,14 +3119,25 @@ public class fmlUserInterface extends javax.swing.JFrame {
     private javax.swing.JLabel lblAIMessage;
     private javax.swing.JLabel lblAIqAdd;
     private javax.swing.JLabel lblBudgReadMe;
+    private javax.swing.JLabel lblBudgetAct;
     private javax.swing.JLabel lblBudgetAvail;
     private javax.swing.JLabel lblBudgetExpSum;
     private javax.swing.JLabel lblBudgetMessages;
+    private javax.swing.JLabel lblBudgetMon;
     private javax.swing.JLabel lblBudgetMonth;
-    private javax.swing.JLabel lblBudgetRemain;
     private javax.swing.JLabel lblBudgetToSpend;
+    private javax.swing.JLabel lblBudgetTot;
     private javax.swing.JLabel lblBudgetWeekNum;
+    private javax.swing.JLabel lblCashPerc;
+    private javax.swing.JLabel lblCashThisMon;
+    private javax.swing.JLabel lblCashThisWk;
+    private javax.swing.JLabel lblDinePerc;
+    private javax.swing.JLabel lblDineThisMon;
+    private javax.swing.JLabel lblDineThisWk;
     private javax.swing.JLabel lblFML;
+    private javax.swing.JLabel lblGrocPerc;
+    private javax.swing.JLabel lblGrocThisMon;
+    private javax.swing.JLabel lblGrocThisWk;
     private javax.swing.JLabel lblID;
     private javax.swing.JLabel lblIEendingBal;
     private javax.swing.JLabel lblIEmaxBill;
@@ -2999,6 +3151,15 @@ public class fmlUserInterface extends javax.swing.JFrame {
     private javax.swing.JLabel lblIEsumMessage;
     private javax.swing.JLabel lblIEtoSpend;
     private javax.swing.JLabel lblIEunplanned;
+    private javax.swing.JLabel lblSavePerc;
+    private javax.swing.JLabel lblSaveThisMon;
+    private javax.swing.JLabel lblSaveThisWk;
+    private javax.swing.JLabel lblTravPerc;
+    private javax.swing.JLabel lblTravThisMon;
+    private javax.swing.JLabel lblTravThisWk;
+    private javax.swing.JLabel lblUnplanPerc;
+    private javax.swing.JLabel lblUnplanThisMon;
+    private javax.swing.JLabel lblUnplanThisWk;
     private javax.swing.JPanel pnlAnalytics;
     private javax.swing.JPanel pnlBudget;
     private javax.swing.JPanel pnlCarder;

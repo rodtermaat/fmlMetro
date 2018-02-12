@@ -101,7 +101,8 @@ public class SQLite
         }
  
     }
-       
+    
+    // Created the Budget table
     public void CreateBudgetTable(){
        String sql = "CREATE TABLE IF NOT EXISTS budget (\n" +
                      " id INTEGER PRIMARY KEY,\n" +
@@ -162,7 +163,7 @@ public class SQLite
         return count;
     }
     
-    // add update buget values
+    // Do we need to add or update the Budget
     public int IsBudgetSetup() {
         
         //first determine if there are any records. 0 add, 1 is update mode
@@ -234,8 +235,7 @@ public class SQLite
         
     
     }
-    
-    
+
     // add budget record
     public void AddBudget(int yyyymm, int save, int cash, int transport, 
                 int groceries, int dining, int unplan){
@@ -273,7 +273,7 @@ public class SQLite
         
     }
     
-    // update transaction from income and expense lanel
+    // Update the Budget table
     public void UpdBudget(int yyyymm, int save, int cash, int transport, 
                 int groceries, int dining, int unplan){
         String sql = "UPDATE budget SET byyyymm = ? , "
@@ -302,6 +302,77 @@ public class SQLite
         }    
     }
     
+    // Returns budget totals by date range
+    public Budget GetBudgetTotals(int dateStart, int dateEnd){
+        Budget bud = new Budget();
+        String sql = "SELECT category, abs(sum(amount)) as budgAmt\n" +
+                     " FROM ledger WHERE type = \"budget\"\n" +
+                     " AND (date8 >= ? and date8 <= ?)\n" +
+                     " GROUP BY category\n" +
+                     " ORDER BY date8";
+        
+        // this will return
+        // savings      100
+        // groceries    250
+        // cash         80
+        
+        try {
+           Class.forName("org.sqlite.JDBC");
+           Connection conn = DriverManager.getConnection(url);
+           conn.setAutoCommit(false);
+           //Statement stmt = conn.createStatement();
+           //ResultSet rs = stmt.executeQuery(sql);
+           
+           PreparedStatement pstmt  = conn.prepareStatement(sql);
+           pstmt.setInt(1, dateStart);
+           pstmt.setInt(2, dateEnd);
+           ResultSet rs = pstmt.executeQuery();
+           
+           // init the object incase not all are returned
+           bud.SetBudgetSave(0);
+           bud.SetBudgetCash(0);
+           bud.SetBudgetTransp(0);
+           bud.SetBudgetGroc(0);
+           bud.SetBudgetDine(0);
+           bud.SetBudgetUnplan(0);
+           
+            while(rs.next()){
+                // for each row we need to determine which catregory it is
+                // so that we can load the object accordingly
+                if(rs.getString("category").equals("savings")){
+                    bud.SetBudgetSave(rs.getInt("budgAmt"));
+                }
+                if(rs.getString("category").equals("cash")){
+                    bud.SetBudgetCash(rs.getInt("budgAmt"));
+                }
+                if(rs.getString("category").equals("transportation")){
+                    bud.SetBudgetTransp(rs.getInt("budgAmt"));
+                }
+                if(rs.getString("category").equals("groceries")){
+                    bud.SetBudgetGroc(rs.getInt("budgAmt"));
+                }
+                if(rs.getString("category").equals("dining")){
+                    bud.SetBudgetDine(rs.getInt("budgAmt"));
+                }
+                if(rs.getString("category").equals("unplanned")){
+                    bud.SetBudgetUnplan(rs.getInt("budgAmt"));
+                }
+            }
+            
+             if(rs != null) {
+                rs.close();
+            }
+            if(pstmt != null){
+                pstmt.close();
+            }
+            if(conn != null) {
+                conn.close();
+            } 
+            
+        } catch (Exception e) {
+        }
+        return bud;
+    }
     
     // add a record to the ledger table
     public int AddTransaction(int date8, String day, String mon, String yr,
@@ -350,6 +421,7 @@ public class SQLite
         
     }
     
+    // Returns expense summary information
     public ArrayList<ExpSummary> getExpSummaryByDate(int dateStart, int dateEnd){
     
         ArrayList<ExpSummary> expRows = new ArrayList<>();
@@ -405,6 +477,7 @@ public class SQLite
         return expRows;            
     }
     
+    // Returns transactions for the checkbook panel
     public ArrayList<TransactionLong> GetLedgerByDate(int dateStart, int dateEnd){
         
         ArrayList<TransactionLong> allRows = new ArrayList<>();
@@ -474,6 +547,7 @@ public class SQLite
         return allRows;
     }
     
+    // Returns all the transaction within a date range
     public ArrayList<TransactionShort> getTransactionsByDate(int dateStart, int dateEnd){
         
         ArrayList<TransactionShort> rows2 = new ArrayList<>();
@@ -537,9 +611,7 @@ public class SQLite
         return rows2;
 }
 
-    //  This gets all the transactions that are income and expense to display
-    //  puts them in an ArrayList object and creates a running total as balance
-    //  Used in the Income and Expense pane
+    // Depricated in favor of TransactionLong object
     public ArrayList<TransactionShort> getAllObjects(){
         
        String sql = "select id, date8, time, category, name, amount,\n" +
@@ -605,8 +677,7 @@ public class SQLite
         return rows2;
     }
     
-    // get tranaction to populate DE.  need when we started messing with 
-    // the data display in the table
+    // Returns a single transaction for display, update, delete in data entry
     public TransactionLong GetTransaction(int id){
         int idx = 0;
         int date8 = 0;
@@ -724,6 +795,7 @@ public class SQLite
         }
     }
     
+    // Returns distinct categories for loading data entry drop down
     public ArrayList getCategoryList (){
         ArrayList<String> cats = new ArrayList<String>();
         String sql = "SELECT DISTINCT Category FROM ledger\n" +
