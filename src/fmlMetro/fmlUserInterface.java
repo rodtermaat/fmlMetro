@@ -251,8 +251,6 @@ public class fmlUserInterface extends javax.swing.JFrame {
         jLabel41 = new javax.swing.JLabel();
         jLabel42 = new javax.swing.JLabel();
         txtBudgetDine = new javax.swing.JTextField();
-        jLabel43 = new javax.swing.JLabel();
-        jLabel44 = new javax.swing.JLabel();
         jLabel45 = new javax.swing.JLabel();
         lblSaveThisWk = new javax.swing.JLabel();
         lblCashThisWk = new javax.swing.JLabel();
@@ -1195,7 +1193,7 @@ public class fmlUserInterface extends javax.swing.JFrame {
         });
 
         jLabel41.setFont(new java.awt.Font("Lucida Grande", 1, 18)); // NOI18N
-        jLabel41.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel41.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         jLabel41.setText("Weekly Budget");
 
         jLabel42.setFont(new java.awt.Font("Lucida Grande", 0, 18)); // NOI18N
@@ -1210,13 +1208,8 @@ public class fmlUserInterface extends javax.swing.JFrame {
             }
         });
 
-        jLabel43.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel43.setText("budget");
-
-        jLabel44.setText("jLabel44");
-
         jLabel45.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        jLabel45.setText("week");
+        jLabel45.setText("month");
 
         lblSaveThisWk.setFont(new java.awt.Font("Lucida Grande", 0, 14)); // NOI18N
         lblSaveThisWk.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
@@ -1288,10 +1281,11 @@ public class fmlUserInterface extends javax.swing.JFrame {
         lblBudgetMon.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         lblBudgetMon.setText("$872");
 
-        jLabel67.setText("this");
+        jLabel67.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        jLabel67.setText("budgeted");
 
         jLabel68.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        jLabel68.setText("this");
+        jLabel68.setText("actual");
 
         jLabel69.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         jLabel69.setText("%");
@@ -1335,20 +1329,11 @@ public class fmlUserInterface extends javax.swing.JFrame {
             .addGroup(jPanel8Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(lblBudgetWeekNum, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jLabel41, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(jPanel8Layout.createSequentialGroup()
-                        .addGap(4, 4, 4)
                         .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addGroup(jPanel8Layout.createSequentialGroup()
-                                .addGap(0, 0, Short.MAX_VALUE)
-                                .addComponent(jLabel67)
-                                .addGap(6, 6, 6))
-                            .addGroup(jPanel8Layout.createSequentialGroup()
+                                .addGap(4, 4, 4)
                                 .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addGroup(jPanel8Layout.createSequentialGroup()
-                                        .addGap(0, 0, Short.MAX_VALUE)
-                                        .addComponent(jLabel44, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE))
                                     .addComponent(jLabel42, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                     .addComponent(jLabel39, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                     .addComponent(jLabel36, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -1380,8 +1365,7 @@ public class fmlUserInterface extends javax.swing.JFrame {
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                         .addComponent(lblCashThisWk, javax.swing.GroupLayout.PREFERRED_SIZE, 62, javax.swing.GroupLayout.PREFERRED_SIZE))
                                     .addGroup(jPanel8Layout.createSequentialGroup()
-                                        .addComponent(jLabel43, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addGap(66, 66, 66)
                                         .addComponent(jLabel45, javax.swing.GroupLayout.PREFERRED_SIZE, 62, javax.swing.GroupLayout.PREFERRED_SIZE))
                                     .addGroup(jPanel8Layout.createSequentialGroup()
                                         .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
@@ -1393,7 +1377,12 @@ public class fmlUserInterface extends javax.swing.JFrame {
                                                 .addComponent(lblUnplanThisWk, javax.swing.GroupLayout.PREFERRED_SIZE, 62, javax.swing.GroupLayout.PREFERRED_SIZE))
                                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel8Layout.createSequentialGroup()
                                                 .addGap(21, 21, 21)
-                                                .addComponent(lblBudgetAct, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)))))))
+                                                .addComponent(lblBudgetAct, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE))))))
+                            .addGroup(jPanel8Layout.createSequentialGroup()
+                                .addGap(0, 0, Short.MAX_VALUE)
+                                .addComponent(jLabel41, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jLabel67, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addGap(18, 18, 18)
                         .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addGroup(jPanel8Layout.createSequentialGroup()
@@ -1423,26 +1412,27 @@ public class fmlUserInterface extends javax.swing.JFrame {
                                 .addComponent(lblBudgetMon, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addComponent(lblTotPerc, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                        .addGap(32, 32, 32))
+                        .addGap(38, 38, 38))
                     .addGroup(jPanel8Layout.createSequentialGroup()
-                        .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel8Layout.createSequentialGroup()
-                                .addComponent(btnBudgetAdd)
-                                .addGap(104, 104, 104)
-                                .addComponent(lblBudgetMessages, javax.swing.GroupLayout.PREFERRED_SIZE, 183, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addComponent(lblBudgetWeekNum, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                 .addGroup(jPanel8Layout.createSequentialGroup()
-                                    .addComponent(jLabel32)
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                    .addComponent(lblBudgetToSpend, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                                .addGroup(jPanel8Layout.createSequentialGroup()
-                                    .addComponent(jLabel28)
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                    .addComponent(lblBudgetMonth)
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                    .addComponent(lblBudgetAvail, javax.swing.GroupLayout.PREFERRED_SIZE, 83, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                        .addGap(0, 0, Short.MAX_VALUE)))
-                .addContainerGap())
+                                    .addComponent(btnBudgetAdd)
+                                    .addGap(104, 104, 104)
+                                    .addComponent(lblBudgetMessages, javax.swing.GroupLayout.PREFERRED_SIZE, 183, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addGroup(jPanel8Layout.createSequentialGroup()
+                                        .addComponent(jLabel32)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(lblBudgetToSpend, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                    .addGroup(jPanel8Layout.createSequentialGroup()
+                                        .addComponent(jLabel28)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(lblBudgetMonth)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(lblBudgetAvail, javax.swing.GroupLayout.PREFERRED_SIZE, 83, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
         );
         jPanel8Layout.setVerticalGroup(
             jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -1458,16 +1448,13 @@ public class fmlUserInterface extends javax.swing.JFrame {
                     .addComponent(jLabel32))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(lblBudgetWeekNum)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jLabel41)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGap(41, 41, 41)
                 .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel67)
-                    .addComponent(jLabel68))
+                    .addComponent(jLabel68)
+                    .addComponent(jLabel41))
                 .addGap(1, 1, 1)
                 .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel44)
-                    .addComponent(jLabel43)
                     .addComponent(jLabel45)
                     .addComponent(jLabel52)
                     .addComponent(jLabel69))
@@ -1519,7 +1506,7 @@ public class fmlUserInterface extends javax.swing.JFrame {
                     .addComponent(lblBudgetMon)
                     .addComponent(lblBudgetAct)
                     .addComponent(lblTotPerc))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 22, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 21, Short.MAX_VALUE)
                 .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnBudgetAdd)
                     .addComponent(lblBudgetMessages))
@@ -1610,7 +1597,7 @@ public class fmlUserInterface extends javax.swing.JFrame {
         pnlBudget.setLayout(pnlBudgetLayout);
         pnlBudgetLayout.setHorizontalGroup(
             pnlBudgetLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jSeparator2, javax.swing.GroupLayout.DEFAULT_SIZE, 1195, Short.MAX_VALUE)
+            .addComponent(jSeparator2)
             .addComponent(jPanel7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
             .addGroup(pnlBudgetLayout.createSequentialGroup()
                 .addContainerGap()
@@ -2317,7 +2304,7 @@ public class fmlUserInterface extends javax.swing.JFrame {
         pnlCarder.add(pnlBudget);
         pnlCarder.repaint();
         pnlCarder.validate();
-        jLabel44.setVisible(false);
+        //jLabel44.setVisible(false);
         
         String html = "<html>Of course bills and income are important, but its the $ you" + 
                       "<br>budget weekly that determines your relationship with money." +
@@ -2572,6 +2559,7 @@ public class fmlUserInterface extends javax.swing.JFrame {
     // updates budget summary data
     private void RefreshBudget(int dateStart, int dateEnd){
         
+        int aSize = 0;
         // budget month displayed
         lblBudgetMonth.setText(dtx.getMonthDesc(IEmonTracker));
         
@@ -2585,14 +2573,14 @@ public class fmlUserInterface extends javax.swing.JFrame {
         // how many weeks are in the month
         // week logic
         int toSpend = 0;
-        if(budget > 0){
+        if(budget != 0){
             String sdate8 = String.valueOf(dateStart);
             String syr =  sdate8.substring(0,4);
             String smon = sdate8.substring(4,6);
             int iyr = Integer.valueOf(syr);
             int imon = Integer.valueOf(smon);
             Integer[] array = dtx.getWeeksInMonth(imon, iyr);
-            int aSize = array.length;
+            aSize = array.length;
             toSpend = budget/aSize;
             lblBudgetToSpend.setText("$" + String.valueOf(toSpend));
             lblBudgetWeekNum.setText(" ... " + lblBudgetMonth.getText() + 
@@ -2620,6 +2608,7 @@ public class fmlUserInterface extends javax.swing.JFrame {
         // load Expense summary
         ExpenseSummaryByDate(dateStart, dateEnd);
         
+        // weekly budgeted amounts
         Budget budg = sqlite.GetBudget();
         txtBudgetSave.setText(String.valueOf(budg.GetBudgetSave()));
         txtBudgetCash.setText(String.valueOf(budg.GetBudgetCash()));
@@ -2640,26 +2629,26 @@ public class fmlUserInterface extends javax.swing.JFrame {
         lblBudgetTot.setText("None");
         }
         
-        // weekly budget totals
-        //Budget budgWk = sqlite.GetBudgetTotals(dateStart, dateEnd);
+        // Budgeted monthly totals
         lblBudgetAct.setText("$0");
-        int intFOW = dtx.getIntFOW(7);
-        int intEOW = dtx.getIntEOW(7);
-        Budget budgWeek = sqlite.GetBudgetTotals(intFOW, intEOW);
-        lblSaveThisWk.setText("$" + String.valueOf(budgWeek.GetBudgetSave()));
-        lblCashThisWk.setText("$" + String.valueOf(budgWeek.GetBudgetCash()));
-        lblTravThisWk.setText("$" + String.valueOf(budgWeek.GetBudgetTransp()));
-        lblGrocThisWk.setText("$" + String.valueOf(budgWeek.GetBudgetGroc()));
-        lblDineThisWk.setText("$" + String.valueOf(budgWeek.GetBudgetDine()));
-        lblUnplanThisWk.setText("$" + String.valueOf(budgWeek.GetBudgetUnplan()));
+        int monSave = budg.GetBudgetSave() * aSize;
+        int monCash = budg.GetBudgetCash() * aSize;
+        int monTrav = budg.GetBudgetTransp() * aSize;
+        int monGroc = budg.GetBudgetGroc() * aSize;
+        int monDine = budg.GetBudgetDine() * aSize;
+        int monUnplan = budg.GetBudgetUnplan() * aSize;
+        lblSaveThisWk.setText("$" + String.valueOf(monSave));
+        lblCashThisWk.setText("$" + String.valueOf(monCash));
+        lblTravThisWk.setText("$" + String.valueOf(monTrav));
+        lblGrocThisWk.setText("$" + String.valueOf(monGroc));
+        lblDineThisWk.setText("$" + String.valueOf(monDine));
+        lblUnplanThisWk.setText("$" + String.valueOf(monUnplan));
         
-        int budgWeekTot = budgWeek.GetBudgetCash() + budgWeek.GetBudgetDine() +
-                budgWeek.GetBudgetGroc() + budgWeek.GetBudgetSave() + 
-                budgWeek.GetBudgetTransp() + budgWeek.GetBudgetUnplan();
-        lblBudgetAct.setText("$" + String.valueOf(budgWeekTot));
+        int budgMonTot = monSave + monCash + monTrav + monGroc + monDine + monUnplan;
+        lblBudgetAct.setText("$" + String.valueOf(budgMonTot));
         
         
-        // monthly budget totals
+        // Actual monthly budget totals
         lblBudgetMon.setText("0");
         Budget budgMon = sqlite.GetBudgetTotals(dateStart, dateEnd);
         int save = budgMon.GetBudgetSave();
@@ -2676,29 +2665,43 @@ public class fmlUserInterface extends javax.swing.JFrame {
         lblDineThisMon.setText("$" + String.valueOf(dine));
         lblUnplanThisMon.setText("$" + String.valueOf(unplan));
         
-        int budgMonTot = budgMon.GetBudgetCash() + budgMon.GetBudgetDine() +
+        int ActMonTot = budgMon.GetBudgetCash() + budgMon.GetBudgetDine() +
                 budgMon.GetBudgetGroc() + budgMon.GetBudgetSave() + 
                 budgMon.GetBudgetTransp() + budgMon.GetBudgetUnplan();
-        lblBudgetMon.setText("$" + String.valueOf(budgMonTot));
+        lblBudgetMon.setText("$" + String.valueOf(ActMonTot));
         
+        // Percentage of Budget to Actual
         DecimalFormat df = new DecimalFormat("#.#");
-        df.setRoundingMode(RoundingMode.CEILING);       
-        double savePerc = ((double)save/(double)budget)*100;
-        double cashPerc = ((double)cash/(double)budget)*100;
-        double travPerc = ((double)trav/(double)budget)*100;
-        double grocPerc = ((double)groc/(double)budget)*100;
-        double dinePerc = ((double)dine/(double)budget)*100;
-        double unplanPerc = ((double)unplan/(double)budget)*100;
-        lblSavePerc.setText(df.format(savePerc) + "%");
-        lblCashPerc.setText(df.format(cashPerc) + "%");
-        lblTravPerc.setText(df.format(travPerc) + "%");
-        lblGrocPerc.setText(df.format(grocPerc) + "%");
-        lblDinePerc.setText(df.format(dinePerc) + "%");
-        lblUnplanPerc.setText(df.format(unplanPerc) + "%");
+        df.setRoundingMode(RoundingMode.CEILING);
+        if(save>0 && monSave>0){
+            double savePerc = ((double)save/(double)monSave)*100;
+            lblSavePerc.setText(df.format(savePerc) + "%");
+        } else { lblSavePerc.setText("NA");}
+        if(cash>0 && monCash>0){
+            double cashPerc = ((double)cash/(double)monCash)*100;
+            lblCashPerc.setText(df.format(cashPerc) + "%");
+        } else { lblCashPerc.setText("NA");}
+        if (trav>0 && monTrav>0){
+            double travPerc = ((double)trav/(double)monTrav)*100;
+            lblTravPerc.setText(df.format(travPerc) + "%");
+        } else { lblTravPerc.setText("NA");}
+        if (groc>0 && monGroc>0){
+            double grocPerc = ((double)groc/(double)monGroc)*100;  
+            lblGrocPerc.setText(df.format(grocPerc) + "%");
+        } else { lblGrocPerc.setText("NA");}
+        if (dine>0 && monDine>0){
+            double dinePerc = ((double)dine/(double)monDine)*100;
+            lblDinePerc.setText(df.format(dinePerc) + "%");
+        } else { lblDinePerc.setText("NA");}
+        if (unplan>0 && monUnplan>0){
+            double unplanPerc = ((double)unplan/(double)monUnplan)*100;
+            lblUnplanPerc.setText(df.format(unplanPerc) + "%");
+        } else { lblUnplanPerc.setText("NA");}
         
-        double TotPerc = savePerc + cashPerc + travPerc + grocPerc + dinePerc +
-                unplanPerc;
-        lblTotPerc.setText(df.format(TotPerc) + "%");
+        if(ActMonTot>0 && budgMonTot>0){
+            double TotPerc = ((double) ActMonTot / (double) budgMonTot)*100; 
+            lblTotPerc.setText(df.format(TotPerc) + "%");
+        } else { lblTotPerc.setText("NA");}
         
     }
     
@@ -3277,8 +3280,6 @@ public class fmlUserInterface extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel40;
     private javax.swing.JLabel jLabel41;
     private javax.swing.JLabel jLabel42;
-    private javax.swing.JLabel jLabel43;
-    private javax.swing.JLabel jLabel44;
     private javax.swing.JLabel jLabel45;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel52;
