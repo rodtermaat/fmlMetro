@@ -34,6 +34,7 @@ public class fmlUserInterface extends javax.swing.JFrame {
     int xy;                         // move screen
     int IEmonTracker = 0;           // used to track month back and forward
     int IEweekTracker = 7;          // used to track week back and forth
+    int weekTracker = 7;            // used to move week in the checkbook
     int inTheBeginning = 20000101;  // used to get all transactions
     int inTheYear2525 = 25250101;   // used to get all tranactions
 
@@ -145,6 +146,9 @@ public class fmlUserInterface extends javax.swing.JFrame {
         
         lblAIqAdd.setText(htmlai);
         txtAIbudgDate.setText(inputToday);
+        txtAIbudgAmt.setText("");
+        cmbAIbudgItem.setSelectedIndex(-1);
+        txtAIbudgName.setText("");
     }
 
     /**
@@ -778,6 +782,11 @@ public class fmlUserInterface extends javax.swing.JFrame {
 
         txtAIbudgAmt.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
         txtAIbudgAmt.setText("185");
+        txtAIbudgAmt.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtAIbudgAmtKeyTyped(evt);
+            }
+        });
 
         jLabel31.setText("date");
 
@@ -926,7 +935,7 @@ public class fmlUserInterface extends javax.swing.JFrame {
                 java.lang.Integer.class, java.lang.Boolean.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.Integer.class, java.lang.Integer.class
             };
             boolean[] canEdit = new boolean [] {
-                false, false, false, false, false, false, false
+                false, true, false, false, false, false, false
             };
 
             public Class getColumnClass(int columnIndex) {
@@ -937,6 +946,7 @@ public class fmlUserInterface extends javax.swing.JFrame {
                 return canEdit [columnIndex];
             }
         });
+        tblCheckbook.getTableHeader().setReorderingAllowed(false);
         jScrollPane3.setViewportView(tblCheckbook);
         if (tblCheckbook.getColumnModel().getColumnCount() > 0) {
             tblCheckbook.getColumnModel().getColumn(0).setResizable(false);
@@ -956,16 +966,46 @@ public class fmlUserInterface extends javax.swing.JFrame {
         }
 
         btnLedgerBack.setText("<");
+        btnLedgerBack.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnLedgerBackActionPerformed(evt);
+            }
+        });
 
         rdoLedgerAll.setText("all");
+        rdoLedgerAll.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                rdoLedgerAllActionPerformed(evt);
+            }
+        });
 
         rdoLedgerMonth.setText("month");
+        rdoLedgerMonth.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                rdoLedgerMonthActionPerformed(evt);
+            }
+        });
 
         rdoLedgerWeek.setText("week");
+        rdoLedgerWeek.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                rdoLedgerWeekActionPerformed(evt);
+            }
+        });
 
         rdoLedgerActive.setText("active");
+        rdoLedgerActive.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                rdoLedgerActiveActionPerformed(evt);
+            }
+        });
 
         btnLedgerForward.setText(">");
+        btnLedgerForward.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnLedgerForwardActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel17Layout = new javax.swing.GroupLayout(jPanel17);
         jPanel17.setLayout(jPanel17Layout);
@@ -2333,10 +2373,12 @@ public class fmlUserInterface extends javax.swing.JFrame {
     // MAIN UI
     // LEDGER. this is the checkbook screen were we can balance to the bank
     private void bntRegisterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bntRegisterActionPerformed
+        weekTracker = 7;
+
         // Remove existing panel(s)
-        pnlCarder.removeAll();;
-        pnlCarder.repaint();;
-        pnlCarder.validate();;
+        pnlCarder.removeAll();
+        pnlCarder.repaint();
+        pnlCarder.validate();
         
         // add new pane based on selection
         pnlCarder.add(pnlLedger);
@@ -2344,9 +2386,13 @@ public class fmlUserInterface extends javax.swing.JFrame {
         pnlCarder.validate();
         
         //get and load up the transaction into the ledger
-        //int ieFOM = dtx.getIntFOM(0);
-        //int ieEOM = dtx.getIntEOM(0);
-        GetLedgerTransByDate(inTheBeginning, inTheYear2525);
+        int cbFOM = dtx.getIntFOM(IEmonTracker);
+        int cbEOM = dtx.getIntEOM(IEmonTracker);
+        rdoLedgerMonth.setSelected(true);
+        rdoLedgerAll.setSelected(false);
+        rdoLedgerWeek.setSelected(false);
+        rdoLedgerActive.setSelected(false);
+        GetLedgerTransByDate(cbFOM, cbEOM);
     }//GEN-LAST:event_bntRegisterActionPerformed
 
     // MAIN UI
@@ -3119,6 +3165,92 @@ public class fmlUserInterface extends javax.swing.JFrame {
         }
             
     }//GEN-LAST:event_btnAIbudgAddActionPerformed
+
+    // AI
+    // Only allow integers to be typed
+    private void txtAIbudgAmtKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtAIbudgAmtKeyTyped
+            // Code to only allow integers in amount fields
+        char vchar = evt.getKeyChar();
+        if(!Character.isDigit(vchar)
+            || (vchar == KeyEvent.VK_BACKSPACE)
+            || (vchar == KeyEvent.VK_DELETE)){
+            evt.consume();
+        }
+    }//GEN-LAST:event_txtAIbudgAmtKeyTyped
+
+    // Checkbook
+    // View all records
+    private void rdoLedgerAllActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rdoLedgerAllActionPerformed
+        rdoLedgerMonth.setSelected(false);
+        rdoLedgerWeek.setSelected(false);
+        rdoLedgerActive.setSelected(false);
+        GetLedgerTransByDate(inTheBeginning, inTheYear2525);
+    }//GEN-LAST:event_rdoLedgerAllActionPerformed
+
+    // Checkbook
+    // View month records
+    private void rdoLedgerMonthActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rdoLedgerMonthActionPerformed
+        rdoLedgerAll.setSelected(false);
+        rdoLedgerWeek.setSelected(false);
+        rdoLedgerActive.setSelected(false);
+        int cbFOM = dtx.getIntFOM(IEmonTracker);    //monTracker should be global for the entire application
+        int cbEOM = dtx.getIntEOM(IEmonTracker);
+        GetLedgerTransByDate(cbFOM, cbEOM);
+    }//GEN-LAST:event_rdoLedgerMonthActionPerformed
+    // Checkbook
+    // View week record
+    private void rdoLedgerWeekActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rdoLedgerWeekActionPerformed
+        rdoLedgerAll.setSelected(false);
+        rdoLedgerMonth.setSelected(false);
+        rdoLedgerActive.setSelected(false);
+        weekTracker = 7;
+        int cbFOW = dtx.getIntFOW(weekTracker);
+        int cbEOW = dtx.getIntEOW(weekTracker);
+        GetLedgerTransByDate(cbFOW, cbEOW);
+    }//GEN-LAST:event_rdoLedgerWeekActionPerformed
+    // Checkbook
+    // View all non reconciled
+    private void rdoLedgerActiveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rdoLedgerActiveActionPerformed
+        rdoLedgerAll.setSelected(false);
+        rdoLedgerWeek.setSelected(false);
+        rdoLedgerMonth.setSelected(false);
+        // this one is more complicated as we need a new SQL
+        
+    }//GEN-LAST:event_rdoLedgerActiveActionPerformed
+    // Checkbook
+    // Move back a period, based on month or week radio selection
+    private void btnLedgerBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLedgerBackActionPerformed
+        if(rdoLedgerMonth.isSelected()){
+            IEmonTracker--;
+            int cbFOM = dtx.getIntFOM(IEmonTracker);    //monTracker should be global for the entire application
+            int cbEOM = dtx.getIntEOM(IEmonTracker);
+            GetLedgerTransByDate(cbFOM, cbEOM);
+        }
+        if(rdoLedgerWeek.isSelected()){
+            weekTracker = weekTracker - 7;
+            int cbFOW = dtx.getIntFOW(weekTracker);
+            int cbEOW = dtx.getIntEOW(weekTracker);
+            GetLedgerTransByDate(cbFOW, cbEOW);
+        }
+        
+    }//GEN-LAST:event_btnLedgerBackActionPerformed
+    // Checkbook
+    // Move forward based on month or week radio selection
+    private void btnLedgerForwardActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLedgerForwardActionPerformed
+        if(rdoLedgerMonth.isSelected()){
+            IEmonTracker++;
+            int cbFOM = dtx.getIntFOM(IEmonTracker);    //monTracker should be global for the entire application
+            int cbEOM = dtx.getIntEOM(IEmonTracker);
+            GetLedgerTransByDate(cbFOM, cbEOM);
+        }
+        if(rdoLedgerWeek.isSelected()){
+            weekTracker = weekTracker + 7;
+            int cbFOW = dtx.getIntFOW(weekTracker);
+            int cbEOW = dtx.getIntEOW(weekTracker);
+            GetLedgerTransByDate(cbFOW, cbEOW);
+        }
+
+    }//GEN-LAST:event_btnLedgerForwardActionPerformed
 
     /**
      * @param args the command line arguments
