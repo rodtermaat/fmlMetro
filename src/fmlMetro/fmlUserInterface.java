@@ -149,6 +149,7 @@ public class fmlUserInterface extends javax.swing.JFrame {
         txtAIbudgAmt.setText("");
         cmbAIbudgItem.setSelectedIndex(-1);
         txtAIbudgName.setText("");
+        new AutoCompleteJComboBoxer(cmbAIbudgItem);
     }
 
     /**
@@ -1374,7 +1375,7 @@ public class fmlUserInterface extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanel15Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(jPanel22, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jPanel21, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
+                            .addComponent(jPanel21, javax.swing.GroupLayout.PREFERRED_SIZE, 454, Short.MAX_VALUE))
                         .addGap(0, 0, Short.MAX_VALUE))
                     .addComponent(jPanel16, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 950, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -1401,7 +1402,7 @@ public class fmlUserInterface extends javax.swing.JFrame {
             pnlLedgerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pnlLedgerLayout.createSequentialGroup()
                 .addComponent(jPanel15, javax.swing.GroupLayout.PREFERRED_SIZE, 909, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
+                .addGap(0, 286, Short.MAX_VALUE))
         );
         pnlLedgerLayout.setVerticalGroup(
             pnlLedgerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -2574,7 +2575,6 @@ public class fmlUserInterface extends javax.swing.JFrame {
         pnlCarder.validate();
         
         txtAIbudgDate.setText(inputToday);
-        //new AutoCompleteJComboBoxer(cmbAIbudgItem);
         
         // Budgeted Amounts
         Budget budx = sqlite.GetBudget();
@@ -2719,7 +2719,7 @@ public class fmlUserInterface extends javax.swing.JFrame {
         txtcbDate.setText("");
         txtcbAmt.setText("");
         txtcbName.setText("");
-        cmbcbCategory.setSelectedIndex(-1);
+        //cmbcbCategory.setSelectedIndex(-1);
         cmbcbType.setSelectedIndex(-1);
         lblcbID.setText("");
         cckcbIsCleared.setSelected(false);
@@ -2728,6 +2728,10 @@ public class fmlUserInterface extends javax.swing.JFrame {
         txtcbNotCleared.setText(" ? ");
         txtcbBalance.setEnabled(false);
         txtcbNotCleared.setEnabled(false);
+        
+        UpdateCBCategories();       //fill with values from database
+        new AutoCompleteJComboBoxer(cmbcbCategory);
+        new AutoCompleteJComboBoxer(cmbcbType);
         
         //get and load up the transaction into the ledger
         int cbFOM = dtx.getIntFOM(IEmonTracker);
@@ -2754,6 +2758,21 @@ public class fmlUserInterface extends javax.swing.JFrame {
                 cmbIEcategory.addItem(catList.get(i));
             }
             cmbIEcategory.setSelectedIndex(-1);
+        }
+    }
+    
+    // Checkbook
+    // loads category dropdown
+    private void UpdateCBCategories(){
+        if (cmbcbCategory.getMaximumRowCount()>2){
+            
+            cmbcbCategory.removeAllItems();
+            ArrayList<String> catList = sqlite.getCategoryList();
+            for(int i = 0; i < catList.size(); i++)
+            {
+                cmbcbCategory.addItem(catList.get(i));
+            }
+            cmbcbCategory.setSelectedIndex(-1);
         }
     }
    
