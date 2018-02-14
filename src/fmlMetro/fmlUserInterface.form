@@ -979,9 +979,9 @@
               <Layout>
                 <DimensionLayout dim="0">
                   <Group type="103" groupAlignment="0" attributes="0">
-                      <Group type="102" attributes="0">
-                          <Component id="jPanel15" min="-2" pref="826" max="-2" attributes="0"/>
-                          <EmptySpace pref="369" max="32767" attributes="0"/>
+                      <Group type="102" alignment="0" attributes="0">
+                          <Component id="jPanel15" min="-2" pref="909" max="-2" attributes="0"/>
+                          <EmptySpace min="0" pref="286" max="32767" attributes="0"/>
                       </Group>
                   </Group>
                 </DimensionLayout>
@@ -1008,13 +1008,22 @@
                   <Layout>
                     <DimensionLayout dim="0">
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="jPanel16" alignment="0" pref="851" max="32767" attributes="0"/>
-                          <Group type="102" alignment="0" attributes="0">
+                          <Group type="102" alignment="1" attributes="0">
+                              <Group type="103" groupAlignment="1" attributes="0">
+                                  <Group type="102" alignment="0" attributes="0">
+                                      <EmptySpace max="-2" attributes="0"/>
+                                      <Component id="jPanel17" min="-2" max="-2" attributes="0"/>
+                                      <EmptySpace max="-2" attributes="0"/>
+                                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                                          <Component id="jPanel22" max="32767" attributes="0"/>
+                                          <Component id="jPanel21" pref="0" max="32767" attributes="0"/>
+                                      </Group>
+                                      <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                                  </Group>
+                                  <Component id="jPanel16" alignment="0" pref="950" max="32767" attributes="0"/>
+                              </Group>
                               <EmptySpace max="-2" attributes="0"/>
-                              <Component id="jPanel17" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace max="-2" attributes="0"/>
-                              <Component id="jPanel18" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace max="32767" attributes="0"/>
+                              <Component id="jPanel18" max="32767" attributes="0"/>
                           </Group>
                       </Group>
                     </DimensionLayout>
@@ -1026,6 +1035,12 @@
                               <Group type="103" groupAlignment="0" attributes="0">
                                   <Component id="jPanel17" max="32767" attributes="0"/>
                                   <Component id="jPanel18" max="32767" attributes="0"/>
+                                  <Group type="102" alignment="0" attributes="0">
+                                      <Component id="jPanel21" min="-2" pref="402" max="-2" attributes="0"/>
+                                      <EmptySpace max="-2" attributes="0"/>
+                                      <Component id="jPanel22" min="-2" max="-2" attributes="0"/>
+                                      <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                                  </Group>
                               </Group>
                           </Group>
                       </Group>
@@ -1047,13 +1062,22 @@
                           <Group type="103" groupAlignment="0" attributes="0">
                               <Group type="102" alignment="0" attributes="0">
                                   <EmptySpace max="-2" attributes="0"/>
-                                  <Component id="jLabel24" max="32767" attributes="0"/>
+                                  <Component id="jLabel24" min="-2" max="-2" attributes="0"/>
+                                  <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                                  <Component id="jLabel55" min="-2" pref="81" max="-2" attributes="0"/>
+                                  <EmptySpace max="-2" attributes="0"/>
+                                  <Component id="jLabel46" min="-2" pref="131" max="-2" attributes="0"/>
+                                  <EmptySpace max="32767" attributes="0"/>
                               </Group>
                           </Group>
                         </DimensionLayout>
                         <DimensionLayout dim="1">
                           <Group type="103" groupAlignment="0" attributes="0">
-                              <Component id="jLabel24" alignment="0" pref="34" max="32767" attributes="0"/>
+                              <Group type="103" alignment="0" groupAlignment="3" attributes="0">
+                                  <Component id="jLabel24" alignment="3" pref="34" max="32767" attributes="0"/>
+                                  <Component id="jLabel46" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="jLabel55" alignment="3" min="-2" max="-2" attributes="0"/>
+                              </Group>
                           </Group>
                         </DimensionLayout>
                       </Layout>
@@ -1067,6 +1091,23 @@
                               <Color blue="ff" green="ff" red="ff" type="rgb"/>
                             </Property>
                             <Property name="text" type="java.lang.String" value="   ... see all of your finances in one place. "/>
+                          </Properties>
+                        </Component>
+                        <Component class="javax.swing.JLabel" name="jLabel46">
+                          <Properties>
+                            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                              <Font name="Lucida Grande" size="14" style="1"/>
+                            </Property>
+                            <Property name="text" type="java.lang.String" value="Starting Balance"/>
+                          </Properties>
+                        </Component>
+                        <Component class="javax.swing.JLabel" name="jLabel55">
+                          <Properties>
+                            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                              <Font name="Lucida Grande" size="14" style="1"/>
+                            </Property>
+                            <Property name="horizontalAlignment" type="int" value="4"/>
+                            <Property name="text" type="java.lang.String" value="$1275"/>
                           </Properties>
                         </Component>
                       </SubComponents>
@@ -1112,7 +1153,7 @@
                                       <Component id="rdoLedgerActive" alignment="3" min="-2" max="-2" attributes="0"/>
                                       <Component id="btnLedgerForward" alignment="3" min="-2" max="-2" attributes="0"/>
                                   </Group>
-                                  <EmptySpace min="0" pref="10" max="32767" attributes="0"/>
+                                  <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                               </Group>
                           </Group>
                         </DimensionLayout>
@@ -1181,6 +1222,9 @@
                                   <TableHeader reorderingAllowed="false" resizingAllowed="true"/>
                                 </Property>
                               </Properties>
+                              <Events>
+                                <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="tblCheckbookMouseClicked"/>
+                              </Events>
                             </Component>
                           </SubComponents>
                         </Container>
@@ -1237,14 +1281,14 @@
                     <Container class="javax.swing.JPanel" name="jPanel18">
                       <Properties>
                         <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                          <Color blue="66" green="66" red="66" type="rgb"/>
+                          <Color blue="cc" green="cc" red="ff" type="rgb"/>
                         </Property>
                       </Properties>
 
                       <Layout>
                         <DimensionLayout dim="0">
                           <Group type="103" groupAlignment="0" attributes="0">
-                              <EmptySpace min="0" pref="349" max="32767" attributes="0"/>
+                              <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                           </Group>
                         </DimensionLayout>
                         <DimensionLayout dim="1">
@@ -1253,6 +1297,434 @@
                           </Group>
                         </DimensionLayout>
                       </Layout>
+                    </Container>
+                    <Container class="javax.swing.JPanel" name="jPanel21">
+                      <Properties>
+                        <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                          <Color blue="cc" green="cc" red="ff" type="rgb"/>
+                        </Property>
+                        <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
+                          <Dimension value="[344, 400]"/>
+                        </Property>
+                      </Properties>
+
+                      <Layout>
+                        <DimensionLayout dim="0">
+                          <Group type="103" groupAlignment="0" attributes="0">
+                              <Group type="102" attributes="0">
+                                  <EmptySpace max="-2" attributes="0"/>
+                                  <Group type="103" groupAlignment="1" attributes="0">
+                                      <Component id="lblcbInfo" alignment="1" max="32767" attributes="0"/>
+                                      <Group type="102" alignment="1" attributes="0">
+                                          <EmptySpace min="6" pref="6" max="-2" attributes="0"/>
+                                          <Group type="103" groupAlignment="0" attributes="0">
+                                              <Group type="102" alignment="0" attributes="0">
+                                                  <Component id="btncbDel" min="-2" max="-2" attributes="0"/>
+                                                  <EmptySpace max="-2" attributes="0"/>
+                                                  <Component id="btncbUpd" min="-2" max="-2" attributes="0"/>
+                                                  <EmptySpace max="-2" attributes="0"/>
+                                                  <Component id="btncbAdd" min="-2" max="-2" attributes="0"/>
+                                                  <EmptySpace max="-2" attributes="0"/>
+                                                  <Component id="cckcbIsCleared" min="-2" max="-2" attributes="0"/>
+                                                  <EmptySpace type="unrelated" max="32767" attributes="0"/>
+                                                  <Component id="lblcbID" min="-2" pref="53" max="-2" attributes="0"/>
+                                                  <EmptySpace min="-2" pref="150" max="-2" attributes="0"/>
+                                              </Group>
+                                              <Group type="102" alignment="0" attributes="0">
+                                                  <Component id="jLabel50" min="-2" pref="100" max="-2" attributes="0"/>
+                                                  <EmptySpace max="-2" attributes="0"/>
+                                                  <Component id="cmbcbType" min="-2" pref="131" max="-2" attributes="0"/>
+                                                  <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                                              </Group>
+                                          </Group>
+                                      </Group>
+                                      <Group type="102" alignment="0" attributes="0">
+                                          <Component id="jLabel34" min="-2" pref="101" max="-2" attributes="0"/>
+                                          <EmptySpace max="-2" attributes="0"/>
+                                          <Component id="txtcbDate" min="-2" pref="81" max="-2" attributes="0"/>
+                                          <EmptySpace max="-2" attributes="0"/>
+                                          <Component id="jLabel44" max="32767" attributes="0"/>
+                                      </Group>
+                                      <Group type="102" alignment="0" attributes="0">
+                                          <Group type="103" groupAlignment="0" attributes="0">
+                                              <Group type="102" alignment="0" attributes="0">
+                                                  <Component id="jLabel43" min="-2" pref="101" max="-2" attributes="0"/>
+                                                  <EmptySpace max="-2" attributes="0"/>
+                                                  <Component id="txtcbAmt" min="-2" pref="66" max="-2" attributes="0"/>
+                                              </Group>
+                                              <Group type="102" alignment="0" attributes="0">
+                                                  <Component id="jLabel48" min="-2" pref="100" max="-2" attributes="0"/>
+                                                  <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                                                  <Component id="cmbcbCategory" min="-2" pref="169" max="-2" attributes="0"/>
+                                              </Group>
+                                              <Group type="102" alignment="0" attributes="0">
+                                                  <Component id="jLabel47" min="-2" max="-2" attributes="0"/>
+                                                  <EmptySpace max="-2" attributes="0"/>
+                                                  <Component id="txtcbName" min="-2" pref="213" max="-2" attributes="0"/>
+                                              </Group>
+                                          </Group>
+                                          <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                                      </Group>
+                                      <Group type="102" attributes="0">
+                                          <Group type="103" groupAlignment="0" attributes="0">
+                                              <Component id="jLabel51" max="32767" attributes="0"/>
+                                              <Component id="jLabel49" max="32767" attributes="0"/>
+                                          </Group>
+                                          <EmptySpace max="-2" attributes="0"/>
+                                          <Component id="txtcbBank" min="-2" pref="60" max="-2" attributes="0"/>
+                                          <EmptySpace max="-2" attributes="0"/>
+                                          <Group type="103" groupAlignment="0" attributes="0">
+                                              <Component id="jLabel53" min="-2" pref="58" max="-2" attributes="0"/>
+                                              <Component id="jLabel54" min="-2" pref="58" max="-2" attributes="0"/>
+                                          </Group>
+                                          <EmptySpace max="-2" attributes="0"/>
+                                          <Component id="txtcbBalance" min="-2" max="-2" attributes="0"/>
+                                          <EmptySpace max="-2" attributes="0"/>
+                                          <Group type="103" groupAlignment="0" attributes="0">
+                                              <Component id="jLabel57" min="-2" pref="59" max="-2" attributes="0"/>
+                                              <Component id="jLabel56" min="-2" pref="55" max="-2" attributes="0"/>
+                                          </Group>
+                                          <EmptySpace max="-2" attributes="0"/>
+                                          <Component id="txtcbNotCleared" min="-2" max="-2" attributes="0"/>
+                                          <EmptySpace min="-2" pref="155" max="-2" attributes="0"/>
+                                      </Group>
+                                  </Group>
+                                  <EmptySpace max="-2" attributes="0"/>
+                              </Group>
+                          </Group>
+                        </DimensionLayout>
+                        <DimensionLayout dim="1">
+                          <Group type="103" groupAlignment="0" attributes="0">
+                              <Group type="102" alignment="0" attributes="0">
+                                  <Component id="lblcbInfo" min="-2" pref="111" max="-2" attributes="0"/>
+                                  <EmptySpace type="separate" pref="22" max="32767" attributes="0"/>
+                                  <Group type="103" groupAlignment="0" attributes="0">
+                                      <Group type="102" alignment="0" attributes="0">
+                                          <Component id="jLabel49" min="-2" max="-2" attributes="0"/>
+                                          <EmptySpace max="-2" attributes="0"/>
+                                          <Component id="jLabel51" min="-2" max="-2" attributes="0"/>
+                                      </Group>
+                                      <Component id="txtcbBalance" min="-2" pref="48" max="-2" attributes="0"/>
+                                      <Component id="txtcbBank" min="-2" pref="48" max="-2" attributes="0"/>
+                                      <Component id="txtcbNotCleared" alignment="0" min="-2" pref="48" max="-2" attributes="0"/>
+                                      <Group type="102" attributes="0">
+                                          <Component id="jLabel53" min="-2" max="-2" attributes="0"/>
+                                          <EmptySpace max="-2" attributes="0"/>
+                                          <Component id="jLabel54" min="-2" max="-2" attributes="0"/>
+                                      </Group>
+                                      <Group type="102" alignment="0" attributes="0">
+                                          <Component id="jLabel56" min="-2" max="-2" attributes="0"/>
+                                          <EmptySpace max="-2" attributes="0"/>
+                                          <Component id="jLabel57" min="-2" max="-2" attributes="0"/>
+                                      </Group>
+                                  </Group>
+                                  <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                                  <Group type="103" groupAlignment="3" attributes="0">
+                                      <Component id="jLabel34" alignment="3" min="-2" max="-2" attributes="0"/>
+                                      <Component id="txtcbDate" alignment="3" min="-2" max="-2" attributes="0"/>
+                                      <Component id="jLabel44" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  </Group>
+                                  <EmptySpace min="0" pref="4" max="32767" attributes="0"/>
+                                  <Group type="103" groupAlignment="1" attributes="0">
+                                      <Component id="jLabel43" min="-2" max="-2" attributes="0"/>
+                                      <Component id="txtcbAmt" min="-2" max="-2" attributes="0"/>
+                                  </Group>
+                                  <EmptySpace max="-2" attributes="0"/>
+                                  <Group type="103" groupAlignment="0" attributes="0">
+                                      <Component id="txtcbName" min="-2" max="-2" attributes="0"/>
+                                      <Component id="jLabel47" alignment="0" min="-2" max="-2" attributes="0"/>
+                                  </Group>
+                                  <EmptySpace max="-2" attributes="0"/>
+                                  <Group type="103" groupAlignment="0" attributes="0">
+                                      <Component id="cmbcbCategory" min="-2" max="-2" attributes="0"/>
+                                      <Component id="jLabel48" alignment="0" min="-2" max="-2" attributes="0"/>
+                                  </Group>
+                                  <EmptySpace max="-2" attributes="0"/>
+                                  <Group type="103" groupAlignment="3" attributes="0">
+                                      <Component id="jLabel50" alignment="3" min="-2" max="-2" attributes="0"/>
+                                      <Component id="cmbcbType" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  </Group>
+                                  <EmptySpace min="-2" pref="20" max="-2" attributes="0"/>
+                                  <Group type="103" groupAlignment="3" attributes="0">
+                                      <Component id="btncbDel" alignment="3" min="-2" max="-2" attributes="0"/>
+                                      <Component id="btncbUpd" alignment="3" min="-2" max="-2" attributes="0"/>
+                                      <Component id="btncbAdd" alignment="3" min="-2" max="-2" attributes="0"/>
+                                      <Component id="cckcbIsCleared" alignment="3" min="-2" max="-2" attributes="0"/>
+                                      <Component id="lblcbID" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  </Group>
+                                  <EmptySpace min="-2" pref="8" max="-2" attributes="0"/>
+                              </Group>
+                          </Group>
+                        </DimensionLayout>
+                      </Layout>
+                      <SubComponents>
+                        <Component class="javax.swing.JLabel" name="lblcbInfo">
+                          <Properties>
+                            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                              <Font name="Lucida Grande" size="14" style="0"/>
+                            </Property>
+                            <Property name="text" type="java.lang.String" value="For Income and Expenes we will look at life "/>
+                            <Property name="verticalAlignment" type="int" value="1"/>
+                            <Property name="verticalTextPosition" type="int" value="1"/>
+                          </Properties>
+                        </Component>
+                        <Component class="javax.swing.JFormattedTextField" name="txtcbDate">
+                          <Properties>
+                            <Property name="formatterFactory" type="javax.swing.JFormattedTextField$AbstractFormatterFactory" editor="org.netbeans.modules.form.editors.AbstractFormatterFactoryEditor">
+                              <Format format="MM/dd/yy" subtype="-1" type="1"/>
+                            </Property>
+                          </Properties>
+                        </Component>
+                        <Component class="javax.swing.JLabel" name="jLabel34">
+                          <Properties>
+                            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                              <Font name="Lucida Grande" size="16" style="0"/>
+                            </Property>
+                            <Property name="text" type="java.lang.String" value=" . date"/>
+                          </Properties>
+                        </Component>
+                        <Component class="javax.swing.JTextField" name="txtcbAmt">
+                          <Properties>
+                            <Property name="text" type="java.lang.String" value="123456"/>
+                          </Properties>
+                          <Events>
+                            <EventHandler event="keyTyped" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="txtcbAmtKeyTyped"/>
+                            <EventHandler event="keyPressed" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="txtcbAmtKeyPressed"/>
+                          </Events>
+                        </Component>
+                        <Component class="javax.swing.JLabel" name="jLabel43">
+                          <Properties>
+                            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                              <Font name="Lucida Grande" size="16" style="0"/>
+                            </Property>
+                            <Property name="text" type="java.lang.String" value=" . amount"/>
+                          </Properties>
+                        </Component>
+                        <Component class="javax.swing.JLabel" name="jLabel44">
+                          <Properties>
+                            <Property name="toolTipText" type="java.lang.String" value=""/>
+                          </Properties>
+                        </Component>
+                        <Component class="javax.swing.JLabel" name="jLabel47">
+                          <Properties>
+                            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                              <Font name="Lucida Grande" size="16" style="0"/>
+                            </Property>
+                            <Property name="text" type="java.lang.String" value=" . description"/>
+                          </Properties>
+                        </Component>
+                        <Component class="javax.swing.JTextField" name="txtcbName">
+                        </Component>
+                        <Component class="javax.swing.JLabel" name="jLabel48">
+                          <Properties>
+                            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                              <Font name="Lucida Grande" size="16" style="0"/>
+                            </Property>
+                            <Property name="text" type="java.lang.String" value=" . category"/>
+                          </Properties>
+                        </Component>
+                        <Component class="javax.swing.JComboBox" name="cmbcbCategory">
+                          <Properties>
+                            <Property name="editable" type="boolean" value="true"/>
+                            <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
+                              <StringArray count="2">
+                                <StringItem index="0" value="income"/>
+                                <StringItem index="1" value="expense"/>
+                              </StringArray>
+                            </Property>
+                          </Properties>
+                          <AuxValues>
+                            <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
+                          </AuxValues>
+                        </Component>
+                        <Component class="javax.swing.JButton" name="btncbAdd">
+                          <Properties>
+                            <Property name="text" type="java.lang.String" value="add"/>
+                          </Properties>
+                          <Events>
+                            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btncbAddActionPerformed"/>
+                          </Events>
+                        </Component>
+                        <Component class="javax.swing.JButton" name="btncbUpd">
+                          <Properties>
+                            <Property name="text" type="java.lang.String" value="upd"/>
+                          </Properties>
+                          <Events>
+                            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btncbUpdActionPerformed"/>
+                          </Events>
+                        </Component>
+                        <Component class="javax.swing.JButton" name="btncbDel">
+                          <Properties>
+                            <Property name="text" type="java.lang.String" value="del"/>
+                          </Properties>
+                          <Events>
+                            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btncbDelActionPerformed"/>
+                          </Events>
+                        </Component>
+                        <Component class="javax.swing.JCheckBox" name="cckcbIsCleared">
+                          <Properties>
+                            <Property name="text" type="java.lang.String" value=". clear"/>
+                          </Properties>
+                          <Events>
+                            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="cckcbIsClearedActionPerformed"/>
+                          </Events>
+                        </Component>
+                        <Component class="javax.swing.JLabel" name="lblcbID">
+                          <Properties>
+                            <Property name="text" type="java.lang.String" value="aaa"/>
+                          </Properties>
+                        </Component>
+                        <Component class="javax.swing.JLabel" name="jLabel50">
+                          <Properties>
+                            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                              <Font name="Lucida Grande" size="16" style="0"/>
+                            </Property>
+                            <Property name="text" type="java.lang.String" value=". type"/>
+                          </Properties>
+                        </Component>
+                        <Component class="javax.swing.JComboBox" name="cmbcbType">
+                          <Properties>
+                            <Property name="editable" type="boolean" value="true"/>
+                            <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
+                              <StringArray count="4">
+                                <StringItem index="0" value="bill"/>
+                                <StringItem index="1" value="income"/>
+                                <StringItem index="2" value="unplanned"/>
+                                <StringItem index="3" value="budget"/>
+                              </StringArray>
+                            </Property>
+                          </Properties>
+                          <AuxValues>
+                            <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
+                          </AuxValues>
+                        </Component>
+                        <Component class="javax.swing.JTextField" name="txtcbBalance">
+                          <Properties>
+                            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                              <Font name="Lucida Grande" size="16" style="0"/>
+                            </Property>
+                            <Property name="text" type="java.lang.String" value="10000"/>
+                          </Properties>
+                        </Component>
+                        <Component class="javax.swing.JLabel" name="jLabel49">
+                          <Properties>
+                            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                              <Font name="Lucida Grande" size="16" style="0"/>
+                            </Property>
+                            <Property name="horizontalAlignment" type="int" value="4"/>
+                            <Property name="text" type="java.lang.String" value="Bank"/>
+                          </Properties>
+                        </Component>
+                        <Component class="javax.swing.JLabel" name="jLabel51">
+                          <Properties>
+                            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                              <Font name="Lucida Grande" size="14" style="0"/>
+                            </Property>
+                            <Property name="horizontalAlignment" type="int" value="4"/>
+                            <Property name="text" type="java.lang.String" value="Balance"/>
+                          </Properties>
+                        </Component>
+                        <Component class="javax.swing.JLabel" name="jLabel53">
+                          <Properties>
+                            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                              <Font name="Lucida Grande" size="16" style="0"/>
+                            </Property>
+                            <Property name="horizontalAlignment" type="int" value="4"/>
+                            <Property name="text" type="java.lang.String" value="Your"/>
+                          </Properties>
+                        </Component>
+                        <Component class="javax.swing.JLabel" name="jLabel54">
+                          <Properties>
+                            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                              <Font name="Lucida Grande" size="14" style="0"/>
+                            </Property>
+                            <Property name="horizontalAlignment" type="int" value="4"/>
+                            <Property name="text" type="java.lang.String" value="Balance"/>
+                          </Properties>
+                        </Component>
+                        <Component class="javax.swing.JLabel" name="jLabel56">
+                          <Properties>
+                            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                              <Font name="Lucida Grande" size="16" style="0"/>
+                            </Property>
+                            <Property name="horizontalAlignment" type="int" value="4"/>
+                            <Property name="text" type="java.lang.String" value="Not"/>
+                          </Properties>
+                        </Component>
+                        <Component class="javax.swing.JLabel" name="jLabel57">
+                          <Properties>
+                            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                              <Font name="Lucida Grande" size="14" style="0"/>
+                            </Property>
+                            <Property name="horizontalAlignment" type="int" value="4"/>
+                            <Property name="text" type="java.lang.String" value="Cleared"/>
+                          </Properties>
+                        </Component>
+                        <Component class="javax.swing.JTextField" name="txtcbBank">
+                          <Properties>
+                            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                              <Font name="Lucida Grande" size="16" style="0"/>
+                            </Property>
+                            <Property name="text" type="java.lang.String" value="10000"/>
+                          </Properties>
+                        </Component>
+                        <Component class="javax.swing.JTextField" name="txtcbNotCleared">
+                          <Properties>
+                            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                              <Font name="Lucida Grande" size="16" style="0"/>
+                            </Property>
+                            <Property name="text" type="java.lang.String" value="8888"/>
+                          </Properties>
+                        </Component>
+                      </SubComponents>
+                    </Container>
+                    <Container class="javax.swing.JPanel" name="jPanel22">
+                      <Properties>
+                        <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                          <Color blue="66" green="66" red="66" type="rgb"/>
+                        </Property>
+                      </Properties>
+
+                      <Layout>
+                        <DimensionLayout dim="0">
+                          <Group type="103" groupAlignment="0" attributes="0">
+                              <Group type="102" alignment="0" attributes="0">
+                                  <EmptySpace max="-2" attributes="0"/>
+                                  <Component id="jLabel58" min="-2" max="-2" attributes="0"/>
+                                  <EmptySpace max="-2" attributes="0"/>
+                                  <Component id="jButton1" min="-2" pref="189" max="-2" attributes="0"/>
+                                  <EmptySpace pref="49" max="32767" attributes="0"/>
+                              </Group>
+                          </Group>
+                        </DimensionLayout>
+                        <DimensionLayout dim="1">
+                          <Group type="103" groupAlignment="0" attributes="0">
+                              <Group type="102" alignment="0" attributes="0">
+                                  <EmptySpace min="-2" pref="13" max="-2" attributes="0"/>
+                                  <Group type="103" groupAlignment="3" attributes="0">
+                                      <Component id="jLabel58" alignment="3" min="-2" max="-2" attributes="0"/>
+                                      <Component id="jButton1" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  </Group>
+                                  <EmptySpace max="32767" attributes="0"/>
+                              </Group>
+                          </Group>
+                        </DimensionLayout>
+                      </Layout>
+                      <SubComponents>
+                        <Component class="javax.swing.JLabel" name="jLabel58">
+                          <Properties>
+                            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                              <Font name="Lucida Grande" size="18" style="0"/>
+                            </Property>
+                            <Property name="text" type="java.lang.String" value=" . print summary report"/>
+                          </Properties>
+                        </Component>
+                        <Component class="javax.swing.JButton" name="jButton1">
+                          <Properties>
+                            <Property name="text" type="java.lang.String" value="the best for last"/>
+                          </Properties>
+                        </Component>
+                      </SubComponents>
                     </Container>
                   </SubComponents>
                 </Container>
