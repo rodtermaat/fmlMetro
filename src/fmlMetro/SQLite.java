@@ -20,8 +20,8 @@ import java.io.File;
 public class SQLite
 {
     // instance variables - replace the example below with your own
-    String url = "jdbc:sqlite:/Users/termaat/sqlite/db/fml.db";   //Production
-    //String url = "jdbc:sqlite:/Users/termaat/sqlite/db/fmltest.db";     //Test
+    //String url = "jdbc:sqlite:/Users/termaat/sqlite/db/fml.db";   //Production
+    String url = "jdbc:sqlite:/Users/termaat/sqlite/db/fmltest.db";     //Test
     
     /**
      * Constructor for objects of class SQLite
@@ -416,6 +416,7 @@ public class SQLite
         } catch (SQLException e) {
             //System.out.println("Insert Transaction Error: " + e.getMessage());
             //System.err.println( e.getClass().getName() + ": " + e.getMessage() );
+            //return 0;
         }
         return last_inserted_id;
         

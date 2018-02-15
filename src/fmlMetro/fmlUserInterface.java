@@ -223,6 +223,7 @@ public class fmlUserInterface extends javax.swing.JFrame {
         jLabel24 = new javax.swing.JLabel();
         jLabel46 = new javax.swing.JLabel();
         jLabel55 = new javax.swing.JLabel();
+        lblcbMessage = new javax.swing.JLabel();
         jPanel17 = new javax.swing.JPanel();
         jScrollPane3 = new javax.swing.JScrollPane();
         tblCheckbook = new javax.swing.JTable();
@@ -945,6 +946,9 @@ public class fmlUserInterface extends javax.swing.JFrame {
         jLabel55.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         jLabel55.setText("$1275");
 
+        lblcbMessage.setForeground(new java.awt.Color(0, 255, 51));
+        lblcbMessage.setText("lblcbMessage");
+
         javax.swing.GroupLayout jPanel16Layout = new javax.swing.GroupLayout(jPanel16);
         jPanel16.setLayout(jPanel16Layout);
         jPanel16Layout.setHorizontalGroup(
@@ -953,17 +957,19 @@ public class fmlUserInterface extends javax.swing.JFrame {
                 .addContainerGap()
                 .addComponent(jLabel24)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jLabel55, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jLabel55, javax.swing.GroupLayout.PREFERRED_SIZE, 69, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel46, javax.swing.GroupLayout.PREFERRED_SIZE, 131, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(lblcbMessage, javax.swing.GroupLayout.DEFAULT_SIZE, 295, Short.MAX_VALUE))
         );
         jPanel16Layout.setVerticalGroup(
             jPanel16Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel16Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                 .addComponent(jLabel24, javax.swing.GroupLayout.DEFAULT_SIZE, 34, Short.MAX_VALUE)
                 .addComponent(jLabel46)
-                .addComponent(jLabel55))
+                .addComponent(jLabel55)
+                .addComponent(lblcbMessage))
         );
 
         jPanel17.setBackground(new java.awt.Color(102, 102, 102));
@@ -1368,17 +1374,16 @@ public class fmlUserInterface extends javax.swing.JFrame {
         jPanel15Layout.setHorizontalGroup(
             jPanel15Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel15Layout.createSequentialGroup()
-                .addGroup(jPanel15Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel15Layout.createSequentialGroup()
+                .addGroup(jPanel15Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel15Layout.createSequentialGroup()
                         .addContainerGap()
                         .addComponent(jPanel17, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanel15Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(jPanel22, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jPanel21, javax.swing.GroupLayout.PREFERRED_SIZE, 454, Short.MAX_VALUE))
-                        .addGap(0, 0, Short.MAX_VALUE))
-                    .addComponent(jPanel16, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 950, Short.MAX_VALUE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                            .addComponent(jPanel21, javax.swing.GroupLayout.PREFERRED_SIZE, 454, Short.MAX_VALUE)))
+                    .addComponent(jPanel16, javax.swing.GroupLayout.PREFERRED_SIZE, 908, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jPanel18, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel15Layout.setVerticalGroup(
@@ -1402,7 +1407,7 @@ public class fmlUserInterface extends javax.swing.JFrame {
             pnlLedgerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pnlLedgerLayout.createSequentialGroup()
                 .addComponent(jPanel15, javax.swing.GroupLayout.PREFERRED_SIZE, 909, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 286, Short.MAX_VALUE))
+                .addGap(0, 0, Short.MAX_VALUE))
         );
         pnlLedgerLayout.setVerticalGroup(
             pnlLedgerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -2636,7 +2641,8 @@ public class fmlUserInterface extends javax.swing.JFrame {
         txtIEdate.setText(inputToday);      // put todays date in IE date
         
         UpdateIECategories();       //fill with values from database
-        new AutoCompleteJComboBoxer(cmbIEcategory);
+        //FUCK - why did this break all of a sudden???
+        //new AutoCompleteJComboBoxer(cmbIEcategory);
         
         //IEmonTracker = 0;
         int ieFOM = dtx.getIntFOM(IEmonTracker);
@@ -2703,12 +2709,12 @@ public class fmlUserInterface extends javax.swing.JFrame {
         pnlCarder.repaint();
         pnlCarder.validate();
         
-        String html = "<html>... for some balancing their account is a ritual and for" +
-                       "<br>others seen as a waste of time. Regardless, here you can" +
-                       "<br>see all of the gritty details. Use it or lose it." +
+        String html = "<html>  ... for some balancing their account is a ritual and for" +
+                       "<br>  others seen as a waste of time. Regardless, here you can" +
+                       "<br>  see all of the gritty details. Use it or lose it." +
                        "<br>" +
-                       "<br>... to balance your account enter the ending balance" +
-                       "<br>from the bank, and clear tranactions until you match.";
+                       "<br>  ... to balance your account enter the ending balance" +
+                       "<br>  from the bank, and clear tranactions until you match.";
         
         lblcbInfo.setText(html);
         
@@ -2730,7 +2736,7 @@ public class fmlUserInterface extends javax.swing.JFrame {
         txtcbNotCleared.setEnabled(false);
         
         UpdateCBCategories();       //fill with values from database
-        new AutoCompleteJComboBoxer(cmbcbCategory);
+        //new AutoCompleteJComboBoxer(cmbcbCategory);
         new AutoCompleteJComboBoxer(cmbcbType);
         
         //get and load up the transaction into the ledger
@@ -2776,6 +2782,75 @@ public class fmlUserInterface extends javax.swing.JFrame {
         }
     }
    
+    // GLOBAL
+    // Add or update a transaction
+    private String AddandUpdateTransaction(String action, int id, String userDate8,  
+                                   String type, String cat, String name, 
+                                   int amt, boolean cleared){
+        
+        Date jDate = null;
+        String day; String mon; String yr; String wk;
+        int newAmt = 0;
+        
+        // date is good to use
+        SimpleDateFormat sdf = new SimpleDateFormat("MM/dd/yy");
+        try
+        {
+            jDate = sdf.parse(userDate8);
+        }
+        catch(ParseException e) {
+            return "FAIL";
+        }
+            
+        day = new SimpleDateFormat("dd").format(jDate);
+        mon = new SimpleDateFormat("MM").format(jDate);
+        yr = new SimpleDateFormat("yyyy").format(jDate);
+        wk = new SimpleDateFormat("w").format(jDate);
+        String sDate8 = yr + mon + day;
+        int intDate8 = Integer.parseInt(sDate8);
+
+        // is today sunday?  if it is we need to subtract a week since our
+        // program wants to start on Monday as the first day of the week
+        int intwk = Integer.valueOf(wk);
+        if(dtx.IsSunday(jDate)){
+            if(intwk==1){
+                intwk=52;
+                wk = String.valueOf(intwk);
+            }
+            else{
+                intwk--;
+                wk = String.valueOf(intwk);
+            }
+        }
+        
+        if(type.equals("bill")){
+            newAmt = amt*-1;
+        }
+        if(type.equals("budget")){
+            newAmt = amt*-1;
+        }
+        if(type.equals("unplanned")){
+            newAmt = amt*-1;
+        }
+        if(type.equals("income")){
+            newAmt = amt;
+        }
+        
+        if(action.equals("ADD")){
+            int xID = sqlite.AddTransaction(intDate8, day, mon, yr, wk, 
+                                            type, cat, name, newAmt, false);
+            if(xID>0){}
+            else { return "FAIL";}
+        }
+        else if(action.equals("UPD")){
+            
+        }
+        
+    return "PASS";    
+    }
+    
+    
+    
     // INCOME EXPENSE
     // Add or Update a new bill, income, unplanned expense
     private void AddUpdateTransaction(String action, int id){
@@ -3619,8 +3694,30 @@ public class fmlUserInterface extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_txtcbAmtKeyPressed
 
+    //fuck
     private void btncbAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btncbAddActionPerformed
-        // TODO add your handling code here:
+        String validDE = ValidateCBdataEntry();
+        if(validDE.equals("PASS")){
+            String action = "ADD";
+            int id = 0;
+            String userDate8 = txtcbDate.getText();
+            String type = cmbcbType.getSelectedItem().toString();
+            String cat = cmbcbCategory.getSelectedItem().toString();
+            String name = txtcbName.getText();
+            int amt = Integer.valueOf(txtcbAmt.getText());
+            boolean cleared = false;
+            
+            String success = AddandUpdateTransaction(action, id, userDate8,  
+                                   type, cat, name, 
+                                   amt, cleared);
+            if(success.equals("FAIL")){
+                DisplayCBmessage("Big time error, fyl");
+            }
+            ClearCBdataEntry();
+        }
+        else{
+            DisplayCBmessage("Check data entry. Something not right");
+        }
     }//GEN-LAST:event_btncbAddActionPerformed
 
     private void btncbUpdActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btncbUpdActionPerformed
@@ -3729,6 +3826,16 @@ public class fmlUserInterface extends javax.swing.JFrame {
         rdoIEunplanned.setSelected(false);
     }
     
+    // Checkbook
+    private void ClearCBdataEntry(){
+        txtcbDate.setText("");
+        txtcbAmt.setText("");
+        txtcbName.setText("");
+        cmbcbCategory.setSelectedIndex(-1);
+        cmbcbType.setSelectedIndex(-1);
+        cckcbIsCleared.setSelected(false);
+    }
+    
     // INCOME EXPENSE
     // Displays data entry error messages on Income and Expense panel
     private void DisplayIEmessage(String message){
@@ -3761,11 +3868,25 @@ public class fmlUserInterface extends javax.swing.JFrame {
         t.start();
     }
     
+    private void DisplayCBmessage(String message){
+        
+        lblcbMessage.setText(message);
+        
+        Timer t = new Timer(2000, new ActionListener() {
+
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                lblcbMessage.setText(null);
+            }
+        });
+        t.setRepeats(false);
+        t.start();
+        
+    }
+    
     // INCOME EXPENSE
     // validates the DE part of the form and returns PASS or FAIL to caller
     private String ValidateIEdataEntry(){
-        //final String catTest = cmbIEcategory.getSelectedItem().toString().trim();
-        //final String freqTest = cmbIEfreq.getSelectedItem().toString().trim();
         if(txtIEamount.getText().equals("")){
             return "FAIL";}
         else if(txtIEdescription.getText().equals("")){
@@ -3776,9 +3897,21 @@ public class fmlUserInterface extends javax.swing.JFrame {
         } else if(!(rdoIEincome.isSelected() || rdoIEexpense.isSelected() ||
                 rdoIEunplanned.isSelected())) {
             return "FAIL";
-        //} else if (cmbIEfreq.getSelectedItem() == null 
-        //        || cmbIEfreq.getSelectedItem().toString().isEmpty()){
-        //    return "FAIL";
+        }else{
+            return "PASS";}
+    }
+    
+    private String ValidateCBdataEntry(){
+        if(txtcbAmt.getText().equals("")){
+            return "FAIL";}
+        else if(txtcbName.getText().equals("")){
+            return "FAIL";}
+        else if(cmbcbCategory.getSelectedItem() == null
+                || cmbcbCategory.getSelectedItem().toString().isEmpty()){
+            return "FAIL";
+        } else if(cmbcbType.getSelectedItem() == null
+                || cmbcbType.getSelectedItem().toString().isEmpty()) {
+            return "FAIL";
         }else{
             return "PASS";}
     }
@@ -3967,6 +4100,7 @@ public class fmlUserInterface extends javax.swing.JFrame {
     private javax.swing.JLabel lblaibUnplan;
     private javax.swing.JLabel lblcbID;
     private javax.swing.JLabel lblcbInfo;
+    private javax.swing.JLabel lblcbMessage;
     private javax.swing.JPanel pnlAnalytics;
     private javax.swing.JPanel pnlBudget;
     private javax.swing.JPanel pnlCarder;
