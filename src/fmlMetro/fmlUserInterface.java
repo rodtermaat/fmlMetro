@@ -2843,7 +2843,8 @@ public class fmlUserInterface extends javax.swing.JFrame {
             else { return "FAIL";}
         }
         else if(action.equals("UPD")){
-            
+            int xID = sqlite.UpdateTransaction(id, intDate8, day, mon, yr, wk, 
+                    type, cat, name, newAmt, cleared);
         }
         
     return "PASS";    
@@ -3694,7 +3695,8 @@ public class fmlUserInterface extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_txtcbAmtKeyPressed
 
-    //fuck
+    // Checkbook
+    // add transactions in checkbook screen
     private void btncbAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btncbAddActionPerformed
         String validDE = ValidateCBdataEntry();
         if(validDE.equals("PASS")){
@@ -3711,17 +3713,39 @@ public class fmlUserInterface extends javax.swing.JFrame {
                                    type, cat, name, 
                                    amt, cleared);
             if(success.equals("FAIL")){
-                DisplayCBmessage("Big time error, fyl");
+                DisplayCBmessage("Big time add error, fyl");
             }
             ClearCBdataEntry();
         }
         else{
-            DisplayCBmessage("Check data entry. Something not right");
+            DisplayCBmessage("Check add data entry. Something not right");
         }
     }//GEN-LAST:event_btncbAddActionPerformed
-
+    // Checkbook
+    // update transactions in checkbook screen
     private void btncbUpdActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btncbUpdActionPerformed
-        // TODO add your handling code here:
+        String validDE = ValidateCBdataEntry();
+        if(validDE.equals("PASS")){
+            String action = "UPD";
+            int id = Integer.valueOf(lblcbID.getText());
+            String userDate8 = txtcbDate.getText();
+            String type = cmbcbType.getSelectedItem().toString();
+            String cat = cmbcbCategory.getSelectedItem().toString();
+            String name = txtcbName.getText();
+            int amt = Integer.valueOf(txtcbAmt.getText());
+            boolean cleared = cckcbIsCleared.isSelected();
+            
+            String success = AddandUpdateTransaction(action, id, userDate8,  
+                                   type, cat, name, 
+                                   amt, cleared);
+            if(success.equals("FAIL")){
+                DisplayCBmessage("Big time update error, fyl");
+            }
+            ClearCBdataEntry();
+        }
+        else{
+            DisplayCBmessage("Check update data entry. Somethings not right");
+        }
     }//GEN-LAST:event_btncbUpdActionPerformed
 
     private void btncbDelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btncbDelActionPerformed

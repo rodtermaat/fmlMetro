@@ -374,7 +374,8 @@ public class SQLite
         return bud;
     }
     
-    // add a record to the ledger table
+    // LEDGER ADD
+    // Add a record to the ledger table
     public int AddTransaction(int date8, String day, String mon, String yr,
             String wk, String type, String category, String name, 
             int amount, boolean cleared)
@@ -742,6 +743,44 @@ public class SQLite
         return lTran;
     }
     
+    // LEDGER UPDATE
+    // Update a transaction
+    public int UpdateTransaction(int id, int date8, String day, String mon, 
+            String yr, String wk, String type, String category, String name, 
+            int amount, boolean cleared){
+        
+        String sql = "UPDATE ledger SET date8 = ? , "
+                + "day = ? , mon = ? , yr = ? , wk = ? ," 
+                + "type = ? , "
+                + "category = ? , "
+                + "name = ? , "
+                + "amount = ? , "
+                + "cleared = ? "
+                + "WHERE id = ?";
+ 
+        try (Connection conn = DriverManager.getConnection(url);
+          PreparedStatement pstmt = conn.prepareStatement(sql)) {
+ 
+            // set the corresponding param
+            pstmt.setInt(1, date8);
+            pstmt.setString(2, day);
+            pstmt.setString(3, mon);
+            pstmt.setString(4, yr);
+            pstmt.setString(5, wk);
+            pstmt.setString(6, type);
+            pstmt.setString(7, category);
+            pstmt.setString(8, name);
+            pstmt.setInt(9, amount);
+            pstmt.setBoolean(10, cleared);
+            pstmt.setInt(11, id);
+            // update 
+            pstmt.executeUpdate();
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }
+    return 1; 
+    }
+    // LEDGER UPDATE
     // update transaction from income and expense lanel
     public void UpdateTran(int id, int date8, String category, String name, 
                             String type, int amount){
