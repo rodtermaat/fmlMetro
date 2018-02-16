@@ -947,7 +947,8 @@ public class fmlUserInterface extends javax.swing.JFrame {
         jLabel55.setText("$1275");
 
         lblcbMessage.setForeground(new java.awt.Color(0, 255, 51));
-        lblcbMessage.setText("lblcbMessage");
+        lblcbMessage.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lblcbMessage.setText(". message center");
 
         javax.swing.GroupLayout jPanel16Layout = new javax.swing.GroupLayout(jPanel16);
         jPanel16.setLayout(jPanel16Layout);
@@ -2854,98 +2855,128 @@ public class fmlUserInterface extends javax.swing.JFrame {
     
     // INCOME EXPENSE
     // Add or Update a new bill, income, unplanned expense
-    private void AddUpdateTransaction(String action, int id){
-        Date jDate = null;
-        String sDate8, day, mon, yr, wk, cat, name;
-        String type = "";
-        String ieDate = txtIEdate.getText();
-        int iDate8 = 0; int amt = 0; int budg = 0;
-        
-        // date is good to use
-        SimpleDateFormat sdf = new SimpleDateFormat("MM/dd/yy");
-        try
-        {
-            jDate = sdf.parse(ieDate);
-        }
-        catch(ParseException e) {
-            DisplayIEmessage("Enter date like 04/15/18");
-            return;
-        }
-            
-        day = new SimpleDateFormat("dd").format(jDate);
-        mon = new SimpleDateFormat("MM").format(jDate);
-        yr = new SimpleDateFormat("yyyy").format(jDate);
-        wk = new SimpleDateFormat("w").format(jDate);
-        sDate8 = yr + mon + day;
-        iDate8 = Integer.parseInt(sDate8);
+//    private void AddUpdateTransaction(String action, int id){
+//        Date jDate = null;
+//        String sDate8, day, mon, yr, wk, cat, name;
+//        String type = "";
+//        String ieDate = txtIEdate.getText();
+//        int iDate8 = 0; int amt = 0; int budg = 0;
+//        
+//        // date is good to use
+//        SimpleDateFormat sdf = new SimpleDateFormat("MM/dd/yy");
+//        try
+//        {
+//            jDate = sdf.parse(ieDate);
+//        }
+//        catch(ParseException e) {
+//            DisplayIEmessage("Enter date like 04/15/18");
+//            return;
+//        }
+//            
+//        day = new SimpleDateFormat("dd").format(jDate);
+//        mon = new SimpleDateFormat("MM").format(jDate);
+//        yr = new SimpleDateFormat("yyyy").format(jDate);
+//        wk = new SimpleDateFormat("w").format(jDate);
+//        sDate8 = yr + mon + day;
+//        iDate8 = Integer.parseInt(sDate8);
+//
+//        // is today sunday?  if it is we need to subtract a week since our
+//        // program wants to start on Monday as the first day of the week
+//        int intwk = Integer.valueOf(wk);
+//        if(dtx.IsSunday(jDate)){
+//            if(intwk==1){
+//                intwk=52;
+//                wk = String.valueOf(intwk);
+//            }
+//            else{
+//                intwk--;
+//                wk = String.valueOf(intwk);
+//            }
+//        }
+//        
+//        String ieDEvalidate = ValidateIEdataEntry();
+//        if(!ieDEvalidate.equals("FAIL")){
+//            // data entry is good to use
+//            cat = cmbIEcategory.getSelectedItem().toString();
+//            name = txtIEdescription.getText();
+//            amt = Integer.valueOf(txtIEamount.getText());
+//            
+//            if(rdoIEincome.isSelected()){
+//                type = "income";
+//            }
+//            if(rdoIEexpense.isSelected()){
+//                type = "bill";
+//                amt = amt*-1;
+//                budg = budg*-1;
+//            }
+//            if(rdoIEunplanned.isSelected()){
+//                type = "unplanned";
+//                amt = amt*-1;
+//                budg = budg*-1;
+//            }
+//            
+//            if(action.equals("ADD")){
+//                int xID = sqlite.AddTransaction(iDate8, day, mon, yr, wk, 
+//                                            type, cat, name, amt, false);
+//            }
+//            else {
+//                sqlite.UpdateTran(id, iDate8, cat, name, type, amt);
+//            }             
+//        }
+//        else {
+//            DisplayIEmessage("Check your data entry cause something ain't right");
+//            return;
+//        }   
+//    }
+    
+    // INCOME EXPENSE fuck
+    // adds income and expenses
+    private void btnIEaddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnIEaddActionPerformed
 
-        // is today sunday?  if it is we need to subtract a week since our
-        // program wants to start on Monday as the first day of the week
-        int intwk = Integer.valueOf(wk);
-        if(dtx.IsSunday(jDate)){
-            if(intwk==1){
-                intwk=52;
-                wk = String.valueOf(intwk);
-            }
-            else{
-                intwk--;
-                wk = String.valueOf(intwk);
-            }
-        }
-        
-        String ieDEvalidate = ValidateIEdataEntry();
-        if(!ieDEvalidate.equals("FAIL")){
-            // data entry is good to use
-            cat = cmbIEcategory.getSelectedItem().toString();
-            name = txtIEdescription.getText();
-            amt = Integer.valueOf(txtIEamount.getText());
+        String type = "";
+        String validDE = ValidateIEdataEntry();
+        if(validDE.equals("PASS")){
+            String action = "ADD";
+            int id = 0;
+            String userDate8 = txtIEdate.getText();
             
             if(rdoIEincome.isSelected()){
                 type = "income";
             }
             if(rdoIEexpense.isSelected()){
                 type = "bill";
-                amt = amt*-1;
-                budg = budg*-1;
             }
             if(rdoIEunplanned.isSelected()){
                 type = "unplanned";
-                amt = amt*-1;
-                budg = budg*-1;
             }
+            //String type = cmbcbType.getSelectedItem().toString();
+            String cat = cmbIEcategory.getSelectedItem().toString();
+            String name = txtIEdescription.getText();
+            int amt = Integer.valueOf(txtIEamount.getText());
+            boolean cleared = false;
             
-            if(action.equals("ADD")){
-                int xID = sqlite.AddTransaction(iDate8, day, mon, yr, wk, 
-                                            type, cat, name, amt, false);
+            String success = AddandUpdateTransaction(action, id, userDate8,  
+                                   type, cat, name, 
+                                   amt, cleared);
+            if(success.equals("FAIL")){
+                DisplayCBmessage("Big time add error, fyl");
             }
-            else {
-                sqlite.UpdateTran(id, iDate8, cat, name, type, amt);
-            }             
-        }
-        else {
-            DisplayIEmessage("Check your data entry cause something ain't right");
-            return;
-        }   
-    }
-    
-    // INCOME EXPENSE
-    // adds income and expenses
-    private void btnIEaddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnIEaddActionPerformed
-        AddUpdateTransaction("ADD", 0);
-        
-        if (!chkIErepeat.isSelected()){
-            ClearIEdataEntry();
+            //ClearIEdataEntry();
+            //IEmonTracker = 0;
+            int ieFOM = dtx.getIntFOM(IEmonTracker);
+            int ieEOM = dtx.getIntEOM(IEmonTracker);
+            ListIncExpByDate(ieFOM, ieEOM);
+            RefreshAnalytics(ieFOM, ieEOM);
+            if (!chkIErepeat.isSelected()){
+                ClearIEdataEntry();
+            }
+            else{
+                txtIEdate.setText("");
+            }
         }
         else{
-            txtIEdate.setText("");
+            DisplayCBmessage("Check add data entry. Something not right");
         }
-        
-        IEmonTracker = 0;
-        int ieFOM = dtx.getIntFOM(0);
-        int ieEOM = dtx.getIntEOM(0);
-        
-        ListIncExpByDate(ieFOM, ieEOM);
-        RefreshAnalytics(ieFOM, ieEOM);
     }//GEN-LAST:event_btnIEaddActionPerformed
     
     // BUDGET
@@ -3350,9 +3381,9 @@ public class fmlUserInterface extends javax.swing.JFrame {
             lblID.setText("");
             this.ClearIEdataEntry();
             
-            IEmonTracker = 0;
-            int ieFOM = dtx.getIntFOM(0);
-            int ieEOM = dtx.getIntEOM(0);
+            //IEmonTracker = 0;
+            int ieFOM = dtx.getIntFOM(IEmonTracker);
+            int ieEOM = dtx.getIntEOM(IEmonTracker);
             ListIncExpByDate(ieFOM, ieEOM);
             RefreshAnalytics(ieFOM, ieEOM);
         }
@@ -3365,22 +3396,49 @@ public class fmlUserInterface extends javax.swing.JFrame {
     // INCOME EXPENSE
     // update a transaction
     private void btnIEupdActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnIEupdActionPerformed
-        if(!lblID.getText().equals("aaa")){
-            int updID = Integer.valueOf(lblID.getText());
-            AddUpdateTransaction("UPD", updID);
-            lblID.setText("");
-            this.ClearIEdataEntry();
-            IEmonTracker = 0;
+        String type = "";
+        String validDE = ValidateIEdataEntry();
+        if(validDE.equals("PASS")){
+            String action = "UPD";
+            int id = Integer.valueOf(lblID.getText());
+            String userDate8 = txtIEdate.getText();
+            if(rdoIEincome.isSelected()){
+                type = "income";
+            }
+            if(rdoIEexpense.isSelected()){
+                type = "bill";
+            }
+            if(rdoIEunplanned.isSelected()){
+                type = "unplanned";
+            }
+            //String type = cmbcbType.getSelectedItem().toString();
+            String cat = cmbIEcategory.getSelectedItem().toString();
+            String name = txtIEdescription.getText();
+            int amt = Integer.valueOf(txtIEamount.getText());
+            boolean cleared = false;
             
-            int ieFOM = dtx.getIntFOM(0);
-            int ieEOM = dtx.getIntEOM(0);
+            String success = AddandUpdateTransaction(action, id, userDate8,  
+                                   type, cat, name, 
+                                   amt, cleared);
+            if(success.equals("FAIL")){
+                DisplayCBmessage("Big time update error, fyl");
+            }
+            //ClearIEdataEntry();
+            //IEmonTracker = 0;
+            int ieFOM = dtx.getIntFOM(IEmonTracker);
+            int ieEOM = dtx.getIntEOM(IEmonTracker);
             ListIncExpByDate(ieFOM, ieEOM);
             RefreshAnalytics(ieFOM, ieEOM);
+            if (!chkIErepeat.isSelected()){
+                ClearIEdataEntry();
+            }
+            else{
+                txtIEdate.setText("");
+            }
         }
         else{
-            DisplayIEmessage("Somehow you botched the update data, please correct");
+            DisplayCBmessage("Check update data entry. Somethings not right");
         }
-        
     }//GEN-LAST:event_btnIEupdActionPerformed
 
     // INCOME EXPENSE
@@ -3716,6 +3774,9 @@ public class fmlUserInterface extends javax.swing.JFrame {
                 DisplayCBmessage("Big time add error, fyl");
             }
             ClearCBdataEntry();
+            int cbFOM = dtx.getIntFOM(IEmonTracker);
+            int cbEOM = dtx.getIntEOM(IEmonTracker);
+            GetLedgerTransByDate(cbFOM, cbEOM);
         }
         else{
             DisplayCBmessage("Check add data entry. Something not right");
@@ -3742,14 +3803,32 @@ public class fmlUserInterface extends javax.swing.JFrame {
                 DisplayCBmessage("Big time update error, fyl");
             }
             ClearCBdataEntry();
+            int cbFOM = dtx.getIntFOM(IEmonTracker);
+            int cbEOM = dtx.getIntEOM(IEmonTracker);
+            GetLedgerTransByDate(cbFOM, cbEOM);
         }
         else{
             DisplayCBmessage("Check update data entry. Somethings not right");
         }
     }//GEN-LAST:event_btncbUpdActionPerformed
-
+    // Checkbook
+    // delete a transaction
     private void btncbDelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btncbDelActionPerformed
-        // TODO add your handling code here:
+
+         //make sure they have the DE screen filled befor deleting
+        if(!lblcbID.getText().equals("aaa")){
+            int delID = Integer.valueOf(lblcbID.getText());
+            sqlite.deleteTran(delID);
+            lblcbID.setText("");
+            this.ClearCBdataEntry();
+            
+            int cbFOM = dtx.getIntFOM(IEmonTracker);
+            int cbEOM = dtx.getIntEOM(IEmonTracker);
+            GetLedgerTransByDate(cbFOM, cbEOM);
+        }
+        else{
+            DisplayIEmessage("Select something to delete instead of trying to break the program");
+        }
     }//GEN-LAST:event_btncbDelActionPerformed
 
     private void cckcbIsClearedActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cckcbIsClearedActionPerformed
