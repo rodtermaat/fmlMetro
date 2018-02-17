@@ -222,7 +222,7 @@ public class fmlUserInterface extends javax.swing.JFrame {
         jPanel16 = new javax.swing.JPanel();
         jLabel24 = new javax.swing.JLabel();
         jLabel46 = new javax.swing.JLabel();
-        jLabel55 = new javax.swing.JLabel();
+        lblcbStartBal = new javax.swing.JLabel();
         lblcbMessage = new javax.swing.JLabel();
         jPanel17 = new javax.swing.JPanel();
         jScrollPane3 = new javax.swing.JScrollPane();
@@ -248,7 +248,6 @@ public class fmlUserInterface extends javax.swing.JFrame {
         btncbAdd = new javax.swing.JButton();
         btncbUpd = new javax.swing.JButton();
         btncbDel = new javax.swing.JButton();
-        cckcbIsCleared = new javax.swing.JCheckBox();
         lblcbID = new javax.swing.JLabel();
         jLabel50 = new javax.swing.JLabel();
         cmbcbType = new javax.swing.JComboBox<>();
@@ -261,6 +260,8 @@ public class fmlUserInterface extends javax.swing.JFrame {
         jLabel57 = new javax.swing.JLabel();
         txtcbBank = new javax.swing.JTextField();
         txtcbNotCleared = new javax.swing.JTextField();
+        jLabel59 = new javax.swing.JLabel();
+        lblisCleared = new javax.swing.JLabel();
         jPanel22 = new javax.swing.JPanel();
         jLabel58 = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
@@ -942,9 +943,9 @@ public class fmlUserInterface extends javax.swing.JFrame {
         jLabel46.setFont(new java.awt.Font("Lucida Grande", 1, 14)); // NOI18N
         jLabel46.setText("Starting Balance");
 
-        jLabel55.setFont(new java.awt.Font("Lucida Grande", 1, 14)); // NOI18N
-        jLabel55.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        jLabel55.setText("$1275");
+        lblcbStartBal.setFont(new java.awt.Font("Lucida Grande", 1, 14)); // NOI18N
+        lblcbStartBal.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        lblcbStartBal.setText("$1275");
 
         lblcbMessage.setForeground(new java.awt.Color(0, 255, 51));
         lblcbMessage.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -958,7 +959,7 @@ public class fmlUserInterface extends javax.swing.JFrame {
                 .addContainerGap()
                 .addComponent(jLabel24)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jLabel55, javax.swing.GroupLayout.PREFERRED_SIZE, 69, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(lblcbStartBal, javax.swing.GroupLayout.PREFERRED_SIZE, 69, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel46, javax.swing.GroupLayout.PREFERRED_SIZE, 131, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -969,7 +970,7 @@ public class fmlUserInterface extends javax.swing.JFrame {
             .addGroup(jPanel16Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                 .addComponent(jLabel24, javax.swing.GroupLayout.DEFAULT_SIZE, 34, Short.MAX_VALUE)
                 .addComponent(jLabel46)
-                .addComponent(jLabel55)
+                .addComponent(lblcbStartBal)
                 .addComponent(lblcbMessage))
         );
 
@@ -1083,9 +1084,8 @@ public class fmlUserInterface extends javax.swing.JFrame {
                 .addGap(12, 12, 12)
                 .addComponent(rdoLedgerActive)
                 .addGap(18, 18, 18)
-                .addComponent(btnLedgerForward, javax.swing.GroupLayout.PREFERRED_SIZE, 66, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(9, Short.MAX_VALUE))
-            .addComponent(jScrollPane3)
+                .addComponent(btnLedgerForward, javax.swing.GroupLayout.PREFERRED_SIZE, 66, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 484, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
         jPanel17Layout.setVerticalGroup(
             jPanel17Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -1173,13 +1173,6 @@ public class fmlUserInterface extends javax.swing.JFrame {
             }
         });
 
-        cckcbIsCleared.setText(". clear");
-        cckcbIsCleared.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                cckcbIsClearedActionPerformed(evt);
-            }
-        });
-
         lblcbID.setText("aaa");
 
         jLabel50.setFont(new java.awt.Font("Lucida Grande", 0, 16)); // NOI18N
@@ -1221,6 +1214,11 @@ public class fmlUserInterface extends javax.swing.JFrame {
         txtcbNotCleared.setFont(new java.awt.Font("Lucida Grande", 0, 16)); // NOI18N
         txtcbNotCleared.setText("8888");
 
+        jLabel59.setText("jLabel59");
+
+        lblisCleared.setFont(new java.awt.Font("Lucida Grande", 1, 16)); // NOI18N
+        lblisCleared.setText("Not Cleared");
+
         javax.swing.GroupLayout jPanel21Layout = new javax.swing.GroupLayout(jPanel21);
         jPanel21.setLayout(jPanel21Layout);
         jPanel21Layout.setHorizontalGroup(
@@ -1238,22 +1236,26 @@ public class fmlUserInterface extends javax.swing.JFrame {
                                 .addComponent(btncbUpd)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(btncbAdd)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(cckcbIsCleared)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(lblcbID, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(150, 150, 150))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                             .addGroup(jPanel21Layout.createSequentialGroup()
                                 .addComponent(jLabel50, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(cmbcbType, javax.swing.GroupLayout.PREFERRED_SIZE, 131, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(0, 0, Short.MAX_VALUE))))
+                                .addGap(0, 0, Short.MAX_VALUE)))
+                        .addComponent(lblisCleared, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGap(102, 102, 102)
+                        .addComponent(jLabel59))
                     .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel21Layout.createSequentialGroup()
                         .addComponent(jLabel34, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(txtcbDate, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jLabel44, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGroup(jPanel21Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel21Layout.createSequentialGroup()
+                                .addGap(6, 6, 6)
+                                .addComponent(lblcbID, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(0, 0, Short.MAX_VALUE))
+                            .addComponent(jLabel44, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                     .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel21Layout.createSequentialGroup()
                         .addGroup(jPanel21Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel21Layout.createSequentialGroup()
@@ -1315,7 +1317,8 @@ public class fmlUserInterface extends javax.swing.JFrame {
                 .addGroup(jPanel21Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel34)
                     .addComponent(txtcbDate, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel44))
+                    .addComponent(jLabel44)
+                    .addComponent(lblcbID))
                 .addGap(0, 4, Short.MAX_VALUE)
                 .addGroup(jPanel21Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(jLabel43)
@@ -1337,8 +1340,8 @@ public class fmlUserInterface extends javax.swing.JFrame {
                     .addComponent(btncbDel)
                     .addComponent(btncbUpd)
                     .addComponent(btncbAdd)
-                    .addComponent(cckcbIsCleared)
-                    .addComponent(lblcbID))
+                    .addComponent(jLabel59)
+                    .addComponent(lblisCleared))
                 .addGap(8, 8, 8))
         );
 
@@ -1382,7 +1385,9 @@ public class fmlUserInterface extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanel15Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(jPanel22, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jPanel21, javax.swing.GroupLayout.PREFERRED_SIZE, 454, Short.MAX_VALUE)))
+                            .addGroup(jPanel15Layout.createSequentialGroup()
+                                .addComponent(jPanel21, javax.swing.GroupLayout.PREFERRED_SIZE, 412, Short.MAX_VALUE)
+                                .addGap(42, 42, 42))))
                     .addComponent(jPanel16, javax.swing.GroupLayout.PREFERRED_SIZE, 908, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jPanel18, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
@@ -1408,7 +1413,7 @@ public class fmlUserInterface extends javax.swing.JFrame {
             pnlLedgerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pnlLedgerLayout.createSequentialGroup()
                 .addComponent(jPanel15, javax.swing.GroupLayout.PREFERRED_SIZE, 909, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
+                .addGap(0, 286, Short.MAX_VALUE))
         );
         pnlLedgerLayout.setVerticalGroup(
             pnlLedgerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -2729,7 +2734,7 @@ public class fmlUserInterface extends javax.swing.JFrame {
         //cmbcbCategory.setSelectedIndex(-1);
         cmbcbType.setSelectedIndex(-1);
         lblcbID.setText("");
-        cckcbIsCleared.setSelected(false);
+        lblisCleared.setText("");
         txtcbBank.setText("    ?  ");
         txtcbBalance.setText("  ?  ");
         txtcbNotCleared.setText(" ? ");
@@ -2744,6 +2749,10 @@ public class fmlUserInterface extends javax.swing.JFrame {
         int cbFOM = dtx.getIntFOM(IEmonTracker);
         int cbEOM = dtx.getIntEOM(IEmonTracker);
         GetLedgerTransByDate(cbFOM, cbEOM);
+        
+        //update starting balance
+        CheckBookBalance();
+        
     }//GEN-LAST:event_bntRegisterActionPerformed
 
     // MAIN UI
@@ -3217,6 +3226,21 @@ public class fmlUserInterface extends javax.swing.JFrame {
         
     }
     
+    // CHECKBOOK
+    // Update Starting Balance
+    private void CheckBookBalance(){
+        int row = tblCheckbook.getRowCount() - 1;
+        if(row>-1){
+            String sAmt = String.valueOf(ledgerModel.getValueAt(0,5));
+            int amt = Integer.valueOf(sAmt);
+            if(amt<0){ amt = amt*-1;}
+            String sBal = String.valueOf(ledgerModel.getValueAt(0, 6));
+            int bal = Integer.valueOf(sBal);
+            int tot = amt + bal;
+            lblcbStartBal.setText(String.valueOf(tot));
+        }
+    }
+    
     // INCOME EXPENSES
     // updates the last panel of summary data specific to 
     private void RefreshAnalytics(int dateStart, int dateEnd){
@@ -3678,6 +3702,7 @@ public class fmlUserInterface extends javax.swing.JFrame {
         rdoLedgerWeek.setSelected(false);
         rdoLedgerActive.setSelected(false);
         GetLedgerTransByDate(inTheBeginning, inTheYear2525);
+        CheckBookBalance();
     }//GEN-LAST:event_rdoLedgerAllActionPerformed
 
     // Checkbook
@@ -3689,6 +3714,7 @@ public class fmlUserInterface extends javax.swing.JFrame {
         int cbFOM = dtx.getIntFOM(IEmonTracker);    //monTracker should be global for the entire application
         int cbEOM = dtx.getIntEOM(IEmonTracker);
         GetLedgerTransByDate(cbFOM, cbEOM);
+        CheckBookBalance();
     }//GEN-LAST:event_rdoLedgerMonthActionPerformed
     // Checkbook
     // View week record
@@ -3700,6 +3726,7 @@ public class fmlUserInterface extends javax.swing.JFrame {
         int cbFOW = dtx.getIntFOW(weekTracker);
         int cbEOW = dtx.getIntEOW(weekTracker);
         GetLedgerTransByDate(cbFOW, cbEOW);
+        CheckBookBalance();
     }//GEN-LAST:event_rdoLedgerWeekActionPerformed
     // Checkbook
     // View all non reconciled
@@ -3718,12 +3745,14 @@ public class fmlUserInterface extends javax.swing.JFrame {
             int cbFOM = dtx.getIntFOM(IEmonTracker);    //monTracker should be global for the entire application
             int cbEOM = dtx.getIntEOM(IEmonTracker);
             GetLedgerTransByDate(cbFOM, cbEOM);
+            CheckBookBalance();
         }
         if(rdoLedgerWeek.isSelected()){
             weekTracker = weekTracker - 7;
             int cbFOW = dtx.getIntFOW(weekTracker);
             int cbEOW = dtx.getIntEOW(weekTracker);
             GetLedgerTransByDate(cbFOW, cbEOW);
+            CheckBookBalance();
         }
         
     }//GEN-LAST:event_btnLedgerBackActionPerformed
@@ -3735,12 +3764,14 @@ public class fmlUserInterface extends javax.swing.JFrame {
             int cbFOM = dtx.getIntFOM(IEmonTracker);    //monTracker should be global for the entire application
             int cbEOM = dtx.getIntEOM(IEmonTracker);
             GetLedgerTransByDate(cbFOM, cbEOM);
+            CheckBookBalance();
         }
         if(rdoLedgerWeek.isSelected()){
             weekTracker = weekTracker + 7;
             int cbFOW = dtx.getIntFOW(weekTracker);
             int cbEOW = dtx.getIntEOW(weekTracker);
             GetLedgerTransByDate(cbFOW, cbEOW);
+            CheckBookBalance();
         }
 
     }//GEN-LAST:event_btnLedgerForwardActionPerformed
@@ -3777,6 +3808,7 @@ public class fmlUserInterface extends javax.swing.JFrame {
             int cbFOM = dtx.getIntFOM(IEmonTracker);
             int cbEOM = dtx.getIntEOM(IEmonTracker);
             GetLedgerTransByDate(cbFOM, cbEOM);
+            CheckBookBalance();
         }
         else{
             DisplayCBmessage("Check add data entry. Something not right");
@@ -3794,7 +3826,7 @@ public class fmlUserInterface extends javax.swing.JFrame {
             String cat = cmbcbCategory.getSelectedItem().toString();
             String name = txtcbName.getText();
             int amt = Integer.valueOf(txtcbAmt.getText());
-            boolean cleared = cckcbIsCleared.isSelected();
+            boolean cleared = false;
             
             String success = AddandUpdateTransaction(action, id, userDate8,  
                                    type, cat, name, 
@@ -3806,6 +3838,7 @@ public class fmlUserInterface extends javax.swing.JFrame {
             int cbFOM = dtx.getIntFOM(IEmonTracker);
             int cbEOM = dtx.getIntEOM(IEmonTracker);
             GetLedgerTransByDate(cbFOM, cbEOM);
+            CheckBookBalance();
         }
         else{
             DisplayCBmessage("Check update data entry. Somethings not right");
@@ -3825,15 +3858,12 @@ public class fmlUserInterface extends javax.swing.JFrame {
             int cbFOM = dtx.getIntFOM(IEmonTracker);
             int cbEOM = dtx.getIntEOM(IEmonTracker);
             GetLedgerTransByDate(cbFOM, cbEOM);
+            CheckBookBalance();
         }
         else{
             DisplayIEmessage("Select something to delete instead of trying to break the program");
         }
     }//GEN-LAST:event_btncbDelActionPerformed
-
-    private void cckcbIsClearedActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cckcbIsClearedActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_cckcbIsClearedActionPerformed
     // Checkbook
     // fill DE when user clicks on checkbook table
     private void tblCheckbookMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblCheckbookMouseClicked
@@ -3841,6 +3871,15 @@ public class fmlUserInterface extends javax.swing.JFrame {
         
         String ids = String.valueOf(ledgerModel.getValueAt(i, 0));
         int id = Integer.valueOf(ids);
+        
+        String stest = String.valueOf(ledgerModel.getValueAt(i, 1));
+        boolean test = Boolean.valueOf(stest);
+        if(test){
+            lblisCleared.setText("Cleared");
+        }
+        else{
+            lblisCleared.setText("Uncleared");
+        }
         
         TransactionLong xTran = sqlite.GetTransaction(id);
         
@@ -3878,6 +3917,14 @@ public class fmlUserInterface extends javax.swing.JFrame {
         String yr_s = String.valueOf(yr_i);
         String mdyDate = xTran.getMon()+ "/" + xTran.getDay() + "/" + yr_s;
         txtcbDate.setText(mdyDate);
+        
+        boolean cleared = xTran.getCleared();
+        if (cleared){
+            lblisCleared.setText("Cleared");
+        }
+        else {
+            lblisCleared.setText("Not Cleared");
+        }
         
     }//GEN-LAST:event_tblCheckbookMouseClicked
 
@@ -3936,7 +3983,7 @@ public class fmlUserInterface extends javax.swing.JFrame {
         txtcbName.setText("");
         cmbcbCategory.setSelectedIndex(-1);
         cmbcbType.setSelectedIndex(-1);
-        cckcbIsCleared.setSelected(false);
+        lblisCleared.setText("");
     }
     
     // INCOME EXPENSE
@@ -4041,7 +4088,6 @@ public class fmlUserInterface extends javax.swing.JFrame {
     private javax.swing.JButton btncbAdd;
     private javax.swing.JButton btncbDel;
     private javax.swing.JButton btncbUpd;
-    private javax.swing.JCheckBox cckcbIsCleared;
     private javax.swing.JCheckBox chkIErepeat;
     private javax.swing.JComboBox<String> cmbAIbudgItem;
     private javax.swing.JComboBox<String> cmbIEcategory;
@@ -4098,10 +4144,10 @@ public class fmlUserInterface extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel52;
     private javax.swing.JLabel jLabel53;
     private javax.swing.JLabel jLabel54;
-    private javax.swing.JLabel jLabel55;
     private javax.swing.JLabel jLabel56;
     private javax.swing.JLabel jLabel57;
     private javax.swing.JLabel jLabel58;
+    private javax.swing.JLabel jLabel59;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel60;
     private javax.swing.JLabel jLabel61;
@@ -4204,6 +4250,8 @@ public class fmlUserInterface extends javax.swing.JFrame {
     private javax.swing.JLabel lblcbID;
     private javax.swing.JLabel lblcbInfo;
     private javax.swing.JLabel lblcbMessage;
+    private javax.swing.JLabel lblcbStartBal;
+    private javax.swing.JLabel lblisCleared;
     private javax.swing.JPanel pnlAnalytics;
     private javax.swing.JPanel pnlBudget;
     private javax.swing.JPanel pnlCarder;
