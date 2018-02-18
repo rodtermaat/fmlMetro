@@ -779,7 +779,10 @@
                     </Component>
                     <Component class="javax.swing.JLabel" name="lblAIMessage">
                       <Properties>
-                        <Property name="text" type="java.lang.String" value="jLabel33"/>
+                        <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                          <Color blue="33" green="ff" red="0" type="rgb"/>
+                        </Property>
+                        <Property name="text" type="java.lang.String" value=" . message center"/>
                       </Properties>
                     </Component>
                   </SubComponents>

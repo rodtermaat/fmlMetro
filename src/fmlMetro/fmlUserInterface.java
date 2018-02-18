@@ -22,6 +22,8 @@ import java.lang.String;
 import java.math.RoundingMode;
 import java.text.DecimalFormat;
 import java.util.ArrayList;
+import javax.swing.event.TableModelEvent;
+import javax.swing.event.TableModelListener;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableCellRenderer;
 
@@ -68,6 +70,20 @@ public class fmlUserInterface extends javax.swing.JFrame {
      */
     public fmlUserInterface() {
         initComponents();
+        
+        //set up the model for the checkbook register
+        ledgerModel = (DefaultTableModel) tblCheckbook.getModel();
+        
+//        tblCheckbook.getModel().addTableModelListener(new TableModelListener() {
+//            public void tableChanged(TableModelEvent e) {
+//                int i = tblCheckbook.getSelectedRow();
+//                if(i>-1){
+//                String stest = String.valueOf(ledgerModel.getValueAt(i, 1));
+//                System.out.println("selected row is " + i + " and " + stest);
+//                i = -1;
+//                }
+//            } 
+//        });
         
         // Fire the app up on the Analytics screen
         pnlCarder.removeAll();
@@ -125,7 +141,7 @@ public class fmlUserInterface extends javax.swing.JFrame {
         expModel = (DefaultTableModel) tblExpSummary.getModel();
         
         //set up the model for the checkbook register
-        ledgerModel = (DefaultTableModel) tblCheckbook.getModel();
+        //ledgerModel = (DefaultTableModel) tblCheckbook.getModel();
         
         // Center on the screen
         //Toolkit tool = Toolkit.getDefaultToolkit();
@@ -773,7 +789,8 @@ public class fmlUserInterface extends javax.swing.JFrame {
         jLabel10.setFont(new java.awt.Font("Lucida Grande", 1, 18)); // NOI18N
         jLabel10.setText(". pretty chart to tell you nothing");
 
-        lblAIMessage.setText("jLabel33");
+        lblAIMessage.setForeground(new java.awt.Color(0, 255, 51));
+        lblAIMessage.setText(" . message center");
 
         javax.swing.GroupLayout jPanel6Layout = new javax.swing.GroupLayout(jPanel6);
         jPanel6.setLayout(jPanel6Layout);
@@ -2938,7 +2955,7 @@ public class fmlUserInterface extends javax.swing.JFrame {
 //        }   
 //    }
     
-    // INCOME EXPENSE fuck
+    // INCOME EXPENSE
     // adds income and expenses
     private void btnIEaddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnIEaddActionPerformed
 
@@ -3013,6 +3030,9 @@ public class fmlUserInterface extends javax.swing.JFrame {
       
       ArrayList<TransactionLong> theLedger = sqlite.GetLedgerByDate(dateStart, dateEnd);
       Object rowData[] = new Object[7];
+      String newDate = "";
+      String oldDate = "";
+      
       for(int i = 0; i < theLedger.size(); i++)
       {
         rowData[0] = theLedger.get(i).getID();
@@ -3022,7 +3042,14 @@ public class fmlUserInterface extends javax.swing.JFrame {
         String smon = sdate8.substring(4, 6);
         String sday = sdate8.substring(6);
         String shortDate = smon + "/" + sday;
-        rowData[2] = shortDate;
+        newDate = shortDate;
+        if(newDate.equals(oldDate)){
+            rowData[2] = "";
+        } else {
+            rowData[2] = newDate;
+            oldDate = newDate;
+        }
+        //rowData[2] = shortDate;
         
         rowData[3] = theLedger.get(i).getName();
         rowData[4] = theLedger.get(i).getCategory();
