@@ -1368,6 +1368,11 @@ public class fmlUserInterface extends javax.swing.JFrame {
         jLabel58.setText(" . print summary report");
 
         jButton1.setText("the best for last");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel22Layout = new javax.swing.GroupLayout(jPanel22);
         jPanel22.setLayout(jPanel22Layout);
@@ -1377,8 +1382,8 @@ public class fmlUserInterface extends javax.swing.JFrame {
                 .addContainerGap()
                 .addComponent(jLabel58)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 189, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(49, Short.MAX_VALUE))
+                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 172, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel22Layout.setVerticalGroup(
             jPanel22Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -1430,7 +1435,7 @@ public class fmlUserInterface extends javax.swing.JFrame {
             pnlLedgerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pnlLedgerLayout.createSequentialGroup()
                 .addComponent(jPanel15, javax.swing.GroupLayout.PREFERRED_SIZE, 909, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 286, Short.MAX_VALUE))
+                .addGap(0, 0, Short.MAX_VALUE))
         );
         pnlLedgerLayout.setVerticalGroup(
             pnlLedgerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -2441,9 +2446,9 @@ public class fmlUserInterface extends javax.swing.JFrame {
         jPanel14.setBackground(new java.awt.Color(102, 102, 102));
 
         lblIEmessage.setBackground(new java.awt.Color(102, 102, 102));
-        lblIEmessage.setForeground(new java.awt.Color(255, 255, 255));
+        lblIEmessage.setForeground(new java.awt.Color(0, 255, 51));
         lblIEmessage.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        lblIEmessage.setText("...Welcome to fml Finance message center");
+        lblIEmessage.setText(" . message center");
         lblIEmessage.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
 
         javax.swing.GroupLayout jPanel14Layout = new javax.swing.GroupLayout(jPanel14);
@@ -3954,6 +3959,12 @@ public class fmlUserInterface extends javax.swing.JFrame {
         }
         
     }//GEN-LAST:event_tblCheckbookMouseClicked
+    // CHECKBOOK
+    // opens a new window and populates summary view for printing
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        PrintSummary ps = new PrintSummary();
+        ps.setVisible(true);
+    }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -4016,8 +4027,8 @@ public class fmlUserInterface extends javax.swing.JFrame {
     // INCOME EXPENSE
     // Displays data entry error messages on Income and Expense panel
     private void DisplayIEmessage(String message){
-        lblIEmessage.setText(message);
         
+        lblIEmessage.setText(message);
         Timer t = new Timer(2000, new ActionListener() {
 
             @Override
@@ -4027,13 +4038,14 @@ public class fmlUserInterface extends javax.swing.JFrame {
         });
         t.setRepeats(false);
         t.start();
+        //lblIEmessage.setText(" . message center");
     }
     
     // AI
     // Displays data entry error messages on Budget panel
     private void DisplayAImessage(String message){
-        lblAIMessage.setText(message);
         
+        lblAIMessage.setText(message);
         Timer t = new Timer(2000, new ActionListener() {
 
             @Override
@@ -4043,12 +4055,12 @@ public class fmlUserInterface extends javax.swing.JFrame {
         });
         t.setRepeats(false);
         t.start();
+        //lblAIMessage.setText(" . message center");
     }
     
     private void DisplayCBmessage(String message){
         
         lblcbMessage.setText(message);
-        
         Timer t = new Timer(2000, new ActionListener() {
 
             @Override
@@ -4058,6 +4070,7 @@ public class fmlUserInterface extends javax.swing.JFrame {
         });
         t.setRepeats(false);
         t.start();
+        //lblcbMessage.setText(" . message center");
         
     }
     

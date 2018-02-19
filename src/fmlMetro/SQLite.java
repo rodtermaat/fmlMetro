@@ -17,6 +17,43 @@ import java.util.ArrayList;
 import java.sql.*;
 import java.io.File;
 
+// code storage for summary SQL
+//------------------------------
+//WITH budgetItems AS (
+//SELECT yr, mon, '07' as day, wk,
+//       type, category,
+//       MAX(time) as time, SUM(amount) as amount
+//FROM LEDGER WHERE type = "budget"
+//and date8 <= 20180131
+//GROUP BY yr, mon, wk, type, category
+//ORDER BY yr, mon, wk, type, category
+//),
+//IncExp AS (SELECT yr, mon,day, wk,
+//       type,name AS category,time, amount 
+//FROM LEDGER WHERE type <> "budget"
+//and date8 < 20180131
+//ORDER BY yr, mon, wk, day
+//),
+//almostCB AS (SELECT * FROM budgetItems
+//UNION ALL
+//SELECT * FROM IncExp
+//ORDER BY yr, mon, day, time
+//),
+//checkbook AS (SELECT CAST((yr || mon || day) AS INT) as date8, yr, mon, 
+//day, wk, type, category , time, amount 
+//FROM almostCB
+//)
+//SELECT date8, day, mon, yr, wk, type, time,
+//        category, amount,
+//        (SELECT SUM(t2.amount) FROM checkbook t2 WHERE
+//        ((t2.date8 <= t1.date8 AND t2.time <= t1.time) OR
+//        (t2.date8 < t1.date8))
+//        ORDER BY date8 ) as balance
+//FROM checkbook t1
+//WHERE date8 <= 20180131
+//ORDER BY date8, time
+//------------------------------
+
 public class SQLite
 {
     // instance variables - replace the example below with your own
