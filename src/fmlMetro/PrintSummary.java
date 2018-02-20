@@ -37,6 +37,8 @@ public class PrintSummary extends javax.swing.JFrame {
       Object rowData[] = new Object[7];
       String newDate = "";
       String oldDate = "";
+      String newWeek = "";
+      String oldWeek = "";
       
       for(int i = 0; i < theLedger.size(); i++)
       {
@@ -53,20 +55,37 @@ public class PrintSummary extends javax.swing.JFrame {
             printModel.addRow(rowData);
         }
         
+        //month
         rowData[0] = "";
-        rowData[1] = theLedger.get(i).getWk();
-          
+        
+        //week
+        newWeek = theLedger.get(i).getWk();
+        if(newWeek.equals(oldWeek)){
+            rowData[1] = "";
+        } else {
+            rowData[1] = newWeek;
+            oldWeek = newWeek;
+        }
+        
+        //date
         String sdate8 = String.valueOf(theLedger.get(i).getDate());
         String smon = sdate8.substring(4, 6);
         String sday = sdate8.substring(6);
         String shortDate = smon + "/" + sday;
         newDate = shortDate;
-        if(newDate.equals(oldDate)){
+        
+        if(theLedger.get(i).getType().equals("budget")){
             rowData[2] = "";
         } else {
-            rowData[2] = newDate;
-            oldDate = newDate;
+            rowData[2] = shortDate;
         }
+        
+//        if(newDate.equals(oldDate)){
+//            rowData[2] = "";
+//        } else {
+//            rowData[2] = newDate;
+//            oldDate = newDate;
+//        }
         
         if(theLedger.get(i).getType().equals("budget")){
             rowData[4] = theLedger.get(i).getCategory(); 
@@ -172,10 +191,10 @@ public class PrintSummary extends javax.swing.JFrame {
         });
         jScrollPane1.setViewportView(tblPrinter);
         if (tblPrinter.getColumnModel().getColumnCount() > 0) {
-            tblPrinter.getColumnModel().getColumn(0).setMinWidth(35);
-            tblPrinter.getColumnModel().getColumn(0).setPreferredWidth(35);
-            tblPrinter.getColumnModel().getColumn(1).setMinWidth(20);
-            tblPrinter.getColumnModel().getColumn(1).setPreferredWidth(20);
+            tblPrinter.getColumnModel().getColumn(0).setMinWidth(30);
+            tblPrinter.getColumnModel().getColumn(0).setPreferredWidth(30);
+            tblPrinter.getColumnModel().getColumn(1).setMinWidth(15);
+            tblPrinter.getColumnModel().getColumn(1).setPreferredWidth(15);
             tblPrinter.getColumnModel().getColumn(2).setMinWidth(25);
             tblPrinter.getColumnModel().getColumn(2).setPreferredWidth(25);
             tblPrinter.getColumnModel().getColumn(3).setMinWidth(70);
