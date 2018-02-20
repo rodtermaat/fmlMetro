@@ -6,6 +6,7 @@
 package fmlMetro;
 
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -30,6 +31,43 @@ public class PrintSummary extends javax.swing.JFrame {
         //set up the model for the checkbook register
         printModel = (DefaultTableModel) tblPrinter.getModel();   
         
+        printModel.setRowCount(0);
+      
+      ArrayList<TransactionLong> theLedger = sqlx.PrintCheckbook(20180101, 20180131);
+      Object rowData[] = new Object[7];
+      String newDate = "";
+      String oldDate = "";
+      
+      for(int i = 0; i < theLedger.size(); i++)
+      {
+        rowData[0] = "January";
+        rowData[1] = theLedger.get(i).getWk();
+          
+        String sdate8 = String.valueOf(theLedger.get(i).getDate());
+        String smon = sdate8.substring(4, 6);
+        String sday = sdate8.substring(6);
+        String shortDate = smon + "/" + sday;
+        newDate = shortDate;
+        if(newDate.equals(oldDate)){
+            rowData[2] = "";
+        } else {
+            rowData[2] = newDate;
+            oldDate = newDate;
+        }
+        
+        if(theLedger.get(i).getType().equals("budget")){
+            rowData[4] = theLedger.get(i).getCategory(); 
+            rowData[3] = "";
+        }else {
+            rowData[3] = theLedger.get(i).getCategory();
+            rowData[4] = "";
+        }
+        rowData[5] = theLedger.get(i).getAmount();
+        rowData[6] = theLedger.get(i).getBalance();
+        
+        printModel.addRow(rowData); 
+      }
+
     }
 
     /**
@@ -59,6 +97,11 @@ public class PrintSummary extends javax.swing.JFrame {
 
         btnPrinter.setFont(new java.awt.Font("Lucida Grande", 0, 14)); // NOI18N
         btnPrinter.setText("print me");
+        btnPrinter.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnPrinterActionPerformed(evt);
+            }
+        });
 
         jLabel1.setFont(new java.awt.Font("Lucida Grande", 0, 16)); // NOI18N
         jLabel1.setText(" . print a copy, put it in your pocket, and reveal in your moral superiority");
@@ -90,20 +133,20 @@ public class PrintSummary extends javax.swing.JFrame {
 
         tblPrinter.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null}
             },
             new String [] {
-                "date", "description", "amount", "balance"
+                "month", "week", "date", "description", "budget", "amount", "balance"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.String.class, java.lang.String.class, java.lang.Integer.class, java.lang.Integer.class
+                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.Integer.class, java.lang.Integer.class
             };
             boolean[] canEdit = new boolean [] {
-                false, false, false, false
+                false, false, false, false, false, false, false
             };
 
             public Class getColumnClass(int columnIndex) {
@@ -150,6 +193,11 @@ public class PrintSummary extends javax.swing.JFrame {
     private void formWindowClosed(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosed
         // TODO add your handling code here:
     }//GEN-LAST:event_formWindowClosed
+
+    private void btnPrinterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPrinterActionPerformed
+        
+        
+    }//GEN-LAST:event_btnPrinterActionPerformed
 
     /**
      * @param args the command line arguments

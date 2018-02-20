@@ -432,54 +432,100 @@ public class SQLite
         TransactionLong aRow;
                     // a single instance of the arraylist (row)
     
-        String sql = "select id, date8, day, mon, yr, wk, type, time,\n" +
-                    " cleared, category, name, amount,\n" +
-                    " (select sum(t2.amount) from ledger t2 where\n" +
-                    " ((t2.date8 <= t1.date8 and t2.time <= t1.time) or\n" +
-                    " (t2.date8 < t1.date8))\n" +
-                    " order by date8 ) as accumulated\n" +
-                    " from ledger t1\n" +
-                    " where date8 <= ?\n" +
-                    " order by date8, time;";
-
-        // code storage for summary SQL
-//------------------------------
-//WITH budgetItems AS (
-//SELECT yr, mon, '07' as day, wk,
-//       type, category,
-//       MAX(time) as time, SUM(amount) as amount
-//FROM LEDGER WHERE type = "budget"
-//and date8 <= 20180131
-//GROUP BY yr, mon, wk, type, category
-//ORDER BY yr, mon, wk, type, category
-//),
-//IncExp AS (SELECT yr, mon,day, wk,
-//       type,name AS category,time, amount 
-//FROM LEDGER WHERE type <> "budget"
-//and date8 < 20180131
-//ORDER BY yr, mon, wk, day
-//),
-//almostCB AS (SELECT * FROM budgetItems
-//UNION ALL
-//SELECT * FROM IncExp
-//ORDER BY yr, mon, day, time
-//),
-//checkbook AS (SELECT CAST((yr || mon || day) AS INT) as date8, yr, mon, 
-//day, wk, type, category , time, amount 
-//FROM almostCB
-//)
-//SELECT date8, day, mon, yr, wk, type, time,
-//        category, amount,
-//        (SELECT SUM(t2.amount) FROM checkbook t2 WHERE
-//        ((t2.date8 <= t1.date8 AND t2.time <= t1.time) OR
-//        (t2.date8 < t1.date8))
-//        ORDER BY date8 ) as balance
-//FROM checkbook t1
-//WHERE date8 <= 20180131
-//ORDER BY date8, time
-//------------------------------
-
+                    //extract yyyymm from dateStart
+           int ccyymm = dateStart/100;
+           String cym = String.valueOf(ccyymm);
+           String cymd = cym + "99";
+           int ccyymm99 = Integer.valueOf(cymd);
+           
+        String sql = "WITH budgetItems AS (SELECT yr, mon, " +
+                     " '99' as day, wk,\n" +
+                     " type, category, MAX(time) as time,\n" +
+                     " SUM(amount) as amount FROM ledger WHERE\n" +
+                     " type = \"budget\" " +
+                     " and date8<=?\n" +
+                     " GROUP BY yr, mon, wk, category\n" +
+                     " ),\n" +
+                     " IncExp AS (SELECT yr, mon,day, wk,\n" +
+                     " type,name AS category,time, amount \n" +
+                     " FROM LEDGER WHERE type <> \"budget\"\n" +
+                     " and date8 <=?\n" +
+                     " ),\n" +
+                     " almostCB AS (SELECT yr,mon,day,wk,type,category,time,amount FROM budgetItems\n" +
+                     " UNION ALL\n" +
+                     " SELECT yr,mon,day,wk,type,category,time,amount FROM IncExp\n" +
+                     " ),\n" +
+                     " checkbook AS\n" +
+                     " (SELECT CAST((yr || mon || day) AS INT) as date8,\n" +
+                     " yr, mon, day, wk, type, category , time, amount\n" + 
+                     " FROM almostCB\n" +
+                     " )\n" +
+                     " SELECT date8, day, mon, yr, wk, type, time,\n" +
+                     " category, amount,\n" +
+                     " (SELECT SUM(t2.amount) FROM checkbook t2 WHERE\n" +
+                     " ((t2.date8 <= t1.date8 AND t2.time <= t1.time) OR\n" +
+                     " (t2.date8 < t1.date8))\n" +
+                     " ORDER BY yr,mon,wk,date8, time ) as balance\n" +
+                     " FROM checkbook t1 WHERE date8 <=?\n" +
+                     " ORDER BY yr,mon,wk,date8, time";
+ 
+                     //" FROM checkbook t1 WHERE date8 <= ?\n" +
         
+        try {
+           Class.forName("org.sqlite.JDBC");
+           Connection conn = DriverManager.getConnection(url);
+           conn.setAutoCommit(false);
+           
+           PreparedStatement pstmt  = conn.prepareStatement(sql);
+           pstmt.setInt(1,dateEnd);
+           pstmt.setInt(2,dateEnd);
+           pstmt.setInt(3, ccyymm99);
+           ResultSet rs = pstmt.executeQuery();
+           
+           
+           //extract yyyymm from dateStart
+           //int ccyymm = dateStart/100;
+           //String cym = String.valueOf(ccyymm);
+           //String cymd = cym + "00";
+           //int ccyymm00 = Integer.valueOf(cymd);
+               
+           while ( rs.next() ) {
+              int id = 99;
+              int date8 = rs.getInt("date8");
+              String day = rs.getString("day");
+              String mon = rs.getString("mon");
+              String yr = rs.getString("yr");
+              String wk = rs.getString("wk");
+              String type = rs.getString("type");
+              String category = rs.getString("category");
+              String name = "Print Summary";
+              int amount = rs.getInt("amount");
+              boolean cleared = false;
+              int balance = rs.getInt("balance");
+                            
+              //if((date8>=dateStart) && (date8 <= dateEnd)) {
+              if((date8>=dateStart) && (date8 <= ccyymm99)) {
+                aRow = new TransactionLong(id, date8, day, mon, yr, wk, type, 
+                        category, name, amount, cleared, balance);
+                allRows.add(aRow);
+              }
+           }
+           
+            if(rs != null) {
+                rs.close();
+            }
+            if(pstmt != null){
+                pstmt.close();
+            }
+            if(conn != null) {
+                conn.close();
+            } 
+        }
+        catch ( Exception e ) {
+            System.out.println("Print Summary: " + e.getMessage());
+           System.out.println( e.getClass().getName() + ": " + e.getMessage() );
+        }
+        return allRows;      
     }
     
     // Returns expense summary information

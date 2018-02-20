@@ -68,6 +68,9 @@ public class TransactionLong
     public String getYr(){
         return yr;
     }
+    public String getWk(){
+        return wk;
+    }
     public String getType(){
         return type;
     }
