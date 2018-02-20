@@ -433,14 +433,18 @@ public class SQLite
                     // a single instance of the arraylist (row)
     
                     //extract yyyymm from dateStart
-           int ccyymm = dateStart/100;
+           int ccyymm = dateEnd/100;
            String cym = String.valueOf(ccyymm);
            String cymd = cym + "99";
            int ccyymm99 = Integer.valueOf(cymd);
            
         String sql = "WITH budgetItems AS (SELECT yr, mon, " +
-                     " '99' as day, wk,\n" +
-                     " type, category, MAX(time) as time,\n" +
+                     " CASE wk WHEN '1' THEN '07'" +
+                     "         WHEN '2' THEN '14'" +
+                     "         WHEN '3' THEN '21'" +
+                     "         WHEN '4' THEN '28'" +
+                     "         WHEN '5' THEN '30' END day,\n" +
+                     " wk, type, category, MAX(time) as time,\n" +
                      " SUM(amount) as amount FROM ledger WHERE\n" +
                      " type = \"budget\" " +
                      " and date8<=?\n" +
@@ -479,7 +483,7 @@ public class SQLite
            PreparedStatement pstmt  = conn.prepareStatement(sql);
            pstmt.setInt(1,dateEnd);
            pstmt.setInt(2,dateEnd);
-           pstmt.setInt(3, ccyymm99);
+           pstmt.setInt(3,dateEnd);
            ResultSet rs = pstmt.executeQuery();
            
            
@@ -504,7 +508,7 @@ public class SQLite
               int balance = rs.getInt("balance");
                             
               //if((date8>=dateStart) && (date8 <= dateEnd)) {
-              if((date8>=dateStart) && (date8 <= ccyymm99)) {
+              if((date8>=dateStart) && (date8 <= dateEnd)) {
                 aRow = new TransactionLong(id, date8, day, mon, yr, wk, type, 
                         category, name, amount, cleared, balance);
                 allRows.add(aRow);
