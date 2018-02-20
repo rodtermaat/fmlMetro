@@ -40,7 +40,20 @@ public class PrintSummary extends javax.swing.JFrame {
       
       for(int i = 0; i < theLedger.size(); i++)
       {
-        rowData[0] = "January";
+        if(i==0){
+            rowData[0] = "January";
+            rowData[1] = "";
+            rowData[2] = "";
+            rowData[3] = "";
+            rowData[4] = "Starting Balance";
+            rowData[5] = "";
+            int amt = theLedger.get(i).getAmount();
+            if(amt<0){ amt= amt*-1;}
+            rowData[6] = amt + theLedger.get(i).getBalance();
+            printModel.addRow(rowData);
+        }
+        
+        rowData[0] = "";
         rowData[1] = theLedger.get(i).getWk();
           
         String sdate8 = String.valueOf(theLedger.get(i).getDate());
@@ -158,6 +171,22 @@ public class PrintSummary extends javax.swing.JFrame {
             }
         });
         jScrollPane1.setViewportView(tblPrinter);
+        if (tblPrinter.getColumnModel().getColumnCount() > 0) {
+            tblPrinter.getColumnModel().getColumn(0).setMinWidth(35);
+            tblPrinter.getColumnModel().getColumn(0).setPreferredWidth(35);
+            tblPrinter.getColumnModel().getColumn(1).setMinWidth(20);
+            tblPrinter.getColumnModel().getColumn(1).setPreferredWidth(20);
+            tblPrinter.getColumnModel().getColumn(2).setMinWidth(25);
+            tblPrinter.getColumnModel().getColumn(2).setPreferredWidth(25);
+            tblPrinter.getColumnModel().getColumn(3).setMinWidth(70);
+            tblPrinter.getColumnModel().getColumn(3).setPreferredWidth(70);
+            tblPrinter.getColumnModel().getColumn(4).setMinWidth(70);
+            tblPrinter.getColumnModel().getColumn(4).setPreferredWidth(70);
+            tblPrinter.getColumnModel().getColumn(5).setMinWidth(40);
+            tblPrinter.getColumnModel().getColumn(5).setPreferredWidth(40);
+            tblPrinter.getColumnModel().getColumn(6).setMinWidth(40);
+            tblPrinter.getColumnModel().getColumn(6).setPreferredWidth(40);
+        }
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
