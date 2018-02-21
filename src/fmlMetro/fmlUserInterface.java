@@ -94,6 +94,15 @@ public class fmlUserInterface extends javax.swing.JFrame {
         pnlCarder.repaint();
         pnlCarder.validate();
         
+        // see of the db is already set up.  0 means there is no table
+        int isReady = sqlite.IsAcctSetup();
+        if(isReady == 0){
+            sqlite.CreateDataBase();
+            sqlite.CreateFMLtbl();
+            sqlite.CreateBudgetTable();
+            //displayMessage("Enter 1st transaction to set up Acct. balance");
+        }
+        
         // Budgeted amount
         Budget budx = sqlite.GetBudget();
         lblaibSave.setText(String.valueOf(budx.GetBudgetSave()));
@@ -123,24 +132,20 @@ public class fmlUserInterface extends javax.swing.JFrame {
                 budgWeek.GetBudgetGroc() + budgWeek.GetBudgetSave() + 
                 budgWeek.GetBudgetTransp() + budgWeek.GetBudgetUnplan();
         lblaiaTot.setText("$" + String.valueOf(budgWeekTot));
-        
-        
-        // see of the db is already set up.  0 means there is no table
-        int isReady = sqlite.IsAcctSetup();
-        if(isReady == 0){
-            sqlite.CreateDataBase();
-            sqlite.CreateFMLtbl();
-            sqlite.CreateBudgetTable();
-            //displayMessage("Enter 1st transaction to set up Acct. balance");
-        } 
-        
+           
         //set up model for tblLedger
         model = (DefaultTableModel) tblLedger.getModel();
         
         //set up model for tblBudgetSummary
         expModel = (DefaultTableModel) tblExpSummary.getModel();
         
-        //set up the model for the checkbook register
+        
+        //Pie Chart
+        int intFOM = dtx.getIntFOM(0);
+        int intEOM = dtx.getIntEOM(0);
+        DisplayPieChart(intFOM, intEOM);
+        
+//set up the model for the checkbook register
         //ledgerModel = (DefaultTableModel) tblCheckbook.getModel();
         
         // Center on the screen
@@ -221,6 +226,7 @@ public class fmlUserInterface extends javax.swing.JFrame {
         jPanel6 = new javax.swing.JPanel();
         jLabel10 = new javax.swing.JLabel();
         lblAIMessage = new javax.swing.JLabel();
+        pnlGraph = new javax.swing.JPanel();
         jPanel10 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         cmbAIbudgItem = new javax.swing.JComboBox<>();
@@ -792,24 +798,40 @@ public class fmlUserInterface extends javax.swing.JFrame {
         lblAIMessage.setForeground(new java.awt.Color(0, 255, 51));
         lblAIMessage.setText(" . message center");
 
+        pnlGraph.setBackground(new java.awt.Color(255, 204, 204));
+
+        javax.swing.GroupLayout pnlGraphLayout = new javax.swing.GroupLayout(pnlGraph);
+        pnlGraph.setLayout(pnlGraphLayout);
+        pnlGraphLayout.setHorizontalGroup(
+            pnlGraphLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 0, Short.MAX_VALUE)
+        );
+        pnlGraphLayout.setVerticalGroup(
+            pnlGraphLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 270, Short.MAX_VALUE)
+        );
+
         javax.swing.GroupLayout jPanel6Layout = new javax.swing.GroupLayout(jPanel6);
         jPanel6.setLayout(jPanel6Layout);
         jPanel6Layout.setHorizontalGroup(
             jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel6Layout.createSequentialGroup()
-                .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel6Layout.createSequentialGroup()
+                .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel6Layout.createSequentialGroup()
                         .addContainerGap()
                         .addComponent(jLabel10, javax.swing.GroupLayout.DEFAULT_SIZE, 398, Short.MAX_VALUE))
-                    .addComponent(lblAIMessage, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(lblAIMessage, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
+            .addComponent(pnlGraph, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         jPanel6Layout.setVerticalGroup(
             jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel6Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLabel10)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 282, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(pnlGraph, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(lblAIMessage, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
@@ -924,7 +946,7 @@ public class fmlUserInterface extends javax.swing.JFrame {
                 .addGroup(pnlAnalyticsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jPanel6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jPanel10, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(298, Short.MAX_VALUE))
         );
         pnlAnalyticsLayout.setVerticalGroup(
             pnlAnalyticsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -1408,7 +1430,7 @@ public class fmlUserInterface extends javax.swing.JFrame {
                         .addGroup(jPanel15Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(jPanel22, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addGroup(jPanel15Layout.createSequentialGroup()
-                                .addComponent(jPanel21, javax.swing.GroupLayout.PREFERRED_SIZE, 412, Short.MAX_VALUE)
+                                .addComponent(jPanel21, javax.swing.GroupLayout.DEFAULT_SIZE, 412, Short.MAX_VALUE)
                                 .addGap(42, 42, 42))))
                     .addComponent(jPanel16, javax.swing.GroupLayout.PREFERRED_SIZE, 908, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -2990,7 +3012,7 @@ public class fmlUserInterface extends javax.swing.JFrame {
                                    type, cat, name, 
                                    amt, cleared);
             if(success.equals("FAIL")){
-                DisplayCBmessage("Big time add error, fyl");
+                DisplayIEmessage("Big time add error, fyl");
             }
             //ClearIEdataEntry();
             //IEmonTracker = 0;
@@ -3006,7 +3028,7 @@ public class fmlUserInterface extends javax.swing.JFrame {
             }
         }
         else{
-            DisplayCBmessage("Check add data entry. Something not right");
+            DisplayIEmessage("Check add data entry. Something not right");
         }
     }//GEN-LAST:event_btnIEaddActionPerformed
     
@@ -3431,20 +3453,28 @@ public class fmlUserInterface extends javax.swing.JFrame {
     // delete a transaction
     private void btnIEdelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnIEdelActionPerformed
         //make sure they have the DE screen filled befor deleting
-        if(!lblID.getText().equals("aaa")){
-            int delID = Integer.valueOf(lblID.getText());
-            sqlite.deleteTran(delID);
-            lblID.setText("");
-            this.ClearIEdataEntry();
+        String validDE = ValidateIEdataEntry();
+        if(validDE.equals("PASS")){
+            if(!lblID.getText().equals("aaa")){
+                int delID = Integer.valueOf(lblID.getText());
+                sqlite.deleteTran(delID);
+                lblID.setText("");
+                this.ClearIEdataEntry();
             
-            //IEmonTracker = 0;
-            int ieFOM = dtx.getIntFOM(IEmonTracker);
-            int ieEOM = dtx.getIntEOM(IEmonTracker);
-            ListIncExpByDate(ieFOM, ieEOM);
-            RefreshAnalytics(ieFOM, ieEOM);
+                //IEmonTracker = 0;
+                int ieFOM = dtx.getIntFOM(IEmonTracker);
+                int ieEOM = dtx.getIntEOM(IEmonTracker);
+                ListIncExpByDate(ieFOM, ieEOM);
+                RefreshAnalytics(ieFOM, ieEOM);
+            }
+            else{
+                DisplayIEmessage("Select something to delete instead of "
+                        + "trying to break the program");
+            }
         }
         else{
-            DisplayIEmessage("Select something to delete instead of trying to break the program");
+            DisplayIEmessage("Something is not right in the delete process. "
+                    + "Sorry");
         }
      
     }//GEN-LAST:event_btnIEdelActionPerformed
@@ -3477,7 +3507,7 @@ public class fmlUserInterface extends javax.swing.JFrame {
                                    type, cat, name, 
                                    amt, cleared);
             if(success.equals("FAIL")){
-                DisplayCBmessage("Big time update error, fyl");
+                DisplayIEmessage("Big time update error, fyl");
             }
             //ClearIEdataEntry();
             //IEmonTracker = 0;
@@ -3493,7 +3523,7 @@ public class fmlUserInterface extends javax.swing.JFrame {
             }
         }
         else{
-            DisplayCBmessage("Check update data entry. Somethings not right");
+            DisplayIEmessage("Check update data entry. Somethings not right");
         }
     }//GEN-LAST:event_btnIEupdActionPerformed
 
@@ -3692,6 +3722,10 @@ public class fmlUserInterface extends javax.swing.JFrame {
         if(cmbAIbudgItem.getSelectedItem() == null
                 || cmbAIbudgItem.getSelectedItem().toString().isEmpty()){
             DisplayAImessage("Enter an category sucker");
+            return;
+        }
+        if(txtAIbudgAmt.getText().equals(0)||txtAIbudgAmt.getText().equals("")){
+            DisplayAImessage("Enter an amount");
             return;
         }
         amt = Integer.valueOf(txtAIbudgAmt.getText())*-1;
@@ -4106,6 +4140,34 @@ public class fmlUserInterface extends javax.swing.JFrame {
             return "PASS";}
     }
     
+    //PIE CHART
+    private void DisplayPieChart(int dateStart, int dateEnd){
+        
+        // get the data from SQlite
+        ArrayList<CatSummary> catList = sqlite.GetCatSummary(dateStart,dateEnd);
+        int ai = catList.size();
+        String data[][] = new String[ai][2];
+        //Object rowData[] = new Object[2];
+        if(ai>0){
+            for(int i = 0; i < ai; i++){
+                for(int j = 0; j < data[i].length; j++){
+                    data[i][0] = catList.get(i).getCategory();
+                    int temp = catList.get(i).getAmount();
+                    data[i][1] = String.valueOf(temp);
+                }
+            //System.out.println(data[i][0] +  " : " + data[i][1]);
+            }
+        // first we need to create a ChartModel object
+        ChartModel pie = new ChartModel(data);
+        
+        //now we need to pop up the chart with test data
+        final TableChartPopup tcp = new TableChartPopup(pie.tm); 
+        pnlGraph.removeAll();
+        pnlGraph.add(tcp.GetPieChart());
+        pnlGraph.setVisible(true);
+        
+        }
+    }
 
     
 
@@ -4295,6 +4357,7 @@ public class fmlUserInterface extends javax.swing.JFrame {
     private javax.swing.JPanel pnlAnalytics;
     private javax.swing.JPanel pnlBudget;
     private javax.swing.JPanel pnlCarder;
+    private javax.swing.JPanel pnlGraph;
     private javax.swing.JPanel pnlIncomeExp;
     private javax.swing.JPanel pnlLedger;
     private javax.swing.JPanel pnlReporter;

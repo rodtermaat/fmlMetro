@@ -478,7 +478,8 @@ public class SQLite
                      " ORDER BY yr,mon,wk,date8,time) as balance\n" +
                      " FROM almostCB t1 WHERE date8 <=?\n" +
                      " ORDER BY yr,mon,wk,date8,time)\n" + 
-                     " SELECT * FROM checkbook\n";
+                     " SELECT * FROM checkbook\n" +
+                     " ORDER BY yr,mon,wk,date8,type";
  
                      //" FROM checkbook t1 WHERE date8 <= ?\n" +
         
@@ -1030,6 +1031,59 @@ public class SQLite
         }
                 
         return amtSum;
+    }
+    
+    // Returns a summary by Category of the amount for a time period
+    public ArrayList<CatSummary> GetCatSummary(int dateStart, int dateEnd){
+        String sql = "SELECT category, SUM(amount) AS totAmt FROM ledger\n" +
+                 " WHERE amount < 0 and\n" +
+                 " date8 >= ? and date8 <= ? GROUP BY category\n" +
+                 " ORDER BY totAmt LIMIT 8";
+
+        ArrayList<CatSummary> CatSum = new ArrayList<>();
+                    // create an ArrayList of the Transaction object and creates
+                    // the ledger/checkbook of the application
+        CatSummary CatRow;
+
+        try {
+           Class.forName("org.sqlite.JDBC");
+           Connection conn = DriverManager.getConnection(url);
+           conn.setAutoCommit(false);
+           //System.out.println("Opened database successfully");
+           
+           //Statement stmt = conn.createStatement();
+           PreparedStatement pstmt  = conn.prepareStatement(sql);
+           pstmt.setInt(1,dateStart);
+           pstmt.setInt(2,dateEnd);
+           ResultSet rs = pstmt.executeQuery();
+           
+           while ( rs.next() ) {
+              String category = rs.getString("category");
+              int totAmt = rs.getInt(("totAmt"));
+            
+              //System.out.println( "Category: " + category + " - " + totAmt);
+              
+              CatRow = new CatSummary(category, totAmt);
+              CatSum.add(CatRow);
+           }
+           
+           //System.out.println("Check Balance successful");
+            if(rs != null) {
+                rs.close();
+            }
+            if(pstmt != null){
+                pstmt.close();
+            }
+            if(conn != null) {
+                conn.close();
+            } 
+        }
+        catch ( Exception e ) {
+           //System.out.println("Check Balance Error: " + e.getMessage());
+           //System.out.println( e.getClass().getName() + ": " + e.getMessage() );
+        }
+      
+        return CatSum;
     }
     
 }

@@ -20,7 +20,8 @@ public class PrintSummary extends javax.swing.JFrame {
     SimpleDateFormat mdy = new SimpleDateFormat("MM/dd/YYYY");
     FreakyDate dty = new FreakyDate();
     DefaultTableModel printModel;
-
+    int startingBal = 0;
+    int runningBal = 0;
     
     /**
      * Creates new form PrintSummary
@@ -50,7 +51,8 @@ public class PrintSummary extends javax.swing.JFrame {
             rowData[4] = "";
             int amt = theLedger.get(i).getAmount();
             if(amt<0){ amt= amt*-1;}
-            rowData[5] = amt + theLedger.get(i).getBalance();
+            runningBal = amt + theLedger.get(i).getBalance();
+            rowData[5] = runningBal;
             printModel.addRow(rowData);
         }
         
@@ -70,19 +72,14 @@ public class PrintSummary extends javax.swing.JFrame {
         String shortDate = smon + "/" + sday;
         newDate = shortDate;
         
+        // dont display date for budget items
         if(theLedger.get(i).getType().equals("4")){
             rowData[1] = "";
         } else {
             rowData[1] = shortDate;
         }
         
-//        if(newDate.equals(oldDate)){
-//            rowData[2] = "";
-//        } else {
-//            rowData[2] = newDate;
-//            oldDate = newDate;
-//        }
-        
+        // description versus budget column
         if(theLedger.get(i).getType().equals("4")){
             rowData[3] = theLedger.get(i).getCategory(); 
             rowData[2] = "";
@@ -90,8 +87,14 @@ public class PrintSummary extends javax.swing.JFrame {
             rowData[2] = theLedger.get(i).getCategory();
             rowData[3] = "";
         }
+        
+        //Amount
         rowData[4] = theLedger.get(i).getAmount();
-        rowData[5] = theLedger.get(i).getBalance();
+        
+        //Running Balance
+        runningBal = theLedger.get(i).getAmount() + runningBal;
+        rowData[5] = runningBal;
+        //rowData[5] = theLedger.get(i).getBalance();
         
         printModel.addRow(rowData); 
       }
