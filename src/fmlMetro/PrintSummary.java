@@ -34,7 +34,7 @@ public class PrintSummary extends javax.swing.JFrame {
         printModel.setRowCount(0);
       
       ArrayList<TransactionLong> theLedger = sqlx.PrintCheckbook(20180101, 20180131);
-      Object rowData[] = new Object[7];
+      Object rowData[] = new Object[6];
       String newDate = "";
       String oldDate = "";
       String newWeek = "";
@@ -46,24 +46,20 @@ public class PrintSummary extends javax.swing.JFrame {
             rowData[0] = "January";
             rowData[1] = "";
             rowData[2] = "";
-            rowData[3] = "";
-            rowData[4] = "Starting Balance";
-            rowData[5] = "";
+            rowData[3] = "Starting Balance";
+            rowData[4] = "";
             int amt = theLedger.get(i).getAmount();
             if(amt<0){ amt= amt*-1;}
-            rowData[6] = amt + theLedger.get(i).getBalance();
+            rowData[5] = amt + theLedger.get(i).getBalance();
             printModel.addRow(rowData);
         }
-        
-        //month
-        rowData[0] = "";
         
         //week
         newWeek = theLedger.get(i).getWk();
         if(newWeek.equals(oldWeek)){
-            rowData[1] = "";
+            rowData[0] = "";
         } else {
-            rowData[1] = newWeek;
+            rowData[0] = newWeek;
             oldWeek = newWeek;
         }
         
@@ -74,10 +70,10 @@ public class PrintSummary extends javax.swing.JFrame {
         String shortDate = smon + "/" + sday;
         newDate = shortDate;
         
-        if(theLedger.get(i).getType().equals("budget")){
-            rowData[2] = "";
+        if(theLedger.get(i).getType().equals("4")){
+            rowData[1] = "";
         } else {
-            rowData[2] = shortDate;
+            rowData[1] = shortDate;
         }
         
 //        if(newDate.equals(oldDate)){
@@ -87,15 +83,15 @@ public class PrintSummary extends javax.swing.JFrame {
 //            oldDate = newDate;
 //        }
         
-        if(theLedger.get(i).getType().equals("budget")){
-            rowData[4] = theLedger.get(i).getCategory(); 
-            rowData[3] = "";
+        if(theLedger.get(i).getType().equals("4")){
+            rowData[3] = theLedger.get(i).getCategory(); 
+            rowData[2] = "";
         }else {
-            rowData[3] = theLedger.get(i).getCategory();
-            rowData[4] = "";
+            rowData[2] = theLedger.get(i).getCategory();
+            rowData[3] = "";
         }
-        rowData[5] = theLedger.get(i).getAmount();
-        rowData[6] = theLedger.get(i).getBalance();
+        rowData[4] = theLedger.get(i).getAmount();
+        rowData[5] = theLedger.get(i).getBalance();
         
         printModel.addRow(rowData); 
       }
@@ -165,20 +161,20 @@ public class PrintSummary extends javax.swing.JFrame {
 
         tblPrinter.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null}
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null}
             },
             new String [] {
-                "month", "week", "date", "description", "budget", "amount", "balance"
+                ".", "date", "description", "budget", "amount", "balance"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.Integer.class, java.lang.Integer.class
+                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.Integer.class, java.lang.Integer.class
             };
             boolean[] canEdit = new boolean [] {
-                false, false, false, false, false, false, false
+                false, false, false, false, false, false
             };
 
             public Class getColumnClass(int columnIndex) {
@@ -191,20 +187,18 @@ public class PrintSummary extends javax.swing.JFrame {
         });
         jScrollPane1.setViewportView(tblPrinter);
         if (tblPrinter.getColumnModel().getColumnCount() > 0) {
-            tblPrinter.getColumnModel().getColumn(0).setMinWidth(30);
-            tblPrinter.getColumnModel().getColumn(0).setPreferredWidth(30);
-            tblPrinter.getColumnModel().getColumn(1).setMinWidth(15);
-            tblPrinter.getColumnModel().getColumn(1).setPreferredWidth(15);
-            tblPrinter.getColumnModel().getColumn(2).setMinWidth(25);
-            tblPrinter.getColumnModel().getColumn(2).setPreferredWidth(25);
+            tblPrinter.getColumnModel().getColumn(0).setMinWidth(15);
+            tblPrinter.getColumnModel().getColumn(0).setPreferredWidth(15);
+            tblPrinter.getColumnModel().getColumn(1).setMinWidth(25);
+            tblPrinter.getColumnModel().getColumn(1).setPreferredWidth(25);
+            tblPrinter.getColumnModel().getColumn(2).setMinWidth(70);
+            tblPrinter.getColumnModel().getColumn(2).setPreferredWidth(70);
             tblPrinter.getColumnModel().getColumn(3).setMinWidth(70);
             tblPrinter.getColumnModel().getColumn(3).setPreferredWidth(70);
-            tblPrinter.getColumnModel().getColumn(4).setMinWidth(70);
-            tblPrinter.getColumnModel().getColumn(4).setPreferredWidth(70);
+            tblPrinter.getColumnModel().getColumn(4).setMinWidth(40);
+            tblPrinter.getColumnModel().getColumn(4).setPreferredWidth(40);
             tblPrinter.getColumnModel().getColumn(5).setMinWidth(40);
             tblPrinter.getColumnModel().getColumn(5).setPreferredWidth(40);
-            tblPrinter.getColumnModel().getColumn(6).setMinWidth(40);
-            tblPrinter.getColumnModel().getColumn(6).setPreferredWidth(40);
         }
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);

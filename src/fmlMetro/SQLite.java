@@ -438,40 +438,47 @@ public class SQLite
            String cymd = cym + "99";
            int ccyymm99 = Integer.valueOf(cymd);
            
-        String sql = "WITH budgetItems AS (SELECT yr, mon, " +
+        String sql = "WITH budgetItems AS (SELECT yr,mon, " +
                      " CASE wk WHEN '1' THEN '07'" +
                      "         WHEN '2' THEN '14'" +
                      "         WHEN '3' THEN '21'" +
                      "         WHEN '4' THEN '28'" +
                      "         WHEN '5' THEN '30' END day,\n" +
-                     " wk, type, category, MAX(time) as time,\n" +
+                     " wk, type,category,MAX(time) as time,\n" +
                      " SUM(amount) as amount FROM ledger WHERE\n" +
                      " type = \"budget\" " +
                      " and date8<=?\n" +
-                     " GROUP BY yr, mon, wk, category\n" +
+                     " GROUP BY yr,mon,wk,category\n" +
                      " ),\n" +
-                     " IncExp AS (SELECT yr, mon,day, wk,\n" +
-                     " type,name AS category,time, amount \n" +
+                     " IncExp AS (SELECT yr,mon,day,wk,\n" +
+                     " type,name AS category,time,amount \n" +
                      " FROM LEDGER WHERE type <> \"budget\"\n" +
                      " and date8 <=?\n" +
                      " ),\n" +
-                     " almostCB AS (SELECT yr,mon,day,wk,type,category,time,amount FROM budgetItems\n" +
+                     " kindaCB AS (SELECT yr,mon,day,wk,type,category,time,\n" + 
+                     " amount FROM budgetItems\n" +
                      " UNION ALL\n" +
                      " SELECT yr,mon,day,wk,type,category,time,amount FROM IncExp\n" +
                      " ),\n" +
-                     " checkbook AS\n" +
+                     " almostCB AS\n" +
                      " (SELECT CAST((yr || mon || day) AS INT) as date8,\n" +
-                     " yr, mon, day, wk, type, category , time, amount\n" + 
-                     " FROM almostCB\n" +
-                     " )\n" +
-                     " SELECT date8, day, mon, yr, wk, type, time,\n" +
+                     " yr,mon,day,wk,\n" +
+                     " CASE type WHEN 'income' THEN '1'" +
+                     "           WHEN 'bill'   THEN '2'" +
+                     "           WHEN 'unplanned' THEN '3'" +
+                     "           WHEN 'budget' THEN '4' END type,\n" +
+                     " category,time,amount\n" + 
+                     " FROM kindaCB\n" +
+                     " ),\n" +
+                     " checkbook AS (SELECT date8,day,mon,yr,wk,type,time,\n" +
                      " category, amount,\n" +
-                     " (SELECT SUM(t2.amount) FROM checkbook t2 WHERE\n" +
+                     " (SELECT SUM(t2.amount) FROM almostCB t2 WHERE\n" +
                      " ((t2.date8 <= t1.date8 AND t2.time <= t1.time) OR\n" +
                      " (t2.date8 < t1.date8))\n" +
-                     " ORDER BY yr,mon,wk,date8, time ) as balance\n" +
-                     " FROM checkbook t1 WHERE date8 <=?\n" +
-                     " ORDER BY yr,mon,wk,date8, time";
+                     " ORDER BY yr,mon,wk,date8,time) as balance\n" +
+                     " FROM almostCB t1 WHERE date8 <=?\n" +
+                     " ORDER BY yr,mon,wk,date8,time)\n" + 
+                     " SELECT * FROM checkbook\n";
  
                      //" FROM checkbook t1 WHERE date8 <= ?\n" +
         
