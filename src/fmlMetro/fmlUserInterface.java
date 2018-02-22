@@ -139,6 +139,33 @@ public class fmlUserInterface extends javax.swing.JFrame {
         //set up model for tblBudgetSummary
         expModel = (DefaultTableModel) tblExpSummary.getModel();
         
+        // this is a good section to accumulate all of the information
+        // available and set it up on a random basis to display
+        //Up and Comming
+        String lastBill = "Internet";
+        String lastBilldt = "02/02";
+        String lastBillamt = "$71";
+        String lastBillx = "Home Depot";
+        String lastBilldtx = "02/05";
+        String lastBillamtx = "$250";
+        String nextBill = "Truck";
+        String nextBillx = "Planet Fitness";
+        
+        // - did you pay?
+        String html = "<html> Did you remember to pay " + lastBill +
+                      "<br> it was due on " + lastBilldt + " for "
+                      + lastBillamt + " ?" +
+                      "<br>" +
+                      "<br> And what about " + lastBillx +
+                      " for " + lastBillamtx + " due on " + lastBilldtx + " ?" +
+                      "<br>" +
+                      "<br> Dont forget to pay " + nextBill +
+                      "<br> and " + nextBillx + " both due soon";
+        
+        lblReminder.setText(html);
+        
+        // - dont forget to pay
+        
         
         //Pie Chart
         int intFOM = dtx.getIntFOM(0);
@@ -195,6 +222,7 @@ public class fmlUserInterface extends javax.swing.JFrame {
         jPanel4 = new javax.swing.JPanel();
         jLabel9 = new javax.swing.JLabel();
         jPanel19 = new javax.swing.JPanel();
+        lblReminder = new javax.swing.JLabel();
         jPanel20 = new javax.swing.JPanel();
         jLabel11 = new javax.swing.JLabel();
         jLabel19 = new javax.swing.JLabel();
@@ -544,15 +572,26 @@ public class fmlUserInterface extends javax.swing.JFrame {
         jLabel9.setFont(new java.awt.Font("Lucida Grande", 1, 18)); // NOI18N
         jLabel9.setText(" . up and coming");
 
+        jPanel19.setBackground(new java.awt.Color(204, 204, 204));
+
+        lblReminder.setBackground(new java.awt.Color(204, 204, 204));
+        lblReminder.setFont(new java.awt.Font("Lucida Grande", 1, 12)); // NOI18N
+        lblReminder.setText("jLabel55");
+        lblReminder.setVerticalAlignment(javax.swing.SwingConstants.TOP);
+
         javax.swing.GroupLayout jPanel19Layout = new javax.swing.GroupLayout(jPanel19);
         jPanel19.setLayout(jPanel19Layout);
         jPanel19Layout.setHorizontalGroup(
             jPanel19Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 256, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel19Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(lblReminder, javax.swing.GroupLayout.DEFAULT_SIZE, 250, Short.MAX_VALUE))
         );
         jPanel19Layout.setVerticalGroup(
             jPanel19Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel19Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(lblReminder, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         jPanel20.setBackground(new java.awt.Color(255, 204, 204));
@@ -1430,7 +1469,7 @@ public class fmlUserInterface extends javax.swing.JFrame {
                         .addGroup(jPanel15Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(jPanel22, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addGroup(jPanel15Layout.createSequentialGroup()
-                                .addComponent(jPanel21, javax.swing.GroupLayout.DEFAULT_SIZE, 412, Short.MAX_VALUE)
+                                .addComponent(jPanel21, javax.swing.GroupLayout.PREFERRED_SIZE, 412, Short.MAX_VALUE)
                                 .addGap(42, 42, 42))))
                     .addComponent(jPanel16, javax.swing.GroupLayout.PREFERRED_SIZE, 908, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -2616,7 +2655,7 @@ public class fmlUserInterface extends javax.swing.JFrame {
         
     }//GEN-LAST:event_pnlCarderMouseDragged
 
-    // MAIN UI
+    // MAIN UU
     // First screen to load showing summary analytics of your finances
     private void btnAnalyticsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAnalyticsActionPerformed
         // Remove existing panel(s)
@@ -2660,6 +2699,12 @@ public class fmlUserInterface extends javax.swing.JFrame {
                 budgWeek.GetBudgetGroc() + budgWeek.GetBudgetSave() + 
                 budgWeek.GetBudgetTransp() + budgWeek.GetBudgetUnplan();
         lblaiaTot.setText("$" + String.valueOf(budgWeekTot));
+        
+        //Pie Chart
+        int intFOM = dtx.getIntFOM(0);
+        int intEOM = dtx.getIntEOM(0);
+        DisplayPieChart(intFOM, intEOM);
+        
         
         
     }//GEN-LAST:event_btnAnalyticsActionPerformed
@@ -4325,6 +4370,7 @@ public class fmlUserInterface extends javax.swing.JFrame {
     private javax.swing.JLabel lblIEsumMessage;
     private javax.swing.JLabel lblIEtoSpend;
     private javax.swing.JLabel lblIEunplanned;
+    private javax.swing.JLabel lblReminder;
     private javax.swing.JLabel lblSavePerc;
     private javax.swing.JLabel lblSaveThisMon;
     private javax.swing.JLabel lblSaveThisWk;
