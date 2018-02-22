@@ -49,7 +49,6 @@ public class fmlUserInterface extends javax.swing.JFrame {
     DefaultTableModel ledgerModel;
     
     FreakyDate dtx = new FreakyDate();
-    
     SimpleDateFormat mdy = new SimpleDateFormat("MM/dd/YYYY");
     
     // date used globally to test against current date
@@ -103,35 +102,37 @@ public class fmlUserInterface extends javax.swing.JFrame {
             //displayMessage("Enter 1st transaction to set up Acct. balance");
         }
         
-        // Budgeted amount
-        Budget budx = sqlite.GetBudget();
-        lblaibSave.setText(String.valueOf(budx.GetBudgetSave()));
-        lblaibCash.setText(String.valueOf(budx.GetBudgetCash()));
-        lblaibGroc.setText(String.valueOf(budx.GetBudgetGroc()));
-        lblaibDine.setText(String.valueOf(budx.GetBudgetDine()));
-        lblaibTrav.setText(String.valueOf(budx.GetBudgetTransp()));
-        lblaibUnplan.setText(String.valueOf(budx.GetBudgetUnplan()));
+        RefreshAnalyticsPane();
         
-        int aibTot = budx.GetBudgetCash() + budx.GetBudgetDine() + 
-                budx.GetBudgetGroc() + budx.GetBudgetSave() + 
-                budx.GetBudgetTransp() + budx.GetBudgetUnplan();
-        lblaibTot.setText(String.valueOf(aibTot));
-        
-        // Actual Budget for the week
-        int intFOW = dtx.getIntFOW(7);
-        int intEOW = dtx.getIntEOW(7);
-        Budget budgWeek = sqlite.GetBudgetTotals(intFOW, intEOW);
-        lblaiaSave.setText("$" + String.valueOf(budgWeek.GetBudgetSave()));
-        lblaiaCash.setText("$" + String.valueOf(budgWeek.GetBudgetCash()));
-        lblaiaTrav.setText("$" + String.valueOf(budgWeek.GetBudgetTransp()));
-        lblaiaGroc.setText("$" + String.valueOf(budgWeek.GetBudgetGroc()));
-        lblaiaDine.setText("$" + String.valueOf(budgWeek.GetBudgetDine()));
-        lblaiaUnplan.setText("$" + String.valueOf(budgWeek.GetBudgetUnplan()));
-        
-        int budgWeekTot = budgWeek.GetBudgetCash() + budgWeek.GetBudgetDine() +
-                budgWeek.GetBudgetGroc() + budgWeek.GetBudgetSave() + 
-                budgWeek.GetBudgetTransp() + budgWeek.GetBudgetUnplan();
-        lblaiaTot.setText("$" + String.valueOf(budgWeekTot));
+//        // Budgeted amount
+//        Budget budx = sqlite.GetBudget();
+//        lblaibSave.setText(String.valueOf(budx.GetBudgetSave()));
+//        lblaibCash.setText(String.valueOf(budx.GetBudgetCash()));
+//        lblaibGroc.setText(String.valueOf(budx.GetBudgetGroc()));
+//        lblaibDine.setText(String.valueOf(budx.GetBudgetDine()));
+//        lblaibTrav.setText(String.valueOf(budx.GetBudgetTransp()));
+//        lblaibUnplan.setText(String.valueOf(budx.GetBudgetUnplan()));
+//        
+//        int aibTot = budx.GetBudgetCash() + budx.GetBudgetDine() + 
+//                budx.GetBudgetGroc() + budx.GetBudgetSave() + 
+//                budx.GetBudgetTransp() + budx.GetBudgetUnplan();
+//        lblaibTot.setText(String.valueOf(aibTot));
+//        
+//        // Actual Budget for the week
+//        int intFOW = dtx.getIntFOW(7);
+//        int intEOW = dtx.getIntEOW(7);
+//        Budget budgWeek = sqlite.GetBudgetTotals(intFOW, intEOW);
+//        lblaiaSave.setText("$" + String.valueOf(budgWeek.GetBudgetSave()));
+//        lblaiaCash.setText("$" + String.valueOf(budgWeek.GetBudgetCash()));
+//        lblaiaTrav.setText("$" + String.valueOf(budgWeek.GetBudgetTransp()));
+//        lblaiaGroc.setText("$" + String.valueOf(budgWeek.GetBudgetGroc()));
+//        lblaiaDine.setText("$" + String.valueOf(budgWeek.GetBudgetDine()));
+//        lblaiaUnplan.setText("$" + String.valueOf(budgWeek.GetBudgetUnplan()));
+//        
+//        int budgWeekTot = budgWeek.GetBudgetCash() + budgWeek.GetBudgetDine() +
+//                budgWeek.GetBudgetGroc() + budgWeek.GetBudgetSave() + 
+//                budgWeek.GetBudgetTransp() + budgWeek.GetBudgetUnplan();
+//        lblaiaTot.setText("$" + String.valueOf(budgWeekTot));
            
         //set up model for tblLedger
         model = (DefaultTableModel) tblLedger.getModel();
@@ -139,50 +140,38 @@ public class fmlUserInterface extends javax.swing.JFrame {
         //set up model for tblBudgetSummary
         expModel = (DefaultTableModel) tblExpSummary.getModel();
         
-        // this is a good section to accumulate all of the information
-        // available and set it up on a random basis to display
-        //Up and Comming
-        String lastBill = "Internet";
-        String lastBilldt = "02/02";
-        String lastBillamt = "$71";
-        String lastBillx = "Home Depot";
-        String lastBilldtx = "02/05";
-        String lastBillamtx = "$250";
-        String nextBill = "Truck";
-        String nextBillx = "Planet Fitness";
-        
-        // - did you pay?
-        String html = "<html> Did you remember to pay " + lastBill +
-                      "<br> it was due on " + lastBilldt + " for "
-                      + lastBillamt + " ?" +
-                      "<br>" +
-                      "<br> And what about " + lastBillx +
-                      " for " + lastBillamtx + " due on " + lastBilldtx + " ?" +
-                      "<br>" +
-                      "<br> Dont forget to pay " + nextBill +
-                      "<br> and " + nextBillx + " both due soon";
-        
-        lblReminder.setText(html);
+//        // this is a good section to accumulate all of the information
+//        // available and set it up on a random basis to display
+//        //Up and Comming
+//        String lastBill = "Internet";
+//        String lastBilldt = "02/02";
+//        String lastBillamt = "$71";
+//        String lastBillx = "Home Depot";
+//        String lastBilldtx = "02/05";
+//        String lastBillamtx = "$250";
+//        String nextBill = "Truck";
+//        String nextBillx = "Planet Fitness";
+//        
+//        // - did you pay?
+//        String html = "<html> Did you remember to pay " + lastBill +
+//                      "<br> it was due on " + lastBilldt + " for "
+//                      + lastBillamt + " ?" +
+//                      "<br>" +
+//                      "<br> And what about " + lastBillx +
+//                      " for " + lastBillamtx + " due on " + lastBilldtx + " ?" +
+//                      "<br>" +
+//                      "<br> Dont forget to pay " + nextBill +
+//                      "<br> and " + nextBillx + " both due soon";
+//        
+//        lblReminder.setText(html);
         
         // - dont forget to pay
-        
-        
+         
         //Pie Chart
         int intFOM = dtx.getIntFOM(0);
         int intEOM = dtx.getIntEOM(0);
         DisplayPieChart(intFOM, intEOM);
-        
-//set up the model for the checkbook register
-        //ledgerModel = (DefaultTableModel) tblCheckbook.getModel();
-        
-        // Center on the screen
-        //Toolkit tool = Toolkit.getDefaultToolkit();
-        //Dimension dim = new Dimension(tool.getScreenSize());
-        //int height = (int) dim.getHeight();
-        //int width = (int) dim.getWidth();
-        //setSize(width,height);
-        //setLocation(width / 2 - getWidth() / 2, height / 2 - getHeight() / 2);
-        
+                
         // set up initial screen
         String htmlai = "<html>use this area as" +
                         "<br>a quick place to" +
@@ -193,10 +182,7 @@ public class fmlUserInterface extends javax.swing.JFrame {
                         "<br>spending.";
         
         lblAIqAdd.setText(htmlai);
-        txtAIbudgDate.setText(inputToday);
-        txtAIbudgAmt.setText("");
-        cmbAIbudgItem.setSelectedIndex(-1);
-        txtAIbudgName.setText("");
+
         new AutoCompleteJComboBoxer(cmbAIbudgItem);
     }
 
@@ -2668,7 +2654,13 @@ public class fmlUserInterface extends javax.swing.JFrame {
         pnlCarder.repaint();
         pnlCarder.validate();
         
-        txtAIbudgDate.setText(inputToday);
+        RefreshAnalyticsPane();    
+        
+    }//GEN-LAST:event_btnAnalyticsActionPerformed
+
+    //MAIN UI
+    //Refresh Analytics pane
+    private void RefreshAnalyticsPane(){
         
         // Budgeted Amounts
         Budget budx = sqlite.GetBudget();
@@ -2700,15 +2692,43 @@ public class fmlUserInterface extends javax.swing.JFrame {
                 budgWeek.GetBudgetTransp() + budgWeek.GetBudgetUnplan();
         lblaiaTot.setText("$" + String.valueOf(budgWeekTot));
         
+        // this is a good section to accumulate all of the information
+        // available and set it up on a random basis to display
+        //Up and Comming
+        String lastBill = "Internet";
+        String lastBilldt = "02/02";
+        String lastBillamt = "$71";
+        String lastBillx = "Home Depot";
+        String lastBilldtx = "02/05";
+        String lastBillamtx = "$250";
+        String nextBill = "Truck";
+        String nextBillx = "Planet Fitness";
+        
+        // - did you pay?
+        String html = "<html> Did you remember to pay " + lastBill +
+                      "<br> it was due on " + lastBilldt + " for "
+                      + lastBillamt + " ?" +
+                      "<br>" +
+                      "<br> And what about " + lastBillx +
+                      " for " + lastBillamtx + " due on " + lastBilldtx + " ?" +
+                      "<br>" +
+                      "<br> Dont forget to pay " + nextBill +
+                      "<br> and " + nextBillx + " both due soon";
+        
+        lblReminder.setText(html);
+
         //Pie Chart
         int intFOM = dtx.getIntFOM(0);
         int intEOM = dtx.getIntEOM(0);
         DisplayPieChart(intFOM, intEOM);
-        
-        
-        
-    }//GEN-LAST:event_btnAnalyticsActionPerformed
 
+        //reset data entry
+        txtAIbudgDate.setText(inputToday);
+        txtAIbudgAmt.setText("");
+        cmbAIbudgItem.setSelectedIndex(-1);
+        txtAIbudgName.setText("");
+    }
+    
     // MAIN UI
     // INC and EXP where we add reoccurring bills and income as well as 
     //                                  one time events not planned for
@@ -2736,16 +2756,9 @@ public class fmlUserInterface extends javax.swing.JFrame {
         txtIEdate.setText(inputToday);      // put todays date in IE date
         
         UpdateIECategories();       //fill with values from database
-        //FUCK - why did this break all of a sudden???
-        //new AutoCompleteJComboBoxer(cmbIEcategory);
         
-        //IEmonTracker = 0;
         int ieFOM = dtx.getIntFOM(IEmonTracker);
         int ieEOM = dtx.getIntEOM(IEmonTracker);
-        //int ieFOM = dtx.getIntFOM(0);
-        //int ieEOM = dtx.getIntEOM(0);
-        //System.out.println("month button beg " + ieFOM);
-        //System.out.println("month button end " + ieEOM);
         
         ListIncExpByDate(ieFOM, ieEOM);
         RefreshAnalytics(ieFOM, ieEOM);
@@ -2949,84 +2962,7 @@ public class fmlUserInterface extends javax.swing.JFrame {
     return "PASS";    
     }
     
-    
-    
-    // INCOME EXPENSE
-    // Add or Update a new bill, income, unplanned expense
-//    private void AddUpdateTransaction(String action, int id){
-//        Date jDate = null;
-//        String sDate8, day, mon, yr, wk, cat, name;
-//        String type = "";
-//        String ieDate = txtIEdate.getText();
-//        int iDate8 = 0; int amt = 0; int budg = 0;
-//        
-//        // date is good to use
-//        SimpleDateFormat sdf = new SimpleDateFormat("MM/dd/yy");
-//        try
-//        {
-//            jDate = sdf.parse(ieDate);
-//        }
-//        catch(ParseException e) {
-//            DisplayIEmessage("Enter date like 04/15/18");
-//            return;
-//        }
-//            
-//        day = new SimpleDateFormat("dd").format(jDate);
-//        mon = new SimpleDateFormat("MM").format(jDate);
-//        yr = new SimpleDateFormat("yyyy").format(jDate);
-//        wk = new SimpleDateFormat("w").format(jDate);
-//        sDate8 = yr + mon + day;
-//        iDate8 = Integer.parseInt(sDate8);
-//
-//        // is today sunday?  if it is we need to subtract a week since our
-//        // program wants to start on Monday as the first day of the week
-//        int intwk = Integer.valueOf(wk);
-//        if(dtx.IsSunday(jDate)){
-//            if(intwk==1){
-//                intwk=52;
-//                wk = String.valueOf(intwk);
-//            }
-//            else{
-//                intwk--;
-//                wk = String.valueOf(intwk);
-//            }
-//        }
-//        
-//        String ieDEvalidate = ValidateIEdataEntry();
-//        if(!ieDEvalidate.equals("FAIL")){
-//            // data entry is good to use
-//            cat = cmbIEcategory.getSelectedItem().toString();
-//            name = txtIEdescription.getText();
-//            amt = Integer.valueOf(txtIEamount.getText());
-//            
-//            if(rdoIEincome.isSelected()){
-//                type = "income";
-//            }
-//            if(rdoIEexpense.isSelected()){
-//                type = "bill";
-//                amt = amt*-1;
-//                budg = budg*-1;
-//            }
-//            if(rdoIEunplanned.isSelected()){
-//                type = "unplanned";
-//                amt = amt*-1;
-//                budg = budg*-1;
-//            }
-//            
-//            if(action.equals("ADD")){
-//                int xID = sqlite.AddTransaction(iDate8, day, mon, yr, wk, 
-//                                            type, cat, name, amt, false);
-//            }
-//            else {
-//                sqlite.UpdateTran(id, iDate8, cat, name, type, amt);
-//            }             
-//        }
-//        else {
-//            DisplayIEmessage("Check your data entry cause something ain't right");
-//            return;
-//        }   
-//    }
-    
+        
     // INCOME EXPENSE
     // adds income and expenses
     private void btnIEaddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnIEaddActionPerformed
@@ -3100,7 +3036,8 @@ public class fmlUserInterface extends javax.swing.JFrame {
 
       ledgerModel.setRowCount(0);
       
-      ArrayList<TransactionLong> theLedger = sqlite.GetLedgerByDate(dateStart, dateEnd);
+      ArrayList<TransactionLong> theLedger = 
+              sqlite.GetLedgerByDate(dateStart, dateEnd);
       Object rowData[] = new Object[7];
       String newDate = "";
       String oldDate = "";
@@ -3142,8 +3079,8 @@ public class fmlUserInterface extends javax.swing.JFrame {
       
       model.setRowCount(0);
       
-      //ArrayList<TransactionShort> ledgerList = sqlite.getTransactionsByDate(dateStart, dateEnd);
-      ArrayList<TransactionLong> ledgerList = sqlite.GetLedgerByDate(dateStart, dateEnd);
+      ArrayList<TransactionLong> ledgerList 
+              = sqlite.GetLedgerByDate(dateStart, dateEnd);
       Object rowData[] = new Object[6];
       for(int i = 0; i < ledgerList.size(); i++)
       {
@@ -3210,20 +3147,6 @@ public class fmlUserInterface extends javax.swing.JFrame {
         else {
             lblBudgetToSpend.setText("None");
         }
-        
-//        int year = 2014;
-//        System.out.println(":::: YEAR " + year + " ::::");
-//        for (int j = 1; j <= 12; j++) {
-//            Integer[] array = dtx.getWeeksInMonth(j, year);
-//            System.out.print("For month : " + j);
-//            System.out.print(" [ ");
-//            for (int i = 0; i < array.length; i++) {
-//                System.out.print(array[i] + " ");
-//            }
-//            System.out.print("]");
-//            System.out.println();
-//        }
-//        
         
         // load Expense summary
         ExpenseSummaryByDate(dateStart, dateEnd);
@@ -3853,7 +3776,7 @@ public class fmlUserInterface extends javax.swing.JFrame {
     private void btnLedgerBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLedgerBackActionPerformed
         if(rdoLedgerMonth.isSelected()){
             IEmonTracker--;
-            int cbFOM = dtx.getIntFOM(IEmonTracker);    //monTracker should be global for the entire application
+            int cbFOM = dtx.getIntFOM(IEmonTracker);
             int cbEOM = dtx.getIntEOM(IEmonTracker);
             GetLedgerTransByDate(cbFOM, cbEOM);
             CheckBookBalance();
@@ -3972,7 +3895,7 @@ public class fmlUserInterface extends javax.swing.JFrame {
             CheckBookBalance();
         }
         else{
-            DisplayIEmessage("Select something to delete instead of trying to break the program");
+            DisplayIEmessage("Select something to delete. stop trying to break the program");
         }
     }//GEN-LAST:event_btncbDelActionPerformed
     // Checkbook
