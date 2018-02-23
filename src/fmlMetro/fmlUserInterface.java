@@ -1072,6 +1072,14 @@ public class fmlUserInterface extends javax.swing.JFrame {
                 tblCheckbookMouseClicked(evt);
             }
         });
+        tblCheckbook.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                tblCheckbookKeyPressed(evt);
+            }
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                tblCheckbookKeyReleased(evt);
+            }
+        });
         jScrollPane3.setViewportView(tblCheckbook);
         if (tblCheckbook.getColumnModel().getColumnCount() > 0) {
             tblCheckbook.getColumnModel().getColumn(0).setResizable(false);
@@ -3901,7 +3909,35 @@ public class fmlUserInterface extends javax.swing.JFrame {
     // Checkbook
     // fill DE when user clicks on checkbook table
     private void tblCheckbookMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblCheckbookMouseClicked
-        int i = tblCheckbook.getSelectedRow();
+        CheckbookDataEntry();
+        //tblCheckbook.requestFocus();;
+        //tblCheckbook.requestFocusInWindow();
+    }//GEN-LAST:event_tblCheckbookMouseClicked
+    // CHECKBOOK
+    // opens a new window and populates summary view for printing
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        PrintSummary ps = new PrintSummary();
+        ps.setVisible(true);
+    }//GEN-LAST:event_jButton1ActionPerformed
+
+    //CHECKBOOK
+    //track arrow movement of checkbook 
+    private void tblCheckbookKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tblCheckbookKeyPressed
+    }//GEN-LAST:event_tblCheckbookKeyPressed
+    //CHECKBOOK
+    //track arrow movement of checkbook 
+    private void tblCheckbookKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tblCheckbookKeyReleased
+        if(evt.getKeyCode() == KeyEvent.VK_DOWN || 
+           evt.getKeyCode() == KeyEvent.VK_UP) {
+            tblCheckbook.requestFocusInWindow();
+            CheckbookDataEntry();
+        }
+    }//GEN-LAST:event_tblCheckbookKeyReleased
+
+    //CHECKBOOK
+    //load De from different Checkbook selections
+    private void CheckbookDataEntry(){
+    int i = tblCheckbook.getSelectedRow();
         
         String ids = String.valueOf(ledgerModel.getValueAt(i, 0));
         int id = Integer.valueOf(ids);
@@ -3958,16 +3994,10 @@ public class fmlUserInterface extends javax.swing.JFrame {
         }
         else {
             lblisCleared.setText("Not Cleared");
-        }
-        
-    }//GEN-LAST:event_tblCheckbookMouseClicked
-    // CHECKBOOK
-    // opens a new window and populates summary view for printing
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        PrintSummary ps = new PrintSummary();
-        ps.setVisible(true);
-    }//GEN-LAST:event_jButton1ActionPerformed
-
+        }    
+    }
+    
+    
     /**
      * @param args the command line arguments
      */
