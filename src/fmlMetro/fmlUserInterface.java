@@ -298,6 +298,7 @@ public class fmlUserInterface extends javax.swing.JFrame {
         txtcbNotCleared = new javax.swing.JTextField();
         jLabel59 = new javax.swing.JLabel();
         lblisCleared = new javax.swing.JLabel();
+        btnClearMe = new javax.swing.JButton();
         jPanel22 = new javax.swing.JPanel();
         jLabel58 = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
@@ -889,7 +890,9 @@ public class fmlUserInterface extends javax.swing.JFrame {
 
         jLabel31.setText("date");
 
-        btnAIbudgAdd.setText("add");
+        btnAIbudgAdd.setBackground(new java.awt.Color(255, 204, 204));
+        btnAIbudgAdd.setForeground(new java.awt.Color(255, 204, 204));
+        btnAIbudgAdd.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/icons8-plus_2_math_filled.png"))); // NOI18N
         btnAIbudgAdd.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnAIbudgAddActionPerformed(evt);
@@ -926,7 +929,7 @@ public class fmlUserInterface extends javax.swing.JFrame {
                                 .addComponent(txtAIbudgName))
                             .addGroup(jPanel10Layout.createSequentialGroup()
                                 .addComponent(txtAIbudgAmt, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addComponent(btnAIbudgAdd)))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(lblAIqAdd, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)))
@@ -949,11 +952,16 @@ public class fmlUserInterface extends javax.swing.JFrame {
                         .addGroup(jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel26)
                             .addComponent(txtAIbudgName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel30)
-                            .addComponent(txtAIbudgAmt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(btnAIbudgAdd)))
+                        .addGroup(jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel10Layout.createSequentialGroup()
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addGroup(jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(jLabel30)
+                                    .addComponent(txtAIbudgAmt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addGroup(jPanel10Layout.createSequentialGroup()
+                                .addGap(6, 6, 6)
+                                .addComponent(btnAIbudgAdd)))
+                        .addContainerGap())
                     .addGroup(jPanel10Layout.createSequentialGroup()
                         .addGap(4, 4, 4)
                         .addComponent(lblAIqAdd, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
@@ -971,7 +979,7 @@ public class fmlUserInterface extends javax.swing.JFrame {
                 .addGroup(pnlAnalyticsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jPanel6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jPanel10, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(298, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         pnlAnalyticsLayout.setVerticalGroup(
             pnlAnalyticsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -1224,21 +1232,24 @@ public class fmlUserInterface extends javax.swing.JFrame {
         cmbcbCategory.setEditable(true);
         cmbcbCategory.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "income", "expense" }));
 
-        btncbAdd.setText("add");
+        btncbAdd.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/icons8-plus_2_math_filled.png"))); // NOI18N
+        btncbAdd.setToolTipText("add");
         btncbAdd.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btncbAddActionPerformed(evt);
             }
         });
 
-        btncbUpd.setText("upd");
+        btncbUpd.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/icons8-refresh.png"))); // NOI18N
+        btncbUpd.setToolTipText("update");
         btncbUpd.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btncbUpdActionPerformed(evt);
             }
         });
 
-        btncbDel.setText("del");
+        btncbDel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/icons8-clear_symbol.png"))); // NOI18N
+        btncbDel.setToolTipText("delete");
         btncbDel.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btncbDelActionPerformed(evt);
@@ -1291,6 +1302,15 @@ public class fmlUserInterface extends javax.swing.JFrame {
         lblisCleared.setFont(new java.awt.Font("Lucida Grande", 1, 16)); // NOI18N
         lblisCleared.setText("Not Cleared");
 
+        btnClearMe.setBackground(new java.awt.Color(255, 204, 204));
+        btnClearMe.setForeground(new java.awt.Color(255, 204, 204));
+        btnClearMe.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/icons8-ok.png"))); // NOI18N
+        btnClearMe.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnClearMeActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel21Layout = new javax.swing.GroupLayout(jPanel21);
         jPanel21.setLayout(jPanel21Layout);
         jPanel21Layout.setHorizontalGroup(
@@ -1303,20 +1323,20 @@ public class fmlUserInterface extends javax.swing.JFrame {
                         .addGap(6, 6, 6)
                         .addGroup(jPanel21Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel21Layout.createSequentialGroup()
+                                .addComponent(jLabel50, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(cmbcbType, javax.swing.GroupLayout.PREFERRED_SIZE, 131, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(jLabel59))
+                            .addGroup(jPanel21Layout.createSequentialGroup()
                                 .addComponent(btncbDel)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(btncbUpd)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(btncbAdd)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                            .addGroup(jPanel21Layout.createSequentialGroup()
-                                .addComponent(jLabel50, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(cmbcbType, javax.swing.GroupLayout.PREFERRED_SIZE, 131, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(0, 0, Short.MAX_VALUE)))
-                        .addComponent(lblisCleared, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGap(102, 102, 102)
-                        .addComponent(jLabel59))
+                                .addGap(18, 18, 18)
+                                .addComponent(lblisCleared, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(0, 0, Short.MAX_VALUE))))
                     .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel21Layout.createSequentialGroup()
                         .addComponent(jLabel34, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -1328,21 +1348,6 @@ public class fmlUserInterface extends javax.swing.JFrame {
                                 .addComponent(lblcbID, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(0, 0, Short.MAX_VALUE))
                             .addComponent(jLabel44, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel21Layout.createSequentialGroup()
-                        .addGroup(jPanel21Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel21Layout.createSequentialGroup()
-                                .addComponent(jLabel43, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(txtcbAmt, javax.swing.GroupLayout.PREFERRED_SIZE, 66, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(jPanel21Layout.createSequentialGroup()
-                                .addComponent(jLabel48, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(cmbcbCategory, javax.swing.GroupLayout.PREFERRED_SIZE, 169, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(jPanel21Layout.createSequentialGroup()
-                                .addComponent(jLabel47)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(txtcbName, javax.swing.GroupLayout.PREFERRED_SIZE, 213, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGap(0, 0, Short.MAX_VALUE))
                     .addGroup(jPanel21Layout.createSequentialGroup()
                         .addGroup(jPanel21Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel51, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -1361,14 +1366,31 @@ public class fmlUserInterface extends javax.swing.JFrame {
                             .addComponent(jLabel56, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(txtcbNotCleared, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(155, 155, 155)))
+                        .addGap(155, 155, 155))
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel21Layout.createSequentialGroup()
+                        .addGroup(jPanel21Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel21Layout.createSequentialGroup()
+                                .addComponent(jLabel43, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(txtcbAmt, javax.swing.GroupLayout.PREFERRED_SIZE, 66, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel21Layout.createSequentialGroup()
+                                .addComponent(jLabel47)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(txtcbName, javax.swing.GroupLayout.PREFERRED_SIZE, 213, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel21Layout.createSequentialGroup()
+                                .addComponent(jLabel48, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(cmbcbCategory, javax.swing.GroupLayout.PREFERRED_SIZE, 169, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(btnClearMe)))
+                        .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         jPanel21Layout.setVerticalGroup(
             jPanel21Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel21Layout.createSequentialGroup()
                 .addComponent(lblcbInfo, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 22, Short.MAX_VALUE)
+                .addGap(18, 18, Short.MAX_VALUE)
                 .addGroup(jPanel21Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel21Layout.createSequentialGroup()
                         .addComponent(jLabel49)
@@ -1391,7 +1413,7 @@ public class fmlUserInterface extends javax.swing.JFrame {
                     .addComponent(txtcbDate, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel44)
                     .addComponent(lblcbID))
-                .addGap(0, 4, Short.MAX_VALUE)
+                .addGap(0, 0, Short.MAX_VALUE)
                 .addGroup(jPanel21Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(jLabel43)
                     .addComponent(txtcbAmt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -1401,20 +1423,26 @@ public class fmlUserInterface extends javax.swing.JFrame {
                     .addComponent(jLabel47))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel21Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(cmbcbCategory, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel48))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel21Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel50)
-                    .addComponent(cmbcbType, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(20, 20, 20)
-                .addGroup(jPanel21Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btncbDel)
-                    .addComponent(btncbUpd)
-                    .addComponent(btncbAdd)
-                    .addComponent(jLabel59)
-                    .addComponent(lblisCleared))
-                .addGap(8, 8, 8))
+                    .addGroup(jPanel21Layout.createSequentialGroup()
+                        .addGroup(jPanel21Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(cmbcbCategory, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel48))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(jPanel21Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel50)
+                            .addComponent(cmbcbType, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(20, 20, 20)
+                        .addGroup(jPanel21Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(btncbDel)
+                            .addComponent(btncbUpd)
+                            .addComponent(btncbAdd))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jLabel59))
+                    .addGroup(jPanel21Layout.createSequentialGroup()
+                        .addComponent(btnClearMe)
+                        .addGap(18, 18, 18)
+                        .addComponent(lblisCleared)))
+                .addGap(16, 16, 16))
         );
 
         jPanel22.setBackground(new java.awt.Color(102, 102, 102));
@@ -1709,7 +1737,8 @@ public class fmlUserInterface extends javax.swing.JFrame {
         lblUnplanThisMon.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         lblUnplanThisMon.setText("$388");
 
-        btnBudgetAdd.setText(". update");
+        btnBudgetAdd.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/icons8-refresh.png"))); // NOI18N
+        btnBudgetAdd.setToolTipText("save budget");
         btnBudgetAdd.setActionCommand("update");
         btnBudgetAdd.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -1953,7 +1982,7 @@ public class fmlUserInterface extends javax.swing.JFrame {
                     .addComponent(lblBudgetMon)
                     .addComponent(lblBudgetAct)
                     .addComponent(lblTotPerc))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 21, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 12, Short.MAX_VALUE)
                 .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnBudgetAdd)
                     .addComponent(lblBudgetMessages))
@@ -2367,7 +2396,8 @@ public class fmlUserInterface extends javax.swing.JFrame {
             }
         });
 
-        btnIEadd.setText("add");
+        btnIEadd.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/icons8-plus_2_math_filled.png"))); // NOI18N
+        btnIEadd.setToolTipText("add");
         btnIEadd.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnIEaddActionPerformed(evt);
@@ -2377,14 +2407,16 @@ public class fmlUserInterface extends javax.swing.JFrame {
         jLabel22.setFont(new java.awt.Font("Lucida Grande", 0, 16)); // NOI18N
         jLabel22.setText(" . type");
 
-        btnIEupd.setText("upd");
+        btnIEupd.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/icons8-refresh.png"))); // NOI18N
+        btnIEupd.setToolTipText("update");
         btnIEupd.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnIEupdActionPerformed(evt);
             }
         });
 
-        btnIEdel.setText("del");
+        btnIEdel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/icons8-clear_symbol.png"))); // NOI18N
+        btnIEdel.setToolTipText("delete");
         btnIEdel.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnIEdelActionPerformed(evt);
@@ -3935,6 +3967,12 @@ public class fmlUserInterface extends javax.swing.JFrame {
     }//GEN-LAST:event_tblCheckbookKeyReleased
 
     //CHECKBOOK
+    //clear and unclear transactions for reconciliation
+    private void btnClearMeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnClearMeActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnClearMeActionPerformed
+
+    //CHECKBOOK
     //load De from different Checkbook selections
     private void CheckbookDataEntry(){
     int i = tblCheckbook.getSelectedRow();
@@ -4176,6 +4214,7 @@ public class fmlUserInterface extends javax.swing.JFrame {
     private javax.swing.JButton btnAnalytics;
     private javax.swing.JButton btnBudget;
     private javax.swing.JButton btnBudgetAdd;
+    private javax.swing.JButton btnClearMe;
     private javax.swing.JButton btnExit;
     private javax.swing.JButton btnIEadd;
     private javax.swing.JButton btnIEbackwards;
