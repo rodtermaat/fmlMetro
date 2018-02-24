@@ -103,6 +103,7 @@ public class fmlUserInterface extends javax.swing.JFrame {
         }
         
         RefreshAnalyticsPane();
+        RefreshToday();
         
 //        // Budgeted amount
 //        Budget budx = sqlite.GetBudget();
@@ -164,13 +165,13 @@ public class fmlUserInterface extends javax.swing.JFrame {
 //                      "<br> and " + nextBillx + " both due soon";
 //        
 //        lblReminder.setText(html);
-        
-        // - dont forget to pay
-         
-        //Pie Chart
-        int intFOM = dtx.getIntFOM(0);
-        int intEOM = dtx.getIntEOM(0);
-        DisplayPieChart(intFOM, intEOM);
+//        
+//        // - dont forget to pay
+//         
+//        //Pie Chart
+//        int intFOM = dtx.getIntFOM(0);
+//        int intEOM = dtx.getIntEOM(0);
+//        DisplayPieChart(intFOM, intEOM);
                 
         // set up initial screen
         String htmlai = "<html>use this area as" +
@@ -447,8 +448,9 @@ public class fmlUserInterface extends javax.swing.JFrame {
 
         lblFML.setBackground(new java.awt.Color(102, 102, 102));
         lblFML.setFont(new java.awt.Font("Lucida Grande", 1, 24)); // NOI18N
+        lblFML.setForeground(new java.awt.Color(0, 255, 51));
         lblFML.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        lblFML.setText(" .fml");
+        lblFML.setText(" .fml today $1250");
         lblFML.setVerticalAlignment(javax.swing.SwingConstants.BOTTOM);
         lblFML.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
         lblFML.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
@@ -890,9 +892,9 @@ public class fmlUserInterface extends javax.swing.JFrame {
 
         jLabel31.setText("date");
 
-        btnAIbudgAdd.setBackground(new java.awt.Color(255, 204, 204));
-        btnAIbudgAdd.setForeground(new java.awt.Color(255, 204, 204));
-        btnAIbudgAdd.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/icons8-plus_2_math_filled.png"))); // NOI18N
+        btnAIbudgAdd.setBackground(new java.awt.Color(51, 51, 51));
+        btnAIbudgAdd.setForeground(new java.awt.Color(153, 153, 153));
+        btnAIbudgAdd.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/pink_add.png"))); // NOI18N
         btnAIbudgAdd.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnAIbudgAddActionPerformed(evt);
@@ -1063,7 +1065,7 @@ public class fmlUserInterface extends javax.swing.JFrame {
                 java.lang.Integer.class, java.lang.Boolean.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.Integer.class, java.lang.Integer.class
             };
             boolean[] canEdit = new boolean [] {
-                false, true, false, false, false, false, false
+                false, false, false, false, false, false, false
             };
 
             public Class getColumnClass(int columnIndex) {
@@ -1232,7 +1234,9 @@ public class fmlUserInterface extends javax.swing.JFrame {
         cmbcbCategory.setEditable(true);
         cmbcbCategory.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "income", "expense" }));
 
-        btncbAdd.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/icons8-plus_2_math_filled.png"))); // NOI18N
+        btncbAdd.setBackground(new java.awt.Color(51, 51, 51));
+        btncbAdd.setForeground(new java.awt.Color(153, 153, 153));
+        btncbAdd.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/pink_add.png"))); // NOI18N
         btncbAdd.setToolTipText("add");
         btncbAdd.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -1240,7 +1244,9 @@ public class fmlUserInterface extends javax.swing.JFrame {
             }
         });
 
-        btncbUpd.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/icons8-refresh.png"))); // NOI18N
+        btncbUpd.setBackground(new java.awt.Color(51, 51, 51));
+        btncbUpd.setForeground(new java.awt.Color(153, 153, 153));
+        btncbUpd.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/pink_refresh.png"))); // NOI18N
         btncbUpd.setToolTipText("update");
         btncbUpd.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -1248,7 +1254,9 @@ public class fmlUserInterface extends javax.swing.JFrame {
             }
         });
 
-        btncbDel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/icons8-clear_symbol.png"))); // NOI18N
+        btncbDel.setBackground(new java.awt.Color(51, 51, 51));
+        btncbDel.setForeground(new java.awt.Color(153, 153, 153));
+        btncbDel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/pink_trash.png"))); // NOI18N
         btncbDel.setToolTipText("delete");
         btncbDel.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -1285,17 +1293,17 @@ public class fmlUserInterface extends javax.swing.JFrame {
 
         jLabel56.setFont(new java.awt.Font("Lucida Grande", 0, 16)); // NOI18N
         jLabel56.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        jLabel56.setText("Not");
+        jLabel56.setText("Cleared");
 
         jLabel57.setFont(new java.awt.Font("Lucida Grande", 0, 14)); // NOI18N
         jLabel57.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        jLabel57.setText("Cleared");
+        jLabel57.setText("Balance");
 
         txtcbBank.setFont(new java.awt.Font("Lucida Grande", 0, 16)); // NOI18N
         txtcbBank.setText("10000");
 
         txtcbNotCleared.setFont(new java.awt.Font("Lucida Grande", 0, 16)); // NOI18N
-        txtcbNotCleared.setText("8888");
+        txtcbNotCleared.setText("88888");
 
         jLabel59.setText("jLabel59");
 
@@ -1361,12 +1369,12 @@ public class fmlUserInterface extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(txtcbBalance, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(jPanel21Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel57, javax.swing.GroupLayout.PREFERRED_SIZE, 59, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel56, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(jPanel21Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(jLabel56, javax.swing.GroupLayout.DEFAULT_SIZE, 71, Short.MAX_VALUE)
+                            .addComponent(jLabel57, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(txtcbNotCleared, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(155, 155, 155))
+                        .addComponent(txtcbNotCleared, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(129, 129, 129))
                     .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel21Layout.createSequentialGroup()
                         .addGroup(jPanel21Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel21Layout.createSequentialGroup()
@@ -1518,7 +1526,7 @@ public class fmlUserInterface extends javax.swing.JFrame {
             pnlLedgerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pnlLedgerLayout.createSequentialGroup()
                 .addComponent(jPanel15, javax.swing.GroupLayout.PREFERRED_SIZE, 909, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
+                .addGap(0, 286, Short.MAX_VALUE))
         );
         pnlLedgerLayout.setVerticalGroup(
             pnlLedgerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -1737,7 +1745,9 @@ public class fmlUserInterface extends javax.swing.JFrame {
         lblUnplanThisMon.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         lblUnplanThisMon.setText("$388");
 
-        btnBudgetAdd.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/icons8-refresh.png"))); // NOI18N
+        btnBudgetAdd.setBackground(new java.awt.Color(51, 51, 51));
+        btnBudgetAdd.setForeground(new java.awt.Color(153, 153, 153));
+        btnBudgetAdd.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/pink_refresh.png"))); // NOI18N
         btnBudgetAdd.setToolTipText("save budget");
         btnBudgetAdd.setActionCommand("update");
         btnBudgetAdd.addActionListener(new java.awt.event.ActionListener() {
@@ -2396,7 +2406,9 @@ public class fmlUserInterface extends javax.swing.JFrame {
             }
         });
 
-        btnIEadd.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/icons8-plus_2_math_filled.png"))); // NOI18N
+        btnIEadd.setBackground(new java.awt.Color(255, 204, 204));
+        btnIEadd.setForeground(new java.awt.Color(102, 102, 102));
+        btnIEadd.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/black_add.png"))); // NOI18N
         btnIEadd.setToolTipText("add");
         btnIEadd.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -2407,7 +2419,9 @@ public class fmlUserInterface extends javax.swing.JFrame {
         jLabel22.setFont(new java.awt.Font("Lucida Grande", 0, 16)); // NOI18N
         jLabel22.setText(" . type");
 
-        btnIEupd.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/icons8-refresh.png"))); // NOI18N
+        btnIEupd.setBackground(new java.awt.Color(255, 204, 204));
+        btnIEupd.setForeground(new java.awt.Color(102, 102, 102));
+        btnIEupd.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/black_refresh.png"))); // NOI18N
         btnIEupd.setToolTipText("update");
         btnIEupd.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -2415,7 +2429,9 @@ public class fmlUserInterface extends javax.swing.JFrame {
             }
         });
 
-        btnIEdel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/icons8-clear_symbol.png"))); // NOI18N
+        btnIEdel.setBackground(new java.awt.Color(255, 204, 204));
+        btnIEdel.setForeground(new java.awt.Color(102, 102, 102));
+        btnIEdel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/black_trash.png"))); // NOI18N
         btnIEdel.setToolTipText("delete");
         btnIEdel.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -2694,10 +2710,21 @@ public class fmlUserInterface extends javax.swing.JFrame {
         pnlCarder.repaint();
         pnlCarder.validate();
         
-        RefreshAnalyticsPane();    
+        RefreshAnalyticsPane(); 
+        RefreshToday();
         
     }//GEN-LAST:event_btnAnalyticsActionPerformed
 
+    //MAIN UI
+    //Refresh Todays Balance
+    private void RefreshToday(){
+    
+        String todaysBal = "";
+        int today = dtx.getToday();
+        int bal = sqlite.GetBalance(today);
+        lblFML.setText("fml today $" + bal);
+    }
+    
     //MAIN UI
     //Refresh Analytics pane
     private void RefreshAnalyticsPane(){
@@ -2783,6 +2810,7 @@ public class fmlUserInterface extends javax.swing.JFrame {
         pnlCarder.repaint();
         pnlCarder.validate();
         ClearIEdataEntry();
+        lblID.setVisible(false);
         //jLabel16.setVisible(false);
         String html = "<html>Income and Expenses are tracked monthly." +
                        "<br>This is the first step in coming to terms" +
@@ -2865,6 +2893,7 @@ public class fmlUserInterface extends javax.swing.JFrame {
                        "<br>  from the bank, and clear tranactions until you match.";
         
         lblcbInfo.setText(html);
+        lblcbID.setVisible(false);
         
         rdoLedgerMonth.setSelected(true);
         rdoLedgerAll.setSelected(false);
@@ -3041,6 +3070,7 @@ public class fmlUserInterface extends javax.swing.JFrame {
             int ieEOM = dtx.getIntEOM(IEmonTracker);
             ListIncExpByDate(ieFOM, ieEOM);
             RefreshAnalytics(ieFOM, ieEOM);
+            RefreshToday();
             if (!chkIErepeat.isSelected()){
                 ClearIEdataEntry();
             }
@@ -3074,6 +3104,7 @@ public class fmlUserInterface extends javax.swing.JFrame {
     // loads checkbook transactions
     private void GetLedgerTransByDate(int dateStart, int dateEnd){
 
+      int endingBal = 0;
       ledgerModel.setRowCount(0);
       
       ArrayList<TransactionLong> theLedger = 
@@ -3104,13 +3135,14 @@ public class fmlUserInterface extends javax.swing.JFrame {
         rowData[4] = theLedger.get(i).getCategory();
         rowData[5] = theLedger.get(i).getAmount();
         rowData[6] = theLedger.get(i).getBalance();
-        
+        endingBal = theLedger.get(i).getBalance();
         ledgerModel.addRow(rowData); 
       }
       tblCheckbook.getColumnModel().getColumn(0).setWidth(0);
       tblCheckbook.getColumnModel().getColumn(0).setMinWidth(0);
       tblCheckbook.getColumnModel().getColumn(0).setMaxWidth(0); 
-        
+      
+      txtcbBalance.setText(String.valueOf(endingBal));
     }
     
     // INCOME EXPENSE
@@ -3474,6 +3506,7 @@ public class fmlUserInterface extends javax.swing.JFrame {
                 int ieEOM = dtx.getIntEOM(IEmonTracker);
                 ListIncExpByDate(ieFOM, ieEOM);
                 RefreshAnalytics(ieFOM, ieEOM);
+                RefreshToday();
             }
             else{
                 DisplayIEmessage("Select something to delete instead of "
@@ -3523,6 +3556,7 @@ public class fmlUserInterface extends javax.swing.JFrame {
             int ieEOM = dtx.getIntEOM(IEmonTracker);
             ListIncExpByDate(ieFOM, ieEOM);
             RefreshAnalytics(ieFOM, ieEOM);
+            RefreshToday();
             if (!chkIErepeat.isSelected()){
                 ClearIEdataEntry();
             }
@@ -3742,6 +3776,7 @@ public class fmlUserInterface extends javax.swing.JFrame {
         
         int y = sqlite.AddTransaction(iDate8, day, mon, yr,wk, type, cat, 
                             name, amt, false);
+        RefreshToday();
         
         if(y==0){
             // add failed
@@ -3883,6 +3918,7 @@ public class fmlUserInterface extends javax.swing.JFrame {
             int cbEOM = dtx.getIntEOM(IEmonTracker);
             GetLedgerTransByDate(cbFOM, cbEOM);
             CheckBookBalance();
+            RefreshToday();
         }
         else{
             DisplayCBmessage("Check add data entry. Something not right");
@@ -3913,6 +3949,7 @@ public class fmlUserInterface extends javax.swing.JFrame {
             int cbEOM = dtx.getIntEOM(IEmonTracker);
             GetLedgerTransByDate(cbFOM, cbEOM);
             CheckBookBalance();
+            RefreshToday();
         }
         else{
             DisplayCBmessage("Check update data entry. Somethings not right");
@@ -3933,6 +3970,7 @@ public class fmlUserInterface extends javax.swing.JFrame {
             int cbEOM = dtx.getIntEOM(IEmonTracker);
             GetLedgerTransByDate(cbFOM, cbEOM);
             CheckBookBalance();
+            RefreshToday();
         }
         else{
             DisplayIEmessage("Select something to delete. stop trying to break the program");
@@ -3948,8 +3986,15 @@ public class fmlUserInterface extends javax.swing.JFrame {
     // CHECKBOOK
     // opens a new window and populates summary view for printing
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        PrintSummary ps = new PrintSummary();
-        ps.setVisible(true);
+        int fom = dtx.getIntFOM(IEmonTracker);
+        int eom = dtx.getIntEOM(IEmonTracker);
+        String info[] = new String[3];
+        info[0] = String.valueOf(fom);
+        info[1] = String.valueOf(eom);
+        info[2] = String.valueOf(IEmonTracker);
+        PrintSummary.main(info);
+        //PrintSummary ps = new PrintSummary();
+        //ps.setVisible(true);
     }//GEN-LAST:event_jButton1ActionPerformed
 
     //CHECKBOOK
@@ -3969,7 +4014,33 @@ public class fmlUserInterface extends javax.swing.JFrame {
     //CHECKBOOK
     //clear and unclear transactions for reconciliation
     private void btnClearMeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnClearMeActionPerformed
-        // TODO add your handling code here:
+        String valid = ValidateCBdataEntry();
+        if(valid.equals("PASS")){
+            int i = tblCheckbook.getSelectedRow();
+            String stest = String.valueOf(ledgerModel.getValueAt(i, 1));
+            boolean test = Boolean.valueOf(stest);
+            
+            String ids = String.valueOf(ledgerModel.getValueAt(i, 0));
+            int id = Integer.valueOf(ids);
+        
+            
+            if(test){
+                sqlite.ClearItem(id, false);
+                lblisCleared.setText("Uncleared");
+            }
+            else{
+                sqlite.ClearItem(id, true);
+                lblisCleared.setText("Cleared");
+            }   
+            
+            //get and load up the transaction into the ledger
+            int cbFOM = dtx.getIntFOM(IEmonTracker);
+            int cbEOM = dtx.getIntEOM(IEmonTracker);
+            GetLedgerTransByDate(cbFOM, cbEOM);
+            
+            ClearCBdataEntry();
+        }
+        else{ DisplayCBmessage("Select item to cear first");}   
     }//GEN-LAST:event_btnClearMeActionPerformed
 
     //CHECKBOOK
@@ -4082,6 +4153,7 @@ public class fmlUserInterface extends javax.swing.JFrame {
         rdoIEincome.setSelected(false);
         rdoIEexpense.setSelected(false);
         rdoIEunplanned.setSelected(false);
+        lblID.setText("");
     }
     
     // Checkbook
@@ -4092,6 +4164,7 @@ public class fmlUserInterface extends javax.swing.JFrame {
         cmbcbCategory.setSelectedIndex(-1);
         cmbcbType.setSelectedIndex(-1);
         lblisCleared.setText("");
+        lblcbID.setText("");
     }
     
     // INCOME EXPENSE

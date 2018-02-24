@@ -273,7 +273,20 @@ public class SQLite
         }
         
     }
-    
+    // Clear or unclear a transaction
+    public void ClearItem(int id, boolean clear){
+        String sql = "UPDATE ledger SET cleared = ? WHERE id = ?";
+        try (Connection conn = DriverManager.getConnection(url);
+          PreparedStatement pstmt = conn.prepareStatement(sql)) {
+ 
+            // set the corresponding param
+            pstmt.setBoolean(1, clear);
+            pstmt.setInt(2, id);
+            pstmt.executeUpdate();
+        } catch (SQLException e) {
+            //System.out.println(e.getMessage());
+        }
+    }
     // Update the Budget table
     public void UpdBudget(int yyyymm, int save, int cash, int transport, 
                 int groceries, int dining, int unplan){
@@ -1085,5 +1098,43 @@ public class SQLite
       
         return CatSum;
     }
-    
+   
+    // get balance based on date
+    public int GetBalance(int dateEnd){
+    String sql = "SELECT SUM(amount) AS balance FROM ledger WHERE date8 <= ?";
+        int balance = 0;
+        try {
+           Class.forName("org.sqlite.JDBC");
+           Connection conn = DriverManager.getConnection(url);
+           conn.setAutoCommit(false);
+           //System.out.println("Opened database successfully");
+           
+           //Statement stmt = conn.createStatement();
+           PreparedStatement pstmt  = conn.prepareStatement(sql);
+           pstmt.setInt(1,dateEnd);
+           ResultSet rs = pstmt.executeQuery();
+           
+           while ( rs.next() ) {
+              balance = rs.getInt("balance");
+           }
+           
+           //System.out.println("Check Balance successful");
+            if(rs != null) {
+                rs.close();
+            }
+            if(pstmt != null){
+                pstmt.close();
+            }
+            if(conn != null) {
+                conn.close();
+            } 
+        }
+        catch ( Exception e ) {
+           System.out.println("Check Balance Error: " + e.getMessage());
+           System.out.println( e.getClass().getName() + ": " + e.getMessage() );
+        }
+      
+        return balance;
+    }
+ 
 }

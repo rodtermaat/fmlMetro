@@ -5,6 +5,7 @@
  */
 package fmlMetro;
 
+import java.awt.print.PrinterException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import javax.swing.table.DefaultTableModel;
@@ -23,6 +24,10 @@ public class PrintSummary extends javax.swing.JFrame {
     int startingBal = 0;
     int runningBal = 0;
     int previousBal = 0;
+    public static int fom = 0;
+    public static int eom = 0;
+    public static int monTracker = 0;
+    String month = "";
     
     /**
      * Creates new form PrintSummary
@@ -34,18 +39,19 @@ public class PrintSummary extends javax.swing.JFrame {
         printModel = (DefaultTableModel) tblPrinter.getModel();   
         
         printModel.setRowCount(0);
-      
-      ArrayList<TransactionLong> theLedger = sqlx.PrintCheckbook(20180101, 20180131);
-      Object rowData[] = new Object[6];
-      String newDate = "";
-      String oldDate = "";
-      String newWeek = "";
-      String oldWeek = "";
+        
+        month = dty.getMonthDesc(monTracker);
+        ArrayList<TransactionLong> theLedger = sqlx.PrintCheckbook(fom, eom);
+        Object rowData[] = new Object[6];
+        String newDate = "";
+        String oldDate = "";
+        String newWeek = "";
+        String oldWeek = "";
       
       for(int i = 0; i < theLedger.size(); i++)
       {
         if(i==0){
-            rowData[0] = "January";
+            rowData[0] = month;
             rowData[1] = "";
             rowData[2] = "";
             rowData[3] = "Starting Balance";
@@ -261,7 +267,18 @@ public class PrintSummary extends javax.swing.JFrame {
     }//GEN-LAST:event_formWindowClosed
 
     private void btnPrinterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPrinterActionPerformed
-        
+        try{
+            boolean complete = tblPrinter.print();
+            if(complete){
+                
+            }
+            else {
+                
+            }
+        } catch (PrinterException pe){
+            System.out.println(pe);
+                
+        }
         
     }//GEN-LAST:event_btnPrinterActionPerformed
 
@@ -269,6 +286,10 @@ public class PrintSummary extends javax.swing.JFrame {
      * @param args the command line arguments
      */
     public static void main(String args[]) {
+        fom = Integer.valueOf(args[0]);
+        eom = Integer.valueOf(args[1]);
+        monTracker = Integer.valueOf(args[2]);
+        
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.

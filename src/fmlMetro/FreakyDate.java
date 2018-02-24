@@ -50,7 +50,8 @@ public class FreakyDate {
             String m_text = m_desc.getDisplayName(Calendar.MONTH, Calendar.LONG, Locale.ENGLISH);
             return m_text;
         }
-
+        
+        
         public Integer[] getWeeksInMonth(int month, int year) {
             List<Integer> list = new ArrayList<Integer>();
             SimpleDateFormat format = new SimpleDateFormat("w");
@@ -135,7 +136,16 @@ public class FreakyDate {
             
             return sqlDate30;
         }
-        
+        public int getToday(){
+            Calendar today = Calendar.getInstance();
+            String t_mon = leftPad((today.get(Calendar.MONTH) + 1),2);
+            String t_day = leftPad(today.get(Calendar.DAY_OF_MONTH),2);
+            String t_yr = String.valueOf(today.get(Calendar.YEAR));
+            String t_Date8 = t_yr + t_mon + t_day;
+            int i_Date8 = Integer.parseInt(t_Date8);
+            
+            return i_Date8;
+        }
         public int getIntEOM(int modifier){
             Calendar eom = Calendar.getInstance();
             eom.add(Calendar.MONTH, + modifier);

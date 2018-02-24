@@ -134,8 +134,11 @@
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                   <Font name="Lucida Grande" size="24" style="1"/>
                 </Property>
+                <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                  <Color blue="33" green="ff" red="0" type="rgb"/>
+                </Property>
                 <Property name="horizontalAlignment" type="int" value="2"/>
-                <Property name="text" type="java.lang.String" value=" .fml"/>
+                <Property name="text" type="java.lang.String" value=" .fml today $1250"/>
                 <Property name="verticalAlignment" type="int" value="3"/>
                 <Property name="horizontalTextPosition" type="int" value="4"/>
                 <Property name="verticalTextPosition" type="int" value="3"/>
@@ -997,13 +1000,13 @@
                     <Component class="javax.swing.JButton" name="btnAIbudgAdd">
                       <Properties>
                         <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                          <Color blue="cc" green="cc" red="ff" type="rgb"/>
+                          <Color blue="33" green="33" red="33" type="rgb"/>
                         </Property>
                         <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                          <Color blue="cc" green="cc" red="ff" type="rgb"/>
+                          <Color blue="99" green="99" red="99" type="rgb"/>
                         </Property>
                         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                          <Image iconType="3" name="/images/icons8-plus_2_math_filled.png"/>
+                          <Image iconType="3" name="/images/pink_add.png"/>
                         </Property>
                       </Properties>
                       <Events>
@@ -1250,7 +1253,7 @@
                                 <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
                                   <Table columnCount="7" rowCount="4">
                                     <Column editable="false" title="id" type="java.lang.Integer"/>
-                                    <Column editable="true" title="cleared" type="java.lang.Boolean"/>
+                                    <Column editable="false" title="cleared" type="java.lang.Boolean"/>
                                     <Column editable="false" title="date" type="java.lang.String"/>
                                     <Column editable="false" title="description" type="java.lang.String"/>
                                     <Column editable="false" title="category" type="java.lang.String"/>
@@ -1447,13 +1450,13 @@
                                           <EmptySpace max="-2" attributes="0"/>
                                           <Component id="txtcbBalance" min="-2" max="-2" attributes="0"/>
                                           <EmptySpace max="-2" attributes="0"/>
-                                          <Group type="103" groupAlignment="0" attributes="0">
-                                              <Component id="jLabel57" min="-2" pref="59" max="-2" attributes="0"/>
-                                              <Component id="jLabel56" min="-2" pref="55" max="-2" attributes="0"/>
+                                          <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                                              <Component id="jLabel56" pref="71" max="32767" attributes="0"/>
+                                              <Component id="jLabel57" max="32767" attributes="0"/>
                                           </Group>
                                           <EmptySpace max="-2" attributes="0"/>
-                                          <Component id="txtcbNotCleared" min="-2" max="-2" attributes="0"/>
-                                          <EmptySpace min="-2" pref="155" max="-2" attributes="0"/>
+                                          <Component id="txtcbNotCleared" min="-2" pref="64" max="-2" attributes="0"/>
+                                          <EmptySpace min="-2" pref="129" max="-2" attributes="0"/>
                                       </Group>
                                       <Group type="102" alignment="0" attributes="0">
                                           <Group type="103" groupAlignment="1" attributes="0">
@@ -1638,8 +1641,14 @@
                         </Component>
                         <Component class="javax.swing.JButton" name="btncbAdd">
                           <Properties>
+                            <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                              <Color blue="33" green="33" red="33" type="rgb"/>
+                            </Property>
+                            <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                              <Color blue="99" green="99" red="99" type="rgb"/>
+                            </Property>
                             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                              <Image iconType="3" name="/images/icons8-plus_2_math_filled.png"/>
+                              <Image iconType="3" name="/images/pink_add.png"/>
                             </Property>
                             <Property name="toolTipText" type="java.lang.String" value="add"/>
                           </Properties>
@@ -1649,8 +1658,14 @@
                         </Component>
                         <Component class="javax.swing.JButton" name="btncbUpd">
                           <Properties>
+                            <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                              <Color blue="33" green="33" red="33" type="rgb"/>
+                            </Property>
+                            <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                              <Color blue="99" green="99" red="99" type="rgb"/>
+                            </Property>
                             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                              <Image iconType="3" name="/images/icons8-refresh.png"/>
+                              <Image iconType="3" name="/images/pink_refresh.png"/>
                             </Property>
                             <Property name="toolTipText" type="java.lang.String" value="update"/>
                           </Properties>
@@ -1660,8 +1675,14 @@
                         </Component>
                         <Component class="javax.swing.JButton" name="btncbDel">
                           <Properties>
+                            <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                              <Color blue="33" green="33" red="33" type="rgb"/>
+                            </Property>
+                            <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                              <Color blue="99" green="99" red="99" type="rgb"/>
+                            </Property>
                             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                              <Image iconType="3" name="/images/icons8-clear_symbol.png"/>
+                              <Image iconType="3" name="/images/pink_trash.png"/>
                             </Property>
                             <Property name="toolTipText" type="java.lang.String" value="delete"/>
                           </Properties>
@@ -1748,7 +1769,7 @@
                               <Font name="Lucida Grande" size="16" style="0"/>
                             </Property>
                             <Property name="horizontalAlignment" type="int" value="4"/>
-                            <Property name="text" type="java.lang.String" value="Not"/>
+                            <Property name="text" type="java.lang.String" value="Cleared"/>
                           </Properties>
                         </Component>
                         <Component class="javax.swing.JLabel" name="jLabel57">
@@ -1757,7 +1778,7 @@
                               <Font name="Lucida Grande" size="14" style="0"/>
                             </Property>
                             <Property name="horizontalAlignment" type="int" value="4"/>
-                            <Property name="text" type="java.lang.String" value="Cleared"/>
+                            <Property name="text" type="java.lang.String" value="Balance"/>
                           </Properties>
                         </Component>
                         <Component class="javax.swing.JTextField" name="txtcbBank">
@@ -1773,7 +1794,7 @@
                             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                               <Font name="Lucida Grande" size="16" style="0"/>
                             </Property>
-                            <Property name="text" type="java.lang.String" value="8888"/>
+                            <Property name="text" type="java.lang.String" value="88888"/>
                           </Properties>
                         </Component>
                         <Component class="javax.swing.JLabel" name="jLabel59">
@@ -2546,8 +2567,14 @@
                     </Component>
                     <Component class="javax.swing.JButton" name="btnBudgetAdd">
                       <Properties>
+                        <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                          <Color blue="33" green="33" red="33" type="rgb"/>
+                        </Property>
+                        <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                          <Color blue="99" green="99" red="99" type="rgb"/>
+                        </Property>
                         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                          <Image iconType="3" name="/images/icons8-refresh.png"/>
+                          <Image iconType="3" name="/images/pink_refresh.png"/>
                         </Property>
                         <Property name="toolTipText" type="java.lang.String" value="save budget"/>
                         <Property name="actionCommand" type="java.lang.String" value="update"/>
@@ -3482,8 +3509,14 @@
                     </Component>
                     <Component class="javax.swing.JButton" name="btnIEadd">
                       <Properties>
+                        <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                          <Color blue="cc" green="cc" red="ff" type="rgb"/>
+                        </Property>
+                        <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                          <Color blue="66" green="66" red="66" type="rgb"/>
+                        </Property>
                         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                          <Image iconType="3" name="/images/icons8-plus_2_math_filled.png"/>
+                          <Image iconType="3" name="/images/black_add.png"/>
                         </Property>
                         <Property name="toolTipText" type="java.lang.String" value="add"/>
                       </Properties>
@@ -3501,8 +3534,14 @@
                     </Component>
                     <Component class="javax.swing.JButton" name="btnIEupd">
                       <Properties>
+                        <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                          <Color blue="cc" green="cc" red="ff" type="rgb"/>
+                        </Property>
+                        <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                          <Color blue="66" green="66" red="66" type="rgb"/>
+                        </Property>
                         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                          <Image iconType="3" name="/images/icons8-refresh.png"/>
+                          <Image iconType="3" name="/images/black_refresh.png"/>
                         </Property>
                         <Property name="toolTipText" type="java.lang.String" value="update"/>
                       </Properties>
@@ -3512,8 +3551,14 @@
                     </Component>
                     <Component class="javax.swing.JButton" name="btnIEdel">
                       <Properties>
+                        <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                          <Color blue="cc" green="cc" red="ff" type="rgb"/>
+                        </Property>
+                        <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                          <Color blue="66" green="66" red="66" type="rgb"/>
+                        </Property>
                         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                          <Image iconType="3" name="/images/icons8-clear_symbol.png"/>
+                          <Image iconType="3" name="/images/black_trash.png"/>
                         </Property>
                         <Property name="toolTipText" type="java.lang.String" value="delete"/>
                       </Properties>
