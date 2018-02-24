@@ -1136,5 +1136,42 @@ public class SQLite
       
         return balance;
     }
- 
+ // get balance based on date
+    public int GetClearedBalance(int dateEnd){
+    String sql = "SELECT SUM(amount) AS balance FROM ledger\n" +
+                 " WHERE cleared = 1 AND date8 <= ?";
+        int balance = 0;
+        try {
+           Class.forName("org.sqlite.JDBC");
+           Connection conn = DriverManager.getConnection(url);
+           conn.setAutoCommit(false);
+           //System.out.println("Opened database successfully");
+           
+           //Statement stmt = conn.createStatement();
+           PreparedStatement pstmt  = conn.prepareStatement(sql);
+           pstmt.setInt(1,dateEnd);
+           ResultSet rs = pstmt.executeQuery();
+           
+           while ( rs.next() ) {
+              balance = rs.getInt("balance");
+           }
+           
+           //System.out.println("Check Balance successful");
+            if(rs != null) {
+                rs.close();
+            }
+            if(pstmt != null){
+                pstmt.close();
+            }
+            if(conn != null) {
+                conn.close();
+            } 
+        }
+        catch ( Exception e ) {
+           System.out.println("Cleared Balance Error: " + e.getMessage());
+           System.out.println( e.getClass().getName() + ": " + e.getMessage() );
+        }
+      
+        return balance;
+    }
 }

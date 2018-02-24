@@ -6,26 +6,26 @@
 package fmlMetro;
 
 import com.sun.glass.events.KeyEvent;
-import java.awt.Color;
-import java.awt.Component;
-import java.awt.Dimension;
-import java.awt.Toolkit;
+//import java.awt.Color;
+//import java.awt.Component;
+//import java.awt.Dimension;
+//import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.Calendar;
+//import java.util.Calendar;
 import java.util.Date;
-import java.util.Locale;
+//import java.util.Locale;
 import javax.swing.Timer;
-import java.lang.String;
+//import java.lang.String;
 import java.math.RoundingMode;
 import java.text.DecimalFormat;
 import java.util.ArrayList;
-import javax.swing.event.TableModelEvent;
-import javax.swing.event.TableModelListener;
+//import javax.swing.event.TableModelEvent;
+//import javax.swing.event.TableModelListener;
 import javax.swing.table.DefaultTableModel;
-import javax.swing.table.TableCellRenderer;
+//import javax.swing.table.TableCellRenderer;
 
 /**
  *
@@ -295,8 +295,8 @@ public class fmlUserInterface extends javax.swing.JFrame {
         jLabel54 = new javax.swing.JLabel();
         jLabel56 = new javax.swing.JLabel();
         jLabel57 = new javax.swing.JLabel();
-        txtcbBank = new javax.swing.JTextField();
-        txtcbNotCleared = new javax.swing.JTextField();
+        txtcbBankBal = new javax.swing.JTextField();
+        txtcbClearedBal = new javax.swing.JTextField();
         jLabel59 = new javax.swing.JLabel();
         lblisCleared = new javax.swing.JLabel();
         btnClearMe = new javax.swing.JButton();
@@ -1299,11 +1299,11 @@ public class fmlUserInterface extends javax.swing.JFrame {
         jLabel57.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         jLabel57.setText("Balance");
 
-        txtcbBank.setFont(new java.awt.Font("Lucida Grande", 0, 16)); // NOI18N
-        txtcbBank.setText("10000");
+        txtcbBankBal.setFont(new java.awt.Font("Lucida Grande", 0, 16)); // NOI18N
+        txtcbBankBal.setText("10000");
 
-        txtcbNotCleared.setFont(new java.awt.Font("Lucida Grande", 0, 16)); // NOI18N
-        txtcbNotCleared.setText("88888");
+        txtcbClearedBal.setFont(new java.awt.Font("Lucida Grande", 0, 16)); // NOI18N
+        txtcbClearedBal.setText("88888");
 
         jLabel59.setText("jLabel59");
 
@@ -1361,7 +1361,7 @@ public class fmlUserInterface extends javax.swing.JFrame {
                             .addComponent(jLabel51, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(jLabel49, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(txtcbBank, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(txtcbBankBal, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanel21Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel53, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -1373,7 +1373,7 @@ public class fmlUserInterface extends javax.swing.JFrame {
                             .addComponent(jLabel56, javax.swing.GroupLayout.DEFAULT_SIZE, 71, Short.MAX_VALUE)
                             .addComponent(jLabel57, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(txtcbNotCleared, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(txtcbClearedBal, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(129, 129, 129))
                     .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel21Layout.createSequentialGroup()
                         .addGroup(jPanel21Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
@@ -1405,8 +1405,8 @@ public class fmlUserInterface extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jLabel51))
                     .addComponent(txtcbBalance, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txtcbBank, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txtcbNotCleared, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtcbBankBal, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtcbClearedBal, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(jPanel21Layout.createSequentialGroup()
                         .addComponent(jLabel53)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -1526,7 +1526,7 @@ public class fmlUserInterface extends javax.swing.JFrame {
             pnlLedgerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pnlLedgerLayout.createSequentialGroup()
                 .addComponent(jPanel15, javax.swing.GroupLayout.PREFERRED_SIZE, 909, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 286, Short.MAX_VALUE))
+                .addGap(0, 0, Short.MAX_VALUE))
         );
         pnlLedgerLayout.setVerticalGroup(
             pnlLedgerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -2718,11 +2718,16 @@ public class fmlUserInterface extends javax.swing.JFrame {
     //MAIN UI
     //Refresh Todays Balance
     private void RefreshToday(){
-    
+        // todays balance
         String todaysBal = "";
         int today = dtx.getToday();
         int bal = sqlite.GetBalance(today);
         lblFML.setText("fml today $" + bal);
+        
+        // cleared balance
+        int clearedBal = 0;
+        clearedBal = sqlite.GetClearedBalance(today);
+        txtcbClearedBal.setText(String.valueOf(clearedBal));
     }
     
     //MAIN UI
@@ -2906,11 +2911,11 @@ public class fmlUserInterface extends javax.swing.JFrame {
         cmbcbType.setSelectedIndex(-1);
         lblcbID.setText("");
         lblisCleared.setText("");
-        txtcbBank.setText("    ?  ");
+        txtcbBankBal.setText("    ?  ");
         txtcbBalance.setText("  ?  ");
-        txtcbNotCleared.setText(" ? ");
+        txtcbClearedBal.setText(" ? ");
         txtcbBalance.setEnabled(false);
-        txtcbNotCleared.setEnabled(false);
+        txtcbClearedBal.setEnabled(false);
         
         UpdateCBCategories();       //fill with values from database
         //new AutoCompleteJComboBoxer(cmbcbCategory);
@@ -2923,6 +2928,7 @@ public class fmlUserInterface extends javax.swing.JFrame {
         
         //update starting balance
         CheckBookBalance();
+        RefreshToday();
         
     }//GEN-LAST:event_bntRegisterActionPerformed
 
@@ -4039,6 +4045,7 @@ public class fmlUserInterface extends javax.swing.JFrame {
             GetLedgerTransByDate(cbFOM, cbEOM);
             
             ClearCBdataEntry();
+            RefreshToday();
         }
         else{ DisplayCBmessage("Select item to cear first");}   
     }//GEN-LAST:event_btnClearMeActionPerformed
@@ -4496,9 +4503,9 @@ public class fmlUserInterface extends javax.swing.JFrame {
     private javax.swing.JTextField txtIEdescription;
     private javax.swing.JTextField txtcbAmt;
     private javax.swing.JTextField txtcbBalance;
-    private javax.swing.JTextField txtcbBank;
+    private javax.swing.JTextField txtcbBankBal;
+    private javax.swing.JTextField txtcbClearedBal;
     private javax.swing.JFormattedTextField txtcbDate;
     private javax.swing.JTextField txtcbName;
-    private javax.swing.JTextField txtcbNotCleared;
     // End of variables declaration//GEN-END:variables
 }
