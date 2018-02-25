@@ -686,9 +686,7 @@ public class SQLite
                     // create an ArrayList of the Transaction object and creates
                     // the ledger/checkbook of the application
         TransactionShort row2;
-                    // not sure what this actually does, but is needed based
-                    // on similar sample code I have studied
-    
+        
         String sql = "select id, date8, time, category, name, amount,\n" +
                     " (select sum(t2.amount) from ledger t2 where\n" +
                     " ((t2.date8 <= t1.date8 and t2.time <= t1.time) or\n" +
@@ -1173,5 +1171,63 @@ public class SQLite
         }
       
         return balance;
+    }
+    
+    public ArrayList<Plotter> GetTimeSeries(){
+        
+        ArrayList<Plotter> plotRows = new ArrayList<>();
+        Plotter aPlotRow;
+        
+        String sql = "WITH temp AS (SELECT yr,mon,type\n" +
+            " (sum(amount)*-1) AS amount FROM ledger WHERE type='bill'\n" +
+            " OR (type='budget' AND category<>'savings)\n" +
+            " GROUP BY yr,mon,type\n" +
+            " UNION ALL\n" +
+            " SELECT yr, mon, type, sum(amount) AS amount\n" + 
+            " FROM ledger WHERE type = 'income'\n" +
+            " GROUP BY yr, mon,type\n" +
+            " UNION ALL\n" +
+            " SELECT yr, mon, category AS type,(sum(amount)*-1) AS amount\n" + 
+            " FROM ledger WHERE (type = 'budget' AND category = 'savings')\n" +
+            " GROUP BY yr, mon,category\n" +
+            " ORDER BY type,yr,mon)\n" +
+            " SELECT (yr || mon) AS date, type, amount FROM temp";
+
+        try {
+           Class.forName("org.sqlite.JDBC");
+           Connection conn = DriverManager.getConnection(url);
+           conn.setAutoCommit(false);
+           //System.out.println("Opened database successfully");
+           
+           //Statement stmt = conn.createStatement();
+           PreparedStatement pstmt  = conn.prepareStatement(sql);
+           //pstmt.setInt(1,dateEnd);
+           ResultSet rs = pstmt.executeQuery();
+           
+           while ( rs.next() ) {
+              String date = rs.getString("date");
+              String type = rs.getString("type");
+              int amt = rs.getInt("amount");
+                            
+              aPlotRow = new Plotter(date, type, amt);
+              plotRows.add(aPlotRow);
+           }
+           
+            if(rs != null) {
+                rs.close();
+            }
+            if(pstmt != null){
+                pstmt.close();
+            }
+            if(conn != null) {
+                conn.close();
+            } 
+        }
+        catch ( Exception e ) {
+           //System.out.println("Transaction by date: " + e.getMessage());
+           //System.out.println( e.getClass().getName() + ": " + e.getMessage() );
+        }
+      
+        return plotRows;
     }
 }
