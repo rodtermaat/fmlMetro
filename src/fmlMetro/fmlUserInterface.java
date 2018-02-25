@@ -169,9 +169,9 @@ public class fmlUserInterface extends javax.swing.JFrame {
 //        // - dont forget to pay
 //         
 //        //Pie Chart
-//        int intFOM = dtx.getIntFOM(0);
-//        int intEOM = dtx.getIntEOM(0);
-//        DisplayPieChart(intFOM, intEOM);
+        int intFOM = dtx.getIntFOM(0);
+        int intEOM = dtx.getIntEOM(0);
+        DisplayPieChart(intFOM, intEOM);
                 
         // set up initial screen
         String htmlai = "<html>use this area as" +
@@ -238,8 +238,12 @@ public class fmlUserInterface extends javax.swing.JFrame {
         lblaiaTot = new javax.swing.JLabel();
         jPanel5 = new javax.swing.JPanel();
         jLabel21 = new javax.swing.JLabel();
+        jRadioButton1 = new javax.swing.JRadioButton();
+        jRadioButton2 = new javax.swing.JRadioButton();
+        jRadioButton3 = new javax.swing.JRadioButton();
+        pnlGraphs = new javax.swing.JPanel();
         jPanel6 = new javax.swing.JPanel();
-        jLabel10 = new javax.swing.JLabel();
+        lblExpGraph = new javax.swing.JLabel();
         lblAIMessage = new javax.swing.JLabel();
         pnlGraph = new javax.swing.JPanel();
         jPanel10 = new javax.swing.JPanel();
@@ -678,7 +682,7 @@ public class fmlUserInterface extends javax.swing.JFrame {
                     .addGroup(jPanel20Layout.createSequentialGroup()
                         .addGroup(jPanel20Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(jLabel66, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jLabel65, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 86, Short.MAX_VALUE)
+                            .addComponent(jLabel65, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 78, Short.MAX_VALUE)
                             .addComponent(jLabel64, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(JLabeln, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(jLabel62, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -709,7 +713,7 @@ public class fmlUserInterface extends javax.swing.JFrame {
                                         .addComponent(lblaibTot, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addGroup(jPanel20Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(lblaiaTot, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(lblaiaTot, javax.swing.GroupLayout.DEFAULT_SIZE, 48, Short.MAX_VALUE)
                                     .addComponent(lblaiaUnplan, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel20Layout.createSequentialGroup()
                         .addComponent(jLabel19, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -801,27 +805,59 @@ public class fmlUserInterface extends javax.swing.JFrame {
         jLabel21.setFont(new java.awt.Font("Lucida Grande", 1, 18)); // NOI18N
         jLabel21.setText(". random analytics");
 
+        jRadioButton1.setText("forecast");
+
+        jRadioButton2.setText("summary");
+
+        jRadioButton3.setText("one more");
+
+        pnlGraphs.setBackground(new java.awt.Color(102, 102, 102));
+
+        javax.swing.GroupLayout pnlGraphsLayout = new javax.swing.GroupLayout(pnlGraphs);
+        pnlGraphs.setLayout(pnlGraphsLayout);
+        pnlGraphsLayout.setHorizontalGroup(
+            pnlGraphsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 0, Short.MAX_VALUE)
+        );
+        pnlGraphsLayout.setVerticalGroup(
+            pnlGraphsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 0, Short.MAX_VALUE)
+        );
+
         javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
         jPanel5.setLayout(jPanel5Layout);
         jPanel5Layout.setHorizontalGroup(
             jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel5Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel21, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addContainerGap())
+                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(pnlGraphs, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(jPanel5Layout.createSequentialGroup()
+                        .addComponent(jLabel21, javax.swing.GroupLayout.PREFERRED_SIZE, 182, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jRadioButton1)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jRadioButton2)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jRadioButton3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
         );
         jPanel5Layout.setVerticalGroup(
             jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel5Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel21)
-                .addContainerGap(187, Short.MAX_VALUE))
+                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel21)
+                    .addComponent(jRadioButton1)
+                    .addComponent(jRadioButton2)
+                    .addComponent(jRadioButton3))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(pnlGraphs, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         jPanel6.setBackground(new java.awt.Color(102, 102, 102));
 
-        jLabel10.setFont(new java.awt.Font("Lucida Grande", 1, 18)); // NOI18N
-        jLabel10.setText(". pretty chart to tell you nothing");
+        lblExpGraph.setFont(new java.awt.Font("Lucida Grande", 1, 18)); // NOI18N
+        lblExpGraph.setText(". pretty chart to tell you nothing");
 
         lblAIMessage.setForeground(new java.awt.Color(0, 255, 51));
         lblAIMessage.setText(" . message center");
@@ -847,7 +883,7 @@ public class fmlUserInterface extends javax.swing.JFrame {
                 .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel6Layout.createSequentialGroup()
                         .addContainerGap()
-                        .addComponent(jLabel10, javax.swing.GroupLayout.DEFAULT_SIZE, 398, Short.MAX_VALUE))
+                        .addComponent(lblExpGraph, javax.swing.GroupLayout.DEFAULT_SIZE, 398, Short.MAX_VALUE))
                     .addComponent(lblAIMessage, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
             .addComponent(pnlGraph, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -856,7 +892,7 @@ public class fmlUserInterface extends javax.swing.JFrame {
             jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel6Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel10)
+                .addComponent(lblExpGraph)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(pnlGraph, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -981,17 +1017,17 @@ public class fmlUserInterface extends javax.swing.JFrame {
                 .addGroup(pnlAnalyticsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jPanel6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jPanel10, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(35, Short.MAX_VALUE))
         );
         pnlAnalyticsLayout.setVerticalGroup(
             pnlAnalyticsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pnlAnalyticsLayout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(pnlAnalyticsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(pnlAnalyticsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(pnlAnalyticsLayout.createSequentialGroup()
                         .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(jPanel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(pnlAnalyticsLayout.createSequentialGroup()
                         .addComponent(jPanel6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -1499,7 +1535,7 @@ public class fmlUserInterface extends javax.swing.JFrame {
                         .addGroup(jPanel15Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(jPanel22, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addGroup(jPanel15Layout.createSequentialGroup()
-                                .addComponent(jPanel21, javax.swing.GroupLayout.PREFERRED_SIZE, 412, Short.MAX_VALUE)
+                                .addComponent(jPanel21, javax.swing.GroupLayout.DEFAULT_SIZE, 412, Short.MAX_VALUE)
                                 .addGap(42, 42, 42))))
                     .addComponent(jPanel16, javax.swing.GroupLayout.PREFERRED_SIZE, 908, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -2713,6 +2749,12 @@ public class fmlUserInterface extends javax.swing.JFrame {
         RefreshAnalyticsPane(); 
         RefreshToday();
         
+        //Pie Chart
+        int intFOM = dtx.getIntFOM(IEmonTracker);
+        int intEOM = dtx.getIntEOM(IEmonTracker);
+        DisplayPieChart(intFOM, intEOM);
+
+        
     }//GEN-LAST:event_btnAnalyticsActionPerformed
 
     //MAIN UI
@@ -2790,9 +2832,9 @@ public class fmlUserInterface extends javax.swing.JFrame {
         lblReminder.setText(html);
 
         //Pie Chart
-        int intFOM = dtx.getIntFOM(0);
-        int intEOM = dtx.getIntEOM(0);
-        DisplayPieChart(intFOM, intEOM);
+        //int intFOM = dtx.getIntFOM(0);
+        //int intEOM = dtx.getIntEOM(0);
+        //DisplayPieChart(intFOM, intEOM);
 
         //reset data entry
         txtAIbudgDate.setText(inputToday);
@@ -4280,7 +4322,13 @@ public class fmlUserInterface extends javax.swing.JFrame {
         final TableChartPopup tcp = new TableChartPopup(pie.tm); 
         pnlGraph.removeAll();
         pnlGraph.add(tcp.GetPieChart());
+        pnlGraph.repaint();
+        pnlGraph.validate();
         pnlGraph.setVisible(true);
+        
+        lblExpGraph.setText("expense summary for " + 
+                dtx.getMonthDesc(IEmonTracker));
+        
         
         }
     }
@@ -4314,7 +4362,6 @@ public class fmlUserInterface extends javax.swing.JFrame {
     private javax.swing.JComboBox<String> cmbcbType;
     private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel13;
@@ -4402,6 +4449,9 @@ public class fmlUserInterface extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel7;
     private javax.swing.JPanel jPanel8;
     private javax.swing.JPanel jPanel9;
+    private javax.swing.JRadioButton jRadioButton1;
+    private javax.swing.JRadioButton jRadioButton2;
+    private javax.swing.JRadioButton jRadioButton3;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
@@ -4425,6 +4475,7 @@ public class fmlUserInterface extends javax.swing.JFrame {
     private javax.swing.JLabel lblDinePerc;
     private javax.swing.JLabel lblDineThisMon;
     private javax.swing.JLabel lblDineThisWk;
+    private javax.swing.JLabel lblExpGraph;
     private javax.swing.JLabel lblFML;
     private javax.swing.JLabel lblGrocPerc;
     private javax.swing.JLabel lblGrocThisMon;
@@ -4476,6 +4527,7 @@ public class fmlUserInterface extends javax.swing.JFrame {
     private javax.swing.JPanel pnlBudget;
     private javax.swing.JPanel pnlCarder;
     private javax.swing.JPanel pnlGraph;
+    private javax.swing.JPanel pnlGraphs;
     private javax.swing.JPanel pnlIncomeExp;
     private javax.swing.JPanel pnlLedger;
     private javax.swing.JPanel pnlReporter;
