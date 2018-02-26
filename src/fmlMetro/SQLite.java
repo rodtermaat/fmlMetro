@@ -452,11 +452,13 @@ public class SQLite
            int ccyymm99 = Integer.valueOf(cymd);
            
         String sql = "WITH budgetItems AS (SELECT yr,mon, " +
-                     " CASE wk WHEN '1' THEN '07'" +
-                     "         WHEN '2' THEN '14'" +
-                     "         WHEN '3' THEN '21'" +
-                     "         WHEN '4' THEN '28'" +
-                     "         WHEN '5' THEN '30' END day,\n" +
+                     " CASE wk WHEN '1'  THEN '07' WHEN '2'  THEN '14'" +
+                     "         WHEN '3'  THEN '21' WHEN '4'  THEN '28'" +
+                     "         WHEN '5'  THEN '04' WHEN '6'  THEN '11'" +
+                     "         WHEN '7'  THEN '18' WHEN '8'  THEN '25'" +
+                     "         WHEN '9'  THEN '04' WHEN '10' THEN '11'" +
+                     "         WHEN '11' THEN '18' WHEN '12' THEN '25'" +
+                     " END day,\n" +
                      " wk, type,category,MAX(time) as time,\n" +
                      " SUM(amount) as amount FROM ledger WHERE\n" +
                      " type = \"budget\" " +

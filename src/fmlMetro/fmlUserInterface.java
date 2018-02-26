@@ -22,9 +22,14 @@ import javax.swing.Timer;
 import java.math.RoundingMode;
 import java.text.DecimalFormat;
 import java.util.ArrayList;
+import javafx.scene.chart.XYChart;
+import javax.swing.JPanel;
 //import javax.swing.event.TableModelEvent;
 //import javax.swing.event.TableModelListener;
 import javax.swing.table.DefaultTableModel;
+import org.knowm.xchart.QuickChart;
+import org.knowm.xchart.SwingWrapper;
+import org.knowm.xchart.XChartPanel;
 //import javax.swing.table.TableCellRenderer;
 
 /**
@@ -839,7 +844,7 @@ public class fmlUserInterface extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jRadioButton2)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jRadioButton3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                        .addComponent(jRadioButton3, javax.swing.GroupLayout.DEFAULT_SIZE, 97, Short.MAX_VALUE))))
         );
         jPanel5Layout.setVerticalGroup(
             jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -851,7 +856,8 @@ public class fmlUserInterface extends javax.swing.JFrame {
                     .addComponent(jRadioButton2)
                     .addComponent(jRadioButton3))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(pnlGraphs, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addComponent(pnlGraphs, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
         );
 
         jPanel6.setBackground(new java.awt.Color(102, 102, 102));
@@ -1017,7 +1023,7 @@ public class fmlUserInterface extends javax.swing.JFrame {
                 .addGroup(pnlAnalyticsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jPanel6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jPanel10, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(35, Short.MAX_VALUE))
+                .addContainerGap(303, Short.MAX_VALUE))
         );
         pnlAnalyticsLayout.setVerticalGroup(
             pnlAnalyticsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -1535,7 +1541,7 @@ public class fmlUserInterface extends javax.swing.JFrame {
                         .addGroup(jPanel15Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(jPanel22, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addGroup(jPanel15Layout.createSequentialGroup()
-                                .addComponent(jPanel21, javax.swing.GroupLayout.DEFAULT_SIZE, 412, Short.MAX_VALUE)
+                                .addComponent(jPanel21, javax.swing.GroupLayout.PREFERRED_SIZE, 412, Short.MAX_VALUE)
                                 .addGap(42, 42, 42))))
                     .addComponent(jPanel16, javax.swing.GroupLayout.PREFERRED_SIZE, 908, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -4329,10 +4335,22 @@ public class fmlUserInterface extends javax.swing.JFrame {
         lblExpGraph.setText("expense summary for " + 
                 dtx.getMonthDesc(IEmonTracker));
         
-        
-        }
+        }       
     }
 
+//    private void SummaryGraph(){
+//        double[] xData = new double[] { 0.0, 1.0, 2.0 };
+//        double[] yData = new double[] { 2.0, 1.0, 0.0 };
+// 
+//        // Create Chart
+//        XYChart chart = QuickChart.getChart("Sample Chart", "X", "Y", "y(x)", xData, yData);
+// 
+//        JPanel pnlChart = new XChartPanel(chart);
+//        //xChartPanel;
+//        pnlGraphs.add(pnlChart);
+//        pnlGraphs.validate();;
+//        
+//        }
     
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
