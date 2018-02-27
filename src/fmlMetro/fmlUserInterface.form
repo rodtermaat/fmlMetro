@@ -738,7 +738,7 @@
                           <Group type="102" alignment="0" attributes="0">
                               <EmptySpace max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="0" attributes="0">
-                                  <Component id="pnlGraphs" max="32767" attributes="0"/>
+                                  <Component id="pnlRegress" max="32767" attributes="0"/>
                                   <Group type="102" attributes="0">
                                       <Component id="jLabel21" min="-2" pref="182" max="-2" attributes="0"/>
                                       <EmptySpace max="-2" attributes="0"/>
@@ -763,7 +763,7 @@
                                   <Component id="jRadioButton3" alignment="3" min="-2" max="-2" attributes="0"/>
                               </Group>
                               <EmptySpace max="-2" attributes="0"/>
-                              <Component id="pnlGraphs" max="32767" attributes="0"/>
+                              <Component id="pnlRegress" max="32767" attributes="0"/>
                               <EmptySpace max="-2" attributes="0"/>
                           </Group>
                       </Group>
@@ -793,7 +793,7 @@
                         <Property name="text" type="java.lang.String" value="one more"/>
                       </Properties>
                     </Component>
-                    <Container class="javax.swing.JPanel" name="pnlGraphs">
+                    <Container class="javax.swing.JPanel" name="pnlRegress">
                       <Properties>
                         <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                           <Color blue="66" green="66" red="66" type="rgb"/>

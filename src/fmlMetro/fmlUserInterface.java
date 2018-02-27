@@ -6,6 +6,8 @@
 package fmlMetro;
 
 import com.sun.glass.events.KeyEvent;
+import java.awt.BorderLayout;
+import java.awt.Color;
 //import java.awt.Color;
 //import java.awt.Component;
 //import java.awt.Dimension;
@@ -23,13 +25,19 @@ import java.math.RoundingMode;
 import java.text.DecimalFormat;
 import java.util.ArrayList;
 import javafx.scene.chart.XYChart;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.SwingConstants;
 //import javax.swing.event.TableModelEvent;
 //import javax.swing.event.TableModelListener;
 import javax.swing.table.DefaultTableModel;
 import org.knowm.xchart.QuickChart;
 import org.knowm.xchart.SwingWrapper;
 import org.knowm.xchart.XChartPanel;
+import org.knowm.xchart.XYChartBuilder;
+import org.knowm.xchart.XYSeries.XYSeriesRenderStyle;
+import org.knowm.xchart.style.Styler.LegendPosition;
 //import javax.swing.table.TableCellRenderer;
 
 /**
@@ -246,7 +254,7 @@ public class fmlUserInterface extends javax.swing.JFrame {
         jRadioButton1 = new javax.swing.JRadioButton();
         jRadioButton2 = new javax.swing.JRadioButton();
         jRadioButton3 = new javax.swing.JRadioButton();
-        pnlGraphs = new javax.swing.JPanel();
+        pnlRegress = new javax.swing.JPanel();
         jPanel6 = new javax.swing.JPanel();
         lblExpGraph = new javax.swing.JLabel();
         lblAIMessage = new javax.swing.JLabel();
@@ -816,16 +824,16 @@ public class fmlUserInterface extends javax.swing.JFrame {
 
         jRadioButton3.setText("one more");
 
-        pnlGraphs.setBackground(new java.awt.Color(102, 102, 102));
+        pnlRegress.setBackground(new java.awt.Color(102, 102, 102));
 
-        javax.swing.GroupLayout pnlGraphsLayout = new javax.swing.GroupLayout(pnlGraphs);
-        pnlGraphs.setLayout(pnlGraphsLayout);
-        pnlGraphsLayout.setHorizontalGroup(
-            pnlGraphsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        javax.swing.GroupLayout pnlRegressLayout = new javax.swing.GroupLayout(pnlRegress);
+        pnlRegress.setLayout(pnlRegressLayout);
+        pnlRegressLayout.setHorizontalGroup(
+            pnlRegressLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGap(0, 0, Short.MAX_VALUE)
         );
-        pnlGraphsLayout.setVerticalGroup(
-            pnlGraphsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        pnlRegressLayout.setVerticalGroup(
+            pnlRegressLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGap(0, 0, Short.MAX_VALUE)
         );
 
@@ -836,7 +844,7 @@ public class fmlUserInterface extends javax.swing.JFrame {
             .addGroup(jPanel5Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(pnlGraphs, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(pnlRegress, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(jPanel5Layout.createSequentialGroup()
                         .addComponent(jLabel21, javax.swing.GroupLayout.PREFERRED_SIZE, 182, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -856,7 +864,7 @@ public class fmlUserInterface extends javax.swing.JFrame {
                     .addComponent(jRadioButton2)
                     .addComponent(jRadioButton3))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(pnlGraphs, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(pnlRegress, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -2759,6 +2767,9 @@ public class fmlUserInterface extends javax.swing.JFrame {
         int intFOM = dtx.getIntFOM(IEmonTracker);
         int intEOM = dtx.getIntEOM(IEmonTracker);
         DisplayPieChart(intFOM, intEOM);
+        
+        //SummaryGraph();
+        CreateXChart();
 
         
     }//GEN-LAST:event_btnAnalyticsActionPerformed
@@ -4338,19 +4349,62 @@ public class fmlUserInterface extends javax.swing.JFrame {
         }       
     }
 
-//    private void SummaryGraph(){
-//        double[] xData = new double[] { 0.0, 1.0, 2.0 };
-//        double[] yData = new double[] { 2.0, 1.0, 0.0 };
-// 
-//        // Create Chart
-//        XYChart chart = QuickChart.getChart("Sample Chart", "X", "Y", "y(x)", xData, yData);
-// 
-//        JPanel pnlChart = new XChartPanel(chart);
-//        //xChartPanel;
-//        pnlGraphs.add(pnlChart);
-//        pnlGraphs.validate();;
-//        
-//        }
+    private void SummaryGraph(){
+        
+        double[] xData = new double[] { 0.0, 1.0, 2.0 };
+        double[] yData = new double[] { 2.0, 1.0, 0.0 };
+ 
+        // Create Chart
+        org.knowm.xchart.XYChart chart = QuickChart.getChart("Sample Chart", "X", "Y", "y(x)", xData, yData);
+
+        // Show it
+        new SwingWrapper(chart).displayChart();       
+        }
+    
+    private void CreateXChart(){
+    // Create Chart
+    final org.knowm.xchart.XYChart chart = new XYChartBuilder().width(410).height(270).title("finacial summary").xAxisTitle("Month").build();
+    //final org.knowm.xchart.XYChart chart = new XYChartBuilder().width(410).height(270).title("finacial summary").xAxisTitle("Month").yAxisTitle("$").build();
+
+    // Customize Chart
+    //chart.getStyler().setLegendPosition(LegendPosition.InsideNE);
+    chart.getStyler().setLegendVisible(false);
+    chart.getStyler().setDefaultSeriesRenderStyle(XYSeriesRenderStyle.Area);
+    Color[] seriesColors = new Color[] {new Color(0,255,0), new Color(255,36,0), new Color(0,204,255),new Color(245,220,40)};
+    chart.getStyler().setSeriesColors(seriesColors);
+
+    // Series
+    chart.addSeries("$", new double[] { 0, 3, 5, 7, 9 }, new double[] { -3, 5, 9, 6, 5 });
+    chart.addSeries("bills", new double[] { 0, 2, 4, 6, 9 }, new double[] { -1, 6, 4, 0, 4 });
+    chart.addSeries("savings", new double[] { 0, 1, 3, 8, 9 }, new double[] { -2, -1, 1, 0, 1 });
+
+    // Schedule a job for the event-dispatching thread:
+    // creating and showing this application's GUI.
+    javax.swing.SwingUtilities.invokeLater(new Runnable() {
+
+      @Override
+      public void run() {
+
+        // Create and set up the window.
+        JFrame frame = new JFrame("Advanced Example");
+        frame.setLayout(new BorderLayout());
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+
+        // chart
+        JPanel chartPanel = new XChartPanel<org.knowm.xchart.XYChart>(chart);
+        frame.add(chartPanel, BorderLayout.CENTER);
+
+        // label
+        //JLabel label = new JLabel("Blah blah blah.", SwingConstants.CENTER);
+        //frame.add(label, BorderLayout.SOUTH);
+
+        // Display the window.
+        frame.pack();
+        frame.setVisible(true);
+      }
+    });
+    }
+    
     
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -4545,9 +4599,9 @@ public class fmlUserInterface extends javax.swing.JFrame {
     private javax.swing.JPanel pnlBudget;
     private javax.swing.JPanel pnlCarder;
     private javax.swing.JPanel pnlGraph;
-    private javax.swing.JPanel pnlGraphs;
     private javax.swing.JPanel pnlIncomeExp;
     private javax.swing.JPanel pnlLedger;
+    private javax.swing.JPanel pnlRegress;
     private javax.swing.JPanel pnlReporter;
     private javax.swing.JRadioButton rdoIEexpense;
     private javax.swing.JRadioButton rdoIEincome;

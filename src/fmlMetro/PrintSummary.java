@@ -68,7 +68,7 @@ public class PrintSummary extends javax.swing.JFrame {
         if(newWeek.equals(oldWeek)){
             rowData[0] = "";
         } else {
-            if(!newWeek.equals("1")){       // print out EOW balance
+            if(!(newWeek.equals("1")||newWeek.equals("5"))){       // print out EOW balance
                 rowData[0] = ". end of week bal";
                 rowData[1] = "";
                 rowData[2] = "";
