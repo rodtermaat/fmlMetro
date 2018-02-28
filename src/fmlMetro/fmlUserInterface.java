@@ -4365,24 +4365,52 @@ public class fmlUserInterface extends javax.swing.JFrame {
     
     private void CreateXChart(){
         
+        int prevMon = 0;
+        int curMon = 1;
+        
         // get data
         ArrayList<Plotter> lineIncome = sqlite.GetTimeSeries("income");
         int incSize = lineIncome.size();
         int inc_x[] = new int[incSize]; int inc_y[] = new int[incSize];
+        
         if(incSize>0){
+            int prevInc = 0;
             for(int i=0; i<incSize; i++){
-                inc_x[i] = lineIncome.get(i).GetWeek();
-                inc_y[i] = lineIncome.get(i).GetAmt();
+                if (curMon>prevMon){
+                    prevInc = 0;
+                    inc_x[i] = lineIncome.get(i).GetWeek();
+                    inc_y[i] = lineIncome.get(i).GetAmt() + prevInc;
+                    prevInc = lineIncome.get(i).GetAmt();
+                    prevMon = curMon;
+                } else {
+                    inc_x[i] = lineIncome.get(i).GetWeek();
+                    inc_y[i] = lineIncome.get(i).GetAmt() + prevInc;
+                    prevInc = lineIncome.get(i).GetAmt(); 
+                    curMon = lineIncome.get(i).GetMon();
+                }
             }
+            prevMon = 0; curMon = 1;
         }
         ArrayList<Plotter> lineExp = sqlite.GetTimeSeries("expense");
         int expSize = lineExp.size();
         int exp_x[] = new int[expSize]; int exp_y[] = new int[expSize];
         if(expSize>0){
+            int prevExp = 0;
             for(int i=0; i<expSize; i++){
-                exp_x[i] = lineExp.get(i).GetWeek();
-                exp_y[i] = lineExp.get(i).GetAmt();
+                if (curMon>prevMon){
+                    prevExp = 0;
+                    exp_x[i] = lineExp.get(i).GetWeek();
+                    exp_y[i] = lineExp.get(i).GetAmt() + prevExp;
+                    prevExp = lineExp.get(i).GetAmt();
+                    prevMon = curMon;
+                } else {
+                    exp_x[i] = lineExp.get(i).GetWeek();
+                    exp_y[i] = lineExp.get(i).GetAmt() + prevExp;
+                    prevExp = lineExp.get(i).GetAmt();
+                    curMon = lineExp.get(i).GetMon();
+                }
             }
+            prevMon = 0; curMon = 1;
         }
         ArrayList<Plotter> lineSave = sqlite.GetTimeSeries("savings");
         int saveSize = lineSave.size();

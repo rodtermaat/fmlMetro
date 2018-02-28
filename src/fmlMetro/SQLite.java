@@ -1180,20 +1180,20 @@ public class SQLite
         ArrayList<Plotter> plotRows = new ArrayList<>();
         Plotter aPlotRow;
         
-        String sql = "WITH temp AS (SELECT yr,CAST(wk AS int) AS wk,'expense' AS type,\n" +
+        String sql = "WITH temp AS (SELECT yr,mon,CAST(wk AS int) AS wk,'expense' AS type,\n" +
             " (sum(amount)*-1) AS amount FROM ledger WHERE type='bill'\n" +
             " OR type = 'unplanned' OR (type='budget' AND category<>'savings')\n" +
-            " GROUP BY yr,wk\n" +
+            " GROUP BY yr,mon,wk\n" +
             " UNION ALL\n" +
-            " SELECT yr, CAST(wk AS int) AS wk, type, sum(amount) AS amount\n" + 
+            " SELECT yr,mon,CAST(wk AS int) AS wk, type, sum(amount) AS amount\n" + 
             " FROM ledger WHERE type = 'income'\n" +
-            " GROUP BY yr, wk,type\n" +
+            " GROUP BY yr,mon,wk,type\n" +
             " UNION ALL\n" +
-            " SELECT yr, CAST(wk AS int) AS wk, category AS type,(sum(amount)*-1) AS amount\n" + 
+            " SELECT yr,mon,CAST(wk AS int) AS wk, category AS type,(sum(amount)*-1) AS amount\n" + 
             " FROM ledger WHERE (type = 'budget' AND category = 'savings')\n" +
-            " GROUP BY yr, wk,category\n" +
-            " ORDER BY type,yr,wk)\n" +
-            " SELECT wk, type, amount FROM temp WHERE yr > 2017\n" +
+            " GROUP BY yr,mon,wk,category\n" +
+            " ORDER BY type,yr,mon,wk)\n" +
+            " SELECT mon,wk, type, amount FROM temp WHERE yr > 2017\n" +
             " AND type = ?";
 
         try {
@@ -1208,11 +1208,12 @@ public class SQLite
            ResultSet rs = pstmt.executeQuery();
            
            while ( rs.next() ) {
+              int mon = rs.getInt("mon");
               int wk = rs.getInt("wk");
               String type = rs.getString("type");
               int amt = rs.getInt("amount");
                             
-              aPlotRow = new Plotter(wk, type, amt);
+              aPlotRow = new Plotter(mon,wk, type, amt);
               plotRows.add(aPlotRow);
            }
            
