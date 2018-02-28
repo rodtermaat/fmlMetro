@@ -1175,25 +1175,26 @@ public class SQLite
         return balance;
     }
     
-    public ArrayList<Plotter> GetTimeSeries(){
+    public ArrayList<Plotter> GetTimeSeries(String typer){
         
         ArrayList<Plotter> plotRows = new ArrayList<>();
         Plotter aPlotRow;
         
-        String sql = "WITH temp AS (SELECT yr,mon,type\n" +
+        String sql = "WITH temp AS (SELECT yr,CAST(wk AS int) AS wk,'expense' AS type,\n" +
             " (sum(amount)*-1) AS amount FROM ledger WHERE type='bill'\n" +
-            " OR (type='budget' AND category<>'savings)\n" +
-            " GROUP BY yr,mon,type\n" +
+            " OR type = 'unplanned' OR (type='budget' AND category<>'savings')\n" +
+            " GROUP BY yr,wk\n" +
             " UNION ALL\n" +
-            " SELECT yr, mon, type, sum(amount) AS amount\n" + 
+            " SELECT yr, CAST(wk AS int) AS wk, type, sum(amount) AS amount\n" + 
             " FROM ledger WHERE type = 'income'\n" +
-            " GROUP BY yr, mon,type\n" +
+            " GROUP BY yr, wk,type\n" +
             " UNION ALL\n" +
-            " SELECT yr, mon, category AS type,(sum(amount)*-1) AS amount\n" + 
+            " SELECT yr, CAST(wk AS int) AS wk, category AS type,(sum(amount)*-1) AS amount\n" + 
             " FROM ledger WHERE (type = 'budget' AND category = 'savings')\n" +
-            " GROUP BY yr, mon,category\n" +
-            " ORDER BY type,yr,mon)\n" +
-            " SELECT (yr || mon) AS date, type, amount FROM temp";
+            " GROUP BY yr, wk,category\n" +
+            " ORDER BY type,yr,wk)\n" +
+            " SELECT wk, type, amount FROM temp WHERE yr > 2017\n" +
+            " AND type = ?";
 
         try {
            Class.forName("org.sqlite.JDBC");
@@ -1203,15 +1204,15 @@ public class SQLite
            
            //Statement stmt = conn.createStatement();
            PreparedStatement pstmt  = conn.prepareStatement(sql);
-           //pstmt.setInt(1,dateEnd);
+           pstmt.setString(1,typer);
            ResultSet rs = pstmt.executeQuery();
            
            while ( rs.next() ) {
-              String date = rs.getString("date");
+              int wk = rs.getInt("wk");
               String type = rs.getString("type");
               int amt = rs.getInt("amount");
                             
-              aPlotRow = new Plotter(date, type, amt);
+              aPlotRow = new Plotter(wk, type, amt);
               plotRows.add(aPlotRow);
            }
            
@@ -1226,8 +1227,8 @@ public class SQLite
             } 
         }
         catch ( Exception e ) {
-           //System.out.println("Transaction by date: " + e.getMessage());
-           //System.out.println( e.getClass().getName() + ": " + e.getMessage() );
+           System.out.println("Transaction by date: " + e.getMessage());
+           System.out.println( e.getClass().getName() + ": " + e.getMessage() );
         }
       
         return plotRows;

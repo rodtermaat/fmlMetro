@@ -36,8 +36,10 @@ import org.knowm.xchart.QuickChart;
 import org.knowm.xchart.SwingWrapper;
 import org.knowm.xchart.XChartPanel;
 import org.knowm.xchart.XYChartBuilder;
+import org.knowm.xchart.XYSeries;
 import org.knowm.xchart.XYSeries.XYSeriesRenderStyle;
 import org.knowm.xchart.style.Styler.LegendPosition;
+import org.knowm.xchart.style.markers.SeriesMarkers;
 //import javax.swing.table.TableCellRenderer;
 
 /**
@@ -3453,8 +3455,8 @@ public class fmlUserInterface extends javax.swing.JFrame {
         }
         
         String html = "<html>Remember these are bills and" +
-                      "<br>expenes and not the full " +
-                      "<br>picture. Budget setup is next";
+                      "<br>expenses, not the full picture." +
+                      "<br>Set-up your budget next";
         lblIEsumMessage.setText(html);
         
     }
@@ -4362,21 +4364,65 @@ public class fmlUserInterface extends javax.swing.JFrame {
         }
     
     private void CreateXChart(){
+        
+        // get data
+        ArrayList<Plotter> lineIncome = sqlite.GetTimeSeries("income");
+        int incSize = lineIncome.size();
+        int inc_x[] = new int[incSize]; int inc_y[] = new int[incSize];
+        if(incSize>0){
+            for(int i=0; i<incSize; i++){
+                inc_x[i] = lineIncome.get(i).GetWeek();
+                inc_y[i] = lineIncome.get(i).GetAmt();
+            }
+        }
+        ArrayList<Plotter> lineExp = sqlite.GetTimeSeries("expense");
+        int expSize = lineExp.size();
+        int exp_x[] = new int[expSize]; int exp_y[] = new int[expSize];
+        if(expSize>0){
+            for(int i=0; i<expSize; i++){
+                exp_x[i] = lineExp.get(i).GetWeek();
+                exp_y[i] = lineExp.get(i).GetAmt();
+            }
+        }
+        ArrayList<Plotter> lineSave = sqlite.GetTimeSeries("savings");
+        int saveSize = lineSave.size();
+        int  save_x[] = new int[saveSize]; int save_y[] = new int[saveSize];
+        if(saveSize>0){
+            int prevSave = 0;
+            for(int i=0; i<saveSize; i++){
+                save_x[i] = lineSave.get(i).GetWeek();
+                save_y[i] = lineSave.get(i).GetAmt()+ prevSave;
+                prevSave = prevSave + lineSave.get(i).GetAmt();
+            }
+        }
+        
+        
+        // no records so diplay a fake graph here
+        
     // Create Chart
-    final org.knowm.xchart.XYChart chart = new XYChartBuilder().width(410).height(270).title("finacial summary").xAxisTitle("Month").build();
+    final org.knowm.xchart.XYChart chart = new XYChartBuilder().width(400).height(270).xAxisTitle("Month").build();
+    //final org.knowm.xchart.XYChart chart = new XYChartBuilder().width(410).height(270).title("finacial summary").xAxisTitle("Month").build();    
     //final org.knowm.xchart.XYChart chart = new XYChartBuilder().width(410).height(270).title("finacial summary").xAxisTitle("Month").yAxisTitle("$").build();
 
     // Customize Chart
     //chart.getStyler().setLegendPosition(LegendPosition.InsideNE);
     chart.getStyler().setLegendVisible(false);
-    chart.getStyler().setDefaultSeriesRenderStyle(XYSeriesRenderStyle.Area);
+    chart.getStyler().setDefaultSeriesRenderStyle(XYSeriesRenderStyle.Line);
     Color[] seriesColors = new Color[] {new Color(0,255,0), new Color(255,36,0), new Color(0,204,255),new Color(245,220,40)};
     chart.getStyler().setSeriesColors(seriesColors);
 
     // Series
-    chart.addSeries("$", new double[] { 0, 3, 5, 7, 9 }, new double[] { -3, 5, 9, 6, 5 });
-    chart.addSeries("bills", new double[] { 0, 2, 4, 6, 9 }, new double[] { -1, 6, 4, 0, 4 });
-    chart.addSeries("savings", new double[] { 0, 1, 3, 8, 9 }, new double[] { -2, -1, 1, 0, 1 });
+    //chart.addSeries("income", new double[] { 0, 3, 5, 7, 9 }, new double[] { -3, 5, 9, 6, 5 });
+    //chart.addSeries("bills", new double[] { 0, 2, 4, 6, 9 }, new double[] { -1, 6, 4, 0, 4 });
+    //chart.addSeries("savings", new double[] { 0, 1, 3, 8, 9 }, new double[] { -2, -1, 1, 0, 1 });
+    XYSeries seriesINC =  chart.addSeries("income", inc_x, inc_y);
+    seriesINC.setMarker(SeriesMarkers.NONE);
+    //chart.addSeries("income", inc_x, inc_y);
+    XYSeries seriesEXP = chart.addSeries("expenses", exp_x, exp_y);
+    seriesEXP.setMarker(SeriesMarkers.NONE);
+    
+    XYSeries seriesSAVE = chart.addSeries("savings", save_x, save_y);
+    seriesSAVE.setMarker(SeriesMarkers.NONE);
 
     // Schedule a job for the event-dispatching thread:
     // creating and showing this application's GUI.
@@ -4403,6 +4449,10 @@ public class fmlUserInterface extends javax.swing.JFrame {
         frame.setVisible(true);
       }
     });
+    }
+    
+    private void CreateBetterChart(){
+        
     }
     
     

@@ -9,18 +9,18 @@ package fmlMetro;
  */
 public class Plotter {
 
-    private final String date;
+    private final int wk;
     private final String type;
     private final int amount;
 
-    public Plotter(String date, String type, int amount){
-        this.date = date;
+    public Plotter(int wk, String type, int amount){
+        this.wk = wk;
         this.type = type;
         this.amount = amount;
     }
     
-    public String GetDate(){
-        return date;
+    public int GetWeek(){
+        return wk;
     }
     public String GetType(){
         return type;
